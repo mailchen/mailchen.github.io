@@ -1,0 +1,47 @@
+<!DOCTYPE html><html><head><title>IoC 核心 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>IoC 核心</a></h3></div><div class="post-content"><h4 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h4><ul>
+<li><p>IoC(控制反转) 、DI(依赖注入)</p>
+</li>
+<li><p>作用：借助于“第三方”实现具有依赖关系的对象之间的解耦，即通过引入 IoC 容器，利用依赖关系注入的方式，实现对象之间的解耦。</p>
+</li>
+</ul>
+<h4 id="基本技术"><a href="#基本技术" class="headerlink" title="基本技术"></a>基本技术</h4><blockquote>
+<p>反射(Reflection)</p>
+</blockquote>
+<h4 id="Ioc-产品"><a href="#Ioc-产品" class="headerlink" title="Ioc 产品"></a>Ioc 产品</h4><ul>
+<li>.Net IOC容器：Spring.Net、Castle</li>
+<li>Sun ONE IoC容器：Spring、Guice、Pico Container、Avalon、HiveMind；EJB；</li>
+</ul>
+<h4 id="Spring-Net-过程阶段"><a href="#Spring-Net-过程阶段" class="headerlink" title="Spring.Net 过程阶段"></a>Spring.Net 过程阶段</h4><ul>
+<li>容器启动阶段</li>
+<li>Bean实例化阶段</li>
+</ul>
+<h4 id="Spring-Net-实现方式"><a href="#Spring-Net-实现方式" class="headerlink" title="Spring.Net 实现方式"></a>Spring.Net 实现方式</h4><ul>
+<li><p>接口注入<br>缺点：强制被注入对象实现不必要的接口</p>
+</li>
+<li><p>构造方法注入<br>缺点：参数列表维护</p>
+</li>
+<li><p>setter方法注入<br>推荐方法</p>
+</li>
+</ul>
+<h4 id="Spring-Net-IoC-容器"><a href="#Spring-Net-IoC-容器" class="headerlink" title="Spring.Net IoC 容器"></a>Spring.Net IoC 容器</h4><ul>
+<li>BeanFactory</li>
+<li>ApplicationContext</li>
+</ul>
+<h4 id="对象依赖信息"><a href="#对象依赖信息" class="headerlink" title="对象依赖信息"></a>对象依赖信息</h4><ul>
+<li>通过最基本的文本文件来记录被注入对象和其依赖对象之间的对应关系</li>
+<li>通过描述性较强的XML文件格式来记录对应信息</li>
+<li>通过编写代码的方式来注册这些对应信息</li>
+<li>通过注解方式来注册这些对应信息</li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Net/" title=".Net">.Net </a><a class="tag" href="/tags/IoC/" title="IoC">IoC </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2019/07/16/Csharp/IoC  核心/,日升于东,IoC 核心,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/07/18/Net%20Code%20+%20Vue%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title=".Net Code + Vue 环境搭建">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/07/16/Csharp/ORM%20%E8%AF%A6%E8%A7%A3/" title="ORM 详解">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-text">核心思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%8A%80%E6%9C%AF"><span class="toc-text">基本技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ioc-%E4%BA%A7%E5%93%81"><span class="toc-text">Ioc 产品</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring-Net-%E8%BF%87%E7%A8%8B%E9%98%B6%E6%AE%B5"><span class="toc-text">Spring.Net 过程阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring-Net-%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-text">Spring.Net 实现方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring-Net-IoC-%E5%AE%B9%E5%99%A8"><span class="toc-text">Spring.Net IoC 容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E4%BE%9D%E8%B5%96%E4%BF%A1%E6%81%AF"><span class="toc-text">对象依赖信息</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

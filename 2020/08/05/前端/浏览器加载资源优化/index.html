@@ -1,0 +1,165 @@
+<!DOCTYPE html><html><head><title>浏览器加载资源优化 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>浏览器加载资源优化</a></h3></div><div class="post-content"><h4 id="浏览器加载资源过程"><a href="#浏览器加载资源过程" class="headerlink" title="浏览器加载资源过程"></a>浏览器加载资源过程</h4><ol>
+<li>将资源分类</li>
+<li>资源安全策略检查，决定资源的加载权限</li>
+<li>资源优先级计算和排序</li>
+<li>根据加载优先级顺序加载资源</li>
+</ol>
+<h5 id="资源分类"><a href="#资源分类" class="headerlink" title="资源分类"></a>资源分类</h5><p>chrome 浏览器资源分为 14 类：</p>
+<style>
+table{
+  border-collapse:collapse;
+}
+table th,table td{
+  padding: .5rem 1rem;
+  border:1px solid #cdcdcd;
+}
+</style>
+
+<table>
+<thead>
+<tr>
+<th align="center">类别</th>
+<th align="center">介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">kMainResource</td>
+<td align="center">主资源，Html页面文件资源属于该类型</td>
+</tr>
+<tr>
+<td align="center">kImage</td>
+<td align="center">图片资源</td>
+</tr>
+<tr>
+<td align="center">kCssStyleSheet</td>
+<td align="center">层叠样式资源</td>
+</tr>
+<tr>
+<td align="center">kScript</td>
+<td align="center">脚本资源，即js</td>
+</tr>
+<tr>
+<td align="center">kFont</td>
+<td align="center">字体资源，即.woff</td>
+</tr>
+<tr>
+<td align="center">kRaw</td>
+<td align="center">混合类型资源，ajax请求属于该类资源</td>
+</tr>
+<tr>
+<td align="center">kSVGDocument</td>
+<td align="center">SVG矢量图资源</td>
+</tr>
+<tr>
+<td align="center">kXSLStyleSheet</td>
+<td align="center">扩展样式表</td>
+</tr>
+<tr>
+<td align="center">kLinkPrefetch</td>
+<td align="center">HTML5 页面的预读取资源，如dns-prefetch</td>
+</tr>
+<tr>
+<td align="center">kTextTrack</td>
+<td align="center">video 字幕资源，即<track>标签</td>
+</tr>
+<tr>
+<td align="center">kImportResource</td>
+<td align="center">HTML Imports，如<link href="xxx.html" rel="import"/></td>
+</tr>
+<tr>
+<td align="center">kMedia</td>
+<td align="center">多媒体资源</td>
+</tr>
+<tr>
+<td align="center">kManifest</td>
+<td align="center">应用程序缓存资源</td>
+</tr>
+<tr>
+<td align="center">kMock</td>
+<td align="center">预留的测试类型</td>
+</tr>
+</tbody></table>
+<h5 id="安全策略检查"><a href="#安全策略检查" class="headerlink" title="安全策略检查"></a>安全策略检查</h5><p>Content Security Policy，即 CSP，浏览器提供的白名单制度。<br>通过配置外部资源的加载和执行限制，提高网页安全性。</p>
+<p>常用应用：通过限制非信任域名脚本的加载来预防XSS攻击</p>
+<blockquote>
+<p>配置CSP的2种方式</p>
+</blockquote>
+<ol>
+<li>页面HTTP请求头的Content-Security-Policy字段来限制</li>
+<li>通过<code>&lt;meta&gt;</code>标签设置</li>
+</ol>
+<ul>
+<li><p>预防XSS</p>
+<p>  <code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;script-src &#39;self&#39;; style-src nos.netease.com kaola.com;&quot;&gt;</code><br>  script-src：脚本资源<br>  style-src：样式资源<br>  ‘self’：只信任当前域名下的外部资源<br>  nos.netease.com kaola.com：信任白名单域名下的资源</p>
+</li>
+<li><p>站点请求协议升级（http -&gt; https）</p>
+<p>  <code>&lt;meta http-equiv=&quot;Content-Secur****ity-Policy&quot; content=&quot;upgrade-insecure-requests&quot;&gt;</code><br>  upgrade-insecure-requests：升级所有非安全请求<br>  将http资源强制以https或wss或SSL加密形式发送请求而不报错，如果服务器不支持https等SSL加密，则资源不加载</p>
+</li>
+<li><p>阻止 Mixed Content</p>
+<p>  <code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;block-all-mixed-content&quot;&gt;</code></p>
+</li>
+</ul>
+<p>浏览器对于可能对安全性造成较大威胁的资源类型的混合模式请求都会直接拦截报错，例如脚本资源，但对于图片、音频、视频等资源只会警告，但不会阻止其加载。</p>
+<h5 id="资源优先级计算"><a href="#资源优先级计算" class="headerlink" title="资源优先级计算"></a>资源优先级计算</h5><p>资源优先级分级：5级</p>
+<p>网络层面：Highest、Medium、Low、Lowest、Idle<br>浏览器内核：VeryHigh、High、Medium、Low、VeryLow<br>用户端控制台显示：Highest、High、Medium、Low、Lowest</p>
+<blockquote>
+<p>浏览器内核，资源优先级计算</p>
+</blockquote>
+<ul>
+<li><p>资源类型设定默认优先级</p>
+<ol>
+<li>html、css、font 优先级最高</li>
+<li>preload 预加载、script、xhr</li>
+<li>图片、语言、视频</li>
+<li>prefetch 预读取资源</li>
+</ol>
+</li>
+<li><p>根据实际规则，对优先级进行调整</p>
+<ol>
+<li>XHR资源请求：同步XHR请求优先级最高</li>
+<li>图片资源：默认优先级 LOW ，现代浏览器为了提高首屏体验，会将首屏资源优先级提高到 High</li>
+<li>脚本资源：<br> defer/async属性标签的脚本的优先级会全部降为Low<br> 脚本位置是在第一张图片前，标记early<strong>，定为 High 优先级；之后标记late</strong>，设为 Medium 优先级</li>
+</ol>
+</li>
+</ul>
+<img src="https://user-gold-cdn.xitu.io/2018/1/5/160c40056cc4e9cb?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"/>
+
+<h5 id="加载资源"><a href="#加载资源" class="headerlink" title="加载资源"></a>加载资源</h5><p>关键请求链：Critical-Request-Chains，可视区域渲染完毕（首屏），并对于用户来说可用时，必须加载的资源请求队列</p>
+<blockquote>
+<p>查找页面的关键请求链</p>
+</blockquote>
+<ol>
+<li>首屏快照获取关键 image 资源</li>
+<li><a target="_blank" rel="noopener" href="https://developers.google.com/web/tools/lighthouse/">LightHouse</a> 插件获取关键 js、css资源</li>
+<li>控制台查看各资源优先级</li>
+</ol>
+<blockquote>
+<p>优化关键请求链</p>
+</blockquote>
+<ol>
+<li>preload 和 prefetch</li>
+</ol>
+<p>Preload：某些资源可能将来会被使用</p>
+<pre><code>&lt;link rel=&quot;preload&quot; href=&quot;test.jpg&quot;&gt;</code></pre>
+<p>prefetch：资源预加载、DNS预解析、http预连接和页面预渲染</p>
+<pre><code>资源预加载：&lt;link rel=&quot;prefetch&quot; href=&quot;test.css&quot;&gt;
+DNS预解析：&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//haitao.nos.netease.com&quot;&gt;
+http预连接：&lt;link rel=&quot;prefetch&quot; href=&quot;//www.kaola.com&quot;&gt; 将建立对该域名的TCP链接
+页面预渲染：&lt;link rel=&quot;prerender&quot; href=&quot;//m.kaola.com&quot;&gt; 将会预先加载链接文档的所有资源</code></pre>
+<p>兼容性：<br>除了 dns-prefetch ，其他的兼容性十分堪忧，尤其 Safari</p>
+<ol start="2">
+<li>LocalStorage</li>
+</ol>
+<p>资源本地缓存</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-05</span><i class="fa fa-tag"></i><a class="tag" href="/categories/前端/" title="前端">前端 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/08/05/前端/浏览器加载资源优化/,日升于东,浏览器加载资源优化,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/08/05/%E5%89%8D%E7%AB%AF/AST%20%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91/" title="AST 抽象语法树">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/08/03/Javascript/MVVM%20%E5%8E%9F%E7%90%86/" title="MVVM 原理">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E8%BF%87%E7%A8%8B"><span class="toc-text">浏览器加载资源过程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%88%86%E7%B1%BB"><span class="toc-text">资源分类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%9F%A5"><span class="toc-text">安全策略检查</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E4%BC%98%E5%85%88%E7%BA%A7%E8%AE%A1%E7%AE%97"><span class="toc-text">资源优先级计算</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90"><span class="toc-text">加载资源</span></a></li></ol></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

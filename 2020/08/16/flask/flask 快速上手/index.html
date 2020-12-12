@@ -1,0 +1,94 @@
+<!DOCTYPE html><html><head><title>flask 快速上手 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>flask 快速上手</a></h3></div><div class="post-content"><h4 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h4><p>使用 route() 装饰器来把函数绑定到 URL</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>():</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">&#x27;Index Page&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>带参数的路由</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/user/&lt;username&gt;&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_user_profile</span>(<span class="params">username</span>):</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">&#x27;user %s&#x27;</span> % escape(username)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/post/&lt;int:post_id&gt;&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_post</span>(<span class="params">post_id</span>):</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">&#x27;post %d&#x27;</span> % post_id</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>转换器类型</p>
+</blockquote>
+<style>
+table{ border-collapse: collapse}
+table th,table td{ border: 1px solid #cdcdcd; padding: .5rem;}
+</style>
+
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">string</td>
+<td align="center">默认值，接受任何不含斜杠的文本</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">接受正整数</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">接受正浮点数</td>
+</tr>
+<tr>
+<td align="center">path</td>
+<td align="center">类似 string，可以包含斜杠</td>
+</tr>
+<tr>
+<td align="center">uuid</td>
+<td align="center">接受 UUID 字符串</td>
+</tr>
+</tbody></table>
+<h4 id="重定向行为"><a href="#重定向行为" class="headerlink" title="重定向行为"></a>重定向行为</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/projects/&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">projects</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;The project page&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/about&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">about</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;The about page&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>区别在于尾部的斜杠</p>
+<h4 id="URL-构建"><a href="#URL-构建" class="headerlink" title="URL 构建"></a>URL 构建</h4><p>url_for(函数名， 参数)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> falsk <span class="keyword">import</span> Flask, escape, url_for</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/user/&lt;username&gt;&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">profile</span>(<span class="params">username</span>):</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">&#x27;&#123;&#125;\&#x27;s profile&#x27;</span>.<span class="built_in">format</span>(escape(username))</span><br><span class="line"></span><br><span class="line">print(url_for(<span class="string">&#x27;profile&#x27;</span>, username = <span class="string">&#x27;John Doe&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<h4 id="HTTP-方法"><a href="#HTTP-方法" class="headerlink" title="HTTP 方法"></a>HTTP 方法</h4><p>默认情况下，一个路由只回应 GET 请求，route() 装饰器的 methods 参数可以处理不同的 HTTP 方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/login&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span>():</span></span><br><span class="line">	<span class="keyword">if</span> request.method == <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;登录...&#x27;</span></span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;登录信息...&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="获取静态文件"><a href="#获取静态文件" class="headerlink" title="获取静态文件"></a>获取静态文件</h4><p>url_for(‘static’, filename = ‘style.css’)</p>
+<h4 id="渲染模板"><a href="#渲染模板" class="headerlink" title="渲染模板"></a>渲染模板</h4><p>render_template()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> render_template</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;hello/&lt;name&gt;&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span>(<span class="params">name</span>):</span></span><br><span class="line">	<span class="keyword">return</span> render_template(hello.html, name = name)</span><br></pre></td></tr></table></figure>
+
+<p>情形 1 : 一个模块:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/application.py</span><br><span class="line">/templates</span><br><span class="line">    /hello.html</span><br></pre></td></tr></table></figure>
+
+<p>情形 2 : 一个包:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/application</span><br><span class="line">    /__init__.py</span><br><span class="line">    /templates</span><br><span class="line">        /hello.html</span><br></pre></td></tr></table></figure>
+
+<h4 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h4><p>app.logger.debug()<br>app.logger.warning()<br>app.logger.error()</p>
+<h4 id="Cookies"><a href="#Cookies" class="headerlink" title="Cookies"></a>Cookies</h4><blockquote>
+<p>读取 cookies:</p>
+</blockquote>
+<p>from flask import request</p>
+<p>request.cookies.get(‘username’)</p>
+<blockquote>
+<p>储存 cookies:</p>
+</blockquote>
+<p>resp = make_response(render_template(…))</p>
+<p>resp.set_cookie(‘username’, ‘the username’)</p>
+<h4 id="重定向和错误"><a href="#重定向和错误" class="headerlink" title="重定向和错误"></a>重定向和错误</h4><p>from flask import abort, redirect, url_for</p>
+<p>redirect(url_for(‘login’))<br>abort(401)</p>
+<h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><p>jsonify()</p>
+<h4 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h4><p>if ‘username’ in session:<br>    return ‘Logged in as %s’ % escape(session[‘username’])</p>
+<p>session[‘username’] = request.form[‘username’]</p>
+<p>session.pop(‘username’, None)</p>
+<p>Flask.secret_key 生成秘钥</p>
+<h4 id="UWSGI"><a href="#UWSGI" class="headerlink" title="UWSGI"></a>UWSGI</h4><p>from werkzeug.contrib.fixers import LighttpdCGIRootFix<br>app.wsgi_app = LighttpdCGIRootFix(app.wsgi_app)</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Python/" title="Python">Python </a><a class="tag" href="/tags/flask/" title="flask">flask </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/08/16/flask/flask 快速上手/,日升于东,flask 快速上手,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/08/16/flask/flask%20%E5%AE%89%E8%A3%85/" title="flask 安装">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/08/06/Javascript/this%20%E8%AE%B2%E8%A7%A3/" title="this 讲解">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1"><span class="toc-text">路由</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E8%A1%8C%E4%B8%BA"><span class="toc-text">重定向行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#URL-%E6%9E%84%E5%BB%BA"><span class="toc-text">URL 构建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-%E6%96%B9%E6%B3%95"><span class="toc-text">HTTP 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6"><span class="toc-text">获取静态文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%A8%A1%E6%9D%BF"><span class="toc-text">渲染模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A5%E5%BF%97"><span class="toc-text">日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cookies"><span class="toc-text">Cookies</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E9%94%99%E8%AF%AF"><span class="toc-text">重定向和错误</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JSON"><span class="toc-text">JSON</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D"><span class="toc-text">会话</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#UWSGI"><span class="toc-text">UWSGI</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

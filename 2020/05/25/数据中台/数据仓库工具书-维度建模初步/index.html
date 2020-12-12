@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head><title>数据仓库工具书-维度建模初步 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>数据仓库工具书-维度建模初步</a></h3></div><div class="post-content"><blockquote>
+<p>序</p>
+</blockquote>
+<p>数据展现获得成功，必须建立在简单性的基础上，以业务用户的需求来驱动<br>维度建模是建立集成化的 DW/BI 系统的<code>主导结构</code><br>使用维度建模的<code>一致性维度</code>和<code>一致性事实</code>，可以<code>增量式</code>的建立具有<code>可实践性</code>、<code>可预测</code>、<code>分布式</code>的<code>复杂</code> DW/BI 系统框架</p>
+<blockquote>
+<p>数据获取 VS 数据分析</p>
+</blockquote>
+<p>信息的作用：操作型记录的保存、分析型决策的制定</p>
+<p>操作型系统通常不必维护历史数据，只需修改数据以反映最新状态<br>分析型系统要求保存历史环境，以精确的评估组织在一段时间内的性能</p>
+<blockquote>
+<p>DW/BI 基本需求</p>
+</blockquote>
+<ol>
+<li><p>能够方便的存取信息</p>
+<p> 数据需要直观性<br> 数据结构与标识必须符合业务用户的思维过程和词汇<br> 业务用户能以各种形式分割和合并分析数据<br> 访问数据的工具和应用要简单易用<br> 能够快速查询出结果</p>
+</li>
+<li><p>以一致的形式展示信息</p>
+<p> 数据必须可信<br> 清洗不同来源的数据，确保质量<br> 公告标识和定义能够在不同数据源公用</p>
+</li>
+<li><p>必须能够适应变化</p>
+<p> 用户需求、业务环境、数据及技术</p>
+</li>
+<li><p>必须能够及时展现信息</p>
+<p> DW/BI 系统主要用于操作型决策，原始数据需要短时间内转换成可用信息</p>
+</li>
+<li><p>成为保护信息财富的安全堡垒</p>
+<p> 有效控制组织中机密信息的访问</p>
+</li>
+<li><p>成为提高决策制定能力的权威和可信的基础</p>
+<p> DW/BI 系统重要的输出是基于分析证据所产生的决策</p>
+</li>
+<li><p>系统成功的标志是业务群体的接受</p>
+</li>
+</ol>
+<blockquote>
+<p>维度建模</p>
+</blockquote>
+<p>解决问题：<br>以商业用户可以理解的方式发布数据<br>提高高效的查询性能</p>
+<blockquote>
+<p>用于度量的事实表</p>
+</blockquote>
+<p>维度模型中的事实表存储组织机构业务过程中事件的性能度量结果，同一个业务过程的底层度量结果尽可能存储于一个维度模型</p>
+<p>事实可以通过连续描述，有助于区分到底是事实还是维度属性的问题</p>
+<p>从行的数量 -&gt; 事实表趋向于变长<br>从列的数量 -&gt; 事实表趋向于变短</p>
+<p>事实表粒度划分：<code>事务</code>、周期性快照、累积快照</p>
+<p>事实表具有N个外键与维度表的主键关联，主键是组合键</p>
+<blockquote>
+<p>用于描述环境的维度表</p>
+</blockquote>
+<p>维度表是事实表不可或缺的组成部分</p>
+<p>维度表单一主键<br>维度属性可作为查询约束、分组、报表标识的主要来源<br>尽量减少在维度表中使用代码，将代码替换成详细的文本属性</p>
+<pre><code>数据仓库的好坏直接取决于维度属性的设置
+DW/BI 环境的分析能力取决于维度属性的质量和深度</code></pre>
+<p>+如何区分数值数据元素是事实属性还是维度属性</p>
+<p>包含多个值并作为计算的参与者的度量 -&gt; 事实<br>对具体值得描述，是一个常量、某一约束和行标识的参与者 -&gt; 维度属性</p>
+<blockquote>
+<p>DW/BI 环境划分</p>
+</blockquote>
+<p>操作型源系统、ETL系统（获取，转换，加载）、数据展现、商业智能应用</p>
+<p>ETL主要任务：在交付过程中划分维度和事实</p>
+<blockquote>
+<p>商业智能决策的展现区</p>
+</blockquote>
+<p>展现区：<br>数据应以维度模型来展现，星型模式、OLAP多维数据库<br>包含详细的原子数据<br>围绕业务过程度量事件来构建<br>使用公共的、一致性的维度建立维度结构</p>
+<blockquote>
+<p>常见 DW/BI 架构</p>
+</blockquote>
+<p>独立数据集市架构<br>辐射状企业信息工厂架构 INmon</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-05-25</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据资产/" title="数据资产">数据资产 </a><a class="tag" href="/tags/维度建模/" title="维度建模">维度建模 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/05/25/数据中台/数据仓库工具书-维度建模初步/,日升于东,数据仓库工具书-维度建模初步,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/05/25/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/" title="数据仓库">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/05/25/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%B7%A5%E5%85%B7%E4%B9%A6-%E9%9B%B6%E5%94%AE%E4%B8%9A%E5%8A%A1/" title="数据仓库工具书-零售业务">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

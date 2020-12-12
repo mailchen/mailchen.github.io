@@ -1,0 +1,74 @@
+<!DOCTYPE html><html><head><title>web性能优化 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>web性能优化</a></h3></div><div class="post-content"><h4 id="度量标准"><a href="#度量标准" class="headerlink" title="度量标准"></a>度量标准</h4><blockquote>
+<p>标准</p>
+</blockquote>
+<p>首次有效绘制：主要内容呈现在页面上<br>英雄渲染时间：用户最关心的内容渲染完成<br>可交互时间：页面布局稳定，关键页面字体可见，主程序可用于处理用户输入，可以交互<br>输入响应：界面响应用户输入所需时间<br>感知速度指数：页面加载视觉变化速度<br>自定义指标</p>
+<blockquote>
+<p>目标</p>
+</blockquote>
+<p>100毫秒界面响应时间与60FPS<br>速度指标小于 1250 ms<br>3G网络环境可交互时间小于5s<br>重要文件大小预算小于170kb</p>
+<h4 id="编码优化"><a href="#编码优化" class="headerlink" title="编码优化"></a>编码优化</h4><blockquote>
+<p>数据读取速度</p>
+</blockquote>
+<p>字面量与局部变量的访问速度最快，数组和对象相对较慢<br>变量从局部作用域到全局作用域的搜索过程越长速度越慢<br>对象嵌套越深，读取速度越慢<br>对象在原型链中存在位置越深，查找速度越慢</p>
+<blockquote>
+<p>DOM</p>
+</blockquote>
+<p>JS中对DOM访问的代价非常高<br>重排和重绘的代价非常高<br>善于使用事件委托</p>
+<blockquote>
+<p>流程控制</p>
+</blockquote>
+<p>避免使用 for … in (能够枚举到原型，所以慢)<br>JS 中倒序循环可以略微提升性能<br>减少迭代次数<br>基于循环的迭代比基于函数的迭代快 8 倍<br>用 Map 表代替大量的 if-else 和 switch</p>
+<h4 id="静态资源优化"><a href="#静态资源优化" class="headerlink" title="静态资源优化"></a>静态资源优化</h4><blockquote>
+<p>压缩</p>
+</blockquote>
+<p>使用Brotli或Zopfli进行纯文本压缩</p>
+<blockquote>
+<p>图片优化</p>
+</blockquote>
+<p>通过srcset，sizes 和 <picture>元素使用响应式图片。还可以通过 <picture> 元素使用 WebP 格式的图像。</p>
+<h4 id="交付优化"><a href="#交付优化" class="headerlink" title="交付优化"></a>交付优化</h4><blockquote>
+<p>异步无阻塞加载JS</p>
+</blockquote>
+<p><code>defer</code>、<code>async</code>、动态创建 script 标签、使用 XHR 异步请求 JS 代码并注入到页面</p>
+<blockquote>
+<p>Intersection Observer实现懒加载</p>
+</blockquote>
+<blockquote>
+<p>优先加载关键的CSS</p>
+</blockquote>
+<p>Critical</p>
+<blockquote>
+<p>资源提示</p>
+</blockquote>
+<p>Resource Hints（资源提示）定义了HTML中的Link元素与dns-prefetch、preconnect、prefetch与prerender之间的关系</p>
+<blockquote>
+<p>Preload</p>
+</blockquote>
+<h4 id="构建优化"><a href="#构建优化" class="headerlink" title="构建优化"></a>构建优化</h4><blockquote>
+<p>使用预编译</p>
+</blockquote>
+<blockquote>
+<p>Tree-shaking、Scope hoisting、Code-spliting</p>
+</blockquote>
+<blockquote>
+<p>SSR 服务端渲染</p>
+</blockquote>
+<blockquote>
+<p>使用import函数动态导入模块</p>
+</blockquote>
+<blockquote>
+<p>使用HTTP缓存头</p>
+</blockquote>
+<p>Cache-control: immutable避免重新验证</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-03</span><i class="fa fa-tag"></i><a class="tag" href="/categories/前端/" title="前端">前端 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/08/03/前端/web性能优化/,日升于东,web性能优化,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/08/03/Javascript/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%AE%9E%E7%8E%B0/" title="懒加载实现">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/08/03/%E5%89%8D%E7%AB%AF/%E5%86%8D%E8%81%8A%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="再聊性能优化">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%A6%E9%87%8F%E6%A0%87%E5%87%86"><span class="toc-text">度量标准</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E4%BC%98%E5%8C%96"><span class="toc-text">编码优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96"><span class="toc-text">静态资源优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A4%E4%BB%98%E4%BC%98%E5%8C%96"><span class="toc-text">交付优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E4%BC%98%E5%8C%96"><span class="toc-text">构建优化</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

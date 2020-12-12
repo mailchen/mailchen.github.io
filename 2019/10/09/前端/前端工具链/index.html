@@ -1,0 +1,89 @@
+<!DOCTYPE html><html><head><title>前端工具链 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>前端工具链</a></h3></div><div class="post-content"><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e248a94c35eb">前端工具链</a></li>
+</ul>
+<h4 id="babel"><a href="#babel" class="headerlink" title="babel"></a>babel</h4><p>解决问题：解决版本差异</p>
+<p>创建一个叫做 babel-test 的文件夹</p>
+<pre><code>npm init -y
+npm install --save-dev babel-cli</code></pre>
+<p>babel 默认的配置文件名为 .babelrc</p>
+<pre><code>.babelrc 文件
+&#123;
+    &quot;presets&quot;: [
+      &quot;es2015&quot;
+    ],
+    &quot;plugins&quot;: []
+&#125;</code></pre>
+<p>转码规则是以附加规则包的形式出现</p>
+<pre><code>/*安装规则包*/
+npm install --save-dev babel-preset-es2015</code></pre>
+<p>babel 是以命令行的形式使用的，常用命令</p>
+<pre><code># 转码结果打印到控制台
+ babel es6.js
+
+# 转码结果写入一个文件
+ babel es6.js -o es5.js # 将 es6.js 的转码结果写入 es5.js 中
+
+# 转码整个目录到指定路径
+ babel es6js -d es5js # 将 es6js 路径下的 js 文件转码到 es5js 路径下</code></pre>
+<p><em>由于我们的 babel 是安装在 babel-test 的 node_modules 中的，所以需要使用 npm run 来方便运行以上命令。</em></p>
+<p>编辑 package.json</p>
+<pre><code>&quot;scripts&quot;: &#123;
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
+    &quot;build&quot;: &quot;babel inputs -d outputs&quot;
+  &#125;</code></pre>
+<p>在 babel-test 下创建一个新的目录 inputs ，在其中写入新的文件 a.js:</p>
+<pre><code>// es6 语法，模板字符串
+let name = &#39;ucag&#39;
+let greeting = `hello my name is $&#123;name&#125;`
+
+npm run build</code></pre>
+<p>转换完成之后，我们在 outputs 下找到 a.js</p>
+<pre><code>&#39;use strict&#39;;
+
+var name = &#39;ucag&#39;;
+var greeting = &#39;hello my name is &#39; + name;</code></pre>
+<h4 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h4><p>解决问题：整合资源，把相互依赖的模块打包</p>
+<p>创建一个叫做 babel-test 的文件夹</p>
+<pre><code>npm init -y
+npm install --save-dev webpack</code></pre>
+<p>入口 entry：不管一个项目有多复杂，它总是有一个入口的。这个入口就被称为 entry 。这就像是我们的模块有个 index.js 一样。</p>
+<p>出口 output：webpack 根据入口文件将被依赖的文件按照一定的规则打包在一起，最终需要一个输出打包文件的地方，这就是 output 。</p>
+<blockquote>
+<p>加载配置的方法<br>1.写一个独立的配置文件<br>2.在命令行内编写配置</p>
+</blockquote>
+<p>webpack-test 下创建一个新的文件 webpack.config.js</p>
+<pre><code>module.exports = &#123;
+    entry:&#39;./main.js&#39;, // 入口文件为当前路径下的 main.js 为文件
+    output:&#123;
+        path:__dirname, // __dirname 是 node 中的全局变量，代表当前路径。
+        filename:&#39;index.js&#39; // 打包之后的文件名
+    &#125;
+&#125;</code></pre>
+<p><em>当我们在 webpack-test 下不带任何参数运行 webpack 命令时，webpack 会自动去寻找名为 webpack.config.js 的文件，这就是它默认的配置文件名了。</em></p>
+<p>编辑 package.json</p>
+<pre><code>&quot;scripts&quot;&#123;
+    &#39;pkg&#39;:&#39;webpack&#39; // 编辑快捷命令
+&#125;</code></pre>
+<p>在 webpack-test 下运行</p>
+<pre><code>npm run pkg # 运行 webpack</code></pre>
+<h4 id="模块化的方式"><a href="#模块化的方式" class="headerlink" title="模块化的方式"></a>模块化的方式</h4><p>1.CommonJS 的模块化方式<br>2.es6 的模块化方式</p>
+<p>CommonJS 规范：</p>
+<blockquote>
+<p>使用 module.exports 或 exports 来导出内部变量<br>使用 require 导入变量。当被导入对象是路径时，require 会自动搜寻并引入目录下的 index.js 文件，会把这个文件作为整个文件的入口。</p>
+</blockquote>
+<p>es6 规范：</p>
+<blockquote>
+<p>使用 import 与 export 来导出内部变量<br>当导入命名导出变量时，使用基于 import { varName } from ‘model’ 的语法；当导入匿名或默认导入时，使用 import varName from ‘model’ 语法；</p>
+</blockquote>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-10-09</span><i class="fa fa-tag"></i><a class="tag" href="/categories/前端/" title="前端">前端 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2019/10/09/前端/前端工具链/,日升于东,前端工具链,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/10/09/Linux/Linux%20%E5%9F%BA%E7%A1%80/" title="Linux 基础">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/09/28/python/Python%20Celery/" title="Python Celery">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#babel"><span class="toc-text">babel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#webpack"><span class="toc-text">webpack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-text">模块化的方式</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

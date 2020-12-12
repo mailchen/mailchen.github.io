@@ -1,0 +1,132 @@
+<!DOCTYPE html><html><head><title>javascript 面试基础 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>javascript 面试基础</a></h3></div><div class="post-content"><h4 id="变量和类型"><a href="#变量和类型" class="headerlink" title="变量和类型"></a>变量和类型</h4><blockquote>
+<p>javascript 规定了几种语言类型?</p>
+</blockquote>
+<p>Undefined、Null、Boolean、String、Number、Symbol、Object、Function</p>
+<pre><code>简单类型都不是对象</code></pre>
+<ol>
+<li><p>undefined</p>
+<p> 表示未定义，任何变量赋值前都是 undefined 类型，值为 undefined （而不是 null）<br> undefined 是一个变量，void(0) 返回 undefined</p>
+</li>
+<li><p>null</p>
+<p> 只有一个值，表示空值，是关键字，typeOf(null) 返回 object</p>
+</li>
+<li><p>String </p>
+<p> 字符串 UTF16编码，最大长度 253-1</p>
+</li>
+<li><p>Number</p>
+<p> typeof(NaN) 和 typeof(Infinity) 都返回 number<br> NaN != NaN<br> Infinity / Infinity = NaN </p>
+</li>
+<li><p>Symbol</p>
+<p> 表示独一无二的值，是一切非字符串的对象key的集合。<br> Symbol(参数)：可以接受一个字符串参数，表示对 Symbol 实例的描述。</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Symbol</span>(<span class="number">1</span>) === <span class="built_in">Symbol</span>(<span class="number">1</span>)      <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li><p>Object</p>
+<p> 为什么给对象添加的方法能用在基本类型上？</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Symbol</span>.prototype.hello = <span class="function">() =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">&#x27;hello&#x27;</span>)&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="built_in">Symbol</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a)      <span class="comment">// symbol</span></span><br><span class="line">a.hello()                  <span class="comment">// hello</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>运算符提供了装箱操作，会根据基础类型构造一个临时对象，使得基础类型可以调用对象的方法</code></pre>
+<ol start="7">
+<li>Function</li>
+</ol>
+<ul>
+<li><p>装箱和拆箱</p>
+<p>  在 JavaScript 中，没有任何方法可以更改私有的 Class 属性，因此 Object.prototype.toString 是可以准确识别对象对应的基本类型的方法，它比 instanceof 更加准确。</p>
+<p>  装箱过程使用 object 函数<br>  拆箱转换使用 valueOf、toString，如果valueOf 和 toString都不存在，或者没有返回基本类型，则会产生TypeError。</p>
+</li>
+</ul>
+<blockquote>
+<p>JavaScript对象的底层数据结构是什么?</p>
+</blockquote>
+<p>所有 js 对象都是基于 HeapObject 的类生成的，对象的存储结构：</p>
+<ol>
+<li>头部信息</li>
+<li>属性块，k-v</li>
+<li>元素块</li>
+</ol>
+<p>函数 function 类型本身也具有对象化的能力<br>函数 function 与对象 object 超然的结合能力</p>
+<p>数组应该算是线性数据结构，线性数据结构一般有一定的规律，适合进行统一的批量迭代操作等，有点像波。<br>而对象是离散数据结构，适合描述分散的和个性化的东西，有点像粒子。</p>
+<p>JavaScript里的对象到底是波还是粒子？</p>
+<pre><code>波粒二象性</code></pre>
+<p>javascript 对象是 <code>字典</code> 结构</p>
+<blockquote>
+<p>Symbol类型在实际开发中的应用、可手动实现一个简单的Symbol?</p>
+</blockquote>
+<ol>
+<li>使用Symbol来作为对象属性名(key)</li>
+</ol>
+<p>必须用 <code>对象[key]</code>，不能使用 <code>对象.key</code><br>Symbol类型的 key 是不能通过 Object.keys() 或者 for…in 来枚举<br>JSON.stringify(obj) Symbol 类型也会被排除</p>
+<p>获取 Symbol定义的对象属性：</p>
+<p>Object.getOwnPropertySymbol(obj)<br>Reflect.ownKeys(obj)</p>
+<ol start="2">
+<li><p>使用Symbol替代常量</p>
+</li>
+<li><p>使用Symbol定义类的私有属性、方法</p>
+</li>
+<li><p>可以定义枚举</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> levels = &#123;</span><br><span class="line">  DEBUG: <span class="built_in">Symbol</span>(<span class="string">&#x27;debug&#x27;</span>),</span><br><span class="line">  INFO: <span class="built_in">Symbol</span>(<span class="string">&#x27;info&#x27;</span>),</span><br><span class="line">  WARN: <span class="built_in">Symbol</span>(<span class="string">&#x27;warn&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Symbol.for(‘foo’)：定义使用同一个Symbol</p>
+<h4 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链"></a>原型和原型链</h4><blockquote>
+<p>实现继承的几种方式以及他们的优缺点?</p>
+</blockquote>
+<ol>
+<li>原型链继承</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将子类的原型链指向父类的对象实例</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">P</span>(<span class="params">name, id</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.id = id</span><br><span class="line">  <span class="built_in">this</span>.name = name || <span class="string">&#x27;parent&#x27;</span></span><br><span class="line">  <span class="built_in">this</span>.list = [<span class="string">&#x27;p&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line">P.prototype.sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Hi&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">C.prototype = <span class="keyword">new</span> P()</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> C()</span><br><span class="line"><span class="built_in">console</span>.log(c.name)      <span class="comment">// parent</span></span><br><span class="line">c.sayHi()                <span class="comment">// Hi</span></span><br></pre></td></tr></table></figure>
+
+<p>优点：继承构造函数的属性，父类构造函数的属性，父类原型的属性<br>缺点：无法向父类构造函数传参，且原型对象的引用属性是所有实例共享的，即属性没有私有化，原型上属性的改变会作用到所有的实例上。</p>
+<blockquote>
+<p>构造函数继承</p>
+</blockquote>
+<p>实现：子类构造函数使用 call、apply 劫持父类构造函数方法，并传参<br>原理：call、apply 更改子类函数的作用域，执行父类构造函数，因此子类可以继承父类公有属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">D</span>(<span class="params">name, id</span>)</span>&#123;</span><br><span class="line">  P.call(<span class="built_in">this</span>, name, id)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>优点：解决原型链继承缺点，可以实现多继承<br>缺点：</p>
+<ol>
+<li>实例并不是父类的实例，只是子类的实例</li>
+<li>只能继承父类的实例属性和方法，不能继承原型属性/方法</li>
+<li>无法实现函数复用，每个子类都有父类实例函数的副本，影响性能</li>
+</ol>
+<blockquote>
+<p>组合继承</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">E</span>(<span class="params">name, id</span>)</span>&#123;</span><br><span class="line">  P.call(<span class="built_in">this</span>, name, id)</span><br><span class="line">&#125;</span><br><span class="line">E.prototype = <span class="keyword">new</span> P()</span><br><span class="line">E.prototype.constructor = E;  <span class="comment">// 修复构造函数指向</span></span><br></pre></td></tr></table></figure>
+
+<p>缺点：执行两次父类的构造函数，消耗内存，子类的构造函数会代替原型上的父类构造函数</p>
+<blockquote>
+<p>原型式继承</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> parent = &#123;</span><br><span class="line">  names: [<span class="string">&#x27;a&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copy</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  F.prototype = obj</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> F()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> child = copy(parent)</span><br></pre></td></tr></table></figure>
+
+<p>缺点：共享应用类型</p>
+<blockquote>
+<p>寄生式继承</p>
+</blockquote>
+<p>原理：二次封装原型式继承，并扩展</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createObj</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> o = copy(obj)</span><br><span class="line">  o.getNames = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.names</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> o</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>寄生组合式继承</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inheritPrototype</span>(<span class="params">subClass, superClass</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 复制一份父类的原型</span></span><br><span class="line">  <span class="keyword">var</span> p = copy(superClass.prototype);</span><br><span class="line">  <span class="comment">// 修正构造函数</span></span><br><span class="line">  p.constructor = subClass;</span><br><span class="line">  <span class="comment">// 设置子类原型</span></span><br><span class="line">  subClass.prototype = p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params">name, id</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.id = id;</span><br><span class="line">  <span class="built_in">this</span>.name = name;</span><br><span class="line">  <span class="built_in">this</span>.list = [<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">  <span class="built_in">this</span>.printName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">Parent.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params">name, id</span>)</span>&#123;</span><br><span class="line">  Parent.call(<span class="built_in">this</span>, name, id);</span><br><span class="line">  <span class="comment">// Parent.apply(this, arguments);</span></span><br><span class="line">&#125;</span><br><span class="line">inheritPrototype(Child, Parent);</span><br></pre></td></tr></table></figure>
+
+
+
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-06</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/08/06/Javascript/javascript 面试基础/,日升于东,javascript 面试基础,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/08/06/Javascript/this%20%E8%AE%B2%E8%A7%A3/" title="this 讲解">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/08/05/Javascript/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB/" title="箭头函数和函数的区别">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B"><span class="toc-text">变量和类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-text">原型和原型链</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><head><title>数据中台架构 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>数据中台架构</a></h3></div><div class="post-content"><p>公共业务模块下层：复用<br>共享、连接、服务（双中台：业务中天、数据中台）<br>one data<br>数据加工和深度分析（AI）<br>云原生</p>
+<h4 id="发展"><a href="#发展" class="headerlink" title="发展"></a>发展</h4><p>数据湖阶段  –&gt;  数据工厂阶段  –&gt;  数据中台阶段</p>
+<blockquote>
+<p>数据仓库</p>
+</blockquote>
+<p>恩门模式</p>
+<pre><code>整体架构</code></pre>
+<p>金博尔模式</p>
+<pre><code>维度和事实</code></pre>
+<blockquote>
+<p>数据湖</p>
+</blockquote>
+<p>数据规模和数据类型的限制</p>
+<ol>
+<li>完全分布式</li>
+<li>弱化数据格式 （数据模型和数据存储分离）</li>
+<li>原始数据存储</li>
+</ol>
+<blockquote>
+<p>数据工厂</p>
+</blockquote>
+<p>数据集成 –&gt; 数据开发 –&gt; 数据测试 –&gt; 发布上线 –&gt;  任务运维</p>
+<p>计算、资源调度（yarn、K8s）和存储（HDFS、Kudu、HBase）<br>离线数据清洗加工（Hive、Spark）<br>Flink 解决实时计算<br>Impala 解决交互式查询<br>HDFS 存全量数据、主要存维度表<br>Kudu 实时数仓</p>
+<p>问题：数据无法共享</p>
+<blockquote>
+<p>数据中台</p>
+</blockquote>
+<p>底层架构：数据湖<br>建模方式：维度建模<br>数据服务化</p>
+<p>“数据治理、数据服务、数据安全、接口治理、数据应用、系统治理”</p>
+<p>主数据 + 多径合一 + 数据血缘 + 数据地图 + 数据安全</p>
+<p>+数据应用</p>
+<p>BI报表<br>数据产品<br>自动取数</p>
+<p><code>数据</code>和<code>特征</code>决定机器学习的上限<br><code>算法</code>和<code>模型</code>只是无限逼近上限</p>
+<blockquote>
+<p>未来</p>
+</blockquote>
+<p>实时数据平台<br>云上数据平台<br>智能元数据管理 + 增强分析<br>自动化代码构建<br>数据产品</p>
+<p>流批统一、可视化建模和SQL建模、上云</p>
+<p>DWD、DWS、DM、ADS</p>
+<h4 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h4></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-06-13</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据中台/" title="数据中台">数据中台 </a><a class="tag" href="/tags/数据中台/" title="数据中台">数据中台 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/06/13/数据中台/数据中台架构/,日升于东,数据中台架构,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/06/18/Vue/Vue%20%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/" title="Vue 源码阅读">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/06/10/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql%20%E5%9F%BA%E7%A1%80/" title="Mysql 基础">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%91%E5%B1%95"><span class="toc-text">发展</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-text">常见问题</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

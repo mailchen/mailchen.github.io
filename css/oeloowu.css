@@ -1,0 +1,51 @@
+.recommendWrap dl,
+.recommendWrap dt,
+.recommendWrap dd {
+  position: relative;
+}
+.recommendWrap dl:after,
+.recommendWrap dt:after,
+.recommendWrap dd:before {
+  content: '';
+  position: absolute;
+}
+.recommendWrap dl:after {
+  top: 5px;
+  left: 175px;
+  height: 100%;
+  border-right: 1px solid #cdcdcd;
+}
+.recommendWrap dt {
+  display: block;
+  float: inherit;
+  width: 150px;
+  overflow: inherit;
+}
+.recommendWrap dt:after {
+  content: '◎';
+  top: 1px;
+  left: 175px;
+  -webkit-transform: translate(-50%);
+  -moz-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  -o-transform: translate(-50%);
+  transform: translate(-50%);
+  font-size: 2rem;
+  color: #2e62a7;
+  background: #fff;
+  z-index: 9999;
+}
+.recommendWrap dd:before {
+  content: '●';
+  top: 0;
+  left: -30px;
+  color: #aae8a0;
+  z-index: 9999;
+}
+.recommendWrap dd p {
+  margin: 0.2rem 0;
+}
+.recommendWrap dd span {
+  margin-left: 2rem;
+  font-size: 1.25rem;
+}

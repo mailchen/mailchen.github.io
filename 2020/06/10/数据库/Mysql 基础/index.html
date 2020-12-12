@@ -1,0 +1,492 @@
+<!DOCTYPE html><html><head><title>Mysql 基础 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Mysql 基础</a></h3></div><div class="post-content"><h4 id="5-7-特性"><a href="#5-7-特性" class="headerlink" title="5.7 特性"></a>5.7 特性</h4><ol>
+<li><p>初始化完成后，随机 Root 密码</p>
+</li>
+<li><p>默认安装完成没有 test 数据库，用户自定义创建及权限控制</p>
+</li>
+<li><p>默认 SSL 加密</p>
+</li>
+<li><p>密码过期策略</p>
+</li>
+<li><p>用户锁</p>
+</li>
+<li><p>支持 JSON</p>
+<p> 服务端提供操作 JSON 的函数，存储方式：将 JSON 编码成 BLOB    </p>
+</li>
+<li><p>支持两类生成列</p>
+<p> 虚拟生成列、存储生成列</p>
+</li>
+<li><p>引入系统库</p>
+</li>
+</ol>
+<h4 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h4><p><a target="_blank" rel="noopener" href="http://c.biancheng.net/view/7135.html">配置</a></p>
+<p>默认端口：3306<br>默认用户：root</p>
+<blockquote>
+<p>免安装配置 Windows</p>
+</blockquote>
+<ol>
+<li><p>配置环境变量</p>
+</li>
+<li><p>创建配置文件，命名为 my.ini</p>
+<p> basedir = D:\mysql-5.7.20-winx64<br> datadir = D:\mysql-5.7.20-winx64\data<br> port =3306</p>
+</li>
+<li><p>安装 MySQL 服务，执行命令为 mysqld–install</p>
+</li>
+<li><p>执行 MySQL 初始化命令</p>
+<p> mysqld –initialize-insecure –user=mysql</p>
+</li>
+<li><p>启动 MySQL 服务，并使用用户 root 登录，同时设置登录密码</p>
+<p> net start mysql<br> mysqladmin -u -root -p password</p>
+</li>
+<li><p>测试是否部署成功</p>
+<p> mysql -u root -p</p>
+</li>
+</ol>
+<h4 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h4><blockquote>
+<p>DOS</p>
+</blockquote>
+<pre><code>net start\stop mysql(mysql 服务器名称)</code></pre>
+<blockquote>
+<p>登录mysql 数据库</p>
+</blockquote>
+<pre><code>mysql -h localhost -u -root -p[密码]</code></pre>
+<blockquote>
+<p>Linux</p>
+</blockquote>
+<pre><code>RPM包、二进制包、源码包（`需要编译二进制后使用`）</code></pre>
+<blockquote>
+<p>卸载</p>
+</blockquote>
+<pre><code>查看当前系统中是否安装 MySQL，`CentOS 7 下，默认安装的数据库为 MariaDB`
+rpm  -qa | grep -i mysql
+停止服务、卸载
+service mysql stop
+rpm -e --nodeps mysql-libs-5.1.71-1.el6.x86_64
+查找老版本 MySQL 的目录
+find / -name mysql
+删除目录
+rm -rf 目录名</code></pre>
+<blockquote>
+<p>安装、启动</p>
+</blockquote>
+<pre><code>rpm -ivh mysql-community-common-5.7.29-1.el6.x86_64.rpm
+rpm -ivh mysql-community-libs-5.7.29-1.el6.x86_64.rpm
+rpm -ivh mysql-community-client-5.7.29-1.el6.x86_64.rpm
+rpm -ivh mysql-community-server-5.7.29-1.el6.x86_64.rpm
+service mysql start | stop | restart | status
+mysql -uroot -p
+修改密码
+set password=&#39;testroot&#39;</code></pre>
+<ul>
+<li>扩展<style>
+.remarkinfo{margin:1rem 1rem 1rem -2rem; display: flex; flex-wrap: wrap; padding:1rem; border: 1px dashed #cdcdcd;}
+.remarkinfo p{ width:33.33%;}
+</style>
+<div class="remarkinfo">
+<p><span style="color: #0000ff;">蓝色</span>：目录文件</p>
+<p><span style="color: #008000;">绿色</span>：可执行文件</p>
+<p><span style="color: #ff0000;">红色</span>：压缩文件</p>
+<p><span style="color: #00ffff;">浅蓝色</span>：链接文件</p>
+<p><span style="color: #000000;">白色</span>：普通文件</p>
+<p><span style="color: #ffff00;">黄色</span>：设备文件</p>
+</div>
+
+</li>
+</ul>
+<blockquote>
+<p>my.cnf 配置文件详解</p>
+</blockquote>
+<pre><code>[client]
+port=3306
+socket=/var/run/mysql/mysql.sock
+[mysqldump]
+quick
+max_allowed_packet = 16M</code></pre>
+<p>socket：套接字文件所在目录<br>quick：支持较大的数据库转储，导出非常巨大的表时需要此项 。<br>max_allowed_packet：服务所能处理的请求包的最大大小以及服务所能处理的最大的请求大小（当与大的BLOB字段一起工作时相当必要），每个连接独立的大小，大小动态增加。</p>
+<pre><code>[mysqld]
+user = mysql
+basedir = /usr/local/mysql
+datadir = /mydata/mysql/data
+port=3306
+server-id = 1
+socket=/var/run/mysql/mysql.sock</code></pre>
+<p>user：mysqld 程序在启动后将在给定 UNIX/Linux 账户下执行。mysqld 必须从 root 账户启动才能在启动后切换到另一个账户下执行。mysqld_safe 脚本将默认使用 user=mysql 选项来启动 mysqld 程序。<br>basedir：指定 MySQL 安装的绝对路径；<br>datadir：指定 MySQL 数据存放的绝对路径；<br>port：服务端口号，默认为 3306<br>server-id：MySQL 服务的唯一编号，每个 MySQL 服务的 id 需唯一。<br>socket：socket 文件所在目录</p>
+<pre><code>character-set-server = utf8mb4
+collation-server = utf8mb4_general_ci
+init_connect=&#39;SET NAMES utf8mb4&#39;
+lower_case_table_names = 1
+key_buffer_size=16M
+max_allowed_packet=8M
+no-auto-rehash
+sql_mode=TRADITIONAL</code></pre>
+<p>character-set-server：数据库默认字符集，主流字符集支持一些特殊表情符号（特殊表情符占用 4 个字节）<br>collation-server：数据库字符集对应一些排序等规则，注意要和 character-set-server 对应<br>init_connect：设置 client 连接 mysql 时的字符集，防止乱码<br>lower_case_table_names：是否对 sql 语句大小写敏感，1 表示不敏感<br>key_buffer_size：用于指定索引缓冲区的大小<br>max_allowed_packet：设置一次消息传输的最大值<br>no-auto-rehash：仅仅允许使用键值的 UPDATES 和 DELETES<br>sql_mode：表示 SQL 模式的参数，通过这个参数可以设置检验 SQL 语句的严格程度</p>
+<h4 id="Mysql-SQL"><a href="#Mysql-SQL" class="headerlink" title="Mysql SQL"></a>Mysql SQL</h4><blockquote>
+<p>show</p>
+</blockquote>
+<pre><code>show create table t_user \G;</code></pre>
+<blockquote>
+<p>use</p>
+</blockquote>
+<blockquote>
+<p>注释</p>
+</blockquote>
+<pre><code>#、--、/* ...... */</code></pre>
+<blockquote>
+<p>SQL 语句的大小写规则</p>
+</blockquote>
+<p>windows\Mac 系统文件名不区分大小写<br>Linux 系统文件名<code>区分大小写</code><br><code>MySql 用服务器主机的底层文件系统所包含的目录和文件表示数据库和表。数据库名和表名的默认大小写取决于操作系统的命名规则。视图 用文件夹表示</code><br>存储函数、存储过程、事件名称不区分大小写，列名、索引不区分大小写<br>触发器名称<code>区分大小写</code><br>表的别名<code>区分大小写</code></p>
+<blockquote>
+<p>MySql 系统帮助</p>
+</blockquote>
+<pre><code>\h contents</code></pre>
+<p>· help_category：关于帮助主题类别的信息<br>· help_keyword：与帮助主题相关的关键字信息<br>· help_relation：帮助关键字信息和主题信息之间的映射<br>· help_topic：帮助主题的详细内容</p>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><style>
+table{ width: 100%;}
+table, th, td{
+    padding: .25rem .5rem;
+    font-size: 1rem;
+    border-collapse: collapse;
+    border: 1px solid #cdcdcd;
+}
+.small table{
+    font-size: 1rem;
+    line-height: 1.25rem;
+}
+.small table th{
+    padding: .6rem .5rem;
+}
+</style>
+
+<ol>
+<li><p>数值类型</p>
+<p> 整型：TINYINT、SMALLINT、MEDIUMINT、INT、BIGINT<br> 浮点型：FLOAT、DOUBLE<br> 定点数类型：DECIMAL</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">类型名称</th>
+<th align="left">说明</th>
+<th align="left">存储需求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">TINYINT</td>
+<td align="left">-128〜127</td>
+<td align="left">1个字节</td>
+</tr>
+<tr>
+<td align="center">SMALLINT</td>
+<td align="left">-32768〜32767</td>
+<td align="left">2个宇节</td>
+</tr>
+<tr>
+<td align="center">MEDIUMINT</td>
+<td align="left">-8388608〜8388607</td>
+<td align="left">3个字节</td>
+</tr>
+<tr>
+<td align="center">INT (INTEGHR)</td>
+<td align="left">-2147483648〜2147483647</td>
+<td align="left">4个字节</td>
+</tr>
+<tr>
+<td align="center">BIGINT</td>
+<td align="left">-9223372036854775808〜9223372036854775807</td>
+<td align="left">8个字节</td>
+</tr>
+</tbody></table>
+<p>FLOAT [4 个字节] 类型的取值范围如下：<br>有符号的取值范围：-3.402823466E+38～-1.175494351E-38<br>无符号的取值范围：0 和 -1.175494351E-38～-3.402823466E+38</p>
+<p>DOUBLE [8 个字节] 类型的取值范围如下：<br>有符号的取值范围：-1.7976931348623157E+308～-2.2250738585072014E-308<br>无符号的取值范围：0 和 -2.2250738585072014E-308～-1.7976931348623157E+308</p>
+<ol start="2">
+<li><p>日期和时间类型</p>
+<p> YEAR、TIME、DATE、DATETIME 和 TIMESTAMP</p>
+</li>
+</ol>
+<div class="small">
+
+<table>
+<thead>
+<tr>
+<th align="left">类型名称</th>
+<th align="left">日期范围</th>
+<th align="left">存储需求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">YEAR <br/> YYYY</td>
+<td align="left">1901 ~ 2155</td>
+<td align="left">1 个字节</td>
+</tr>
+<tr>
+<td align="left">TIME <br/> HH:MM:SS</td>
+<td align="left">-838:59:59 ~ 838:59:59</td>
+<td align="left">3 个字节</td>
+</tr>
+<tr>
+<td align="left">DATE <br/> YYYY-MM-DD</td>
+<td align="left">1000-01-01 ~ 9999-12-3</td>
+<td align="left">3 个字节</td>
+</tr>
+<tr>
+<td align="left">DATETIME <br/> YYYY-MM-DD HH:MM:SS</td>
+<td align="left">1000-01-01 00:00:00 <br/> 9999-12-31 23:59:59</td>
+<td align="left">8 个字节</td>
+</tr>
+<tr>
+<td align="left">TIMESTAMP <br/> YYYY-MM-DD HH:MM:SS</td>
+<td align="left">1980-01-01 00:00:01 UTC <br/> 2040-01-19 03:14:07 UTC</td>
+<td align="left">4 个字节</td>
+</tr>
+</tbody></table>
+</div>
+
+<ol start="3">
+<li><p>字符串类型</p>
+<p> CHAR、VARCHAR、BINARY、VARBINARY、BLOB、TEXT、ENUM、SET</p>
+</li>
+<li><p>二进制类型</p>
+<p> BIT、BINARY、VARBINARY、TINYBLOB、BLOB、MEDIUMBLOB、LONGBLOB</p>
+</li>
+</ol>
+<h4 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h4><p>InnoDB、MyISAM、Memory、Merge、Archive、Federated、CSV、Blackhole</p>
+<table>
+<thead>
+<tr>
+<th align="left">存储引擎</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ARCHIVE</td>
+<td align="left">用于数据存档的引擎，数据被插入后就不能在修改了，且不支持索引。</td>
+</tr>
+<tr>
+<td align="left">CSV</td>
+<td align="left">在存储数据时，会以逗号作为数据项之间的分隔符。</td>
+</tr>
+<tr>
+<td align="left">BLACKHOLE</td>
+<td align="left">会丢弃写操作，该操作会返回空内容。</td>
+</tr>
+<tr>
+<td align="left">FEDERATED</td>
+<td align="left">将数据存储在远程数据库中，用来访问远程表的存储引擎。</td>
+</tr>
+<tr>
+<td align="left">InnoDB</td>
+<td align="left">具备外键支持功能的事务处理引擎</td>
+</tr>
+<tr>
+<td align="left">MEMORY</td>
+<td align="left">置于内存的表</td>
+</tr>
+<tr>
+<td align="left">MERGE</td>
+<td align="left">用来管理由多个 MyISAM 表构成的表集合</td>
+</tr>
+<tr>
+<td align="left">MyISAM</td>
+<td align="left">主要的非事务处理存储引擎</td>
+</tr>
+<tr>
+<td align="left">NDB</td>
+<td align="left">MySQL 集群专用存储引擎</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>查看默认引擎</p>
+</blockquote>
+<pre><code>show variables like &#39;default_storage_engine%&#39;</code></pre>
+<table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">MyISAM</th>
+<th align="left">InnoDB</th>
+<th align="left">MEMORY</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">存储限制</td>
+<td align="left">有</td>
+<td align="left">支持</td>
+<td align="left">有</td>
+</tr>
+<tr>
+<td align="left">事务安全</td>
+<td align="left">不支持</td>
+<td align="left">支持</td>
+<td align="left">不支持</td>
+</tr>
+<tr>
+<td align="left">锁机制</td>
+<td align="left">表锁</td>
+<td align="left">行锁</td>
+<td align="left">表锁</td>
+</tr>
+<tr>
+<td align="left">B树索引</td>
+<td align="left">支持</td>
+<td align="left">支持</td>
+<td align="left">支持</td>
+</tr>
+<tr>
+<td align="left">哈希索引</td>
+<td align="left">不支持</td>
+<td align="left">不支持</td>
+<td align="left">支持</td>
+</tr>
+<tr>
+<td align="left">全文索引</td>
+<td align="left">支持</td>
+<td align="left">不支持</td>
+<td align="left">不支持</td>
+</tr>
+<tr>
+<td align="left">集群索引</td>
+<td align="left">不支持</td>
+<td align="left">支持</td>
+<td align="left">不支持</td>
+</tr>
+<tr>
+<td align="left">数据缓存</td>
+<td align="left">-</td>
+<td align="left">支持</td>
+<td align="left">支持</td>
+</tr>
+<tr>
+<td align="left">索引缓存</td>
+<td align="left">支持</td>
+<td align="left">支持</td>
+<td align="left">支持</td>
+</tr>
+<tr>
+<td align="left">数据可压缩</td>
+<td align="left">支持</td>
+<td align="left">不支持</td>
+<td align="left">不支持</td>
+</tr>
+<tr>
+<td align="left">空间使用</td>
+<td align="left">低</td>
+<td align="left">高</td>
+<td align="left">N/A</td>
+</tr>
+<tr>
+<td align="left">内存使用</td>
+<td align="left">低</td>
+<td align="left">高</td>
+<td align="left">中等</td>
+</tr>
+<tr>
+<td align="left">批量插入速度</td>
+<td align="left">高</td>
+<td align="left">低</td>
+<td align="left">高</td>
+</tr>
+<tr>
+<td align="left">支持外键</td>
+<td align="left">不支持</td>
+<td align="left">支持</td>
+<td align="left">不支持</td>
+</tr>
+</tbody></table>
+<h4 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h4><blockquote>
+<p>修改表</p>
+</blockquote>
+<p>ALTER TABLE &lt;表名&gt;<br>{ ADD COLUMN &lt;列名&gt; &lt;类型&gt;[约束条件] （FIRST | AFTER &lt;已存在字段名&gt;）<br>| CHANGE COLUMN &lt;旧列名&gt; &lt;新列名&gt; &lt;新列类型&gt;<br>| ALTER COLUMN &lt;列名&gt; { SET DEFAULT &lt;默认值&gt; | DROP DEFAULT }<br>| MODIFY COLUMN &lt;列名&gt; &lt;类型&gt;<br>| DROP COLUMN &lt;列名&gt;<br>| RENAME TO &lt;新表名&gt;<br>| CHARACTER SET &lt;字符集名&gt;<br>| COLLATE &lt;校对规则名&gt; }</p>
+<blockquote>
+<p>删除关联表</p>
+</blockquote>
+<p>ALTER TABLE 子表 DROP FOREIGN KEY 外键约束;<br>DROP TABLE 主表;</p>
+<blockquote>
+<p>查看表结构</p>
+</blockquote>
+<p>DESC 表名;<br>SHOW CREATE TABLE &lt;表名&gt;;</p>
+<blockquote>
+<p>约束</p>
+</blockquote>
+<p>1）主键约束</p>
+<pre><code>&lt;字段名&gt; &lt;数据类型&gt; PRIMARY KEY [默认值] (AUTO_INCREMENT)
+PRIMARY KEY(字段，字段...)
+ALTER TABLE &lt;数据表名&gt; ADD PRIMARY KEY(&lt;字段名&gt;)
+ALTER TABLE &lt;数据表名&gt; DROP PRIMARY KEY</code></pre>
+<p>2）外键约束</p>
+<pre><code>CONSTRAINT &lt;外键名&gt;] FOREIGN KEY 字段名
+REFERENCES &lt;主表名&gt; 主键列</code></pre>
+<p>3）唯一约束</p>
+<pre><code>&lt;字段名&gt; &lt;数据类型&gt; UNIQU
+可以有多个，并且设置唯一约束的列是允许有空值的</code></pre>
+<p>4）检查约束</p>
+<pre><code>CHECK(表达式)</code></pre>
+<p>5）非空约束<br>6）默认值约束</p>
+<blockquote>
+<p>函数</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/function/">常用函数汇总</a></p>
+<blockquote>
+<p>去重</p>
+</blockquote>
+<pre><code>DISTINCT </code></pre>
+<blockquote>
+<p>设置别名</p>
+</blockquote>
+<pre><code>AS</code></pre>
+<blockquote>
+<p>分页查询</p>
+</blockquote>
+<pre><code>LIMIT 初始位置，记录数
+LIMIT 记录数 OFFSET 初始位置</code></pre>
+<blockquote>
+<p>WHERE with HAVING</p>
+</blockquote>
+<p>WHERE 用于过滤数据行，而 HAVING 用于过滤分组。<br>WHERE 查询条件中不可以使用聚合函数，而 HAVING 查询条件中可以使用聚合函数。<br>WHERE 在数据分组前进行过滤，而 HAVING 在数据分组后进行过滤 。<br>WHERE 针对数据库文件进行过滤，而 HAVING 针对查询结果进行过滤。也就是说，WHERE 根据数据表中的字段直接进行过滤，而 HAVING 是根据前面已经查询出的字段进行过滤。<br>WHERE 查询条件中不可以使用字段别名，而 HAVING 查询条件中可以使用字段别名</p>
+<blockquote>
+<p>JOIN</p>
+</blockquote>
+<pre><code>笛卡尔积：两个集合 X 和 Y 的乘积</code></pre>
+<p>交叉连接 – 笛卡尔积</p>
+<p>内连接</p>
+<pre><code>SELECT &lt;字段名&gt; FROM &lt;表1&gt; INNER JOIN &lt;表2&gt; [ON子句]</code></pre>
+<p>外连接</p>
+<pre><code>LEFT OUTER JOIN、RIGHT OUTER JOIN</code></pre>
+<blockquote>
+<p>正则表达式</p>
+</blockquote>
+<pre><code>REGEXP</code></pre>
+<blockquote>
+<p>清空表</p>
+</blockquote>
+<pre><code>TRUNCATE TABLE 表名</code></pre>
+<blockquote>
+<p>TRUNCATE 和 DELETE 的区别</p>
+</blockquote>
+<p>DELETE 是 DML 类型的语句；TRUNCATE 是 DDL 类型的语句。它们都用来清空表中的数据。<br>DELETE 是逐行一条一条删除记录的；TRUNCATE 则是直接删除原来的表，再重新创建一个一模一样的新表，而不是逐行删除表中的数据，执行数据比 DELETE 快。因此需要删除表中全部的数据行时，尽量使用 TRUNCATE 语句， 可以缩短执行时间。<br>DELETE 删除数据后，配合事件回滚可以找回数据；TRUNCATE 不支持事务的回滚，数据删除后无法找回。<br>DELETE 删除数据后，系统不会重新设置自增字段的计数器；TRUNCATE 清空表记录后，系统会重新设置自增字段的计数器。<br>DELETE 的使用范围更广，因为它可以通过 WHERE 子句指定条件来删除部分数据；而 TRUNCATE 不支持 WHERE 子句，只能删除整体。<br>DELETE 会返回删除数据的行数，但是 TRUNCATE 只会返回 0，没有任何意义。</p>
+<blockquote>
+<p>查看模式</p>
+</blockquote>
+<p>select @@sql_mode</p>
+<blockquote>
+<p>视图</p>
+</blockquote>
+<p>使用视图重新格式化检索出的数据。<br>使用视图简化复杂的表连接。<br>使用视图过滤数据。</p>
+<blockquote>
+<p>存储过程</p>
+</blockquote>
+<pre><code>DELIMITER //
+CREATE PROCEDURE ShowStuScore()
+-&gt; BEGIN
+-&gt; SELECT * FROM tb_students_score;
+-&gt; END //</code></pre>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-06-10</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/Mysql/" title="Mysql">Mysql </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/06/10/数据库/Mysql 基础/,日升于东,Mysql 基础,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/06/13/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%9E%B6%E6%9E%84/" title="数据中台架构">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/06/01/Kubernetes/Kubernetes%20%E5%9F%BA%E7%A1%80/" title="Kubernetes 基础">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7-%E7%89%B9%E6%80%A7"><span class="toc-text">5.7 特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="toc-text">安装配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1"><span class="toc-text">服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql-SQL"><span class="toc-text">Mysql SQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="toc-text">存储引擎</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="toc-text">数据操作</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

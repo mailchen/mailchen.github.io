@@ -1,0 +1,105 @@
+<!DOCTYPE html><html><head><title>ES 基础 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>ES 基础</a></h3></div><div class="post-content"><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><ol>
+<li>基于Lucene 的高扩展的分布式搜索服务器，支持开箱即用</li>
+<li>隐藏了 Lucene 的复杂性，对外提供 RestFul 接口操作索引、搜索</li>
+</ol>
+<ul>
+<li>优点:</li>
+<li>扩展性好，可部署上百台服务器集群，处理PB级数据</li>
+<li>近实时的去索引数据，搜索数据</li>
+<li>支持全文检索</li>
+</ul>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>逻辑结构 ==&gt; 倒排索引表：</p>
+<p>将要搜索的文档内容分词，所有不重复的词组成分词列表<br>将搜索的文档最终以Document方式存储<br>每个词和document都有关联</p>
+<p>示例：<br><img src="https://upload-images.jianshu.io/upload_images/14591403-14a082af8b405526.png?imageMogr2/auto-orient/strip|imageView2/2/w/541/format/webp"/></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ol>
+<li><p>jdk 1.8 以上</p>
+</li>
+<li><p>支持 tar、zip、rpm等多种安装方式<br> windows下开发建议使用 ZIP 安装</p>
+</li>
+<li><p>支持 docker 安装</p>
+<p> <a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html">详细参见</a></p>
+</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.elastic.co/downloads/past-releases">下载ES</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ltgsoldier1/article/details/97393154">安装配置</a></li>
+</ul>
+<pre><code>wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.1-linux-x86_64.tar.gz
+
+tar -avxf elasticsearch-7.6.2-linux-x86_64.tar.gz -C /home/morr/
+
+cd elasticsearch-7.6.2 &gt; mkdir data
+
+vim config/elasticsearch.yml
+
+// 关闭防火墙
+systemctl stop firewalld.service
+
+// 禁止防火墙开机启动
+systemctl disable firewalld.service
+
+// 创建es用户
+useradd es
+passwd es
+
+// 把目录权限赋予给es用户
+chown -R es /home/morr/elasticsearch-7.6.2
+
+// 切换至es用户
+su es
+vi /usr/local/elasticsearch-6.2.4/config/elasticsearch.yml
+sh /usr/local/elasticsearch-6.2.4/bin/elasticsearch
+
+vim /etc/security/limits.conf
+vim /etc/security/limits.d/20-nproc.conf
+vim /etc/sysctl.conf</code></pre>
+<blockquote>
+<p>跨域问题</p>
+</blockquote>
+<pre><code>es.yml配置文件
+http.cors.enabled: true
+http.cors.allow-origin: &quot;*&quot;</code></pre>
+<blockquote>
+<p>目录结构</p>
+</blockquote>
+<p>bin: 脚本目录，启动、停止等可执行脚本<br>config: 配置文件<br>data: 索引目录，存放索引文件<br>logs: 日志目录<br>modules: 模块目录，包含es的功能模块<br>plugins: 插件目录，es 支持插件机制</p>
+<blockquote>
+<p>配置文件</p>
+</blockquote>
+<p>zip、tar: config<br>RPM: /etc/elasticsearch</p>
+<ul>
+<li><p>elasticsearch.yml</p>
+<p>  配置运行参数<br>  配置方式：层次方式、属性方式：<br>  path: data: /var/lib/elasticsearch logs:/var/log/elasticsearch<br>  path.data: /var/lib/elasticsearch path.logs:/var/log/elasticsearch</p>
+</li>
+<li><p>jvm.options</p>
+<p>  配置Elasticsearch JVM<br>  设置最小、最大的JVM堆内存：<br>  -Xms 和 -Xmx<br>  两个值设置为相等，Xmx 设置为不超过物理内存的一半</p>
+</li>
+<li><p>log4j2.properties</p>
+<p>  配置日志</p>
+</li>
+</ul>
+<blockquote>
+<p>启动ES</p>
+</blockquote>
+<p>cd bin &gt; elasticsearch.bat</p>
+<blockquote>
+<p>插件安装</p>
+</blockquote>
+<p>head 插件是一个可视化管理插件，监视ES状态，并通过head客户端和ES服务进行交互</p>
+<ul>
+<li><p>下载head并运行</p>
+<p>  git clone git://github.com/mobz/elasticsearch-head.git<br>  cd elasticsearch-head<br>  npm install<br>  npm run start</p>
+</li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-14</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/ElasticSearch/" title="ElasticSearch">ElasticSearch </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/09/14/数据库/ES 基础/,日升于东,ES 基础,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/09/14/%E6%95%B0%E6%8D%AE%E5%BA%93/ES%20%E4%BD%BF%E7%94%A8/" title="ES 使用">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/08/20/flask/SQLALCHEMY/" title="SQLALCHEMY">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

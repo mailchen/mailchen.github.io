@@ -1,0 +1,138 @@
+<!DOCTYPE html><html><head><title>Flex 弹性布局 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Flex 弹性布局</a></h3></div><div class="post-content"><h4 id="布局格式"><a href="#布局格式" class="headerlink" title="布局格式"></a>布局格式</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">//<span class="selector-tag">Webkit</span> 内核的浏览器，必须加上<span class="selector-tag">-webkit</span>前缀。</span><br><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex;  <span class="comment">/* Safari */</span></span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">15rem</span>;</span><br><span class="line">  <span class="attribute">border</span>:<span class="number">1px</span> dashed <span class="number">#c60</span>;</span><br><span class="line">  <span class="attribute">overflow</span>:auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-flex;  <span class="comment">/*行内弹性布局*/</span></span><br><span class="line">  <span class="attribute">width</span>:<span class="number">8rem</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">5rem</span>;</span><br><span class="line">  <span class="attribute">margin</span>:.<span class="number">8rem</span>;</span><br><span class="line">  <span class="attribute">padding</span>:.<span class="number">8rem</span>;</span><br><span class="line">  <span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">background</span>:<span class="number">#c60</span>;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#c60</span>;</span><br><span class="line">  <span class="attribute">background-clip</span>:content-box;</span><br><span class="line">	</span><br><span class="line">  <span class="comment">/*行内弹性布局，text-align 无效*/</span></span><br><span class="line">  <span class="attribute">text-align</span>:right;</span><br><span class="line">	</span><br><span class="line">  <span class="comment">/*行内弹性布局，对齐方式*/</span></span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.item</span><span class="selector-pseudo">:nth-child(3)</span>&#123; <span class="attribute">height</span>:<span class="number">8rem</span>;&#125;</span><br><span class="line"><span class="selector-class">.item</span><span class="selector-pseudo">:nth-child(7)</span>&#123; <span class="attribute">height</span>:<span class="number">3rem</span>;&#125;</span><br><span class="line"><span class="selector-class">.event</span>,<span class="selector-class">.clearStyles</span>&#123;</span><br><span class="line">  <span class="attribute">cursor</span>:pointer;</span><br><span class="line">  <span class="attribute">border-bottom</span>:<span class="number">1px</span> dashed <span class="number">#cdcdcd</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.event</span><span class="selector-pseudo">:hover</span>,<span class="selector-class">.currStyle</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>:<span class="number">#0092db</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearStyles</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>:<span class="number">#c60</span></span><br><span class="line">&#125;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效。</li>
+</ul>
+<h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><style>
+.box{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  height:15rem;
+  border:1px dashed #c60;
+  overflow:auto;
+}
+
+.item{
+  display: inline-flex;
+  width:8rem;
+  height:5rem;
+  margin:.8rem;
+  padding:.8rem;
+  color:#fff;
+  background:#c60;
+  box-sizing: border-box;
+  border: 1px solid #c60;
+  background-clip:content-box;
+
+  /*行内弹性布局，text-align 无效*/
+  text-align:right;
+
+  /*行内弹性布局，对齐方式*/
+  justify-content: center;
+  align-items: center;
+}
+.item:nth-child(3){ height:8rem;}
+.item:nth-child(7){ height:3rem;}
+.event,.clearStyles{
+  cursor:pointer;
+  border-bottom:1px dashed #cdcdcd;
+}
+.event:hover,.currStyle{
+  color:#0092db
+}
+.clearStyles{
+  color:#c60
+}
+</style>
+<div class="box">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+    <div class="item">7</div>
+    <div class="item">8</div>
+    <div class="item">9</div>
+</div>
+
+
+<h4 id="box-容器属性"><a href="#box-容器属性" class="headerlink" title="box 容器属性"></a>box 容器属性</h4><blockquote>
+<p>点击属性值，查看效果  <span class="clearStyles">[清空样式]</span></p>
+</blockquote>
+<div class="eventWrap">
+
+<ul>
+<li><p>flex-direction：<br><span class="event">row</span> | <span class="event">row-reverse</span> | <span class="event">column</span> | <span class="event">column-reverse</span>;</p>
+</li>
+<li><p>flex-wrap：<br><span class="event">nowrap</span> | <span class="event">wrap</span> | <span class="event">wrap-reverse</span></p>
+</li>
+<li><p>flex-flow： [&lt;flex-direction&gt; || &lt;flex-wrap&gt;]<br>（默认值：row nowrap）</p>
+</li>
+<li><p>justify-content：<br><span class="event">flex-start</span> | <span class="event">flex-end</span> | <span class="event">center</span> | <span class="event">space-between</span> | <span class="event">space-around</span>;</p>
+</li>
+<li><p>align-items：<br><span class="event">flex-start</span> | <span class="event">flex-end</span> | <span class="event">center</span> | <span class="event">baseline</span> | <span class="event">stretch</span>;</p>
+</li>
+<li><p>align-content：<br><span class="event">flex-start</span> | <span class="event">flex-end</span> | <span class="event">center</span> | <span class="event">space-between</span> | <span class="event">space-around</span> | <span class="event">stretch</span>;</p>
+</li>
+</ul>
+</div>
+
+<h4 id="item-项目属性"><a href="#item-项目属性" class="headerlink" title="item 项目属性"></a>item 项目属性</h4><ul>
+<li>order ： 定义项目的排列顺序。数值越小，排列越靠前，默认为0。</li>
+<li>flex-grow ： 定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</li>
+<li>flex-shrink ： 定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</li>
+<li>flex-basis</li>
+<li>flex ： none | [ &lt;flex-grow&gt; &lt;flex-shrink&gt; || &lt;flex-basis&gt; ]</li>
+</ul>
+<blockquote>
+<p>快捷设置 : auto (1 1 auto) 和 none (0 0 auto)</p>
+</blockquote>
+<ul>
+<li>align-self : 允许单个项目有与其他项目不一样的对齐方式</li>
+</ul>
+<script>
+    var d = document,
+        box = d.getElementsByClassName('box');
+    d.getElementsByClassName('eventWrap')[0].addEventListener("click",function(e){
+        if(e.target.className.indexOf('event')!= -1){
+            var currStyle = e.target.parentNode.textContent.split('：')[0];
+            var currVal = e.target.textContent;
+            console.log(currStyle + ":" + currVal);
+            e.target.parentNode.getElementsByClassName('currStyle')[0] && (e.target.parentNode.getElementsByClassName('currStyle')[0].className = 'event');
+            e.target.className += ' currStyle';
+
+            box[0].style[formatStyleKey(currStyle)] = currVal;
+        }
+    })
+
+    d.getElementsByClassName('clearStyles')[0].addEventListener("click",function(e){
+        var styles = d.getElementsByClassName('eventWrap')[0].getElementsByClassName('currStyle');
+        for(var i=styles.length-1; i>=0; i--){
+            styles[i].className = 'event';
+        }
+        box[0].removeAttribute('style');
+    })
+
+    function formatStyleKey(str){
+        var final = "",
+            strArr = str.toLowerCase().split('-');
+        for(var i=0; i<strArr.length; i++){
+            !i ? final+=strArr[i]:final+=strArr[i].slice(0, 1).toUpperCase() + strArr[i].slice(1);
+        }
+        return final;
+    }
+</script></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-09</span><i class="fa fa-tag"></i><a class="tag" href="/categories/HTML5/" title="HTML5">HTML5 </a><a class="tag" href="/tags/Flex/" title="Flex">Flex </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2019/07/09/Css/Flex 弹性布局/,日升于东,Flex 弹性布局,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/07/10/Css/Css3%20%E5%8A%A8%E7%94%BB/" title="Css3 动画">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/07/09/Css/Grid%20%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/" title="Grid 网格布局">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E6%A0%BC%E5%BC%8F"><span class="toc-text">布局格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-text">效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#box-%E5%AE%B9%E5%99%A8%E5%B1%9E%E6%80%A7"><span class="toc-text">box 容器属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#item-%E9%A1%B9%E7%9B%AE%E5%B1%9E%E6%80%A7"><span class="toc-text">item 项目属性</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

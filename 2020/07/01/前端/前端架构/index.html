@@ -1,0 +1,87 @@
+<!DOCTYPE html><html><head><title>前端架构 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>前端架构</a></h3></div><div class="post-content"><h4 id="软件架构"><a href="#软件架构" class="headerlink" title="软件架构"></a>软件架构</h4><p>不以实现为目的的架构，都是无意义的。</p>
+<blockquote>
+<p>系统架构的基本判断 </p>
+</blockquote>
+<pre><code>1. 无法上线的应用架构，算不上好的软件架构
+2. 没人能完成开发的软件架构，算不上具有可行性的软件架构
+3. 在现有技术上不可行的架构，算不上合理的软件架构</code></pre>
+<blockquote>
+<p>软件架构参与人员</p>
+</blockquote>
+<p>实施者、维护者：系统可以以预计的方式构建<br>实施规范、原则：系统可以按预期的方式实施项目</p>
+<blockquote>
+<p>包含内容</p>
+</blockquote>
+<ul>
+<li>系统之间的关系</li>
+<li>系统内的关系</li>
+<li>应用内架构</li>
+<li>规范和原则</li>
+</ul>
+<blockquote>
+<p>收集架构需求</p>
+</blockquote>
+<p>了解相关者的利益<br>寻找架构关注点<br>明确跨功能需求<br>罗列技术风险点</p>
+<h4 id="架构风格"><a href="#架构风格" class="headerlink" title="架构风格"></a>架构风格</h4><blockquote>
+<p>分层架构</p>
+</blockquote>
+<p>OSI 七层模型<br>TCO/IP 五层模型</p>
+<blockquote>
+<p>MVC 架构</p>
+</blockquote>
+<blockquote>
+<p>发布-订阅风格</p>
+</blockquote>
+<blockquote>
+<p>管理-过滤器</p>
+</blockquote>
+<h4 id="架构开发方法"><a href="#架构开发方法" class="headerlink" title="架构开发方法"></a>架构开发方法</h4><blockquote>
+<p>4+1 视图法</p>
+</blockquote>
+<p>逻辑视图：设计期的模块、接口划分，职责及协作方式等<br>流程视图：运行期的运行数据同步<br>开发视图：开发期的框架、库、技术选型及对应的编译<br>物理视图：部署视图，在部署期与持续交付相关的技术决策<br>场景：用例视图</p>
+<blockquote>
+<p>TOGAF及ADM</p>
+</blockquote>
+<p>TOGAF：开放组体系结构框架</p>
+<ul>
+<li><p>架构域</p>
+<p>  业务架构<br>  应用架构<br>  数据架构<br>  技术架构</p>
+</li>
+</ul>
+<p>ADM：创建企业级架构,8个阶段 A-H</p>
+<p>架构上下文：【预备阶段、架构远景（A）】<br>架构交付：【业务架构（B）、信息系统架构（C）、技术架构（D）】<br>迁移计划：【机会及解决方案（E）、迁移计划（F）】<br>架构治理：【实施治理（G）、架构变更管理（H）】</p>
+<h4 id="架构产物"><a href="#架构产物" class="headerlink" title="架构产物"></a>架构产物</h4><p>架构图、迭代计划、技术栈及选型、示例代码、测试策略、部署方式、持续集成方式</p>
+<h4 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h4><p>不多不少、演进式、持续性</p>
+<p>对于低级别设计：尽量避免进入细节设计，宝贵的资源投入到业务开发<br>对于高级别设计：不预先设计模块和组件，仅从架构考虑，即为未来预留扩展的空间</p>
+<pre><code>适配器、代理模式对第三方组件进行二次封装</code></pre>
+<p>敏捷开发：适应用户不断变化的需求<br>瀑布模式：完全计划式设计</p>
+<p>20% 计划式设计，80% 演进式设计</p>
+<p><strong>延迟决策</strong></p>
+<h4 id="前端架构"><a href="#前端架构" class="headerlink" title="前端架构"></a>前端架构</h4><p>构建工具：Grunt、Gulp<br>包管理工具：Bower、NPM<br>模块管理：ADM、Common.js</p>
+<blockquote>
+<p>微前端</p>
+</blockquote>
+<p>跨框架、应用拆分、遗留系统迁移</p>
+<blockquote>
+<p>架构设计层级</p>
+</blockquote>
+<p>系统级：前后端分离、微前端<br>应用级：模块库、组件库、设计系统<br>模块级：组件化、模块化<br>代码级：规范、原则、质量</p>
+<blockquote>
+<p>技术架构实施</p>
+</blockquote>
+<pre><code>质量、能力、进度</code></pre>
+<p>技术准备期</p>
+<p>架构设计、概念验证POC、迭代0（搭建完整环境）</p>
+<p>业务回补期<br>成长优化期</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-07-01</span><i class="fa fa-tag"></i><a class="tag" href="/categories/前端/" title="前端">前端 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/07/01/前端/前端架构/,日升于东,前端架构,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/07/01/%E5%89%8D%E7%AB%AF/React+TypeScript%20%E7%BB%8F%E9%AA%8C/" title="React+TypeScript 经验">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/06/28/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84/Spark/" title="Spark 基础">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84"><span class="toc-text">软件架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E9%A3%8E%E6%A0%BC"><span class="toc-text">架构风格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%BC%80%E5%8F%91%E6%96%B9%E6%B3%95"><span class="toc-text">架构开发方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E4%BA%A7%E7%89%A9"><span class="toc-text">架构产物</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-text">设计原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84"><span class="toc-text">前端架构</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

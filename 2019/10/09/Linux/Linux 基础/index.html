@@ -1,0 +1,191 @@
+<!DOCTYPE html><html><head><title>Linux 基础 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Linux 基础</a></h3></div><div class="post-content"><h4 id="Linux-介绍"><a href="#Linux-介绍" class="headerlink" title="Linux 介绍"></a>Linux 介绍</h4><blockquote>
+<p>发行版</p>
+</blockquote>
+<p>市面上较知名的发行版有：Ubuntu、RedHat、CentOS、Debian、Fedora、SuSE、OpenSUSE、Arch Linux、SolusOS</p>
+<blockquote>
+<p>应用领域</p>
+</blockquote>
+<p>LAMP（Linux + Apache + MySQL + PHP）<br>LNMP（Linux + Nginx+ MySQL + PHP）</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/babyxue/article/details/80970526">Centos 7 安装</a></p>
+<h4 id="系统启动过程"><a href="#系统启动过程" class="headerlink" title="系统启动过程"></a>系统启动过程</h4><ol>
+<li>内核的引导。</li>
+<li>运行 init。</li>
+<li>系统初始化。</li>
+<li>建立终端 。</li>
+<li>用户登录系统。</li>
+</ol>
+<ul>
+<li><p>init程序的类型：<br>  SysV: init, CentOS 5之前, 配置文件： /etc/inittab。<br>  Upstart: init,CentOS 6, 配置文件： /etc/inittab, /etc/init/*.conf。<br>  Systemd： systemd, CentOS 7,配置文件： /usr/lib/systemd/system、 /etc/systemd/system。</p>
+</li>
+<li><p>运行级别<br>  运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动<br>  运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆<br>  运行级别2：多用户状态(没有NFS)<br>  运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式<br>  运行级别4：系统未使用，保留<br>  运行级别5：X11控制台，登陆后进入图形GUI模式<br>  运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动</p>
+</li>
+<li><p>图形模式与文字模式的切换方式<br>  Linux预设提供了六个命令窗口终端机让我们来登录。<br>  默认登录第一个，tty1，Ctrl + Alt + F1 ~ F6 切换命令窗口<br>  如果安装了图形界面，进入命令窗口界面后再返回图形界面只要按下Ctrl + Alt + F7</p>
+</li>
+</ul>
+<h4 id="关机流程"><a href="#关机流程" class="headerlink" title="关机流程"></a>关机流程</h4><p>sync &gt; shutdown &gt; reboot &gt; halt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sync 将数据由内存同步到硬盘中。</span><br><span class="line">shutdown 关机指令，你可以man shutdown 来看一下帮助文档。例如你可以运行如下命令关机：</span><br><span class="line"></span><br><span class="line">这个命令告诉大家，计算机将在10分钟后关机，并且会显示在登陆用户的当前屏幕中。</span><br><span class="line">shutdown –h 10 ‘This server will shutdown after 10 mins’ </span><br><span class="line">shutdown –h now 立马关机</span><br><span class="line">shutdown –h 20:25 系统会在今天20:25关机</span><br><span class="line">shutdown –h +10 十分钟后关机</span><br><span class="line">shutdown –r now 系统立马重启</span><br><span class="line">shutdown –r +10 系统十分钟后重启</span><br><span class="line">reboot 就是重启，等同于 shutdown –r now</span><br><span class="line">halt 关闭系统，等同于shutdown –h now 和 poweroff</span><br></pre></td></tr></table></figure>
+
+<h4 id="系统目录结构"><a href="#系统目录结构" class="headerlink" title="系统目录结构"></a>系统目录结构</h4><p><strong>/bin：</strong><br>bin是Binary的缩写, 这个目录存放着最经常使用的命令。</p>
+<p>/boot：<br>这里存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件。</p>
+<p>/dev ：<br>dev是Device(设备)的缩写, 该目录下存放的是Linux的外部设备，在Linux中访问设备的方式和访问文件的方式是相同的。</p>
+<p><strong>/etc：</strong><br>这个目录用来存放所有的系统管理所需要的配置文件和子目录。</p>
+<p>/home：<br>用户的主目录，在Linux中，每个用户都有一个自己的目录，一般该目录名是以用户的账号命名的。</p>
+<p>/lib：<br>这个目录里存放着系统最基本的动态连接共享库，其作用类似于Windows里的DLL文件。几乎所有的应用程序都需要用到这些共享库。</p>
+<p>/lost+found：<br>这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件。</p>
+<p>/media：<br>linux系统会自动识别一些设备，例如U盘、光驱等等，当识别后，linux会把识别的设备挂载到这个目录下。</p>
+<p>/mnt：<br>系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在/mnt/上，然后进入该目录就可以查看光驱里的内容了。</p>
+<p>/opt：<br> 这是给主机额外安装软件所摆放的目录。比如你安装一个ORACLE数据库则就可以放到这个目录下。默认是空的。</p>
+<p>/proc：<br>这个目录是一个虚拟的目录，它是系统内存的映射，我们可以通过直接访问这个目录来获取系统信息。<br>这个目录的内容不在硬盘上而是在内存里，我们也可以直接修改里面的某些文件，比如可以通过下面的命令来屏蔽主机的ping命令，使别人无法ping你的机器：</p>
+<pre><code>echo 1 &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all</code></pre>
+<p>/root：<br>该目录为系统管理员，也称作超级权限者的用户主目录。</p>
+<p><strong>/sbin：</strong><br>s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序。</p>
+<p>/selinux：<br> 这个目录是Redhat/CentOS所特有的目录，Selinux是一个安全机制，类似于windows的防火墙，但是这套机制比较复杂，这个目录就是存放selinux相关的文件的。</p>
+<p>/srv：<br> 该目录存放一些服务启动之后需要提取的数据。</p>
+<p>/sys：</p>
+<p> 这是linux2.6内核的一个很大的变化。该目录下安装了2.6内核中新出现的一个文件系统 sysfs 。</p>
+<p>sysfs文件系统集成了下面3种文件系统的信息：针对进程信息的proc文件系统、针对设备的devfs文件系统以及针对伪终端的devpts文件系统。<br>该文件系统是内核设备树的一个直观反映。</p>
+<p>当一个内核对象被创建的时候，对应的文件和目录也在内核对象子系统中被创建。</p>
+<p>/tmp：<br>这个目录是用来存放一些临时文件的。</p>
+<p>/usr：<br> 这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似于windows下的program files目录。</p>
+<p><strong>/usr/bin：</strong><br>系统用户使用的应用程序。</p>
+<p><strong>/usr/sbin：</strong><br>超级用户使用的比较高级的管理程序和系统守护程序。</p>
+<p>/usr/src：<br>内核源代码默认的放置目录。</p>
+<p><strong>/var：</strong><br>这个目录中存放着在不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括各种日志文件。</p>
+<p>/run：<br>是一个临时文件系统，存储系统启动以来的信息。当系统重启时，这个目录下的文件应该被删掉或清除。如果你的系统上有 /var/run 目录，应该让它指向 run。</p>
+<p>+系统启动必须：</p>
+<pre><code>/boot /etc /lib /sys</code></pre>
+<p>+指令集合：</p>
+<pre><code>/bin /sbin</code></pre>
+<p>+外部文件管理：</p>
+<pre><code>/dev /media /mnt</code></pre>
+<p>+临时文件：</p>
+<pre><code>/run /lost+found /tmp</code></pre>
+<p>+账户：<br>    /root /home /usr /usr/bin /usr/sbin /usr/src</p>
+<h4 id="忘记密码解决方法"><a href="#忘记密码解决方法" class="headerlink" title="忘记密码解决方法"></a>忘记密码解决方法</h4><p>进入单用户模式</p>
+<h4 id="远程登录"><a href="#远程登录" class="headerlink" title="远程登录"></a>远程登录</h4><p><a target="_blank" rel="noopener" href="https://www.putty.org/">putty 下载</a></p>
+<p>Linux 查看 ip 信息：ip a s</p>
+<h4 id="文件基本属性"><a href="#文件基本属性" class="headerlink" title="文件基本属性"></a>文件基本属性</h4><p>命令行：ls -l</p>
+<pre><code>drwxr-xr-x 3 mysql mysql 4096 Apr 21  2014 mysql</code></pre>
+<p>Linux中第一个字符代表这个文件是目录、文件或链接文件等</p>
+<pre><code>当为[ d ]则是目录；
+当为[ - ]则是文件；
+若是[ l ]则表示为链接文档(link file)；
+若是[ b ]则表示为装置文件里面的可供储存的接口设备(可随机存取装置)；
+若是[ c ]则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)。</code></pre>
+<p>接下来的位置：[ r ]代表可读(read)、[ w ]代表可写(write)、[ x ]代表可执行(execute)。 要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号[ - ]而已</p>
+<pre><code>文件     属主      属组    其他用户
+类型     权限      权限      权限
+ 0     1，2，3   4，5，6   7，8，9
+ d       rwx       r-x       r-x</code></pre>
+<blockquote>
+<p>更改文件属组</p>
+</blockquote>
+<pre><code>chgrp [-R] 属组名 文件名  //-R：递归更改文件属组</code></pre>
+<blockquote>
+<p>更改文件属主，也可以同时更改文件属组</p>
+</blockquote>
+<pre><code>chown [–R] 属主名 文件名
+chown [-R] 属主名：属组名 文件名</code></pre>
+<blockquote>
+<p>更改文件9个属性</p>
+</blockquote>
+<pre><code>/* 方法一 */
+各权限的分数对照表：r:4 w:2 x:1
+chmod [-R] 权限数字 文件或目录
+
+/* 方法二 */
+身份：u g o a
+赋值：+ - =
+权限：r w x
+
+chmod u=rwx,g=rx,o=r  文件或目录
+chmod a-x 文件或目录</code></pre>
+<h4 id="文件与目录管理"><a href="#文件与目录管理" class="headerlink" title="文件与目录管理"></a>文件与目录管理</h4><p>处理目录的常用命令：</p>
+<pre><code>ls: 列出目录            // -a -d -l --full-time 
+cd：切换目录
+pwd：显示目前的目录      // -P 显示正确的完整路径
+mkdir：创建一个新的目录  // -m 设置权限 -p 创建多层目录
+rmdir：删除一个空的目录
+cp: 复制文件或目录
+rm: 移除文件或目录
+mv: 移动文件与目录，或修改文件与目录的名称</code></pre>
+<p>文件内容常用命令：</p>
+<pre><code>cat  由第一行开始显示文件内容
+tac  从最后一行开始显示，可以看出 tac 是 cat 的倒著写！
+nl   显示的时候，顺道输出行号！
+more 一页一页的显示文件内容
+less 与 more 类似，但是比 more 更好的是，他可以往前翻页！
+head 只看头几行
+tail 只看尾巴几行</code></pre>
+<h4 id="用户账号的管理"><a href="#用户账号的管理" class="headerlink" title="用户账号的管理"></a>用户账号的管理</h4><p>useradd 选项 用户名</p>
+<pre><code>-c comment 指定一段注释性描述。
+-d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。
+-g 用户组 指定用户所属的用户组。
+-G 用户组，用户组 指定用户所属的附加组。
+-s Shell文件 指定用户的登录Shell。
+-u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号。</code></pre>
+<p>userdel,usermod </p>
+<p>passwd 选项 用户名</p>
+<pre><code>-l 锁定口令，即禁用账号。
+-u 口令解锁。
+-d 使账号无口令。
+-f 强迫用户下次登录时修改口令。</code></pre>
+<blockquote>
+<p>用户组的管理</p>
+</blockquote>
+<pre><code>groupadd ,groupdel ,groupmod ,newgrp </code></pre>
+<p>与用户和用户组相关的信息都存放在一些系统文件中，这些文件包括/etc/passwd, /etc/shadow, /etc/group等。</p>
+<pre><code>sam:x:200:50:Sam san:/home/sam:/bin/sh
+用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell</code></pre>
+<h4 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h4><pre><code>df：列出文件系统的整体磁盘使用量
+du：检查磁盘空间使用量
+fdisk：用于磁盘分区</code></pre>
+<h4 id="vi-vim"><a href="#vi-vim" class="headerlink" title="vi/vim"></a>vi/vim</h4><p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/all-vim-cheatsheat.html">史上最全Vim快捷键键位图 — 入门到进阶</a></p>
+<p>命令模式（Command mode）</p>
+<pre><code>i 切换到输入模式，以输入字符。
+x 删除当前光标所在处的字符。
+: 切换到底线命令模式，以在最底一行输入命令。</code></pre>
+<p>输入模式（Insert mode）</p>
+<pre><code>字符按键以及Shift组合，输入字符
+ENTER，回车键，换行
+BACK SPACE，退格键，删除光标前一个字符
+DEL，删除键，删除光标后一个字符
+方向键，在文本中移动光标
+HOME/END，移动光标到行首/行尾
+Page Up/Page Down，上/下翻页
+Insert，切换光标为输入/替换模式，光标将变成竖线/下划线
+ESC，退出输入模式，切换到命令模式</code></pre>
+<p>底线命令模式（Last line mode）</p>
+<pre><code>q 退出程序
+w 保存文件</code></pre>
+<blockquote>
+<p>vim 命令的安装</p>
+</blockquote>
+<pre><code>yum -y install vim*
+
+常见问题: is not in the sudoers file
+$ su</code></pre>
+<h4 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h4><p>Linux 的 Shell 种类众多，常见的有：</p>
+<p>Bourne Shell（/usr/bin/sh或/bin/sh）<br>Bourne Again Shell（/bin/bash）<br>C Shell（/usr/bin/csh）<br>K Shell（/usr/bin/ksh）<br>Shell for Root（/sbin/sh）</p>
+<p>运行 Shell 脚本</p>
+<p>1、作为可执行程序</p>
+<pre><code>chmod +x ./test.sh  #使脚本具有执行权限
+./test.sh  #执行脚本</code></pre>
+<p>2、作为解释器参数</p>
+<pre><code>/bin/sh test.sh
+/bin/php test.php</code></pre>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#变量赋值，使用</span></span><br><span class="line">your_name=<span class="string">&quot;qinjx&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$your_name</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;your_name&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除变量</span></span><br><span class="line">myUrl=<span class="string">&quot;http://www.runoob.com&quot;</span></span><br><span class="line"><span class="built_in">unset</span> myUrl</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$myUrl</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#字符串</span></span><br><span class="line">your_name=<span class="string">&#x27;runoob&#x27;</span></span><br><span class="line">str=<span class="string">&quot;Hello, I know you are \&quot;<span class="variable">$your_name</span>\&quot;! \n&quot;</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="variable">$str</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#拼接字符串</span></span><br><span class="line">greeting=<span class="string">&quot;hello, &quot;</span><span class="variable">$your_name</span><span class="string">&quot; !&quot;</span></span><br><span class="line">greeting_1=<span class="string">&quot;hello, <span class="variable">$&#123;your_name&#125;</span> !&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$greeting</span>  <span class="variable">$greeting_1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#获取字符串长度</span></span><br><span class="line">string=<span class="string">&quot;abcd&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#string&#125;</span> <span class="comment">#输出 4</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#截取字符串</span></span><br><span class="line">string=<span class="string">&quot;runoob is a great site&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;string:1:4&#125;</span> <span class="comment"># 从左边第几个字符开始，及字符的个数</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var:7&#125;</span>      <span class="comment"># 从左边第几个字符开始，一直到结束</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;string#*//&#125;</span> <span class="comment"># 删除左边字符，保留右边字符</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var%/*&#125;</span>     <span class="comment"># 删除右边字符，保留左边字符</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;#&quot;</span>、<span class="string">&quot;##&quot;</span> 表示从左边开始删除。一个 <span class="string">&quot;#&quot;</span> 表示从左边删除到第一个指定的字符；两个 <span class="string">&quot;#&quot;</span> 表示从左边删除到最后一个指定的字符。</span><br><span class="line">%、%% 表示从右边开始删除。一个 % 表示从右边删除到第一个指定的字符；两个 % 表示从左边删除到最后一个指定的字符。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#查找字符串</span></span><br><span class="line">string=<span class="string">&quot;runoob is a great site&quot;</span></span><br><span class="line"><span class="built_in">echo</span> `expr index <span class="string">&quot;<span class="variable">$string</span>&quot;</span> io`  <span class="comment"># 输出 4</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#支持一维数组（不支持多维数组）</span></span><br><span class="line">array_name=(value0 value1 value2 value3)</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取数组元素</span></span><br><span class="line">valuen=<span class="variable">$&#123;array_name[n]&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#遍历数组所有元素</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array_name[@]&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#获取数组的长度</span></span><br><span class="line">length=<span class="variable">$&#123;#array_name[@]&#125;</span></span><br><span class="line">length=<span class="variable">$&#123;#array_name[*]&#125;</span></span><br><span class="line">lengthn=<span class="variable">$&#123;#array_name[n]&#125;</span></span><br><span class="line"></span><br><span class="line">:&lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">多行注释</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line">:&lt;&lt;!</span><br><span class="line">多行注释</span><br><span class="line">!</span><br><span class="line"></span><br><span class="line"><span class="comment">#参数传递</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Shell 传递参数实例！&quot;</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;执行的文件名：<span class="variable">$0</span>&quot;</span>;   <span class="comment"># $0 为执行的文件名</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;第一个参数为：<span class="variable">$1</span>&quot;</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;第二个参数为：<span class="variable">$2</span>&quot;</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;第三个参数为：<span class="variable">$3</span>&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> condition1</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    command1</span><br><span class="line"><span class="keyword">elif</span> condition2 </span><br><span class="line"><span class="keyword">then</span> </span><br><span class="line">    command2</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    commandN</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> var <span class="keyword">in</span> item1 item2 ... itemN</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    command1</span><br><span class="line">    command2</span><br><span class="line">    ...</span><br><span class="line">    commandN</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>\until condition</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">command</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$aNum</span> <span class="keyword">in</span></span><br><span class="line">    1)  <span class="built_in">echo</span> <span class="string">&#x27;你选择了 1&#x27;</span></span><br><span class="line">    ;;</span><br><span class="line">    2)  <span class="built_in">echo</span> <span class="string">&#x27;你选择了 2&#x27;</span></span><br><span class="line">    ;;</span><br><span class="line">    3)  <span class="built_in">echo</span> <span class="string">&#x27;你选择了 3&#x27;</span></span><br><span class="line">    ;;</span><br><span class="line">    4)  <span class="built_in">echo</span> <span class="string">&#x27;你选择了 4&#x27;</span></span><br><span class="line">    ;;</span><br><span class="line">    *)  <span class="built_in">echo</span> <span class="string">&#x27;你没有输入 1 到 4 之间的数字&#x27;</span></span><br><span class="line">    ;;</span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">fun</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&#x27;这是一个函数！&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">funWithParam</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;第一个参数为 <span class="variable">$1</span> !&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;第二个参数为 <span class="variable">$2</span> !&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;第十个参数为 <span class="variable">$10</span> !&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;第十个参数为 <span class="variable">$&#123;10&#125;</span> !&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;第十一个参数为 <span class="variable">$&#123;11&#125;</span> !&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;参数总数有 <span class="variable">$#</span> 个!&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;作为一个字符串输出所有参数 $* !&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">funWithParam 1 2 3 4 5 6 7 8 9 34 73</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-command-manual.html">Linux 命令大全</a></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-10-09</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Linux/" title="Linux">Linux </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2019/10/09/Linux/Linux 基础/,日升于东,Linux 基础,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/10/10/Linux/Linux%20FTP%20%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/" title="Linux FTP 服务器搭建">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/10/09/%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7%E9%93%BE/" title="前端工具链">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E4%BB%8B%E7%BB%8D"><span class="toc-text">Linux 介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B"><span class="toc-text">系统启动过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E6%9C%BA%E6%B5%81%E7%A8%8B"><span class="toc-text">关机流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-text">系统目录结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">忘记密码解决方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="toc-text">远程登录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%9F%BA%E6%9C%AC%E5%B1%9E%E6%80%A7"><span class="toc-text">文件基本属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86"><span class="toc-text">文件与目录管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-text">用户账号的管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="toc-text">磁盘管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vi-vim"><span class="toc-text">vi&#x2F;vim</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shell"><span class="toc-text">shell</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

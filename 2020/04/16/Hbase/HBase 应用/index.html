@@ -1,0 +1,101 @@
+<!DOCTYPE html><html><head><title>HBase 应用 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>HBase 应用</a></h3></div><div class="post-content"><p>本质：分布式、面向<code>列</code>的开源数据库，Apache的Hadoop子项目。<br>适用于：非结构化数据存储的数据库</p>
+<h4 id="技术特点"><a href="#技术特点" class="headerlink" title="技术特点"></a>技术特点</h4><ol>
+<li>大表</li>
+<li>面向列：面向列族的存储和权限控制，列族独立检索</li>
+<li>稀疏：对于为空（null）的列，并不占用存储空间</li>
+<li>不基于MR、Yarn，而是基于自身的文件索引</li>
+<li>无Join功能，做不了分析类处理，通常增删改查</li>
+<li>RS（Rgion Server），决定集群处理能力，支持水平扩展</li>
+<li>用于实时读写场景，Online场景</li>
+</ol>
+<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><p>表数据量大（至少亿级别以上）、数据append业务、无跨行跨表事务要求、写入量大（每天千万级别以上）、读取场景简单不经常变化，查询场景固化、无正序，逆序的排序要求、不适合全量读取、RowKey不可发生变化</p>
+<pre><code>不适合场景
+多维度索引，无二级索引
+需要事务
+分析类，即逻辑复杂查询
+不适合Count操作
+不适合多条件查询case</code></pre>
+<h4 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h4><blockquote>
+<p>Master 服务器：负责维护表结构信息 </p>
+</blockquote>
+<pre><code>负责协调工作，如建表、删表、移动Region、合并等</code></pre>
+<blockquote>
+<p>RegionServer 服务器：负责数据的存储，直接存储在 <code>Hadoop</code> 的 <strong><code>HDFS</code></strong> 上</p>
+</blockquote>
+<pre><code>存放 Region 的容器，相当于服务器上的服务</code></pre>
+<p>【 WAL(Write-Ahead Log：预写日志) | Region | Block Cache】</p>
+<p>通常Hbase集群有 <code>一个 Master</code> 和 <code>多个 RegionServer</code></p>
+<p>client <code>---&gt;</code>  ZooKeeper  <code>----管理--&gt;</code> RegionServer <code>---&gt;</code> HDFS</p>
+<blockquote>
+<p>Region 一段数据集合</p>
+</blockquote>
+<ol>
+<li>不能跨服务器</li>
+<li>不足以存储所有数据时，HBase会自动拆分</li>
+<li>HBase进行负责均衡时，Region可能会在RegionServer之间移动</li>
+<li>基于HDFS</li>
+</ol>
+<p>【 store（对应一个列族）【 MemStore（数据排序） | HFile】】</p>
+<p>【 HFile：【 Data | Data Index 】】</p>
+<p>【 Data：【 BlockType | Cell(Key Value) 】】</p>
+<p>【 Cell：【 Key Len | Value Len | TimeStamp | Key Type | Value 】】</p>
+<blockquote>
+<p>RowKey</p>
+</blockquote>
+<p>作用：索引、为组合性 <code>最基本的存储单元是“列”</code></p>
+<p>访问HBase Table中的行，只有三种方式：</p>
+<ol>
+<li>通过单个 row key 访问</li>
+<li>通过 row key 的 range</li>
+<li>全表扫描</li>
+</ol>
+<p>row key 可以是任意字符串，在hbase内部， row key 保存为<code>字节数组</code>，存储时，数据按照 row key 的<code>字典顺序</code>排序存储。</p>
+<blockquote>
+<p>Columns Family</p>
+</blockquote>
+<p>HBase 表中每个列，都归属于某个列族，相同列族的列 HBase 会尽量放在同一台机器上<br><code>列族</code>是<code>表的 schema</code> 的<code>一部分</code>，**<code>而列不是</code>**，必须在使用表之前定义。<br>列名都以列族作为前缀:courses:history<br>访问控制、磁盘和内存的使用统计都是在列族层面进行的</p>
+<pre><code>create &#39;tableName&#39;, &#39;cf&#39;, &#39;cfc&#39; ...  创建多列族的表，通常一个表只有一个列族
+flush 和 compaction 触发的基本单元都是 region 级别。</code></pre>
+<blockquote>
+<p>Time Stamp </p>
+</blockquote>
+<p>HBase 中通常 row 和 columns 组成一个存储单元 cell<br>每个 cell 都保存同一份数据的多个版本<code>按照时间</code>**<code>倒序排序</code>**。版本通过<code>时间戳（类型为64位整型）</code>来索引。</p>
+<p>  时间戳赋值<br>  数据写入时自动赋值，此时时间为毫秒级当前系统时间<br>  客户手动赋值，需确保时间戳的唯一性</p>
+<blockquote>
+<p>cell</p>
+</blockquote>
+<p>由{row key, column(=<family> + <label>), version} 唯一确定的单元。</p>
+<p>cell中的数据是没有类型的，全部是<code>字节码形式存贮</code>。</p>
+<h4 id="协处理器"><a href="#协处理器" class="headerlink" title="协处理器"></a>协处理器</h4><blockquote>
+<p>Observer</p>
+</blockquote>
+<blockquote>
+<p>EndPoint</p>
+</blockquote>
+<h4 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h4><p>Apache Hadoop<br>CDH（优化组件兼容和交互接口、简化安装配置、增加Cloudera兼容特性）<br>CDH5.1 目前最稳定版本，内核Hadoop 2.3 <code>主流版本</code></p>
+<p>CDH5下载地址：<br><a target="_blank" rel="noopener" href="http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/">CM</a>  <a target="_blank" rel="noopener" href="http://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/">Cdh</a><br><a target="_blank" rel="noopener" href="http://archive.cloudera.com/cm5/installer/">cloudera-manager-installer.bin</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.ibeifeng.com/goods-427.html">Storm流计算从入门到精通之技术篇</a><br><a target="_blank" rel="noopener" href="http://www.ibeifeng.com/goods-310.html">Cdh4 实战课程</a></p>
+<h4 id="配置-NTP-服务器"><a href="#配置-NTP-服务器" class="headerlink" title="配置 NTP 服务器"></a>配置 NTP 服务器</h4><p>NetWork Time Protocol 网络时间协议              </p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.360doc.com/content/14/1010/17/4171006_415846558.shtml">虚拟机启动状态下添加硬盘</a></p>
+</blockquote>
+<pre><code>1. fdisk -l 列出当前系统中所有硬盘设备及其分区的信息。
+2. mkfs命令、mkswap命令</code></pre>
+<h4 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h4><p>Consistency 一致性</p>
+<pre><code>更新操作成功并返回客户端完成后，分布式系统所有的节点在同一时间的数据完全一致</code></pre>
+<p>Availability 可用性</p>
+<pre><code>读写操作都能成功</code></pre>
+<p>Partition tolerance 分区容错性</p>
+<pre><code>出现网络故障导致分布式节点间不能通信时，系统能否继续服务</code></pre>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-04-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/HBase/" title="HBase">HBase </a><a class="tag" href="/tags/HBase/" title="HBase">HBase </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/04/16/Hbase/HBase 应用/,日升于东,HBase 应用,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/04/16/Hbase/HBase%20Shell/" title="HBase Shell">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/04/16/Hbase/Hive/" title="Hive">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%89%B9%E7%82%B9"><span class="toc-text">技术特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">适用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84"><span class="toc-text">架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8F%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-text">协处理器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hadoop"><span class="toc-text">Hadoop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-NTP-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">配置 NTP 服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CAP"><span class="toc-text">CAP</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

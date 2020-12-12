@@ -1,0 +1,101 @@
+<!DOCTYPE html><html><head><title>URL 输入到页面展现发生了什么？ [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>URL 输入到页面展现发生了什么？</a></h3></div><div class="post-content"><h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>. DNS 解析：域名解析成 IP 地址<br>. TCP 连接：TCP 三次握手<br>. 发送 HTTP 请求<br>. 服务器处理请求并返回 HTTP 报文<br>. 浏览器解析渲染页面<br>. 断开连接：TCP 四次挥手</p>
+<h4 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h4><p>统一资源定位符，用于定位互联网上资源，网址（<a target="_blank" rel="noopener" href="https://www.w3school.com.cn)/">https://www.w3school.com.cn）</a></p>
+<p>语法规则：<br>. scheme 定义因特网服务的类型（http、https、ftp、file）<br>. host 定义域主机，默认主机 www<br>. domain 定义域名，<a target="_blank" rel="noopener" href="http://www.w3school.com.cn/">www.w3school.com.cn</a><br>. port 定义端口号，默认端口 80<br>. path 定义服务器上路径（如省略，文档定位到网站根目录）<br>. filename 定义文档资源名称</p>
+<h4 id="域名解析-DNS"><a href="#域名解析-DNS" class="headerlink" title="域名解析 DNS"></a>域名解析 DNS</h4><p>IP 地址：32位二进制数，一个逻辑地址，用以屏蔽物理地址的差异</p>
+<p>域名：IP 地址的伪装者，作用便于记忆和沟通的一组服务器的地址</p>
+<blockquote>
+<p>域名解析</p>
+</blockquote>
+<p>DNS 协议提供通过域名和IP地址互查询服务</p>
+<blockquote>
+<p>浏览器如何通过域名查询 URL 对应的 IP？</p>
+</blockquote>
+<ol>
+<li>浏览器缓存：浏览器按照一定的频率缓存 DNS 记录</li>
+<li>操作系统缓存：如果浏览器缓存中找不到需要的 DNS 记录，查询操作系统缓存</li>
+<li>路由缓存：路由器缓存 DNS 记录</li>
+<li>ISP DNS 服务器：ISP 互联网服务提供商（Internet Service Provider）提供 DNS 查询请求</li>
+<li>根服务器：ISP 查询不到记录，会向根服务器发出请求，进行递归查询</li>
+</ol>
+<h4 id="TCP-三次握手"><a href="#TCP-三次握手" class="headerlink" title="TCP 三次握手"></a>TCP 三次握手</h4><p>目的：同步客户端和服务端的序列号和确认号，交换TCP窗口大小信息，为了防止已失效的连接请求报文段突然又传送到了服务器，因而产生错误</p>
+<p>客户端发送一个带 SYN=1，Seq=X 的数据包到服务器端口，告诉服务器我要发送请求了<br>服务器发回一个带 SYN=1，ACK=X+1，Seq=Y 的响应包以示传达确认信息，告诉浏览器准备完毕<br>客户端回传一个带 ACK=Y+1，Seq=Z的数据包，表示“握手结束”，告诉服务器准备发文</p>
+<h4 id="HTTP-请求"><a href="#HTTP-请求" class="headerlink" title="HTTP 请求"></a>HTTP 请求</h4><p>请求报文组成：请求行（request line）、请求体（header）、请求体</p>
+<img src="https://pic1.zhimg.com/80/v2-0004258bd5cd7513f175c093a69b8777_720w.jpg"/>
+
+<ol>
+<li>请求行包含请求方法、URL、协议版本</li>
+</ol>
+<p>请求方法8种：GET、POST、PUT、DELETE、PATCH、HEAD、OPTIONS、TRACE<br>URL 即请求地址，由&lt;协议&gt;：//&lt;主体&gt;：&lt;端口&gt;/&lt;路径&gt;？&lt;参数&gt;<br>协议版本即 http 版本号</p>
+<pre><code>POST /chapter17/user.html HTTP/1.1</code></pre>
+<ol start="2">
+<li>请求头</li>
+</ol>
+<p>附加信息，键值对，包含客户端环境和请求正文的有用信息</p>
+<ol start="3">
+<li>请求体</li>
+</ol>
+<p>请求参数</p>
+<h4 id="服务器处理请求并返回-HTTP-报文"><a href="#服务器处理请求并返回-HTTP-报文" class="headerlink" title="服务器处理请求并返回 HTTP 报文"></a>服务器处理请求并返回 HTTP 报文</h4><ol>
+<li>服务器</li>
+</ol>
+<p>常见的 web server : apache、nginx、IIS</p>
+<ol start="2">
+<li>MVC </li>
+</ol>
+<img src="https://pic2.zhimg.com/80/v2-0a48d53801496faece49e953bdf500ce_720w.jpg"/>
+
+<ol start="3">
+<li>http 响应报文</li>
+</ol>
+<ul>
+<li><p>响应行：协议版本、状态码、状态码描述</p>
+<p>  1xx：提示信息<br>  2xx：成功<br>  3xx：重定向<br>  4xx：客户端错误<br>  5xx：服务端错误</p>
+</li>
+<li><p>响应头包含附加信息，键值对组成</p>
+</li>
+<li><p>响应体返回数据，不是所有响应报文都需要响应数据</p>
+</li>
+</ul>
+<h4 id="浏览器解析渲染"><a href="#浏览器解析渲染" class="headerlink" title="浏览器解析渲染"></a>浏览器解析渲染</h4><img src="https://pic2.zhimg.com/80/v2-db363acb52bf35ec64bb9cf9251a7121_720w.jpg"/>
+
+<p>解析步骤:</p>
+<ol>
+<li>根据 HTML 解析 DOM 树，根据 CSS 解析 CSS 规则树</li>
+<li>DOM 树 结合 CSS 规则数，生成 渲染树</li>
+<li>根据渲染树计算每一个节点的信息</li>
+<li>根据计算好的信息绘制页面</li>
+</ol>
+<h4 id="断开连接"><a href="#断开连接" class="headerlink" title="断开连接"></a>断开连接</h4><p>浏览器发送报文，Fin、Ack、Seq，表示数据已经传输完，进入 FIN_WAIT_1 状态<br>服务器发送报文，Ack、Seq，同意关闭请求，主机进入 FIN_WAIT_2 状态<br>服务器发送报文段，Fin、Ack、Seq，请求关闭连接，进入 LAST_ACK 状态<br>浏览器发送报文段，Ack、Seq。进入 TIME_WAIT 状态，服务器收到报文关闭连接，浏览器等待一定时间未收到回复，正常关闭</p>
+<h4 id="TCP-状态"><a href="#TCP-状态" class="headerlink" title="TCP 状态"></a>TCP 状态</h4><p>TCP 有个 FLAGS 字段，状态值：SYN，FIN，ACK，PSH，RST，URG</p>
+<blockquote>
+<p>SYN 同步序列编号，表示建立连接</p>
+</blockquote>
+<p>SYN 攻击属于 DDos 攻击的一种，预防技术：通过防火墙、路由器等过滤网管，通过加固 TCP/IP 协议栈</p>
+<blockquote>
+<p>ACK 确认字符，表示响应</p>
+</blockquote>
+<p>接收站发给发送站的一种传输类控制字符，表示发来的数据已确认接收无误</p>
+<blockquote>
+<p>Seq 数据包本身的序列号</p>
+</blockquote>
+<blockquote>
+<p>PSH 表示 DATA 数据传输</p>
+</blockquote>
+<blockquote>
+<p>FIN 表示关闭连接</p>
+</blockquote>
+<blockquote>
+<p>RST 表示连接重置</p>
+</blockquote>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-01</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/08/01/Javascript/URL 输入到页面展现发生了什么？/,日升于东,URL 输入到页面展现发生了什么？,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/08/01/Javascript/Node.js%20%E8%B6%A3%E8%A7%A3/" title="Node.js 趣解">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/08/01/Javascript/call%E5%92%8Capply/" title="call和apply">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B"><span class="toc-text">过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#URL"><span class="toc-text">URL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90-DNS"><span class="toc-text">域名解析 DNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-text">TCP 三次握手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-%E8%AF%B7%E6%B1%82"><span class="toc-text">HTTP 请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82%E5%B9%B6%E8%BF%94%E5%9B%9E-HTTP-%E6%8A%A5%E6%96%87"><span class="toc-text">服务器处理请求并返回 HTTP 报文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E6%9E%90%E6%B8%B2%E6%9F%93"><span class="toc-text">浏览器解析渲染</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5"><span class="toc-text">断开连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-%E7%8A%B6%E6%80%81"><span class="toc-text">TCP 状态</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

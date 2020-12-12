@@ -1,0 +1,99 @@
+<!DOCTYPE html><html><head><title>Vue 入门基础 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Vue 入门基础</a></h3></div><div class="post-content"><h4 id="vue-devtools安装"><a href="#vue-devtools安装" class="headerlink" title="vue-devtools安装"></a>vue-devtools安装</h4><ul>
+<li><p>git clone <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-devtools.git">https://github.com/vuejs/vue-devtools.git</a></p>
+</li>
+<li><p>npm install</p>
+</li>
+<li><p>npm run build</p>
+</li>
+<li><p>游览器输入地址“chrome://extensions/”进入扩展程序页面，点击“加载已解压的扩展程序…”按钮，选择vue-devtools&gt;shells下的chrome文件夹。</p>
+</li>
+</ul>
+<p> <strong>如果看不见“加载已解压的扩展程序…”按钮，则需要勾选“开发者模式”。</strong></p>
+<ul>
+<li>添加成功后，浏览器调试工具，会增加Vue调试选项。</li>
+</ul>
+<h4 id="项目创建"><a href="#项目创建" class="headerlink" title="项目创建"></a>项目创建</h4><ul>
+<li><p>node -v</p>
+</li>
+<li><p>npm -v<br><strong>查看node.js 是否安装</strong></p>
+</li>
+<li><p>npm install -g vue-cli</p>
+</li>
+<li><p>npm install -g webpack</p>
+</li>
+<li><p>vue init webpack myVue （myVue 项目名称）<br><strong>Use ESLint to lint your code? (Y/n)：是否使用EsLint编码，选择N，其他默认</strong></p>
+</li>
+<li><p>npm install （未自动安装依赖，进入项目目录，手动安装依赖项） </p>
+</li>
+<li><p>npm run dev （启动项目）</p>
+</li>
+</ul>
+<h4 id="本地引用"><a href="#本地引用" class="headerlink" title="本地引用"></a>本地引用</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://vuejs.org/js/vue.js">https://vuejs.org/js/vue.js</a> 开发版本，包含完整的警告和调试模式</li>
+</ul>
+<h4 id="vue-语法"><a href="#vue-语法" class="headerlink" title="vue 语法"></a>vue 语法</h4><blockquote>
+<p>插值绑定</p>
+</blockquote>
+<pre><code>&#123;&#123;num&#125;&#125;
+注意点：  html代码（表达式） 和 html代码（变量），前者优先解释Dom节点，插值语法无效，‘&#123;&#123;’，‘&#125;&#125;’被当作节点文本内容解析。</code></pre>
+<blockquote>
+<p>Html 插值</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-html</span>=<span class="string">&quot;DOM&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>属性绑定 （v-bind：/：）</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">&quot;className&quot;</span> <span class="attr">v-bind:title</span>=<span class="string">&quot;title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-bind:type</span>=<span class="string">&quot;&#x27;text&#x27;&quot;</span> <span class="attr">v-bind:placeholder</span>=<span class="string">&quot;true?&#x27;请输入&#x27;:&#x27;请录入&#x27;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>类名绑定 （：class）</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">&quot;&#x27;color-gray size-18 style-italic&#x27;&quot;</span>&gt;</span>字符串拼接<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">&quot;[&#x27;color-gray&#x27;,&#x27;size-18&#x27;,&#x27;style-italic&#x27;]&quot;</span>&gt;</span>数组<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">&quot;&#123;&#x27;color-gray&#x27;:true, &#x27;size-18&#x27;:true, &#x27;style-italic&#x27;:true&#125;&quot;</span>&gt;</span>对象<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>样式绑定 （：style）</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">&quot;&#x27;color:gray; font-size:18px; font-style:italic;&#x27;&quot;</span>&gt;</span>字符串拼接<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">&quot;&#123;&#x27;color&#x27;:&#x27;gray&#x27;, &#x27;font-size&#x27;:&#x27;18px&#x27;, &#x27;font-style&#x27;:&#x27;italic&#x27;&#125;&quot;</span>&gt;</span>对象<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>事件绑定 （v-on：/@）</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click</span>=<span class="string">&quot;function()&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">&quot;function()&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>+ 常用事件修饰符
+.stop | .prevent | .capture | .self | .once | .passive
+.delete/.8/.46 | .tab/.9 | .enter/.13 | .esc/.27 | .space/.32 
+.left/.37 | .up/.38 | .right/.39 | .down/.40 
+.ctrl | .alt | .shift | .meta</code></pre>
+<blockquote>
+<p>双向绑定 （v-model）</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">&quot;className&quot;</span> <span class="attr">v-bind:title</span>=<span class="string">&quot;c_title&quot;</span>&gt;</span>&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-bind:type</span>=<span class="string">&quot;&#x27;text&#x27;&quot;</span> <span class="attr">v-bind:placeholder</span>=<span class="string">&quot;true?&#x27;请输入&#x27;:&#x27;请录入&#x27;&quot;</span> <span class="attr">v-model</span>=<span class="string">&#x27;name&#x27;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>条件渲染 （v-if/v-else-if/v-else）</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">&quot;order === 0&quot;</span>&gt;</span>v-if<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-else-if</span>=<span class="string">&quot;order === 1&quot;</span>&gt;</span>v-else-if<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-else</span>&gt;</span>v-else<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>切换元素的CSS属性：display （v-show）</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-show</span>=<span class="string">&quot;visible&quot;</span>&gt;</span>v-show，visible = true<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-show</span>=<span class="string">&quot;!visible&quot;</span>&gt;</span>v-show，visible = false<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>列表渲染，可以渲染数组、对象 （v-for）</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in users&quot;</span>&gt;</span>&#123;&#123;index&#125;&#125; <span class="symbol">&amp;nbsp;</span> &#123;&#123;item.name&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(user, index) in users&quot;</span>&gt;</span></span><br><span class="line">	    用户 &#123;&#123;index + 1&#125;&#125;</span><br><span class="line">	    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">	        <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(val, key) in user&quot;</span>&gt;</span>&#123;&#123;key&#125;&#125; —— &#123;&#123;val&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-12</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2019/07/12/Vue/Vue 入门基础/,日升于东,Vue 入门基础,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/07/12/Css/Css3%20%E5%8D%95%E4%BD%8D%E5%8C%BA%E5%88%AB/" title="CSS3 单位区别">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/07/12/Css/Css3%20%E5%8F%8C%E8%9E%BA%E6%97%8B/" title="Css3 双螺旋">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#vue-devtools%E5%AE%89%E8%A3%85"><span class="toc-text">vue-devtools安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA"><span class="toc-text">项目创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%BC%95%E7%94%A8"><span class="toc-text">本地引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vue-%E8%AF%AD%E6%B3%95"><span class="toc-text">vue 语法</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

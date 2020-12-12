@@ -1,0 +1,91 @@
+<!DOCTYPE html><html><head><title>datax [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>datax</a></h3></div><div class="post-content"><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><ol>
+<li>异构数据源<code>离线</code>同步工具</li>
+<li>支持数据库（Mysql、Oracle、HDFS、Hive、ODPS、HBase、FTP等）</li>
+</ol>
+<ul>
+<li>框架设计思路</li>
+</ul>
+<p>Framework + Plugin，将数据源读取和写入抽象为 Reader\Writer 插件，纳入到整个同步框架</p>
+<img src="/images/16177192-9fcc7e3c470a25a4.webp">
+
+<blockquote>
+<p>Reader: 数据采集模块，将采集的数据源的数据发送到 Framework<br>Writer: 数据写入模块，不断从 Framework 取数据，并将数据写入到目的端<br>Framework: 连接 Reader\Writer 作为两者的数据传输通道，并处理缓冲、流控、并发及数据转换等</p>
+</blockquote>
+<ul>
+<li>支持数据</li>
+</ul>
+<img src="/images/16177192-70b69db4dec28306.webp"/>
+
+<p><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/alibaba/DataX">DataX数据源参考指南</a></p>
+<h4 id="安装、测试"><a href="#安装、测试" class="headerlink" title="安装、测试"></a>安装、测试</h4><ol>
+<li><p><a target="_blank" rel="noopener" href="http://datax-opensource.oss-cn-hangzhou.aliyuncs.com/datax.tar.gz">下载包</a></p>
+</li>
+<li><p>解压缩，运行 cmd &gt; python bin/datax.py ../job/job.json</p>
+</li>
+</ol>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/WeiYe-Jing/datax-web/tree/master/doc/datax-web/datax-python3">支持 pyhton3 运行</a></p>
+<p>  bin 目录替换 datax.py、dxprof.py、perftrace.py</p>
+</li>
+<li><p>中文乱码问题</p>
+<p>  cmd &gt; CHCP 65001</p>
+</li>
+</ul>
+<h4 id="核心优势"><a href="#核心优势" class="headerlink" title="核心优势"></a>核心优势</h4><p><img src="/images/16177192-e6b945e06ab33d37.webp" alt="核心模块"></p>
+<p>一. 可靠的数据质量监控<br>二. 丰富的数据转换功能<br>三. 精准的速度控制<br>四. 强劲的同步性能<br>五. 健壮的容错机制<br>六. 线程级别重试</p>
+<h4 id="DataX-Web"><a href="#DataX-Web" class="headerlink" title="DataX Web"></a>DataX Web</h4><p><img src="https://camo.githubusercontent.com/e0d13e2b650d9ba790d4054650057a2b092ba5ec/68747470733a2f2f64617461782d7765622e6f73732d636e2d68616e677a686f752e616c6979756e63732e636f6d2f646f632f44617461582d5765622e706e67" alt="datax web 架构图"></p>
+<blockquote>
+<p>Linux 部署</p>
+</blockquote>
+<ul>
+<li><p>解压安装包</p>
+<p>  tar -zxvf datax-web-2.1.2.tar.gz</p>
+</li>
+<li><p>执行一键安装脚本</p>
+<p>  ./bin/install.sh ./bin/install.sh –force（跳过确认过程）</p>
+</li>
+<li><p>数据库初始化</p>
+<p>  系统安装 mysql 服务命令，数据库会自动完成初始化<br>  手动执行：<code>/bin/db/datax-web.sql</code></p>
+<pre><code>       mysql -uroot -p123456 -D dataxweb &lt; datax_web.sql  执行
+       sed -i &quot;s/datetime(0)/timestamp/g&quot; datax_web.sql   替换</code></pre>
+<p>  完成初始化后修改相关配置：vi ./modules/datax-admin/conf/bootstrap.properties</p>
+<pre><code>  #Database
+  #DB_HOST=
+  #DB_PORT=
+  #DB_USERNAME=
+  #DB_PASSWORD=
+  #DB_DATABASE=</code></pre>
+<p>  **mysql 5.5+ ** 不然会报错：timestamp 唯一、datetime default 不支持</p>
+</li>
+<li><p>配置</p>
+<p>  /modules/datax-admin/bin/env.properties 配置邮件服务(可跳过)</p>
+<pre><code>  MAIL_USERNAME=&quot;&quot;
+  MAIL_PASSWORD=&quot;&quot;</code></pre>
+<p>  /modules/datax-execute/bin/env.properties 指定python-path路径</p>
+<pre><code>  ### 执行datax的python脚本地址
+  PYTHON_PATH=
+  ### 保持和datax-admin服务的端口一致；默认是9527，如果没改datax-admin的端口，可以忽略
+  DATAX_ADMIN_PORT=</code></pre>
+</li>
+<li><p>启动服务</p>
+<p>  ./bin/start-all.sh<br>  ./bin/stop-all.sh<br>  JPS 命令，查看DataXAdminApplication和DataXExecutorApplication进程，存在表示项目运行成功</p>
+</li>
+<li><p>运行</p>
+<p>  ip:9527/index.html admin/123456</p>
+</li>
+</ul>
+<h4 id="windows-部署"><a href="#windows-部署" class="headerlink" title="windows 部署"></a>windows 部署</h4><p>datax-executor 拷贝到 windows 目录</p>
+<pre><code>cmd &gt; /usr/lib/jvm/java-1.8.0-openjdk/bin/java -Xms2g -Xmx2g -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:HeapDumpPath=/home/morr/datax-web-2.1.2/modules/datax-executor/bin/../logs -Dlog.path=/home/morr/datax-web-2.1.2/modules/datax-executor/bin/../logs -Duser.dir=/home/morr/datax-web-2.1.2/modules/datax-executor/bin/../ -Dserver.port=9504 -Ddata.path=/home/morr/datax-web-2.1.2/modules/datax-executor/bin/../data -Dexecutor.port=9999 -Djson.path=/home/morr/datax-web-2.1.2/modules/datax-executor/bin/../json -Dpython.path=/home/morr/datax/bin/datax.py -Ddatax.admin.port=9527 -Dlogging.config=/home/morr/datax-web-2.1.2/modules/datax-executor/bin/../conf/logback.xml -classpath /home/morr/datax-web-2.1.2/modules/datax-executor/bin/../lib/*:/home/morr/datax-web-2.1.2/modules/datax-executor/bin/../conf:. com.wugui.datax.executor.DataXExecutorApplication</code></pre>
+<p><a target="_blank" rel="noopener" href="https://github.com/WeiYe-Jing/datax-web/blob/master/doc/datax-web/datax-web-deploy.md">参考文档</a></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-24</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据中台/" title="数据中台">数据中台 </a><a class="tag" href="/tags/datax/" title="datax">datax </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/09/24/数据中台/datax/,日升于东,datax,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/09/28/Other/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E4%B8%80%E4%B8%AA%E5%93%81%E7%89%8C/" title="如何打造一个品牌">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/09/20/Vue/webpack%20%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/" title="webpack 配置优化">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E3%80%81%E6%B5%8B%E8%AF%95"><span class="toc-text">安装、测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BC%98%E5%8A%BF"><span class="toc-text">核心优势</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DataX-Web"><span class="toc-text">DataX Web</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#windows-%E9%83%A8%E7%BD%B2"><span class="toc-text">windows 部署</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

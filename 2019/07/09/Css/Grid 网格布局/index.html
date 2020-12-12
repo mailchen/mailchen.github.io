@@ -1,0 +1,147 @@
+<!DOCTYPE html><html><head><title>Grid 网格布局 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Grid 网格布局</a></h3></div><div class="post-content"><h4 id="Grid-Container-属性"><a href="#Grid-Container-属性" class="headerlink" title="Grid Container 属性"></a>Grid Container 属性</h4><ul>
+<li>display</li>
+<li>grid-template-columns</li>
+<li>grid-template-rows</li>
+<li>grid-template-areas</li>
+<li>grid-template： &lt;grid-template-rows&gt; / &lt;grid-template-columns&gt;</li>
+<li>grid-column-gap</li>
+<li>grid-row-gap</li>
+<li>grid-gap</li>
+<li>justify-items： start | end | center | stretch;</li>
+<li>align-items： start | end | center | stretch;</li>
+<li>place-items： &lt;align-items&gt; &lt;justify-items&gt;</li>
+<li>justify-content：start | end | center | stretch | space-around | space-between | space-evenly;    </li>
+<li>align-content：start | end | center | stretch | space-around | space-between | space-evenly;  </li>
+<li>place-content：&lt;align-content&gt; &lt;justify-content&gt;</li>
+<li>grid-auto-columns</li>
+<li>grid-auto-rows</li>
+<li>grid-auto-flow</li>
+<li>grid</li>
+</ul>
+<h4 id="Grid-Items-属性"><a href="#Grid-Items-属性" class="headerlink" title="Grid Items 属性"></a>Grid Items 属性</h4><ul>
+<li>grid-column-start</li>
+<li>grid-column-end</li>
+<li>grid-row-start</li>
+<li>grid-row-end</li>
+<li>grid-column</li>
+<li>grid-row</li>
+<li>grid-area</li>
+<li>justify-self</li>
+<li>align-self</li>
+<li>place-self</li>
+</ul>
+<h4 id="页面布局"><a href="#页面布局" class="headerlink" title="页面布局"></a>页面布局</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;Container&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item item-a&quot;</span>&gt;</span>header a<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item item-b&quot;</span>&gt;</span>main b<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item item-c&quot;</span>&gt;</span>sidebar c<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item item-d&quot;</span>&gt;</span>footer d<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item item-e&quot;</span>&gt;</span>隐式 e<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.Container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">20rem</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/* 3*4的网格 */</span>	</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">20%</span> <span class="number">1</span>fr <span class="number">1</span>fr;</span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">25%</span> auto <span class="number">100px</span>;</span><br><span class="line">	</span><br><span class="line">  <span class="attribute">grid-template-areas</span>: </span><br><span class="line">    <span class="string">&quot;header header header header&quot;</span></span><br><span class="line">    <span class="string">&quot;main main . sidebar&quot;</span></span><br><span class="line">    <span class="string">&quot;footer footer footer footer&quot;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 网格间距，等价于 grid-gap: 10px 10px; 等价于 grid-gap: 10px;*/</span></span><br><span class="line">  <span class="attribute">grid-column-gap</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">grid-row-gap</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 指定隐式轨道的大小 */</span></span><br><span class="line">  <span class="attribute">grid-auto-columns</span>: <span class="number">60px</span>;</span><br><span class="line">  <span class="attribute">grid-auto-rows</span>: <span class="number">60px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.item</span>&#123; <span class="attribute">line-height</span>:<span class="number">2.5rem</span>; <span class="attribute">text-indent</span>:.<span class="number">5rem</span>; <span class="attribute">border</span>:<span class="number">5px</span> solid <span class="number">#cdcdcd</span>;&#125;</span><br><span class="line"><span class="selector-class">.item-a</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: header;</span><br><span class="line">  <span class="attribute">background</span>:moccasin;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.item-b</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">3rem</span>;</span><br><span class="line">  <span class="attribute">grid-area</span>: main;</span><br><span class="line">  <span class="attribute">background</span>:mediumspringgreen;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.item-c</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: sidebar;</span><br><span class="line">  <span class="attribute">background</span>:wheat;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.item-d</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: footer;</span><br><span class="line">  <span class="attribute">background</span>:salmon;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.item-e</span> &#123;</span><br><span class="line">  <span class="attribute">grid-column</span>: <span class="number">7</span> /  span <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">grid-row</span>: <span class="number">3</span> / <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><style>
+.Container {
+  display: grid;
+  height:20rem;
+
+  /* 3*4的网格 */    
+  grid-template-columns: 1fr 20% 1fr 1fr;
+  grid-template-rows: 25% auto 100px;
+
+  grid-template-areas: 
+    "header header header header"
+    "main main . sidebar"
+    "footer footer footer footer";
+
+  /* 网格间距，等价于 grid-gap: 10px 10px; 等价于 grid-gap: 10px;*/
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+
+  /* 指定隐式轨道的大小 */
+  grid-auto-columns: 60px;
+  grid-auto-rows: 60px;
+}
+.item{ line-height:2.5rem; text-indent:.5rem; border:5px solid #cdcdcd;}
+.item-a {
+  grid-area: header;
+  background:moccasin;
+}
+.item-b {
+  height:3rem;
+  grid-area: main;
+  background:mediumspringgreen;
+}
+.item-c {
+  grid-area: sidebar;
+  background:wheat;
+}
+.item-d {
+  grid-area: footer;
+  background:salmon;
+}
+.item-e {
+  grid-column: 7 / span 2;
+  grid-row: 3 / 4;
+}
+
+.Box{
+  display:grid;
+  height:20rem;
+
+  grid:    "header header header header"   25%
+        "main main . sidebar"           auto
+        "footer footer footer footer"   100px
+        / 1fr 20% 1fr 1fr;
+  grid-gap: 10px;
+  grid-auto-columns: 60px;
+  grid-auto-rows: 60px;
+</style>
+<div class="Container">
+    <div class="item item-a">header a</div>
+    <div class="item item-b">main b</div>
+    <div class="item item-c">sidebar c</div>
+    <div class="item item-d">footer d</div>
+    <div class="item item-e">隐式 e</div>
+</div>
+
+<h4 id="网格图解"><a href="#网格图解" class="headerlink" title="网格图解"></a>网格图解</h4><p><img src="/images/grid.png" alt="网格图解"></p>
+<h4 id="grid-template"><a href="#grid-template" class="headerlink" title="grid-template"></a>grid-template</h4><ul>
+<li><p>可以给网格线命名</p>
+<blockquote>
+<p>grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];</p>
+<p>grid-template-rows: [row1-start] 25% [row1-end] 100px [third-line] auto [last-line];</p>
+</blockquote>
+</li>
+<li><p>同一个网格线，可以存在多个命名</p>
+<blockquote>
+<p>grid-template-rows: [row1-start] 25% [row1-end row2-start] 25% [row2-end];</p>
+</blockquote>
+</li>
+<li><p>重复值，可以使用 repeat() 来简化定义，如下定义等价</p>
+<blockquote>
+<p>grid-template-columns: repeat(3, 20px [col-start]);<br>等价于<br>grid-template-columns: 20px [col-start] 20px [col-start] 20px [col-start];</p>
+</blockquote>
+</li>
+<li><p>fr 均分网格容器剩余空间 </p>
+<blockquote>
+<p>grid-template-columns: 1fr 1fr 1fr;<br>grid-template-columns: 1fr 50px 1fr 1fr;</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="示例-Container-缩写"><a href="#示例-Container-缩写" class="headerlink" title="示例 Container 缩写"></a>示例 Container 缩写</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.Box</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>:grid;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">20rem</span>;</span><br><span class="line">	</span><br><span class="line">  <span class="attribute">grid</span>:	<span class="string">&quot;header header header header&quot;</span>   <span class="number">25%</span></span><br><span class="line">    	<span class="string">&quot;main main . sidebar&quot;</span>           auto</span><br><span class="line">    	<span class="string">&quot;footer footer footer footer&quot;</span>   <span class="number">100px</span></span><br><span class="line">        / <span class="number">1</span>fr <span class="number">20%</span> <span class="number">1</span>fr <span class="number">1</span>fr;</span><br><span class="line">  <span class="attribute">grid-gap</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="Box">
+    <div class="item item-a">header a</div>
+    <div class="item item-b">main b</div>
+    <div class="item item-c">sidebar c</div>
+    <div class="item item-d">footer d</div>
+    <div class="item item-e">隐式 e</div>
+</div>
+
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a target="_blank" rel="noopener" href="https://www.html.cn/archives/8510">完全指南</a></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-09</span><i class="fa fa-tag"></i><a class="tag" href="/categories/HTML5/" title="HTML5">HTML5 </a><a class="tag" href="/tags/Grid/" title="Grid">Grid </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2019/07/09/Css/Grid 网格布局/,日升于东,Grid 网格布局,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/07/09/Css/Flex%20%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80/" title="Flex 弹性布局">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/07/08/Grunt%20%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" title="Grunt 自动化部署">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Grid-Container-%E5%B1%9E%E6%80%A7"><span class="toc-text">Grid Container 属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Grid-Items-%E5%B1%9E%E6%80%A7"><span class="toc-text">Grid Items 属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80"><span class="toc-text">页面布局</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-text">效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E6%A0%BC%E5%9B%BE%E8%A7%A3"><span class="toc-text">网格图解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#grid-template"><span class="toc-text">grid-template</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B-Container-%E7%BC%A9%E5%86%99"><span class="toc-text">示例 Container 缩写</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

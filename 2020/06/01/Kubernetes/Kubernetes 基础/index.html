@@ -1,0 +1,200 @@
+<!DOCTYPE html><html><head><title>Kubernetes 基础 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Kubernetes 基础</a></h3></div><div class="post-content"><h4 id="前世今生"><a href="#前世今生" class="headerlink" title="前世今生"></a>前世今生</h4><p>[阿里云] Infrastructure as a service<br>[新浪云] platform as a service<br>[office 365] software as a service</p>
+<blockquote>
+<p>分布式资源管理器</p>
+</blockquote>
+<p>MeSoS 伯克利、Twitter、2019-05弃用<br>Docker Swarm 2019-7 阿里弃用<br>Kubernetes 谷歌，2010年 borg系统，go语言翻写 borg 系统 =&gt; Kubernetes</p>
+<ul>
+<li><p>borg 系统</p>
+<p>  config file/borgcfg | command lines tools | web browers<br>  scheduler -&gt; BorgMaster(备份3个以上奇数个)[Paxos] —link shard—&gt; Borglet</p>
+</li>
+<li><p>Kubernetes</p>
+<p>  scheduler | replication controller  -&gt; api server  &lt;—-&gt;  etcd<br>  node [ kubelet | kube proxy —-&gt; firewall | Pod {container [Docker]}] </p>
+</li>
+<li><p>etcd</p>
+<p>  etcd: 可信赖的分布式键值存储服务 V2 内存，V3 Database（V1.11后支持）<br>  HTTP server -&gt; （Raft、Store） –&gt; WAL（预写日志） | Entry | Snapshot</p>
+</li>
+</ul>
+<blockquote>
+<p>Kubernetes 特点</p>
+</blockquote>
+<p>轻量级：消耗资源小<br>开源<br>弹性伸缩<br>负载均衡 IPVS</p>
+<pre><code>IPVS: IP虚拟服务器，运行在LVS（ipvsadm程序完成该功能）下提供负载均衡</code></pre>
+<h4 id="组件和核心"><a href="#组件和核心" class="headerlink" title="组件和核心"></a>组件和核心</h4><table>
+<thead>
+<tr>
+<th>组件</th>
+<th align="center">介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>APIServer</td>
+<td align="center">所有服务访问的统一入口</td>
+</tr>
+<tr>
+<td>ControllerManager</td>
+<td align="center">维持副本期望数目</td>
+</tr>
+<tr>
+<td>Scheduler</td>
+<td align="center">负责介绍任务，选择合适的节点分配任务</td>
+</tr>
+<tr>
+<td>ETCD</td>
+<td align="center">键值对数据库，存储集群的重要信息，进行持久化</td>
+</tr>
+<tr>
+<td>Kuberlet</td>
+<td align="center">直接和容器引擎交互实现容器的生命周期管理</td>
+</tr>
+<tr>
+<td>KuberProxy</td>
+<td align="center">负责写入规则至IPTABLES\IPVS实现服务映射访问</td>
+</tr>
+<tr>
+<td>CoreDNS</td>
+<td align="center">为集群中的SVC创建一个域名解析</td>
+</tr>
+<tr>
+<td>Dashboard</td>
+<td align="center">为K8S集群提供B\S架构支持</td>
+</tr>
+<tr>
+<td>INGRESS Controller</td>
+<td align="center">从4层支持到7层</td>
+</tr>
+<tr>
+<td>Fedetation</td>
+<td align="center">支持多集群统一管理</td>
+</tr>
+<tr>
+<td>Prometheus</td>
+<td align="center">提供集群监控能力</td>
+</tr>
+<tr>
+<td>Elk</td>
+<td align="center">日志统一分析介入平台</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Pod</p>
+</blockquote>
+<p>自主式Pod、控制器管理的Pod</p>
+<p>只要运行Pod，Pause容器就会启动存在<br>一个Pod可以存在多个容器（尾根隔离，进程不隔离，容器端口不能冲突），多个容器公用Pause的网络栈，存储卷</p>
+<pre><code>控制器：
+ReplicationController 确保副本期望数目
+ReplicaSet 本质同上，支持集合 selector
+Deployment 建议使用，自动管理 RS，支持 rolling update
+
+Horizontal Pod Autoscaling HPA CPU利用率扩容
+StatefulSet 解决有状态服务问题
+    稳定的持久化存储：基于PVC，Pod重新调度后访问的持久化数据不变
+    稳定的网络标志：基于Headless Service，Pod重新调度后 PodName、HostName不变
+    有序部署
+    有序收缩
+DaemonSet 
+Job、Cron Job 负责批处理任务，即仅执行一次的任务，确保任务成功结束</code></pre>
+<blockquote>
+<p>服务发现</p>
+</blockquote>
+<pre><code>RR：轮询</code></pre>
+<blockquote>
+<p>网络通讯模式</p>
+</blockquote>
+<p>网络模型：所有Pod在一个可以直接连通的扁平化网络空间中</p>
+<pre><code>不同节点上的 Docker 容器间的互相访问需要打通，然后运行 K8S</code></pre>
+<p>同一 Pod 内的多个容器：Pause 共享网络栈<br>Pod 间的通讯：Overlay Nerwork<br>Pod 和 Service 间的通讯：各节点的 Iptables 规则、LVS</p>
+<ul>
+<li><p>Overlay Nerwork</p>
+<p>  Flannel –&gt; Flanneld<br>  etcd 存储管理 Flannel 可分配的 IP 地址段资源<br>  监控每个 Pod 的实际地址，并在内存中 维护 Pod 节点路由表</p>
+</li>
+</ul>
+<h4 id="资源清单"><a href="#资源清单" class="headerlink" title="资源清单"></a>资源清单</h4><blockquote>
+<p>资源</p>
+</blockquote>
+<p>名称空间级别</p>
+<pre><code>工作负载型资源：Pod、控制器
+服务发现及负载均衡资源：service、ingress
+配置和存储型资源：Volume（存储卷）、CSI（容器存储接口、可扩展第三方存储卷）
+特殊类型存储卷：ConfigMap（配置文件热更新）、Secret（保存敏感数据）、DownwardAPI（把外部环境中的信息输出给容器）</code></pre>
+<p>集群级别</p>
+<pre><code>Namespace、Node、Role、ClusterRole、RoleBinding、ClusterRoleBinding</code></pre>
+<p>元数据级别</p>
+<pre><code>HPA、PodTemplate、LimitRange</code></pre>
+<blockquote>
+<p>YAML 文件及资源清单</p>
+</blockquote>
+<p>YAML：可读性高，表达数据序列的格式，一种标记语言</p>
+<p>基本语法：</p>
+<pre><code>缩进只允许使用空格
+# 标识注释</code></pre>
+<p>数据结构：</p>
+<pre><code>对象、数组、纯量</code></pre>
+<p>常用字段:</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th align="center">介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>version</td>
+<td align="center">K8S API 版本</td>
+</tr>
+<tr>
+<td>kind</td>
+<td align="center">文件定义的资源类型和角色</td>
+</tr>
+<tr>
+<td>metadata</td>
+<td align="center">元数据对象</td>
+</tr>
+<tr>
+<td>metadata.name</td>
+<td align="center">元数据对象的名称，如命名Pod的名称</td>
+</tr>
+<tr>
+<td>metadata.namespace</td>
+<td align="center">元数据对象的命名空间</td>
+</tr>
+<tr>
+<td>Spec</td>
+<td align="center">详细定义对象</td>
+</tr>
+<tr>
+<td>Spec.containers[]</td>
+<td align="center">容器列表</td>
+</tr>
+<tr>
+<td>Spec.containers[].name</td>
+<td align="center">容器的名称</td>
+</tr>
+<tr>
+<td>Spec.containers[].image</td>
+<td align="center">使用到的镜像名称</td>
+</tr>
+</tbody></table>
+<p>容器生命周期：</p>
+<p>存储<br>调度器<br>集群安全机制<br>HELM</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>koolshare 软路由</p>
+<blockquote>
+<p>系统初始化</p>
+</blockquote>
+<p>设置系统主机名和 Host 文件相互解析<br>安装依赖包<br>设置防火墙位 Iptables 设置空规则<br>关闭 Selinux<br>调整内核参数（开启网桥，关闭ipv6）<br>调整系统时区<br>关闭不需要的服务<br>设置 rsyslogd 和 systemd journald<br>升级系统内核为4.44</p>
+<p>kube-proxy 开启 ipvs 前置条件<br>安装 Docker、Docker-ce<br>配置 docker\daemon.json<br>安装 Kubeadm、Kubectl、Kubelet<br>初始化主节点、加入节点<br>部署网络</p>
+<blockquote>
+<p>配置私有仓库</p>
+</blockquote>
+<p>Harbor 安装</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-06-01</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Kubernetes/" title="Kubernetes">Kubernetes </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/06/01/Kubernetes/Kubernetes 基础/,日升于东,Kubernetes 基础,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/06/10/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql%20%E5%9F%BA%E7%A1%80/" title="Mysql 基础">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/05/25/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/" title="数据仓库">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F"><span class="toc-text">前世今生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E5%92%8C%E6%A0%B8%E5%BF%83"><span class="toc-text">组件和核心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E6%B8%85%E5%8D%95"><span class="toc-text">资源清单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

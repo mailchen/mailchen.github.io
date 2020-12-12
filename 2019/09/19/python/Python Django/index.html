@@ -1,0 +1,220 @@
+<!DOCTYPE html><html><head><title>Python Django [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Python Django</a></h3></div><div class="post-content"><h4 id="一句话描述"><a href="#一句话描述" class="headerlink" title="一句话描述"></a>一句话描述</h4><p>将数据库的东西通过ORM的映射取出来，通过view文件，按照template文件排出的模板渲染成HTML。当用户请求相应的url时，返回相应的结果。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre><code>pip install django</code></pre>
+<h4 id="获取版本号"><a href="#获取版本号" class="headerlink" title="获取版本号"></a>获取版本号</h4><pre><code>import django
+django.VERSION</code></pre>
+<h4 id="配置使用"><a href="#配置使用" class="headerlink" title="配置使用"></a>配置使用</h4><p>++ Django 所提供的命令</p>
+<pre><code>django-admin</code></pre>
+<p>++ 创建项目</p>
+<pre><code>django-admin startproject projectName</code></pre>
+<p>manage.py：命令行工具，可以用多种方式与该django项目进行交互；<br>projectName 文件夹里面有4个.py文件　<br>    + <strong>init</strong>.py：一个空的文件，用它标识一个目录为Python的标准包<br>    + settings.py：Django项目的配置文件，包括Django模块应用配置、数据库配置、模板配置等<br>    + urls.py：Django项目的URL声明<br>    + wsgi.py：与WSGI兼容的Web服务器，为你的项目提供服务的入口点</p>
+<p>++ 创建应用</p>
+<pre><code>python manage.py startapp webName</code></pre>
+<p>migrations：用于记录models中数据的变更<br>admin.py：映射models中的数据到Django自带的admin后台<br>apps.py：用于应用程序的配置，在新的Django版本中新增文件<br>models.py：Django的模型文件，创建应用程序数据表模型(对应数据库的相关操作)<br>tests.py：创建Django测试用例<br>views.py：Django的视图文件，控制向前端页面展示的内容</p>
+<h4 id="Django-的管理"><a href="#Django-的管理" class="headerlink" title="Django 的管理"></a>Django 的管理</h4><pre><code>python manage.py createsuperuser，按提示输入用户名、邮箱、密码</code></pre>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># zebk/zebk/urls.py</span></span><br><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include, url</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r&#x27;^hello/&#x27;</span>, include(<span class="string">&#x27;hello.urls&#x27;</span>)),</span><br><span class="line">    url(<span class="string">r&#x27;^admin/&#x27;</span>, admin.site.urls),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># zebk/hello/urls.py</span></span><br><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r&#x27;^$&#x27;</span>, views.index, name=<span class="string">&#x27;index&#x27;</span>),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># zebk/hello/views.py</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*- </span></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>(<span class="params">request</span>):</span></span><br><span class="line">    context = &#123;&#125;</span><br><span class="line">    context[<span class="string">&#x27;hello&#x27;</span>] = <span class="string">&#x27;Hello Django!&#x27;</span>;</span><br><span class="line">    context[<span class="string">&#x27;title&#x27;</span>] = <span class="string">&#x27;中二病控丶!&#x27;</span>;</span><br><span class="line">    context[<span class="string">&#x27;menuLists&#x27;</span>]=[</span><br><span class="line">        &#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;首页&#x27;</span>&#125;,</span><br><span class="line">        &#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;Hello&#x27;</span>&#125;,</span><br><span class="line">        &#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;Admin&#x27;</span>&#125;</span><br><span class="line">    ]</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;hello.html&#x27;</span>, context)</span><br><span class="line"></span><br><span class="line"><span class="comment"># zebk/templates/base.html</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">&lt;title&gt;&#123;&#123;title&#125;&#125;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;ul class=&#x27;menu&#x27;&gt;</span><br><span class="line">    &#123;% <span class="keyword">for</span> menu <span class="keyword">in</span> menuLists %&#125;</span><br><span class="line">        &lt;li&gt;&lt;a href=&quot;javascript:;&quot;&gt;&#123;&#123; menu.name &#125;&#125;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;div class=&#x27;main&#x27;&gt;</span><br><span class="line">		&#123;% block mainbody %&#125;</span><br><span class="line">		   &lt;p&gt;这是一个 Django 样例！&lt;/p&gt;</span><br><span class="line">		&#123;% endblock %&#125;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># zebk/templates/hello.html</span></span><br><span class="line">&#123;%extends <span class="string">&quot;base.html&quot;</span> %&#125;</span><br><span class="line">&#123;% block mainbody %&#125;</span><br><span class="line">	&lt;h1&gt;&#123;&#123;hello&#125;&#125;&lt;/h1&gt;</span><br><span class="line">	&lt;p&gt; Django 模板应用实例 ... &lt;/p&gt;</span><br><span class="line">	&lt;p&gt; 继承了 base.html 文件 ... &lt;/p&gt;</span><br><span class="line">&#123;% endblock %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问地址</span></span><br><span class="line"><span class="comment"># localhost：10888/hello</span></span><br><span class="line"><span class="comment"># localhost：10888/admin</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>settings.py 配置</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = (</span><br><span class="line">    <span class="string">&#x27;django.contrib.admin&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.auth&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.contenttypes&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.sessions&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.messages&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.staticfiles&#x27;</span>,</span><br><span class="line"> </span><br><span class="line">    <span class="string">&#x27;应用名称&#x27;</span>, //新建的 app 如果不加到 INSTALL_APPS 中的话, django 就不能自动找到app中的模板文件</span><br><span class="line"></span><br><span class="line">	//管理界面本地化，设置编码、时区</span><br><span class="line">	LANGUAGE_CODE = <span class="string">&#x27;zh-Hans&#x27;</span> <span class="comment">#&#x27;en-us&#x27;</span></span><br><span class="line">	TIME_ZONE = <span class="string">&#x27;Asia/Shanghai&#x27;</span> <span class="comment">#&#x27;UTC&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">// 数据库配置</span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">&#x27;default&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;ENGINE&#x27;</span>: <span class="string">&#x27;django.db.backends.sqlite3&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;NAME&#x27;</span>: os.path.join(BASE_DIR, <span class="string">&#x27;db.sqlite3&#x27;</span>),</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;mysql&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;ENGINE&#x27;</span>: <span class="string">&#x27;django.db.backends.mysql&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;NAME&#x27;</span>: <span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;USER&#x27;</span>: <span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;PASSWORD&#x27;</span>: <span class="string">&#x27;test123&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;HOST&#x27;</span>:<span class="string">&#x27;localhost&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;PORT&#x27;</span>:<span class="string">&#x27;3306&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>启动 Django</p>
+</blockquote>
+<pre><code>python manage.py runserver 0.0.0.0:10888
+
+url $ 警告：$ 修改成 /</code></pre>
+<p>++ Django 采用了MVC的软件设计模式，即模型M，视图V和控制器C。</p>
+<h4 id="Django-模板标签"><a href="#Django-模板标签" class="headerlink" title="Django 模板标签"></a>Django 模板标签</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># if/else 标签</span></span><br><span class="line">&#123;% <span class="keyword">if</span> condition1 %&#125;</span><br><span class="line">   ... display <span class="number">1</span></span><br><span class="line">&#123;% <span class="keyword">elif</span> condition2 %&#125;</span><br><span class="line">   ... display <span class="number">2</span></span><br><span class="line">&#123;% <span class="keyword">else</span> %&#125;</span><br><span class="line">   ... display <span class="number">3</span></span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># for 标签</span></span><br><span class="line">&#123;% <span class="keyword">for</span> athlete <span class="keyword">in</span> athlete_list %&#125;</span><br><span class="line">    &lt;li&gt;&#123;&#123; athlete.name &#125;&#125;&lt;/li&gt;</span><br><span class="line">&#123;% endfor %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># ifequal/ifnotequal 标签</span></span><br><span class="line">&#123;% ifequal user currentuser %&#125;</span><br><span class="line">    &lt;h1&gt;Welcome!&lt;/h1&gt;</span><br><span class="line">&#123;% endifequal %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注释标签</span></span><br><span class="line">&#123;<span class="comment"># 这是一个注释 #&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤器</span></span><br><span class="line">&#123;&#123; my_list|first|upper &#125;&#125;</span><br><span class="line">&#123;&#123; bio|truncatewords:<span class="string">&quot;30&quot;</span> &#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># include 标签</span></span><br><span class="line">&#123;% include <span class="string">&quot;nav.html&quot;</span> %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 继承模板</span></span><br><span class="line">&#123;%extends <span class="string">&quot;base.html&quot;</span> %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block mainbody %&#125;</span><br><span class="line">     &lt;p&gt;继承了 base.html 文件&lt;/p&gt;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>访问配置文件</p>
+</blockquote>
+<pre><code>from django.conf import settings
+sql_str = settings.DATABASES</code></pre>
+<blockquote>
+<p>使用外部样式，脚本，第三方库控件</p>
+</blockquote>
+<pre><code>STATIC_URL = &#39;/static/&#39;
+STATICFILES_DIRS=(
+    os.path.join(BASE_DIR,&#39;static&#39;),  #注意括号后面的还有个逗号
+)
+
+项目目录，创建 static -&gt; css/imgs/jscript/plugins</code></pre>
+<blockquote>
+<p>Django for循环计数器：forloop</p>
+</blockquote>
+<pre><code>forloop.counter
+forloop.revcounter
+forloop.first
+forloop.last
+forloop.parentloop</code></pre>
+<h4 id="Nginx-配置"><a href="#Nginx-配置" class="headerlink" title="Nginx 配置"></a>Nginx 配置</h4><p>高性能的HTTP和反向代理服务器，同时也是一个 IMAP/POP3/SMTP 代理服务器<br>在高并发连接的情况下，Nginx 是 Apache 服务器不错的替代品。Nginx 同时也可以作为7层负载均衡服务器来使用。</p>
+<p>++ <a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">下载 Nginx</a><br>++ 解压后,进入目录下，start nginx.exe</p>
+<pre><code>**注意：80端口是否被占用**</code></pre>
+<blockquote>
+<p>Nginx相应命令</p>
+</blockquote>
+<pre><code>nginx.exe -s stop           //停止nginx
+nginx.exe -s reload         //重新加载nginx
+nginx.exe -s quit           //退出nginx
+nginx.exe -s reopen         //重新打开日志文件
+nginx –v</code></pre>
+<style>
+    details .info{ padding-left:2rem;}
+</style>
+
+<details>
+    <summary>uwsgi 不支持 windows</summary>
+
+<div class="info">    
+++ Uwsgi 配置
+
+<pre><code>pip install uwsgi
+报错:AttributeError: module &#39;os&#39; has no attribute &#39;uname&#39;
+原因：os.uname()是不支持windows系统的，platform模块是支持任何系统。</code></pre>
+<p>++ <a target="_blank" rel="noopener" href="https://pypi.python.org/pypi/uWSGI/">下载uwsgi离线安装</a><br>++ 解压后,进入目录下，修改 uwsgiconfig.py 文件中的os.uname()为platform.uname()<br>++ cd进入目录执行：python setup.py install</p>
+<pre><code>报错:Exception: you need a C compiler to builduWSGI
+本机上没有C编译环境,需要下载一个编译器</code></pre>
+<p>++ <a target="_blank" rel="noopener" href="https://osdn.net/projects/mingw/releases/">推荐下载：MinGW</a><br>++ 配置环境变量：path=MinGW安装目录/bin<br>++ python setup.py install</p>
+</div>
+</details>
+
+<details>
+    <summary>1.9以上的 django 移除了 FastCGI 支持</summary>
+
+<div class="info">    
+++ FastCGI配置
+
+<p>++ flup - Python的FastCGI组件下载</p>
+<pre><code>pip install flup
+
+python manage.py runfcgi method=threaded host=127.0.0.1 port=8051
+报错：Unknown command: &#39;runfcgi&#39; 。</code></pre>
+</div>
+</details>
+
+<h4 id="Window-IIS-Django"><a href="#Window-IIS-Django" class="headerlink" title="Window IIS Django"></a>Window IIS Django</h4><ul>
+<li>安装 wfastcgi</li>
+</ul>
+<pre><code>pip install wfastcgi</code></pre>
+<ul>
+<li>复制一份 wfastcgi.py 文件到项目根目录</li>
+</ul>
+<pre><code>wfastcgi-enable  //wfastcgi.py 安装路径</code></pre>
+<ul>
+<li>IIS 发布网站</li>
+<li>添加处理程序映射的模块映射，CGI组件必须安装</li>
+</ul>
+<pre><code>填写模块映射参数：
+请求路径为 *，
+模块为 FastCgiModule，
+可执行文件选择 [你的python安装路径]|[项目中wfastcgi.py的路径]，
+示例：&quot;D:\Python36\python.exe&quot;|D:\web\wfastcgi.py
+名称随意</code></pre>
+<ul>
+<li>请求限制，去掉勾选</li>
+<li>IIS 根节点，修改FastCGI设置，编辑FastCGI应用程序的环境变量</li>
+</ul>
+<pre><code>WSGI_HANDLER：django.core.wsgi.get_wsgi_application()
+PYTHONPATH：项目路径
+DJANGO_SETTINGS_MODULE：项目名称.settings</code></pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; ** 静态文件访问设置 **</p>
+<ul>
+<li>static 目录创建 web.config</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- this configuration overrides the FastCGI handler to let IIS serve the static files --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">handlers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">clear</span>/&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;StaticFile&quot;</span> <span class="attr">path</span>=<span class="string">&quot;*&quot;</span> <span class="attr">verb</span>=<span class="string">&quot;*&quot;</span> <span class="attr">modules</span>=<span class="string">&quot;StaticFileModule&quot;</span> </span></span><br><span class="line"><span class="tag"><span class="attr">resourceType</span>=<span class="string">&quot;File&quot;</span> <span class="attr">requireAccess</span>=<span class="string">&quot;Read&quot;</span> /&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">handlers</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Admin 管理样式丢失</li>
+</ul>
+<pre><code>设置 settings.py：STATIC_ROOT = os.path.join(BASE_DIR,&#39;static&#39;)
+执行python命令：python manage.py collectstatic</code></pre>
+<ul>
+<li><p>IIS 网站虚拟路径设置</p>
+<p>  右键 -&gt; 添加虚拟目录 -&gt; static/创建 web.config 的 static 目录路径</p>
+</li>
+<li><p>重启 IIS，运行</p>
+</li>
+</ul>
+<h4 id="SqlServer-Models"><a href="#SqlServer-Models" class="headerlink" title="SqlServer Models"></a>SqlServer Models</h4><p>++ <a target="_blank" rel="noopener" href="https://www.cnblogs.com/pythonkids/p/7943376.html">Django 中使用 Microsoft SQL SERVER</a><br>++ <a target="_blank" rel="noopener" href="https://code.ziqiangxuetang.com/django/django-queryset-api.html">扩展资料</a><br>++ <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2afe31f53677">QuerySet</a></p>
+<blockquote>
+<p>安装三方库</p>
+</blockquote>
+<pre><code>pip install pyodbc django-pyodbc-azure</code></pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/c1a3101e579cbede656deb17.html?qq-pf-to=pcqq.group">ODBC 驱动配置</a></p>
+<blockquote>
+<p>DATABASES 数据库连接串配置</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;default&#x27;</span>: &#123;</span><br><span class="line">       <span class="comment">#数据库引擎设置</span></span><br><span class="line">       <span class="string">&#x27;ENGINE&#x27;</span>: <span class="string">&#x27;sql_server.pyodbc&#x27;</span>,</span><br><span class="line">       <span class="comment">#数据库主机地址</span></span><br><span class="line">       <span class="string">&#x27;HOST&#x27;</span>: <span class="string">&#x27;xxx&#x27;</span>,</span><br><span class="line">       <span class="comment">#数据库端口号，默认可以不写</span></span><br><span class="line">       <span class="string">&#x27;PORT&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">       <span class="comment">#要连接的数据库名</span></span><br><span class="line">       <span class="string">&#x27;NAME&#x27;</span>: <span class="string">&#x27;xxx&#x27;</span>,</span><br><span class="line">       <span class="comment">#数据库用户名</span></span><br><span class="line">       <span class="string">&#x27;USER&#x27;</span>: <span class="string">&#x27;sa&#x27;</span>,</span><br><span class="line">       <span class="comment">#数据库密码</span></span><br><span class="line">       <span class="string">&#x27;PASSWORD&#x27;</span>: <span class="string">&#x27;xxx&#x27;</span>,</span><br><span class="line">       <span class="comment">#选项，这个要先在操作系统上完成ODBC的连接创建，并连接成功，注意 DRIVER 这个地方，要和自己的ODBC版本一致</span></span><br><span class="line">       <span class="string">&#x27;OPTIONS&#x27;</span>: &#123;</span><br><span class="line">           <span class="string">&#x27;DRIVER&#x27;</span>:<span class="string">&#x27;SQL Server&#x27;</span>,</span><br><span class="line">           <span class="comment">#使用MARS (multiple active result sets)，支持异步</span></span><br><span class="line">           <span class="comment"># &#x27;MARS_Connection&#x27;: True,</span></span><br><span class="line">       &#125;,</span><br><span class="line">   &#125;,</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>模型使用</p>
+</blockquote>
+<p>将变更的 models.py 登记到当前APP的 migrations 文件夹中的_init.py文件中</p>
+<pre><code>python manage.py makemigrations　 </code></pre>
+<p>将登记的改动信息转换成SQL语句，转移到数据库中执行 </p>
+<pre><code>python manage.py migrate　　　 　 　</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="comment"># 创建的对象必须继承 Model</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Children</span>(<span class="params">models.Model</span>):</span></span><br><span class="line">    <span class="built_in">id</span> = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    name = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line">    age = models.IntegerField()</span><br><span class="line">    phone = models.CharField(max_length=<span class="number">11</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        db_table = <span class="string">&quot;Hello_Children&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__tuple__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">id</span> = self.<span class="built_in">id</span></span><br><span class="line">        name = self.name</span><br><span class="line">        age = self.age</span><br><span class="line">        phone = self.phone</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">id</span>,name,age,phone</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Django 中常用返回查询集</p>
+</blockquote>
+<pre><code>all() 返回所有数据
+get() 获取符号条件的数据
+filter() 返回符合条件的数据
+exclude() 返回符合条件之外的数据
+order_by() 对结果进行排序 </code></pre>
+<h4 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h4><details>
+<summary>单文件 Django</summary>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line">setting = &#123;</span><br><span class="line">    <span class="string">&#x27;DEBUG&#x27;</span>:<span class="literal">True</span>,</span><br><span class="line">    <span class="string">&#x27;ROOT_URLCONF&#x27;</span>:__name__</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">settings.configure(**setting)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">home</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">&#x27;Hello world!&#x27;</span>)</span><br><span class="line"></span><br><span class="line">urlpatterns = [url(<span class="string">&#x27;^$&#x27;</span>,home,name=<span class="string">&#x27;home&#x27;</span>)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    <span class="keyword">from</span> django.core.management <span class="keyword">import</span> execute_from_command_line</span><br><span class="line">    execute_from_command_line(sys.argv)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>django 中，加载配置文件有两种方式:<br>  settings.configure(**settings)<br>  django.setup()</p>
+</li>
+<li><p>python test.py runserver </p>
+</li>
+</ul>
+</details>
+
+<details>
+<summary>pipreqs</summary>
+
+<p>可以帮你找到当前项目的所有组件及其版本</p>
+<pre><code># 安装
+pip install pipreqs
+# 生成 requirements.txt
+pipreqs ./ --encoding=utf-8
+# 安装项目组件
+pip3 install -r requirements.txt</code></pre>
+</details>
+
+<details>
+<summary>其他</summary>
+
+<ul>
+<li><p>DRF<br>  <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e8ede9e24a67">DRF框架</a></p>
+</li>
+<li><p>Celery<br>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/cuomer/article/details/81214438">并行分布式框架</a></p>
+</li>
+<li><p>Gunicron<br>  <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/69e75fc3e08e">Python WSGI UNIX HTTP Server</a></p>
+<p>  ** Nginx == Apache Gunicorn == uWSGI **</p>
+</li>
+</ul>
+</details>
+<style>
+    details{margin:.5rem 0;}
+</style>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-09-19</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Python/" title="Python">Python </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2019/09/19/python/Python Django/,日升于东,Python Django,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/09/22/%E5%89%8D%E7%AB%AF/Material%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="Material 使用指南">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/09/19/python/Python%20%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" title="Python 数据库操作">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%8F%8F%E8%BF%B0"><span class="toc-text">一句话描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%89%88%E6%9C%AC%E5%8F%B7"><span class="toc-text">获取版本号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8"><span class="toc-text">配置使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Django-%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-text">Django 的管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Django-%E6%A8%A1%E6%9D%BF%E6%A0%87%E7%AD%BE"><span class="toc-text">Django 模板标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nginx-%E9%85%8D%E7%BD%AE"><span class="toc-text">Nginx 配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Window-IIS-Django"><span class="toc-text">Window IIS Django</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SqlServer-Models"><span class="toc-text">SqlServer Models</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86"><span class="toc-text">补充知识</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

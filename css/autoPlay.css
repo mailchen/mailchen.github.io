@@ -1,0 +1,46 @@
+
+.audioPlay{ cursor:pointer;}
+
+.audioPlay i{ position: absolute; bottom:7.8rem; right:7.8rem; font-size:3rem; z-index:9999;}
+.audioPlay img{ position: absolute; width:120px; height:120px; bottom:5rem; right:5rem; border-radius:100%;}
+.audioPlay img{
+    -webkit-transform: rotate(360deg);
+    animation: rotation 3s linear infinite;
+}
+.play {
+    animation-play-state: running !important;
+}
+.pause {
+    animation-play-state: paused !important;
+}
+@keyframes rotation
+{
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+#h5audio_media{ position: absolute; width:0; bottom:6rem; right:15rem;}
+
+@media screen and (max-width:960px){
+    .audioPlay *{
+        zoom:.75;
+    }
+    .audioPlay i{
+        right:4.5rem;
+        bottom: 7.15rem;
+    }
+    .audioPlay img{
+        right: 2.25rem;
+    }
+}
+@media screen and (max-width:480px){
+    .audioPlay *{
+        zoom:.5;
+    }
+    .audioPlay i{
+        right:3.75rem;
+        bottom:6.5rem
+    }
+    .audioPlay img{
+        right: 2.25rem;
+    }
+}

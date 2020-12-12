@@ -1,0 +1,189 @@
+<!DOCTYPE html><html><head><title>MS SqlServer [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>MS SqlServer</a></h3></div><div class="post-content"><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p><strong>数据库发展阶段：</strong></p>
+<pre><code>人工管理阶段、文件系统阶段、数据库系统阶段</code></pre>
+<p>数据库系统：采用数据库技术的计算机系统，运行实体：</p>
+<pre><code>数据库（数据）、数据库管理系统（软件）、数据库管理员（人员）、硬件平台（硬件）、软件平台（软件）</code></pre>
+<p>数据库管理员（DBA）负责对数据库进行规划、设计、维护和监视等</p>
+<blockquote>
+<p>三级模式结构</p>
+</blockquote>
+<p>++ 模式</p>
+<p>逻辑模式或概念模式，是数据库中全体数据的逻辑结构和特征的描述，所有用户的公共数据视图</p>
+<pre><code>一个数据库只有一个模式    ，模式处于三层结构的中间层</code></pre>
+<p>++ 外模式</p>
+<p>用户模式，数据库用户能够看见和使用的局部数据的逻辑结构和特征的描述，是数据用户的数据视图</p>
+<pre><code>一个数据库可以有多个外模式</code></pre>
+<p>++ 内模式</p>
+<p>存储模式，是数据物理结构和存储方式的描述，是数据在数据库内的表示方式</p>
+<pre><code>一个数据库只有一个内模式</code></pre>
+<blockquote>
+<p>三层模式间的映射</p>
+</blockquote>
+<pre><code>外模式、模式的映射
+模式、内模式的映射</code></pre>
+<h4 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h4><p><strong>由数据结构、数据操作和完整性约束3部分组成</strong></p>
+<blockquote>
+<p>常见数据模型</p>
+</blockquote>
+<pre><code>层次模型、网状模型、关系模型</code></pre>
+<blockquote>
+<p>主流的数据库数据模型：关系模型</p>
+</blockquote>
+<pre><code>关系：一个二维表就是一个关系
+元组：行数据，表中的记录
+属性：列数据，类型和值表示
+  域：值变化范围</code></pre>
+<blockquote>
+<p>关系数据库的规范化</p>
+</blockquote>
+<pre><code>1NF：一个关系中，消除重复字段，各字段都是最小逻辑存储单元
+2NF：关系中每一个非主关键字段都完全依赖主关键字段，不能只部分依赖
+3NF：去除传递依赖</code></pre>
+<h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><blockquote>
+<p>常用对象</p>
+</blockquote>
+<pre><code>表、字段、索引、视图、存储过程</code></pre>
+<blockquote>
+<p>组成</p>
+</blockquote>
+<pre><code>  文件：.mdf .ndf .ldf
+文件组：主文件组、用户定义文件组</code></pre>
+<blockquote>
+<p>系统数据库</p>
+</blockquote>
+<pre><code>Master：sqlserver 实例的所有系统信息，包含实例范围的元数据、端点、连接服务器和系统配置设置
+Tempdb：临时对象和中间结果集
+ Model：数据库的模板
+  Msdb：sqlserver 代理计划警报和作业</code></pre>
+<blockquote>
+<p>命名规则</p>
+</blockquote>
+<p>++ 标识符</p>
+<p>首字母必须是 Unicode 2.0 定义的字母，”_”，”@”，”#”</p>
+<p>“@”：局部变量或参数<br>“#”：临时表或过程<br>“##”：全局临时对象<br>“@@”：Transact-SQL 函数名</p>
+<p>后续字符：Unicode 2.0 定义的字母，十进制数字，”_”，”@”，”#”，“$”<br>不可以使用 Transact-SQL 保留字，不允许使用空格和其他特殊符号</p>
+<p>分类：常规标识符，分割标识符（“”、[]）</p>
+<p>++ 对象</p>
+<p>完整的数据库对象名：[服务器名].[数据库名].[拥有者名].[对象名]</p>
+<pre><code>[sqlserver].[Django].[dbo].[hello_children]</code></pre>
+<h4 id="用户自定义类型"><a href="#用户自定义类型" class="headerlink" title="用户自定义类型"></a>用户自定义类型</h4><ul>
+<li><p>企业管理器创建</p>
+<p>  数据库 -&gt; 可编程性 -&gt; 类型 -&gt; 用户定义数据类型</p>
+</li>
+<li><p>Transact-SQL</p>
+<p>  use Learn exec sp_addtype phone,’int’,null</p>
+</li>
+</ul>
+<h4 id="操作数据表、视图"><a href="#操作数据表、视图" class="headerlink" title="操作数据表、视图"></a>操作数据表、视图</h4><blockquote>
+<p>表无法更改设计</p>
+</blockquote>
+<pre><code>工具 -&gt; 选项 -&gt; 设计 -&gt; 阻止保护要求重新创建表的更改</code></pre>
+<blockquote>
+<p>列名无效，查询分析器里面是红色的下划线</p>
+</blockquote>
+<pre><code>Ctrl+Shift+R：SQL Server的 intellisense（智能感知功能），没有感知到更改，需要重新整理</code></pre>
+<blockquote>
+<p>使用视图修改数据、插入数据，实际上是<strong>存储在与视图相关的表中</strong></p>
+</blockquote>
+<h4 id="维护数据库"><a href="#维护数据库" class="headerlink" title="维护数据库"></a>维护数据库</h4><ul>
+<li><p>脱机，联机</p>
+<p>  暂时关闭，重新启动某个数据库的服务</p>
+</li>
+<li><p>分离，附加</p>
+<p>  实现对数据库的复制。数据库脱离服务器管理的同时，保持数据文件和日志文件的完整性和一致性。</p>
+</li>
+<li><p>导入，导出</p>
+<p>  常用数据格式（数据库，Excel，文本文件）</p>
+</li>
+<li><p>备份，恢复</p>
+<p>  备份：完整备份、差异备份、文件备份<br>  恢复：简单恢复模式、完整恢复模式、大容量日志恢复</p>
+</li>
+</ul>
+<h4 id="T-SQL"><a href="#T-SQL" class="headerlink" title="T-SQL"></a>T-SQL</h4><p><strong>数据定义语言（DDL）、数据控制语言（DCL）、数据操纵语言（DML）</strong></p>
+<blockquote>
+<p>常量</p>
+</blockquote>
+<pre><code>数字常量、字符串常量、日期和时间常量、符号常量</code></pre>
+<blockquote>
+<p>变量</p>
+</blockquote>
+<ul>
+<li>局部变量</li>
+</ul>
+<p>局部变量申明使用 DECLARE 语句,变量名必须以“@”开头</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> @songname <span class="built_in">char</span>(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p>1.SELECT 语句赋值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> @customer_name <span class="built_in">char</span>(<span class="number">50</span>)</span><br><span class="line"><span class="keyword">select</span> @customer_name = [<span class="keyword">name</span>] <span class="keyword">from</span> Customer <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">2</span></span><br><span class="line">print @customer_name</span><br></pre></td></tr></table></figure>
+
+<p>2.SET 语句赋值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> @a <span class="built_in">int</span></span><br><span class="line"><span class="keyword">select</span> @a = <span class="number">1332</span></span><br><span class="line">print @a</span><br></pre></td></tr></table></figure>
+
+<p>多个变量赋值，只能使用 select 赋值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> @b <span class="built_in">int</span>, @c <span class="built_in">char</span>(<span class="number">10</span>), @a <span class="built_in">char</span>(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">select</span> @b = <span class="number">1</span>, @c = <span class="string">&#x27;love&#x27;</span>, @a = <span class="string">&#x27;B&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>全局变量</li>
+</ul>
+<p>系统定义的变量，全局变量名以”@@”开头</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print @@CONNECTIONS</span><br><span class="line">print @@CPU_BUSY</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注释</p>
+</blockquote>
+<pre><code>单行注释：-- xxxxxx
+多行注释：/* xxxxxx */
+
+快捷键：ctrl+k+c ctrl+k+u</code></pre>
+<blockquote>
+<p>通配符</p>
+</blockquote>
+<pre><code>     %：任意个字符
+     _：单个字符
+ [x~y]: 范围内的单个字符
+[^x~y]:不在范围内的单个字符</code></pre>
+<blockquote>
+<p>流程控制</p>
+</blockquote>
+<pre><code>BEGIN ... END
+IF/IF ... ELSE ...
+CASE
+WHILE
+CONTINUE
+BREAK
+RETURN
+GOTO
+WAITFOR DELAY &#39;00:00:03&#39;</code></pre>
+<blockquote>
+<p>常用命令</p>
+</blockquote>
+<pre><code>DBCC CHECKALLOC(&#39;数据库名&#39;)  //查询数据库磁盘空间分配情况
+DBCC SHOWCONTIG(&#39;表Id&#39;，&#39;索引&#39;)
+CHECKPOINT     //检查当前数据库中被更改过得数据页或日志页并将这些数据强制写入硬盘
+DECLARE
+PRINT
+RAISERROR   //返回错误信息同时返回用户指定信息
+READTEXT    //读取 text、ntext、image 列的值，从指定位置读取指定的字符数
+
+BACKUP        //备份数据库内容或事务处理日志
+RESTORE     //还原
+示例：
+backu DATABASE db_learn to disk=&#39;d:\backup.bak&#39;
+restore DATABASE db_learn from disk=&#39;d:\backup.bak&#39; with replace
+
+SELECT
+SET
+SHUTDOWN (with nowait 对进行中的事务进行回滚)
+WRITETEXT
+USE</code></pre>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-09-28</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/SqlServer/" title="SqlServer">SqlServer </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2019/09/28/数据库/MS SqlServer/,日升于东,MS SqlServer,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/09/28/python/Python%20DRF/" title="Python DRF">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/09/23/%E5%89%8D%E7%AB%AF/TypeScript%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="TypeScript 使用指南">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-text">数据模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B"><span class="toc-text">用户自定义类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E8%A1%A8%E3%80%81%E8%A7%86%E5%9B%BE"><span class="toc-text">操作数据表、视图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%B4%E6%8A%A4%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">维护数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T-SQL"><span class="toc-text">T-SQL</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

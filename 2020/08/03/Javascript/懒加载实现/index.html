@@ -1,0 +1,108 @@
+<!DOCTYPE html><html><head><title>懒加载实现 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>懒加载实现</a></h3></div><div class="post-content"><h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p><code>data-src</code> 属性为真实图片路径</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;default.jpg&quot;</span> <span class="attr">data-src</span>=<span class="string">&quot;www.example.com/1.jpg&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> lazy = <span class="function">(<span class="params">el</span>) =&gt;</span> &#123;</span><br><span class="line"> <span class="keyword">let</span> scrTop = getTop();</span><br><span class="line"> <span class="keyword">let</span> windowHeight = <span class="built_in">document</span>.documentElement.clientHeight;</span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">getTop</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">document</span>.documentElement.scrollTop || <span class="built_in">document</span>.body.scrollTop; </span><br><span class="line"> &#125;</span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">getOffset</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> node.getBoundingClientRect().top + scrTop;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">inView</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 设立阈值</span></span><br><span class="line"> <span class="keyword">const</span> threshold = <span class="number">0</span>;</span><br><span class="line"> <span class="keyword">const</span> viewTop = scrTop;</span><br><span class="line"> <span class="keyword">const</span> viewBot = viewTop + windowHeight;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">const</span> nodeTop = getOffset(node);</span><br><span class="line"> <span class="keyword">const</span> nodeBot = nodeTop + node.offsetHeight;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">const</span> offset = (threshold / <span class="number">100</span>) * windowHeight;</span><br><span class="line"> <span class="built_in">console</span>.log((nodeBot &gt;= viewTop - offset), (nodeTop &lt;= viewBot + offset))</span><br><span class="line">    <span class="keyword">return</span> (nodeBot &gt;= viewTop - offset) &amp;&amp; (nodeTop &lt;= viewBot + offset)</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">check</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">let</span> el = <span class="built_in">document</span>.querySelector(node);</span><br><span class="line">   <span class="keyword">let</span> images = [...el.querySelectorAll(<span class="string">&#x27;img&#x27;</span>)];</span><br><span class="line">   images.forEach(<span class="function"><span class="params">img</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(inView(img))&#123;</span><br><span class="line">     img.src = img.dataset.src;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;</span><br><span class="line"> check(el);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.onscroll = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> lazy(<span class="string">&#x27;.foo&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="IntersectionObserver"><a href="#IntersectionObserver" class="headerlink" title="IntersectionObserver"></a>IntersectionObserver</h4><p>可以异步监听目标元素与其祖先或视窗(viewport)处于交叉状态的方式。祖先元素与视窗(viewport)被称为根(root)</p>
+<ul>
+<li>root: 这是用于观察的根元素。他定义了可观察元素的基本捕获框架,默认情况下,root指向的是浏览器的视口,但实际上可以是任意的DOM元素,要注意的是：root在这种情况下,要观察元素的必选要在root代表的Dom元素内部</li>
+</ul>
+<img src="https://user-gold-cdn.xitu.io/2018/2/4/16160647d4a881c0?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"/>
+
+<ul>
+<li>rootMargin: 计算交叉时添加到根(root)边界盒bounding box的矩形偏移量， 可以有效的缩小或扩大根的判定范围从而满足计算需要。值得选项与marginCSS类似,比如rootMargin: ‘50px 20px 10px 40px’(top, right, bottom, left)</li>
+</ul>
+<img src="https://user-gold-cdn.xitu.io/2018/2/4/161606ab5f551732?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"/>
+
+<ul>
+<li>threshold: 一个包含阈值的list, 升序排列, list中的每个阈值都是监听对象的交叉区域与边界区域的比率。当监听对象的任何阈值被越过时，都会生成一个通知(Notification)。如果构造器未传入值, 则默认值为0.</li>
+</ul>
+<img src="https://user-gold-cdn.xitu.io/2018/2/4/161606c169087875?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"/>
+
+<blockquote>
+<p>使用方法</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// config对象和回调函数一起传递到Observer构造函数</span></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  root: <span class="literal">null</span>,</span><br><span class="line">  rootMargin: <span class="string">&#x27;0px&#x27;</span>,</span><br><span class="line">  threshold: <span class="number">0.5</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> observer = <span class="keyword">new</span> IntersectionObserver(<span class="function"><span class="title">fucntion</span>(<span class="params">entries, self</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 回调函数处理逻辑</span></span><br><span class="line">&#125;, config)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 给 IntersectionObserver 实际观察的元素</span></span><br><span class="line"><span class="keyword">const</span> images = <span class="built_in">document</span>.querySelecttorAll(<span class="string">&#x27;img&#x27;</span>);</span><br><span class="line">images.forEach(<span class="function"><span class="params">image</span> =&gt;</span> &#123;</span><br><span class="line">    observer.observe(image)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意事项</p>
+</blockquote>
+<p>观察的元素必须位于 root 代表的DOM元素中<br>IntersectionObserver 一次只能接受一个观察元素，不支持批量观察，如果观察多个元素，需要遍历分别观察</p>
+<blockquote>
+<p>entries </p>
+</blockquote>
+<p>回调函数作为Array是特殊类型：IntersectionObserverEntry </p>
+<ul>
+<li>rootBounds: ‘捕捉框架(root + rootMargin)’的矩形</li>
+<li>boundClientRect: 观察元素本身的矩形</li>
+<li>intersectionRect: 捕捉框架和观察元素相交的矩形</li>
+</ul>
+<p>isIntersecting： 返回观察元素是否与捕获框架相交<br>intersctionRatio：利于计算的遍历属性，返回 intersectionRect 与 boundingClientRect 的比例值.</p>
+<h4 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> imgs = <span class="built_in">document</span>.querySelectorAll(<span class="string">&#x27;[data-src]&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  rootMargin: <span class="string">&#x27;0px&#x27;</span>,</span><br><span class="line">  threshold: <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> observer = <span class="keyword">new</span> IntersectionObserver(<span class="function">(<span class="params">entries, self</span>) =&gt;</span> &#123;</span><br><span class="line">  entries.forEach(<span class="function"><span class="params">entry</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (entry.isIntersecting) &#123;</span><br><span class="line">      <span class="comment">// 加载图像</span></span><br><span class="line">      preloadImage(entry.target)</span><br><span class="line">      self.unobserve(entry.target)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;, config)</span><br><span class="line"></span><br><span class="line">imgs.forEach(<span class="function"><span class="params">img</span> =&gt;</span> &#123;</span><br><span class="line">  observer.observe(img)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">preloadImage = <span class="function">(<span class="params">img</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> src = img.dataset.src</span><br><span class="line">  <span class="keyword">if</span> (!src) &#123; <span class="keyword">return</span>; &#125;</span><br><span class="line">  img.src = src</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="lazyLoad">
+
+</div>
+
+<style>
+.lazyLoad img{
+  width: 120px;
+  margin: 1rem;
+}
+</style>
+
+<script>
+const imgsUrl = ['https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2435648396,3879384970&fm=26&gp=0.jpg', 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2249871602,59311995&fm=11&gp=0.jpg'];
+const defaultUrl = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596523441205&di=b0cef4e6026fa8715048149b4bc83e29&imgtype=0&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D2774391408%2C3578926483%26fm%3D214%26gp%3D0.jpg';
+
+const lazyele = document.getElementsByClassName('lazyLoad')[0];
+
+for(i=0; i<15; i++){
+  var imgEle = document.createElement('img');
+  imgEle.src = defaultUrl;
+  imgEle.dataset.src = imgsUrl[i%2];
+  lazyele.appendChild(imgEle)
+}
+
+const imgs = document.querySelectorAll('[data-src]')
+const config = {
+  rootMargin: '0px',
+  threshold: 0
+}
+let observer = new IntersectionObserver((entries, self) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // 加载图像
+      preloadImage(entry.target)
+      self.unobserve(entry.target)
+    }
+  })
+}, config)
+
+imgs.forEach(img => {
+  observer.observe(img)
+})
+
+preloadImage = (img) => {
+  const src = img.dataset.src
+  if (!src) { return; }
+  img.src = src
+}
+</script>
+
+
+<h4 id="延迟加载的优点"><a href="#延迟加载的优点" class="headerlink" title="延迟加载的优点"></a>延迟加载的优点</h4><p>在优化内容加载和简化最终用户体验之间达成平衡<br>用户可以更快加载到内容，局部加载<br>网站看到更多的用户保留，不断向用户提供内容，减少用户离开网站的可能<br>网站看到较低的资源成本，按需加载内容</p>
+<h4 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h4><p>IE和safari暂时还不支持，chrome，firefox， edge支持性良好</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/w3c/IntersectionObserver/tree/master/polyfill">polyfill</a></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-03</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/08/03/Javascript/懒加载实现/,日升于东,懒加载实现,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/08/03/Javascript/MVVM%20%E5%8E%9F%E7%90%86/" title="MVVM 原理">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/08/03/%E5%89%8D%E7%AB%AF/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="web性能优化">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-text">实现原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IntersectionObserver"><span class="toc-text">IntersectionObserver</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-text">代码示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-text">延迟加载的优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-text">兼容性</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

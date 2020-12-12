@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><title>深入浅出 Storm [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>深入浅出 Storm</a></h3></div><div class="post-content"><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>分布式实时容错流处理系统，用于大规模数据的实时处理</p>
+<p>工作原理：<br>类似一个数据处理工厂，其中有多条流水线，流水线上有多个处理单元，从外部对接数据源，然后发送到流水线，经过各处理单元加工后交给客户</p>
+<p>特点：<br>简单的编程模型、伸缩性高、保证无数据丢失、异常健壮、容错性好、语言无关性</p>
+<pre><code>Strom 对于实时计算的意义，类似于 Hadoop 对于批处理的意义
+Hadoop：MapReduce原语</code></pre>
+<p>应用场景：<br>实时数仓、实时监控、流数据分析、实时报表</p>
+<p>典型架构：</p>
+<p>数据产生（第三方、传感器、数据库日志、服务器日志）<br>流式数据处理（数据总线、实时计算、数据存储）<br>第三方应用</p>
+<h4 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h4><p>Topology(计算拓扑)：<br>一个拓扑是一个DAG图的计算，由 Spout 组件和 Bolt 组件 通过 Stream Groupings 进行连接</p>
+<p>数据模型：Tuple Stream</p>
+<p>Spout(数据源)：可靠、不可靠两种模式<br>Bolt（消息处理单元）：处理业务逻辑-过滤、聚合、查询数据库</p>
+<p>消息分发机制：<br>Shuffle分组：随机分配模式（常用）<br>Fields分组：哈希分布模式（常用）<br>Globa分组：单选发送模式<br>All分组：全量发送模式</p>
+<p>+使用方式：</p>
+<p>1、构建 Topology DAG图<br>2、创建一个 Configuration，指定当前 Topology 的 worker 数量<br>3、提交任务-本地模式、集群模式</p>
+<p><strong>Spout 设计</strong><br><em>extends BaseRichSpout</em><br>open、nextTuple、ack、fail、declareOutputFields 方法</p>
+<p>open：初始化<br>nextTuple：数据源拉取数据，向下游输送<br>ack：可靠性消息传输<br>fail：传输失败时，重发<br>declareOutputFields：输出字段的名称</p>
+<p><strong>Bolt 设计</strong><br><em>extends BaseBasicBolt</em><br>prepare、execute（emit发送队列）、declareOutputFields、cleanup</p>
+<h4 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h4><pre><code>Client     Master (nimbus)     UI
+    Zookeeper Cluster
+       Slaves(Worker-Task)</code></pre>
+<h4 id="深度剖析"><a href="#深度剖析" class="headerlink" title="深度剖析"></a>深度剖析</h4><p>消息保证机制</p>
+<p>At most Once：最多一次  关闭 ACK<br>At least Once：至少一次  启用 ACK ，实现可靠传输<br>Exactly Once：恰好一次   在 At least Once 的基础上进行状态存储，防止重复发送的数据被重复处理，Trident API 实现</p>
+<p>并发机制</p>
+<p>Worker(进程)、Executor(线程)、Task(Spout、Bolt)</p>
+<p>通信机制</p>
+<p>Worker 进程间的数据通信：Netty 基于 NIO 的网络架构，更加高效<br>Worker 内部的数据通信：Disruptor 实现“队列”功能，一种事件监听、消息处理机制；一边生产、一边消费<br>Topology 之间的通信：需要自己实现，kafka等</p>
+<p>可靠性机制</p>
+<p>Nimbus 故障<br>    Nimbus故障，Supervisor还正常运行，对应的Worker也正常运行，只是Supervisor不能接受Nimbus新任务分配</p>
+<p>Supervisor 故障<br>    出故障的Supervisor对应的Worker也会故障，Nimbus监控，将对应的Worker重新分配到其他的Supervisor节点运行</p>
+<p>Nimbus、Supervisor 故障<br>    Nimbus被设计成HA的，利用主从结构保证主节点故障后，从节点一样能服务</p>
+<p>Worker 故障<br>    Supervisor重新创建Worker</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-10-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Java/" title="Java">Java </a><a class="tag" href="/tags/Java/" title="Java">Java </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2019/10/18/Csharp/深入浅出 Storm/,日升于东,深入浅出 Storm,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/10/18/Apache%20Dubbo/" title="Apache Dubbo">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/10/18/Other/%E4%B8%AD%E5%9B%BD%E5%8F%B2/" title="中国史">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B"><span class="toc-text">模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-text">体系结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90"><span class="toc-text">深度剖析</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

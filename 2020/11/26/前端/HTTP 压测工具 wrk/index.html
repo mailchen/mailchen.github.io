@@ -1,0 +1,324 @@
+<!DOCTYPE html><html><head><title>HTTP 压测工具 wrk [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>HTTP 压测工具 wrk</a></h3></div><div class="post-content"><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo yum groupinstall <span class="string">&#x27;Development Tools&#x27;</span></span><br><span class="line">sudo yum install -y openssl-devel git </span><br><span class="line">git clone https://github.com/wg/wrk.git wrk </span><br><span class="line">cd wrk</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<p>环境要求：Linux、Mac</p>
+<p>特性：很少的线程压出大并发量<br>原理：使用操作系统特定高性能 IO 机制，select、epoll、kquue等，复用 redis 的 ae 异步事件驱动框架</p>
+<p>缺点：仅支持单机压测</p>
+<p>同类型测试工具：JMeter, LoadRunner</p>
+<blockquote>
+<p>测试结果</p>
+</blockquote>
+<pre><code>./wrk -c 1 -t 1 -d 1 http://www.baidu.com</code></pre>
+<blockquote>
+<p>将可执行文件移动到 /usr/local/bin 位置</p>
+</blockquote>
+<pre><code>sudo cp wrk /usr/local/bin</code></pre>
+<h4 id="wrk-参数说明"><a href="#wrk-参数说明" class="headerlink" title="wrk 参数说明"></a>wrk 参数说明</h4><ul>
+<li>-t 需要模拟的线程数</li>
+<li>-c 需要模拟的连接数</li>
+<li>-timeout 超时时间</li>
+<li>-d 测试持续时间</li>
+</ul>
+<h4 id="结果说明"><a href="#结果说明" class="headerlink" title="结果说明"></a>结果说明</h4><ul>
+<li>Latency <code>响应时间</code></li>
+<li>Req/Sec <code>每个线程每秒完成的请求数</code></li>
+<li>Avg <code>平均</code></li>
+<li>Max <code>最大</code></li>
+<li>Stdev <code>标准差</code></li>
+<li>+/- Stdev <code>正负一个标准差占比</code></li>
+</ul>
+<h4 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h4><p>搭配 lua 使用：启动阶段、运行阶段和结束阶段，对压测进行个性化</p>
+<pre><code>setup（）</code></pre>
+<p>这个函数在目标 IP 地址已经解析完, 并且所有 thread 已经生成, 但是还没有开始时被调用. 每个线程执行一次这个函数.<br>可以通过thread:get(name), thread:set(name, value)设置线程级别的变量.</p>
+<pre><code>init（）</code></pre>
+<p>每次请求发送之前被调用.<br>可以接受 wrk 命令行的额外参数. 通过 – 指定.</p>
+<pre><code>delay（）</code></pre>
+<p>这个函数返回一个数值, 在这次请求执行完以后延迟多长时间执行下一个请求. 可以对应 thinking time 的场景.</p>
+<pre><code>request（）</code></pre>
+<p>通过这个函数可以每次请求之前修改本次请求的属性. 返回一个字符串. 这个函数要慎用, 会影响测试端性能.</p>
+<pre><code>response（）</code></pre>
+<p>每次请求返回以后被调用. 可以根据响应内容做特殊处理, 比如遇到特殊响应停止执行测试, 或输出到控制台等等.</p>
+<pre><code>done（）</code></pre>
+<p>在所有请求执行完以后调用, 一般用于自定义统计结果.</p>
+<blockquote>
+<p>自定义 Lua 脚本中可访问的变量以及方法</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">wrk = &#123;</span><br><span class="line">    scheme  = <span class="string">&quot;http&quot;</span>,</span><br><span class="line">    host    = <span class="string">&quot;localhost&quot;</span>,</span><br><span class="line">    port    = <span class="number">8080</span>,</span><br><span class="line">    method  = <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">    <span class="built_in">path</span>    = <span class="string">&quot;/&quot;</span>,</span><br><span class="line">    headers = &#123;&#125;,</span><br><span class="line">    body    = <span class="literal">nil</span>,</span><br><span class="line">    thread  = &lt;userdata&gt;,</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Lua"><a href="#Lua" class="headerlink" title="Lua"></a>Lua</h4><blockquote>
+<p>安装</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.lua.org/ftp/lua<span class="number">-5.3</span><span class="number">.4</span>.tar.gz</span><br><span class="line">tar -zxvf lua<span class="number">-5.3</span><span class="number">.4</span>.tar.gz -C ../</span><br><span class="line">cd lua<span class="number">-5.3</span><span class="number">.0</span></span><br><span class="line">make linux test</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>winodw 安装 Lua</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://static.runoob.com/download/LuaForWindows_v5.1.4-46.exe">本站下载地址 LuaForWindows_v5.1.4-46</a></p>
+<blockquote>
+<p>执行 lua</p>
+</blockquote>
+<pre><code>方式①</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lua xxx.lua </span><br><span class="line"></span><br><span class="line">或者 </span><br><span class="line"></span><br><span class="line">lua -i</span><br></pre></td></tr></table></figure>
+
+<pre><code>方式②</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--xxx.lua 起始位置</span><br><span class="line">#!&#x2F;usr&#x2F;local&#x2F;bin&#x2F;lua</span><br><span class="line"></span><br><span class="line">... 代码</span><br></pre></td></tr></table></figure>
+
+<p>为脚本添加可执行权限，执行脚本：</p>
+<p>cd 脚本目录 -&gt; ./xxx.lua</p>
+<pre><code>退出交互式编程</code></pre>
+<p>Ctrl+D、Ctrl+C、os.exit()</p>
+<h4 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h4><p>Lua 是一个区分大小写的编程语言</p>
+<blockquote>
+<p>注释</p>
+</blockquote>
+<pre><code>- - 单行注释
+- -[[
+多行注释
+- -]]
+*推荐使用
+- -[=[多行注释]=]</code></pre>
+<blockquote>
+<p>标识符</p>
+</blockquote>
+<p>定义变量，[a-Z_] + [a-Z_0-9]，不建议使用 <code>_ + [A-Z]</code>，Lua 保留字</p>
+<blockquote>
+<p>全局变量</p>
+</blockquote>
+<p>默认情况下，变量总认为是全局的，删除全局变量，将变量设为 <code>nil</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b &#x3D; nil</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>数据类型</p>
+</blockquote>
+<p>nil、boolean、number、string、userdata、function、thread、table</p>
+<p>nil：空，任何值设为 nil，等价于删除<br>boolean：(false、nil) =&gt; false，其余都是 true<br>number：双精度实浮点数<br>string：<code>‘...’</code> <code>“...”</code> <code>[[...]]</code><br>function：C、Lua编写函数<br>userdata：C数据结构<br>thread：最主要的线程是协同程序（coroutine）<br>table：关联数组，数组的索引（数字、字符串、表类型），创建通过’构造表达式’完成，索引从’1’开始，长度会自动增长，没初始的 table 都是 nil</p>
+<p>类型检查：<code>type(</code>print<code>)</code></p>
+<p>[<code>注意</code>]<br><code>数字字符串</code> 和 <code>数字</code> 做运算，优先转数值类型<br>字符串相连：<code>&#39;..&#39;</code><br><code>#</code>：计算字符串的长度，其实是字符串所占的字节数长</p>
+<blockquote>
+<p>table</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tbl = &#123;<span class="string">&#x27;apple&#x27;</span>, <span class="string">&#x27;pear&#x27;</span>, <span class="string">&#x27;orange&#x27;</span>, <span class="string">&#x27;banana&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> <span class="built_in">pairs</span>(tbl) <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">print</span>(k .. <span class="string">&quot;:&quot;</span> .. v)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line"><span class="number">1</span>：apple</span><br><span class="line"><span class="number">2</span>：pear</span><br><span class="line"><span class="number">3</span>：orange</span><br><span class="line"><span class="number">4</span>：banana</span><br></pre></td></tr></table></figure>
+
+<p><code>注意</code>：#table 返回第一个 nil 前值的下标</p>
+<p>线程跟协程的区别：线程可以同时多个运行，而协程任意时刻只能运行一个，并且处于运行状态的协程只有被挂起（suspend）时才会暂停</p>
+<blockquote>
+<p>变量</p>
+</blockquote>
+<p>全局变量、局部变量、表达式中的域</p>
+<p>local：声明局部变量，生命周期（从声明位置 -&gt; 语句块结束）</p>
+<p>多变量赋值：<code>a, b = 10, 2*x</code>，同时赋值，不会进行变量传递</p>
+<p>局部变量的好处：</p>
+<ol>
+<li>避免命名冲突</li>
+<li>访问局部变量的速度比全局变量更快</li>
+</ol>
+<blockquote>
+<p>函数</p>
+</blockquote>
+<p>可变参数： <code>&#39;...&#39;</code></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(...)</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> s = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> i,v <span class="keyword">in</span> <span class="built_in">ipairs</span>&#123;...&#125; <span class="keyword">do</span></span><br><span class="line">	s = s + v</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">return</span> s</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(add(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>))</span><br></pre></td></tr></table></figure>
+
+<p>获取可变参数数量的方式：</p>
+<ol>
+<li>#{…}</li>
+<li>select(“#”, …)</li>
+</ol>
+<p>多返回值的函数赋值时，只有最后一个函数才会展开：local b,c,d,e = add(),<code>add()</code></p>
+<blockquote>
+<p>运算符优先级</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">^</span><br><span class="line"><span class="keyword">not</span>    - (unary)</span><br><span class="line">*      /       %</span><br><span class="line">+      -</span><br><span class="line">..</span><br><span class="line">&lt;      &gt;      &lt;=     &gt;=     ~=     ==</span><br><span class="line"><span class="keyword">and</span></span><br><span class="line"><span class="keyword">or</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>字符串操作方法</p>
+</blockquote>
+<p>upper、lower</p>
+<p>string.gsub(操作的字符串，被替换的字符，要替换的字符，替换次数)</p>
+<pre><code>string.gsub(&quot;aaaa&quot;,&quot;a&quot;,&quot;z&quot;, 3)</code></pre>
+<p>string.find(操作的字符串，要查找的字符，从何位置开始）：返回第一次符合要求的索引</p>
+<p>string.char(arg)：整型数字转字符连接<br>string.byte(arg，int[返回第几个，默认第一个])：字符转整数值</p>
+<p>string.rep(操作字符串，重复次数)</p>
+<p>string.match</p>
+<p>string.sub</p>
+<blockquote>
+<p>字符串格式化</p>
+</blockquote>
+<p>string.format()</p>
+<p>%c：数字，转ascii码<br>%d，%i：数字，转有符号整数<br>%o：数字，转8进制<br>%u：数字，转无符号整数<br>%x：数字，转十六进制，使用小写字母<br>%X：数字，转十六进制，使用大写字母</p>
+<p>%e：数字，转科学计数，小写字母e<br>%E：数字，转科学计数，大写字母E</p>
+<p>%f：数字，转浮点数<br>%q：字符串，转可被Lua编译器读入的格式<br>%s：字符串，按照给定参数格式转</p>
+<blockquote>
+<p>迭代器</p>
+</blockquote>
+<p>Lua中迭代器支持指针类型，分为无状态、有状态两种迭代器</p>
+<ul>
+<li>pairs 和 ipairs 区别</li>
+</ul>
+<p>pairs：迭代 table，可以遍历表中所有key，可以返回 nil<br>ipairs：迭代数组，不能返回 nil，遇到则退出</p>
+<p>三个值：<code>迭代器，状态常量，控制变量</code></p>
+<blockquote>
+<p>Table 常用操作</p>
+</blockquote>
+<p>table.concat(数据，连接符，起始位置，结束位置)</p>
+<p>table.insert(数据，插入位置，插入值)</p>
+<p>table.maxn</p>
+<p>table.remove</p>
+<p>table.sort</p>
+<h4 id="模块及包"><a href="#模块及包" class="headerlink" title="模块及包"></a>模块及包</h4><p>Lua 模块是由变量、函数等已知元素组成的 table</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span> = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.constant = <span class="string">&#x27;常量&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">module.add</span><span class="params">()</span></span></span><br><span class="line">	<span class="built_in">io</span>.<span class="built_in">write</span>(<span class="string">&#x27;公共函数&#x27;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">locfun</span><span class="params">()</span></span></span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&#x27;私有函数&#x27;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">module.plus</span><span class="params">()</span></span></span><br><span class="line">	locfun()</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="built_in">module</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>加载模块</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&quot;module&quot;</span>)</span><br><span class="line"><span class="built_in">module</span>.plus()</span><br><span class="line"></span><br><span class="line">=&gt; <span class="keyword">local</span> m = <span class="built_in">require</span>(<span class="string">&quot;module&quot;</span>)</span><br><span class="line">m.plus()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>加载机制</p>
+</blockquote>
+<ol>
+<li>自定义的模块，不是放在哪个文件目录都行</li>
+<li>require 有自己的文件路径加载策略</li>
+<li>require 用于搜索 Lua 文件的路径存放在全局变量 package.path，Lua 启动时，环境变量 LUA_PATH 初始化，如果找不到环境变量，编译时定义的默认路径初始化</li>
+</ol>
+<p>LUA_PATH：根目录 .profile.bashrc </p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#LUA_PATH</span><br><span class="line">export LUA_PATH = <span class="string">&quot;~/lua/?.lua;;&quot;</span> ;; 新加的路径后加上原来的默认路径</span><br><span class="line"></span><br><span class="line">source ~/.profile</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>C包</p>
+</blockquote>
+<p>使用前必须先加载并连接，实现方式通过动态连接库机制（<code>loadlib()</code>）</p>
+<p>local f = loadlib(path【绝对地址】, “luaopen_socket”【初始化函数】)</p>
+<ul>
+<li>使用 require 函数加载 C 库</li>
+</ul>
+<p>修改 stub 文件对应二进制库的实际路径，将 stub 文件所在的目录加入到 LUA_PATH</p>
+<h4 id="元表-Metatable"><a href="#元表-Metatable" class="headerlink" title="元表 Metatable"></a>元表 Metatable</h4><p>支持多 table 操作</p>
+<p>setmetatable(tbale, metatable)：设置元表，存在<code>‘__metatable ’</code>，则报错<br>getmetatable(table)：获取元表</p>
+<blockquote>
+<p>__index </p>
+</blockquote>
+<p>__index = [tbale, function(table, key)]</p>
+<p>Lua 查找元素的规则步骤：</p>
+<ol>
+<li>表中查找，&amp; 返回 | 继续</li>
+<li>判断表中是否有元表，&amp; 继续| 返回 nil</li>
+<li>判断元表有没有 __index 方法，&amp; (表，重复1，2，3；函数，返回值) | 返回 nil</li>
+</ol>
+<blockquote>
+<p>__newindex</p>
+</blockquote>
+<blockquote>
+<p>为表添加操作符</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">table_maxn</span><span class="params">(t)</span></span></span><br><span class="line">	<span class="keyword">local</span> mn = <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> k,v <span class="keyword">in</span> <span class="built_in">pairs</span>(t) <span class="keyword">do</span></span><br><span class="line">		<span class="keyword">if</span> mn &lt; k <span class="keyword">then</span></span><br><span class="line">			mn = k</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">return</span> mn</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">mytab = <span class="built_in">setmetatable</span>(&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;, &#123;</span><br><span class="line">	<span class="built_in">__add</span> = <span class="function"><span class="keyword">function</span><span class="params">(mytab, newtab)</span></span></span><br><span class="line">		<span class="keyword">for</span> i = <span class="number">1</span>, table_maxn(newtab) <span class="keyword">do</span></span><br><span class="line">			<span class="built_in">table</span>.<span class="built_in">insert</span>(mytab, table_maxn(mytab) + <span class="number">1</span>, newtab[i])</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		<span class="keyword">return</span> mytab</span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">sectab = &#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line">mytab = mytab + sectab</span><br><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> <span class="built_in">ipairs</span>(mytab) <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">print</span>(k .. <span class="string">&#x27; : &#x27;</span> .. v)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>__add  =&gt;  +<br>__sub  =&gt;  -<br>__mul  =&gt;  *<br>__div  =&gt;  /<br>__mod  =&gt;  %<br>__unm  =&gt;  -<br>__concat  =&gt;  ..<br>__eq  =&gt;  ==<br>__lt  =&gt;  &lt;<br>__le  =&gt;  &lt;=</p>
+<blockquote>
+<p>__Call 调用值时调用该方法</p>
+</blockquote>
+<blockquote>
+<p>__tostring 修改表的输出行为</p>
+</blockquote>
+<h4 id="协同程序"><a href="#协同程序" class="headerlink" title="协同程序"></a>协同程序</h4><p>Lua 协同程序与线程比较类似：拥有独立的堆栈、独立的局部变量、独立的指令指针，与其它协同程序，共享全局变量等</p>
+<pre><code>线程、协同程序的区别：</code></pre>
+<ol>
+<li>拥有多线程的程序可以同时运行几个线程，协同程序需要彼此协作运行</li>
+<li>任一指定时候，只有一个协同程序运行，运行中的协同程序只有被挂起的时候才会挂起</li>
+<li>协同程序类似同步的多线程，在等待同一个线程锁的多线程类似协同</li>
+</ol>
+<blockquote>
+<p>语法</p>
+</blockquote>
+<p>coroutine.create() <code>suspended</code><br>coroutine.resume()  <code>running</code> 返回值 boolean<br>coroutine.yield()：挂起 <code>suspended</code><br>coroutine.status()：状态【dead、suspended、running】<br>coroutine.wrap()<br>coroutine.running()<br>return  <code>dead</code></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> npro</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">productor</span><span class="params">()</span></span></span><br><span class="line">  <span class="keyword">local</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">while</span> <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line">    i = i + <span class="number">1</span></span><br><span class="line">    send(i)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">consumer</span><span class="params">()</span></span></span><br><span class="line">  <span class="keyword">while</span> <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">local</span> i = receive()</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">receive</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">local</span> <span class="built_in">status</span>, value = <span class="built_in">coroutine</span>.<span class="built_in">resume</span>(npro)</span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">send</span><span class="params">(x)</span></span></span><br><span class="line">    <span class="built_in">coroutine</span>.<span class="built_in">yield</span>(x)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">npro = <span class="built_in">coroutine</span>.<span class="built_in">create</span>(productor)</span><br><span class="line">consumer()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>coroutine.creat、coroutine.wrap 区别</p>
+</blockquote>
+<p>create 返回协同程序，类型 thread，使用 resume 调用<br>wrap 返回普通函数，类型 function，不可以使用 resume 调用</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">yieldReturn</span><span class="params">(arg)</span></span> <span class="keyword">return</span> <span class="built_in">arg</span> <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">co_yieldtest = <span class="built_in">coroutine</span>.<span class="built_in">create</span>(</span><br><span class="line">    <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;启动协程状态&quot;</span>..<span class="built_in">coroutine</span>.<span class="built_in">status</span>(co_yieldtest))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;--&quot;</span>)</span><br><span class="line">        <span class="built_in">coroutine</span>.<span class="built_in">yield</span>()</span><br><span class="line">        <span class="built_in">coroutine</span>.<span class="built_in">yield</span>(<span class="number">1</span>)</span><br><span class="line">        <span class="built_in">coroutine</span>.<span class="built_in">yield</span>(<span class="built_in">print</span>(<span class="string">&quot;第3次调用&quot;</span>))</span><br><span class="line">        <span class="built_in">coroutine</span>.<span class="built_in">yield</span>(yieldReturn(<span class="string">&quot;第4次调用&quot;</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;启动前协程状态&quot;</span>..<span class="built_in">coroutine</span>.<span class="built_in">status</span>(co_yieldtest))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;--&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>,<span class="number">6</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;第&quot;</span>..i..<span class="string">&quot;次调用协程:&quot;</span>, <span class="built_in">coroutine</span>.<span class="built_in">resume</span>(co_yieldtest))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;当前协程状态&quot;</span>..<span class="built_in">coroutine</span>.<span class="built_in">status</span>(co_yieldtest))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;--&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">输出结果如下：</span><br><span class="line"></span><br><span class="line">启动前协程状态suspended</span><br><span class="line"><span class="comment">--</span></span><br><span class="line">启动协程状态<span class="built_in">running</span></span><br><span class="line"><span class="comment">--</span></span><br><span class="line">第<span class="number">1</span>次调用协程:    <span class="literal">true</span></span><br><span class="line">当前协程状态suspended</span><br><span class="line"><span class="comment">--</span></span><br><span class="line">第<span class="number">2</span>次调用协程:    <span class="literal">true</span>    <span class="number">1</span></span><br><span class="line">当前协程状态suspended</span><br><span class="line"><span class="comment">--</span></span><br><span class="line">第<span class="number">3</span>次调用</span><br><span class="line">第<span class="number">3</span>次调用协程:    <span class="literal">true</span></span><br><span class="line">当前协程状态suspended</span><br><span class="line"><span class="comment">--</span></span><br><span class="line">第<span class="number">4</span>次调用协程:    <span class="literal">true</span>    第<span class="number">4</span>次调用</span><br><span class="line">当前协程状态suspended</span><br><span class="line"><span class="comment">--</span></span><br><span class="line">第<span class="number">5</span>次调用协程:    <span class="literal">true</span>    <span class="number">2</span></span><br><span class="line">当前协程状态dead</span><br><span class="line"><span class="comment">--</span></span><br><span class="line">第<span class="number">6</span>次调用协程:    <span class="literal">false</span>    cannot <span class="built_in">resume</span> dead <span class="built_in">coroutine</span></span><br><span class="line">当前协程状态dead</span><br><span class="line"><span class="comment">--</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="I-O-操作"><a href="#I-O-操作" class="headerlink" title="I/O 操作"></a>I/O 操作</h4><p>读取、处理文件</p>
+<p>简单模式：</p>
+<pre><code>单输入文件 -&gt; 单输出文件</code></pre>
+<p>安全模式：</p>
+<pre><code>文件句柄，面向对象的形式</code></pre>
+<blockquote>
+<p>打开文件</p>
+</blockquote>
+<p>file = io.open(filename, [mode])</p>
+<p>mode 值：</p>
+<p>r、r+：只读，文件必须存在<br>w、w+：只写，文件存在则内容清空，文件不存在则创建<br>a、a+：追加，文件存在则追加内容，文件不存在则创建</p>
+<p>b：二进制模式<br>+：可读模式</p>
+<blockquote>
+<p>常用方法</p>
+</blockquote>
+<p>io.open<br>io.input<br>io.close<br>io.output<br>io.write<br>io.tmpfile<br>io.type<br>io.flush<br>io.lines</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file = <span class="built_in">io</span>.<span class="built_in">input</span>(<span class="string">&#x27;path&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line"><span class="built_in">io</span>.<span class="built_in">input</span>(file)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">io</span>.<span class="built_in">read</span>())</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>完全模式</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">file = <span class="built_in">io</span>.<span class="built_in">open</span>(<span class="string">&#x27;path&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(file:<span class="built_in">read</span>())</span><br><span class="line"></span><br><span class="line">file:<span class="built_in">close</span>()</span><br><span class="line">file:<span class="built_in">write</span>(<span class="string">&#x27;str&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>file:seek() 设置、获取文件位置<br>file:flush() 向文件写入缓冲中的所有数据</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> <span class="built_in">io</span>.<span class="built_in">lines</span>(<span class="string">&#x27;path&#x27;</span>) <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">print</span>(line)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">file:seek(<span class="string">&#x27;end&#x27;</span>, <span class="number">-100</span>)</span><br><span class="line"><span class="built_in">print</span>(file:<span class="built_in">read</span>(<span class="string">&#x27;*a&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>*n 读取一个数字返回</li>
+<li>*a 从当前位置读取整个文件</li>
+<li>*| 读取下一行</li>
+<li>number 返回指定个数的字符串</li>
+</ul>
+<h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><ul>
+<li>语法错误</li>
+<li>运行错误</li>
+</ul>
+<blockquote>
+<p>处理错误</p>
+</blockquote>
+<p>assert()、error()</p>
+<p>pcall()、xpcall()、debug()</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myfunction</span> <span class="params">()</span></span></span><br><span class="line">   n = n/<span class="literal">nil</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myerrorhandler</span><span class="params">( err )</span></span></span><br><span class="line">   <span class="built_in">print</span>( <span class="string">&quot;ERROR:&quot;</span>, err )</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">status</span> = <span class="built_in">xpcall</span>( myfunction, myerrorhandler )</span><br><span class="line"><span class="built_in">print</span>( <span class="built_in">status</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h4><p>debug()<br>getfenv()<br>gethook()<br>getinfo()<br>debug.getlocal()<br>getmetatable()<br>getregistry()<br>getupvalue()<br>sethook()<br>setlocal()<br>setmetatable()<br>setupvalue()<br>trackback()</p>
+<blockquote>
+<p>调试类型</p>
+</blockquote>
+<p>命令行调试器有：RemDebug、clidebugger、ctrace、xdbLua、LuaInterface - Debugger、Rldb、ModDebug</p>
+<p>图形界调试器有：SciTE、Decoda、ZeroBrane Studio、akdebugger、luaedit</p>
+<h4 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h4><p>collectgarbage(‘collect|count|restart|setpause|setstepmul|setp|stop’)</p>
+<p>一次完整的垃圾收集循环、以K字节数返回使用总内参数、重启垃圾收集器、将arg设为收集器的间歇率、单步运行垃圾收集器、停止</p>
+<h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Shape = &#123;area = <span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Shape</span>:<span class="title">new</span> (<span class="params">o,side</span>)</span></span><br><span class="line"><span class="function">  <span class="title">o</span> = <span class="title">o</span> <span class="title">or</span> </span>&#123;&#125;</span><br><span class="line">  setmetatable(o, self)</span><br><span class="line">  self.__index = self</span><br><span class="line">  side = side or <span class="number">0</span></span><br><span class="line">  self.area = side*side;</span><br><span class="line">  <span class="keyword">return</span> o</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Shape</span>:<span class="title">printArea</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function">  <span class="title">print</span>(<span class="params"><span class="string">&quot;面积为 &quot;</span>,self.area</span>)</span></span><br><span class="line"><span class="function"><span class="title">end</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">-- 创建对象</span></span><br><span class="line"><span class="function"><span class="title">myshape</span> = <span class="title">Shape</span>:<span class="title">new</span>(<span class="params">nil,<span class="number">10</span></span>)</span></span><br><span class="line"><span class="function"><span class="title">myshape</span>:<span class="title">printArea</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">-- 派生类</span></span><br><span class="line"><span class="function"><span class="title">Square</span> = <span class="title">Shape</span>:<span class="title">new</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="function"><span class="keyword">function</span> <span class="title">Square</span>:<span class="title">new</span> (<span class="params">o,side</span>)</span></span></span><br><span class="line"><span class="function"><span class="function">  <span class="title">o</span> = <span class="title">o</span> <span class="title">or</span> <span class="title">Shape</span>:<span class="title">new</span>(<span class="params">o,side</span>)</span></span></span><br><span class="line"><span class="function"><span class="function">  <span class="title">setmetatable</span>(<span class="params">o, self</span>)</span></span></span><br><span class="line"><span class="function"><span class="function">  <span class="title">self</span>.<span class="title">__index</span> = <span class="title">self</span></span></span></span><br><span class="line"><span class="function"><span class="function">  <span class="title">return</span> <span class="title">o</span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="title">end</span></span></span></span><br><span class="line"><span class="function"><span class="function"></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="keyword">function</span> <span class="title">Square</span>:<span class="title">printArea</span> (<span class="params"></span>)</span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function">  <span class="title">print</span>(<span class="params"><span class="string">&quot;正方形面积为 &quot;</span>,self.area</span>)</span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="title">end</span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function">-- 创建对象</span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="title">mysquare</span> = <span class="title">Square</span>:<span class="title">new</span>(<span class="params">nil,<span class="number">10</span></span>)</span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="title">mysquare</span>:<span class="title">printArea</span>(<span class="params"></span>)</span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="title">Rectangle</span> = <span class="title">Shape</span>:<span class="title">new</span>(<span class="params"></span>)</span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function"><span class="keyword">function</span> <span class="title">Rectangle</span>:<span class="title">new</span> (<span class="params">o,length,breadth</span>)</span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function">  <span class="title">o</span> = <span class="title">o</span> <span class="title">or</span> <span class="title">Shape</span>:<span class="title">new</span>(<span class="params">o</span>)</span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function">  <span class="title">setmetatable</span>(<span class="params">o, self</span>)</span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function">  <span class="title">self</span>.<span class="title">__index</span> = <span class="title">self</span></span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function">  <span class="title">self</span>.<span class="title">area</span> = <span class="title">length</span> * <span class="title">breadth</span></span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function">  <span class="title">return</span> <span class="title">o</span></span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function"><span class="title">end</span></span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function"></span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function"><span class="function"><span class="keyword">function</span> <span class="title">Rectangle</span>:<span class="title">printArea</span> (<span class="params"></span>)</span></span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function"><span class="function">  <span class="title">print</span>(<span class="params"><span class="string">&quot;矩形面积为 &quot;</span>,self.area</span>)</span></span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function"><span class="function"><span class="title">end</span></span></span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function"><span class="function"></span></span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function"><span class="function">-- 创建对象</span></span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function"><span class="function"><span class="title">myrectangle</span> = <span class="title">Rectangle</span>:<span class="title">new</span>(<span class="params">nil,<span class="number">10</span>,<span class="number">20</span></span>)</span></span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="function"><span class="function"><span class="title">myrectangle</span>:<span class="title">printArea</span>(<span class="params"></span>)</span></span></span></span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="数据库访问"><a href="#数据库访问" class="headerlink" title="数据库访问"></a>数据库访问</h4><p><a target="_blank" rel="noopener" href="http://luaforge.net/projects/luasql/">LuaSQL</a></p>
+<p>支持的数据库有：ODBC, ADO, Oracle, MySQL, SQLite 和 PostgreSQL</p>
+<blockquote>
+<p>LuaRocks 安装方法</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://luarocks.org/releases/luarocks-2.2.1.tar.gz</span><br><span class="line">tar zxpf luarocks-2.2.1.tar.gz -C ../</span><br><span class="line">cd luarocks-2.2.1</span><br><span class="line">./configure; sudo make bootstrap</span><br><span class="line">sudo luarocks install luasocket</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>安装数据库</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">luarocks install luasql-sqlite3</span><br><span class="line">luarocks install luasql-postgres</span><br><span class="line">luarocks install luasql-mysql</span><br><span class="line">luarocks install luasql-sqlite</span><br><span class="line">luarocks install luasql-odbc</span><br></pre></td></tr></table></figure>
+
+<pre><code>*安装 mysql 报错*
+luarocks install luasql-mysql MYSQL_INCDIR=/usr/include/mysql MYSQL_LIBDIR=/usr/local/mysql/lib</code></pre>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- 连接 mysql</span></span><br><span class="line"></span><br><span class="line">luasql = <span class="built_in">require</span> <span class="string">&#x27;luasql.mysql&#x27;</span></span><br><span class="line">env = luasql.mysql</span><br><span class="line"></span><br><span class="line">conn = env:connect(<span class="string">&#x27;db_name&#x27;</span>, <span class="string">&#x27;user&#x27;</span>, <span class="string">&#x27;password&#x27;</span>, <span class="string">&#x27;ip&#x27;</span>, <span class="string">&#x27;3306&#x27;</span>)</span><br><span class="line">conn:<span class="built_in">execute</span><span class="string">&#x27;set names utf8&#x27;</span></span><br><span class="line"></span><br><span class="line">cur = conn:<span class="built_in">execute</span>(<span class="string">&#x27;select * from md_tag&#x27;</span>)</span><br><span class="line"></span><br><span class="line">row = cur:fetch(&#123;&#125;, <span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"></span><br><span class="line">file = <span class="built_in">io</span>.<span class="built_in">open</span>(<span class="string">&#x27;md_tag.txt&#x27;</span>, <span class="string">&#x27;w+&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> row <span class="keyword">do</span></span><br><span class="line">  var = <span class="built_in">string</span>.<span class="built_in">format</span>(<span class="string">&#x27;%d %s\n&#x27;</span>, row.md_id, row.m_name)</span><br><span class="line">  <span class="built_in">print</span>(var)</span><br><span class="line">  file:<span class="built_in">write</span>(var)</span><br><span class="line">  row = cur:fetch(row, <span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">file:<span class="built_in">close</span>()</span><br><span class="line">conn:<span class="built_in">close</span>()</span><br><span class="line">env:<span class="built_in">close</span>()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>luarocks几个常用命令</p>
+</blockquote>
+<p>build<br>download<br>help<br>list<br>install<br>make<br>pack<br>path<br>remove<br>search<br>show<br>unpack</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-11-26</span><i class="fa fa-tag"></i><a class="tag" href="/categories/工具/" title="工具">工具 </a><a class="tag" href="/tags/前端压测/" title="前端压测">前端压测 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/11/26/前端/HTTP 压测工具 wrk/,日升于东,HTTP 压测工具 wrk,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/11/26/Other/%E6%95%B0%E5%AD%A6/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/" title="傅里叶变换">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/11/25/Javascript/Vue3%20%E7%94%9F%E6%80%81/" title="Vue3 生态">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#wrk-%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">wrk 参数说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%E8%AF%B4%E6%98%8E"><span class="toc-text">结果说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95"><span class="toc-text">高级用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Lua"><span class="toc-text">Lua</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-text">基本语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8F%8A%E5%8C%85"><span class="toc-text">模块及包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%83%E8%A1%A8-Metatable"><span class="toc-text">元表 Metatable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8F%E5%90%8C%E7%A8%8B%E5%BA%8F"><span class="toc-text">协同程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#I-O-%E6%93%8D%E4%BD%9C"><span class="toc-text">I&#x2F;O 操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-text">错误处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Debug"><span class="toc-text">Debug</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-text">垃圾回收</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-text">面向对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BF%E9%97%AE"><span class="toc-text">数据库访问</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

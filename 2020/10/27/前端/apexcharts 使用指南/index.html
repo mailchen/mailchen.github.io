@@ -1,0 +1,234 @@
+<!DOCTYPE html><html><head><title>apexcharts 使用指南 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>apexcharts 使用指南</a></h3></div><div class="post-content"><p><a target="_blank" rel="noopener" href="https://apexcharts.com/">apexcharts</a></p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><div id="chart"></div>
+
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+#chart {
+  max-width: 760px;
+  margin: 35px auto;
+  opacity: 0.9;
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+ var series = {
+ monthDataSeries1: {
+ dates: ["13 Nov 2017", "14 Nov 2017", "15 Nov 2017", "16 Nov 2017", "17 Nov 2017", "20 Nov 2017"],
+ prices: [8107.85, 8128, 8122.9, 8165.5, 8340.7, 8423.7]
+ },
+ monthDataSeries2: {
+ dates: ["13 Nov 2017", "14 Nov 2017", "15 Nov 2017", "16 Nov 2017", "17 Nov 2017", "20 Nov 2017"],
+ prices: [8423.7, 8423.5, 8514.3, 8481.85, 8487.7, 8506.9]
+ },
+ monthDataSeries3: {
+ dates: ["02 Jun 2017", "05 Jun 2017", "06 Jun 2017", "07 Jun 2017", "08 Jun 2017", "09 Jun 2017"],
+ prices: [7114.25, 7126.6, 7116.95, 7203.7, 7233.75, 7451]
+ }
+}
+
+var options = {
+  annotations: {
+    yaxis: [
+      {
+        y: 8200,
+        borderColor: "#00E396",
+        label: {
+          borderColor: "#00E396",
+          style: {
+            color: "#fff",
+            background: "#00E396"
+          },
+          text: "Y Axis Annotation"
+        }
+      }
+    ],
+    xaxis: [
+      {
+        // in a datetime series, the x value should be a timestamp, just like it is generated below
+        x: new Date("11/17/2017").getTime(),
+        strokeDashArray: 0,
+        borderColor: "#775DD0",
+        label: {
+          borderColor: "#775DD0",
+          style: {
+            color: "#fff",
+            background: "#775DD0"
+          },
+          text: "X Axis Anno Vertical"
+        },
+      },
+      {
+        x: new Date("14 Nov 2017").getTime(),
+        borderColor: "#FEB019",
+        label: {
+          borderColor: "#FEB019",
+          style: {
+            color: "#fff",
+            background: "#FEB019"
+          },
+          orientation: "horizontal",
+          text: "X Axis Anno Horizonal"
+        }
+      }
+    ],
+    points: [
+      {
+        x: new Date("15 Nov 2017").getTime(),
+        y: 8122.9,
+        marker: {
+          size: 6,
+          fillColor: "#fff",
+          strokeColor: "#2698FF",
+          radius: 2
+        },
+        label: {
+          borderColor: "#FF4560",
+          offsetY: 0,
+          style: {
+            color: "#fff",
+            background: "#FF4560"
+          },
+
+          text: "Point Annotation (XY)"
+        }
+      }
+    ]
+  },
+  chart: {
+    height: 380,
+    type: "line",
+    id: "areachart-2"
+  },
+
+  line: {
+    dataLabels: {
+      position: 'top'
+    }
+  },
+  dataLabels: {
+    enabled: true,
+    style: {
+        colors: ['#333']
+    },
+    offsetX: -5,
+    offsetY: 10
+  },
+
+  stroke: {
+    curve: "straight"
+  },
+  series: [
+    {
+      data: series.monthDataSeries1.prices
+    }
+  ],
+  title: {
+    text: "Line with Annotations",
+    align: "left"
+  },
+  labels: series.monthDataSeries1.dates,
+  xaxis: {
+    type: "datetime"
+  }
+};
+
+var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+chart.render();
+</script>
+
+
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><blockquote>
+<p>npm</p>
+</blockquote>
+<ol>
+<li><p>npm install apexcharts –save</p>
+</li>
+<li><p>import ApexCharts from ‘apexcharts’</p>
+</li>
+</ol>
+<blockquote>
+<p>CDN</p>
+</blockquote>
+<pre><code>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/apexcharts&quot;&gt;&lt;/script&gt;</code></pre>
+<h4 id="图表要点"><a href="#图表要点" class="headerlink" title="图表要点"></a>图表要点</h4><ul>
+<li>范围注释</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">annotations: &#123;</span><br><span class="line">  yaxis: [</span><br><span class="line">    &#123;</span><br><span class="line">      y: <span class="number">8600</span>,</span><br><span class="line">      y2: <span class="number">9000</span>,</span><br><span class="line">      borderColor: <span class="string">&#x27;#000&#x27;</span>,</span><br><span class="line">      fillColor: <span class="string">&#x27;#FEB019&#x27;</span>,</span><br><span class="line">      label: &#123;</span><br><span class="line">        text: <span class="string">&#x27;Y-axis range&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">label: &#123;</span><br><span class="line">  borderColor: <span class="string">&#x27;#00E396&#x27;</span>,</span><br><span class="line">  orientation: <span class="string">&#x27;horizontal&#x27;</span>,</span><br><span class="line">  style: &#123;</span><br><span class="line">    color: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">    background: <span class="string">&#x27;#00E396&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  text: <span class="string">&#x27;Y-axis annotation on 8800&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">marker: &#123;</span><br><span class="line">  size: <span class="number">8</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>数据标签</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">plotOptions: &#123;</span><br><span class="line">  bar: &#123;</span><br><span class="line">    dataLabels: &#123;</span><br><span class="line">      position: <span class="string">&#x27;top&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  dataLabels: &#123;</span><br><span class="line">    enabled: <span class="literal">true</span>,</span><br><span class="line">    style: &#123;</span><br><span class="line">        colors: [<span class="string">&#x27;#333&#x27;</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    offsetX: <span class="number">30</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="设置主题"><a href="#设置主题" class="headerlink" title="设置主题"></a>设置主题</h4><pre><code>Apex.theme.palette</code></pre>
+<h4 id="整合使用"><a href="#整合使用" class="headerlink" title="整合使用"></a>整合使用</h4><p>ng-ApexCharts：ApexCharts的Angular包装器组件<br>React-ApexCharts：ApexCharts的React包装器组件<br>Vue-ApexCharts：ApexCharts的Vue包装器组件</p>
+<h4 id="文本自动换行"><a href="#文本自动换行" class="headerlink" title="文本自动换行"></a>文本自动换行</h4><pre><code>将字符串转换成“字符串数组”</code></pre>
+<h4 id="导出图表"><a href="#导出图表" class="headerlink" title="导出图表"></a>导出图表</h4><p>传统上，在服务器上导出图表，使用无头浏览器（Puppeteer或PhantomJS<code>停产</code>），需要Node.js基础结构</p>
+<p>ApexCharts 使用 <a target="_blank" rel="noopener" href="https://www.fusioncharts.com/fusionexport">FusionExport</a></p>
+<blockquote>
+<p>无头浏览器</p>
+</blockquote>
+<p>无须显示器、键盘和鼠标操作，通过网络连接控制</p>
+<blockquote>
+<p>如何检查是无头浏览器</p>
+</blockquote>
+<ol>
+<li>User agent</li>
+</ol>
+<p>“Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/59.0.3071.115 Safari/537.36”</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="regexp">/HeadlessChrome/</span>.test(<span class="built_in">window</span>.navigator.userAgent)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Chrome headless detected&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>插件 Plugins</li>
+</ol>
+<p>无头浏览器，插件检查，返回空数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(navigator.plugins.length == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;It may be Chrome headless&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>语言</li>
+</ol>
+<p>navigator.language 和 navigator.languages。一个是指浏览器界面的语言；一个返回的是个数组，里面存储的是浏览器用户的所有次选语言</p>
+<p>无头浏览器，navigator.languages 返回空字符串</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(navigator.languages == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Chrome headless detected&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>WebGL</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">&#x27;canvas&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> gl = canvas.getContext(<span class="string">&#x27;webgl&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> debugInfo = gl.getExtension(<span class="string">&#x27;WEBGL_debug_renderer_info&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);</span><br><span class="line"><span class="keyword">var</span> renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(vendor == <span class="string">&quot;Brian Paul&quot;</span> &amp;&amp; renderer == <span class="string">&quot;Mesa OffScreen&quot;</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Chrome headless detected&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>加载失败的图片，宽、高均为0</li>
+</ol>
+<blockquote>
+<p>应用场景</p>
+</blockquote>
+<ul>
+<li>网站及应用测试</li>
+<li>JavaScript库测试</li>
+<li>JavaScript模拟与交互</li>
+<li>在后台运行一个或多个自动化UI测试</li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-10-27</span><i class="fa fa-tag"></i><a class="tag" href="/categories/前端/" title="前端">前端 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/10/27/前端/apexcharts 使用指南/,日升于东,apexcharts 使用指南,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/11/02/%E5%89%8D%E7%AB%AF/vuex%20pathify%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="vuex pathify 使用指南">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/10/27/%E5%89%8D%E7%AB%AF/vuetify%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="vuetify 使用指南">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E8%A1%A8%E8%A6%81%E7%82%B9"><span class="toc-text">图表要点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E4%B8%BB%E9%A2%98"><span class="toc-text">设置主题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E5%90%88%E4%BD%BF%E7%94%A8"><span class="toc-text">整合使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E8%87%AA%E5%8A%A8%E6%8D%A2%E8%A1%8C"><span class="toc-text">文本自动换行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%BC%E5%87%BA%E5%9B%BE%E8%A1%A8"><span class="toc-text">导出图表</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

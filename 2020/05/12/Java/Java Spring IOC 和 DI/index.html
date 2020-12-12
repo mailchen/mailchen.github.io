@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><title>Java Spring IOC和DI [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Java Spring IOC和DI</a></h3></div><div class="post-content"><h4 id="创建对象的几种方式"><a href="#创建对象的几种方式" class="headerlink" title="创建对象的几种方式"></a>创建对象的几种方式</h4><p>new、反射、反序列化、clone</p>
+<h4 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h4><p>反射概念：<br>    提供一个 Class对象 ,可以获得这个类对象的所有属性和方法</p>
+<p>反射优劣势：<br>    增加程序灵活，代码简洁，增强可读性，提高代码复用<br>    量大时性能下降（安全权限检查 newInstance、class.forName JNI）、内部暴露和安全隐患</p>
+<p>Class包含：</p>
+<pre><code>包（Package）
+构造方法（Constructor）
+字段（Filed）
+函数（Method）
+注解（Annotation）
+接口
+父类    
+修饰符 ...</code></pre>
+<p>clazz.getFields();          //获取类中所有的公有字段，包括集成<br>clazz.getDeclaredFields();  //获取类中定义的字段</p>
+<p>clazz.getModifiers();          //获取类中所有的公有方法，包括集成<br>clazz.getDeclaredModifiers();  //获取类中定义的方法<br>getModifiers()                 //获取修饰符<br>invoke()</p>
+<p>clazz.getDeclaredConstructors()    //获取所有构造方法<br>…</p>
+<h4 id="IOC，DI"><a href="#IOC，DI" class="headerlink" title="IOC，DI"></a>IOC，DI</h4><p>IOC：控制反转，对象实例创建的控制权交给程序（IOC 容器：K-V HashMap）<br>DI：依赖注入，对象构建的过程当中，IOC 动态的提供对象需要的其他对象</p>
+<p>Spring IOC 容器中对象的创建方式：</p>
+<pre><code>构造器、静态工厂方法、实例工厂方法</code></pre>
+<p>Spring DI 的几种方式：</p>
+<pre><code>有参的构造器、setter函数</code></pre>
+<h4 id="Bean-规范"><a href="#Bean-规范" class="headerlink" title="Bean 规范"></a>Bean 规范</h4><p>类 -&gt; 是公有修饰 public<br>类 -&gt; 具有 public 默认构造函数<br>类 -&gt; 属性访问修饰是 private，需要有public（setter,getter）</p>
+<blockquote>
+<p>spring 配置元数据</p>
+</blockquote>
+<ul>
+<li>基于XML的配置文件</li>
+<li>基于注解的配置</li>
+<li>基于JAVA的配置<br>  <code>class</code><br>  <code>name</code><br>  <code>scope</code><br>  <code>constructor-arg</code><br>  <code>properties</code><br>  <code>autowiring mode</code><br>  <code>lazy-initialization mode</code><br>  <code>initialization</code><br>  <code>destruction</code></li>
+</ul>
+<blockquote>
+<p>作用域</p>
+</blockquote>
+<pre><code>singleton、prototype、request、session、global-session
+WebApplicationContext可用（request、session、global-session）</code></pre>
+<blockquote>
+<p>生命周期</p>
+</blockquote>
+<p>init-method：InitializingBean <code>不建议使用</code><br>destroy-method：DisposableBean <code>不建议使用</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AbstractApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;Beans.xml&quot;</span>);</span><br><span class="line">      HelloWorld obj = (HelloWorld) context.getBean(<span class="string">&quot;helloWorld&quot;</span>);</span><br><span class="line"></span><br><span class="line">      context.registerShutdownHook();</span><br></pre></td></tr></table></figure>
+
+<p>XML -&gt; beans 配置默认的初始化和销毁方法<br>    <code>default-init-method=&quot;init&quot;</code><br>    <code>default-destroy-method=&quot;destroy&quot;</code></p>
+<blockquote>
+<p>后置处理器</p>
+</blockquote>
+<p>BeanPostProcessor<br>调用<code>初始化方法前后</code>对 Bean 进行额外的处理<br>通过设置 BeanPostProcessor 实现的 Ordered 接口提供的 order 属性来控制这些 BeanPostProcessor 接口的执行顺序</p>
+<blockquote>
+<p>定义继承</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">&quot;beanTeamplate&quot;</span> <span class="keyword">abstract</span>=<span class="string">&quot;true&quot;</span>&gt;</span><br><span class="line">  &lt;property name=<span class="string">&quot;message1&quot;</span> value=<span class="string">&quot;Hello World!&quot;</span>/&gt;</span><br><span class="line">  &lt;property name=<span class="string">&quot;message2&quot;</span> value=<span class="string">&quot;Hello Second World!&quot;</span>/&gt;</span><br><span class="line">  &lt;property name=<span class="string">&quot;message3&quot;</span> value=<span class="string">&quot;Namaste India!&quot;</span>/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=<span class="string">&quot;helloIndia&quot;</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;com.tutorialspoint.HelloIndia&quot;</span> parent=<span class="string">&quot;beanTeamplate&quot;</span>&gt;</span><br><span class="line">  &lt;property name=<span class="string">&quot;message1&quot;</span> value=<span class="string">&quot;Hello India!&quot;</span>/&gt;</span><br><span class="line">  &lt;property name=<span class="string">&quot;message3&quot;</span> value=<span class="string">&quot;Namaste India!&quot;</span>/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-05-12</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Java/" title="Java">Java </a><a class="tag" href="/tags/Java/" title="Java">Java </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/05/12/Java/Java Spring IOC 和 DI/,日升于东,Java Spring IOC和DI,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/05/25/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0/%E6%95%B0%E6%8D%AE%E8%B5%84%E4%BA%A7%E7%AE%A1%E7%90%86%E7%99%BD%E7%9A%AE%E4%B9%A6/" title="数据资产管理白皮书">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/05/11/Java/Spring/" title="Spring">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-text">创建对象的几种方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84"><span class="toc-text">反射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IOC%EF%BC%8CDI"><span class="toc-text">IOC，DI</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bean-%E8%A7%84%E8%8C%83"><span class="toc-text">Bean 规范</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

@@ -1,0 +1,561 @@
+<!DOCTYPE html><html><head><title>伪类和伪元素 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>伪类和伪元素</a></h3></div><div class="post-content"><p>伪类：<code>伪类：</code><br>伪元素：<code>伪元素：：</code></p>
+<h4 id="伪类盒子阴影"><a href="#伪类盒子阴影" class="headerlink" title="伪类盒子阴影"></a>伪类盒子阴影</h4><p>box-shadow 属性实现盒子阴影效果，repaint 消耗较多，可以通过修改伪元素的透明度实现盒子阴影</p>
+<p>实现原理：</p>
+<div class="before">
+    <p>Before</p>
+    <p>Animate/transition box-shadow 可以使用box-shadow属性来实现盒子阴影效果，但重绘消耗较多</p>
+</div>
+ <hr />
+<div class="after">
+    <p>After</p>
+    <p>通过修改伪元素的透明度来实现同样的效果,没有重绘消耗</p>
+</div>
+
+<style>
+.before{
+  padding: 1em;
+  background-color: #fff;
+  transition: 0.2s;
+}
+.before:hover{
+  box-shadow: 0 0 10px rgba(0,0,0,.3)
+}
+.after{
+  position:relative;
+  padding: 1em;
+  background: #fff;
+}
+.after:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  box-shadow:0 0 10px rgba(0,0,0,.3);
+  opacity: 0;
+  will-change: opacity;
+  transition: 0.2s;
+}
+.after:hover:before{
+  opacity: 1;
+}
+</style>
+
+<h4 id="伪元素面包屑"><a href="#伪元素面包屑" class="headerlink" title="伪元素面包屑"></a>伪元素面包屑</h4><ul class="breadcrumb">
+    <li><span>Home</span></li>
+    <li><span>Pictures</span></li>
+    <li><span>Summer 15</span></li>
+    <li>Italy</li>
+</ul>
+
+<style>
+ul.breadcrumb{
+  padding: 8px 16px;
+  list-style: none;
+  background-color: #eee;
+}
+ul.breadcrumb li{
+  display: inline;
+}
+ul.breadcrumb li+li:before{
+  padding: 8px;
+  color: black;
+  content: ">"
+}
+ul.breadcrumb li span{
+  color: #0092db;
+  cursor:pointer;
+}
+</style>
+
+<h4 id="伪元素悬停动画"><a href="#伪元素悬停动画" class="headerlink" title="伪元素悬停动画"></a>伪元素悬停动画</h4><div class="wrap">
+<div class="box one">
+    <div class="item">Buy</div>
+</div>
+
+<div class="box two">
+    <div class="item">Buy</div>
+</div>
+</div>
+
+
+<style>
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+.wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+.box {
+    position: relative;
+    width: 120px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+    color: #F27059;
+}
+.item {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s all ease;
+}
+.one:before,
+.one:after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #F27059;
+    transition: 0.4s all ease;
+}
+.one:before {
+    top: 0;
+}
+.one:after {
+    bottom: 0;
+}
+.one .item:before,
+.one .item:after {
+    position: absolute;
+    top: 0;
+    content: '';
+    height: 100%;
+    width: 2px;
+    background: #F27059;
+    transition: 0.4s all ease;
+    z-index: -1;
+}
+.one .item:before {
+    left: 0;
+}
+.one .item:after {
+    right: 0;
+}
+.one:hover:before,
+.one:hover:after {
+    transition: 0.4s all ease;
+}
+.one:hover:before {
+    transform: translateY(-10px);
+}
+.one:hover:after {
+    transform: translateY(10px);
+}
+.one:hover .item {
+    color: white;
+}
+.one:hover .item:before,
+.one:hover .item:after {
+    width: 100%;
+    transition: 0.4s all ease;
+}
+.two {
+    box-sizing: border-box;
+    border: 2px solid #F27059;
+    position: relative;
+}
+.two:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 50px;
+    transition: 0.4s all ease;
+    background: #F27059;
+    left: 0;
+    z-index: -1;
+}
+.two:hover {
+    color: white;
+}
+.two:hover:before {
+    width: 100%;
+    transition: 0.4s all ease;
+}
+</style>
+
+<h4 id="伪元素角度边界"><a href="#伪元素角度边界" class="headerlink" title="伪元素角度边界"></a>伪元素角度边界</h4><p>原理：transform: skewY(xxdeg);</p>
+<div class="block -berry edge--bottom">
+    <p>Bottom Angled Edge</p>
+</div>
+
+<div class="block -blue edge--bottom--reverse">
+    <p>Bottom Angled Edge</p>
+    <p>Reversed</p>
+</div>
+
+<div class="block -berry edge--top">
+    <p>Top Angled Edge</p>
+</div>
+
+<div class="block -blue edge--top--reverse">
+    <p>Top Angled Edge</p>
+    <p>Reversed</p>
+</div>
+
+<div class="block -orange edge--both">
+    <p>Top & Bottom Angled Edges</p>
+</div>
+
+<div class="block -green edge--both--reverse">
+    <p>Top & Bottom Angled Edges</p>
+    <p>Reversed</p>
+</div>
+
+<style>
+.edge--bottom {
+    position: relative;
+    z-index: 1;
+}
+.edge--bottom:after {
+    background: inherit;
+    content: '';
+    display: block;
+    height: 50%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: -1;
+}
+.edge--bottom:after {
+    bottom: 0;
+    -webkit-transform: skewY(-1.5deg);
+    -ms-transform: skewY(-1.5deg);
+    transform: skewY(-1.5deg);
+    -webkit-transform-origin: 100%;
+    -ms-transform-origin: 100%;
+    transform-origin: 100%;
+}
+.edge--bottom--reverse {
+    position: relative;
+    z-index: 1;
+}
+.edge--bottom--reverse:after {
+    background: inherit;
+    content: '';
+    display: block;
+    height: 50%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: -1;
+}
+.edge--bottom--reverse:after {
+    bottom: 0;
+    -webkit-transform: skewY(1.5deg);
+    -ms-transform: skewY(1.5deg);
+    transform: skewY(1.5deg);
+    -webkit-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+}
+.edge--top {
+    position: relative;
+    z-index: 1;
+}
+.edge--top:before {
+    background: inherit;
+    content: '';
+    display: block;
+    height: 50%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: -1;
+}
+.edge--top:before {
+    top: 0;
+    -webkit-transform: skewY(1.5deg);
+    -ms-transform: skewY(1.5deg);
+    transform: skewY(1.5deg);
+    -webkit-transform-origin: 100% 0;
+    -ms-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+}
+.edge--top--reverse {
+    position: relative;
+    z-index: 1;
+}
+.edge--top--reverse:before {
+    background: inherit;
+    content: '';
+    display: block;
+    height: 50%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: -1;
+}
+.edge--top--reverse:before {
+    top: 0;
+    -webkit-transform: skewY(-1.5deg);
+    -ms-transform: skewY(-1.5deg);
+    transform: skewY(-1.5deg);
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+.edge--both {
+    position: relative;
+    z-index: 1;
+}
+.edge--both:before,
+.edge--both:after {
+    background: inherit;
+    content: '';
+    display: block;
+    height: 50%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: -1;
+}
+.edge--both:before {
+    top: 0;
+    -webkit-transform: skewY(1.5deg);
+    -ms-transform: skewY(1.5deg);
+    transform: skewY(1.5deg);
+    -webkit-transform-origin: 100% 0;
+    -ms-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+}
+.edge--both:after {
+    bottom: 0;
+    -webkit-transform: skewY(-1.5deg);
+    -ms-transform: skewY(-1.5deg);
+    transform: skewY(-1.5deg);
+    -webkit-transform-origin: 100%;
+    -ms-transform-origin: 100%;
+    transform-origin: 100%;
+}
+.edge--both--reverse {
+    position: relative;
+    z-index: 1;
+}
+.edge--both--reverse:before,
+.edge--both--reverse:after {
+    background: inherit;
+    content: '';
+    display: block;
+    height: 50%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: -1;
+}
+.edge--both--reverse:before {
+    top: 0;
+    -webkit-transform: skewY(-1.5deg);
+    -ms-transform: skewY(-1.5deg);
+    transform: skewY(-1.5deg);
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+.edge--both--reverse:after {
+    bottom: 0;
+    -webkit-transform: skewY(1.5deg);
+    -ms-transform: skewY(1.5deg);
+    transform: skewY(1.5deg);
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+.-berry {
+    background: #b52b4a;
+}
+.-blue {
+    background: #41ade5;
+}
+.-orange {
+    background: #de6628;
+}
+.-green {
+    background: #5e9b42;
+}
+.block {
+    color: #fff;
+    font-family: 'Fira Sans', sans-serif;
+    margin: 0 0 80px;
+    padding: 5% 20px;
+    text-align: center;
+}
+p {
+    margin-top: 0.5em;
+}
+</style>
+
+<h4 id="自动打字动画"><a href="#自动打字动画" class="headerlink" title="自动打字动画"></a>自动打字动画</h4><p class="tagline">
+    <span class="tagline-skill"><span class="tagline-skill_inner">webdesign</span></span>
+</p>
+
+<style>
+.tagline,
+.tagline-skill {
+    height: 50px;
+}
+.tagline {
+    font-family: "Fira Mono", monospace;
+    overflow: hidden;
+    padding: 1rem;
+    background-color: #666;
+    color: #fff;
+}
+.tagline-skill {
+    position: relative;
+    font-size: 1.5em;
+    padding-top: .75em;
+    -webkit-animation: animatetotop 6s steps(3) infinite;
+    animation: animatetotop 6s steps(3) infinite;
+}
+.tagline-skill_inner,
+.tagline-skill-overlay {
+    display: inline-block;
+}
+.tagline-skill_inner {
+    position: relative;
+    line-height: 1;
+}
+.tagline-skill_inner:after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    right: 0;
+    bottom: -2px;
+    left: 0;
+    border-left: 1px solid #fff;
+    background-color: #666;
+    -webkit-animation: animatetoright 1s steps(10) infinite alternate;
+    animation: animatetoright 1s steps(10) infinite alternate;
+}
+@keyframes animatetoright {
+    0% {
+        left: 0;
+        margin-right: auto;
+    }
+    100% {
+        left: 100%;
+        margin-left: .6em;
+        margin-right: -.6em;
+    }
+}
+@keyframes animatetotop {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: -240px;
+    }
+}
+</style>
+
+<h4 id="背景水印"><a href="#背景水印" class="headerlink" title="背景水印"></a>背景水印</h4><div class="doc_content">
+    <div class="pre-headline">23 October 1983</div>
+    <strong>Welcome The Internet, The Nice Version</strong>
+    <p>Was Phileas Fogg rich? Undoubtedly. But those who knew him best could not imagine how he had made his fortune, and Mr. Fogg was the last person to whom to apply for the information. He was not lavish, nor, on the contrary, avaricious; for, whenever
+        he knew that money was needed for a noble, useful, or benevolent purpose, he supplied it quietly and sometimes anonymously. He was, in short, the least communicative of men. He talked very little, and seemed all the more mysterious for his taciturn
+        manner. His daily habits were quite open to observation; but whatever he did was so exactly the same thing that he had always done before, that the wits of the curious were fairly puzzled.</p>
+
+  <p>Had he travelled? It was likely, for no one seemed to know the world more familiarly; there was no spot so secluded that he did not appear to have an intimate acquaintance with it. He often corrected, with a few clear words, the thousand conjectures advanced by members of the club as to lost and unheard-of travellers, pointing out the true probabilities, and seeming as if gifted with a sort of second sight, so often did events justify his predictions. He must have travelled everywhere, at least in the spirit.</p>
+</div>
+
+<style>
+.doc_content {
+    width: 80%;
+    padding: 1rem 4rem 2rem 2rem;
+    background: #fff;
+    margin: 0.5rem;
+}
+.pre-headline {
+    color: #777;
+    letter-spacing: 0.1rem;
+    font-family: monospace;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}
+strong {
+    position: relative;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: -0.05rem;
+    line-height: 1;
+    text-transform: uppercase;
+    z-index: 10;
+}
+strong:before {
+    content: "2018/08";
+    font-family: monospace;
+    font-size: 10rem;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    z-index: 0;
+    line-height: 1;
+    color: rgba(50, 25, 0, 0.1);
+}
+</style>
+
+<h4 id="伪元素页码摘要"><a href="#伪元素页码摘要" class="headerlink" title="伪元素页码摘要"></a>伪元素页码摘要</h4><ul class="pageList">
+    <li data-page="1">青铜-1、伪类实现盒子阴影</li>
+    <li data-page="2">青铜-2、伪元素:before实现的面包屑导航栏</li>
+    <li data-page="3">青铜-3、伪元素实现悬停时按钮填充和边界浮动动画</li>
+    <li data-page="4">青铜-4、伪类after实现的三角箭头</li>
+    <li data-page="5">青铜-5、伪类after实现的图片箭头</li>
+    <li data-page="6">青铜-6、伪元素实现带角度的底部边界（倾斜的边界）</li>
+    <li data-page="7">王者-1、伪元素和平移（translate）变换实现的提示框</li>
+    <li data-page="8">王者-2、使用CSS3伪元素实现的自动打字动画</li>
+    <li data-page="9">王者-3、CSS3 伪元素构建的文章水印背景</li>
+    <li data-page="10">王者-4、CSS3 用伪元素做页码摘要</li>
+</ul>
+
+<style>
+.pageList li {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    margin: .5rem 0;
+    text-decoration: none;
+    transition: color .2s ease-in-out;
+}
+.pageList li::before {
+    height: .1em;
+    flex: 1 1 auto;
+    order: 1;
+    background: left bottom/contain repeat-x url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3IDIiPjxjaXJjbGUgZmlsbD0iI2ZmZiIgY3g9IjMuNSIgY3k9IjEiIHI9IjEiLz48L3N2Zz4=);
+    content: '';
+}
+.pageList li::after {
+    order: 2;
+    content: "p." attr(data-page);
+}
+.pageList li:hover,
+.pageList li:focus {
+    color: black;
+}
+</style>
+
+<blockquote>
+<p>兼容性</p>
+</blockquote>
+<p>IE8 不支持 CSS3 很多特性，伪元素nth-child 可以用 <code>+ 相邻元素</code> 实现<br>IE9.js 解决 IE5.5 至 IE8 CSS3的特性兼容问题</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-03</span><i class="fa fa-tag"></i><a class="tag" href="/categories/CSS/" title="CSS">CSS </a><a class="tag" href="/tags/Css/" title="Css">Css </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/08/03/Css/伪类和伪元素/,日升于东,伪类和伪元素,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/08/03/%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98%E5%AE%9E%E8%B7%B5/" title="前端缓存实践">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/08/01/Javascript/JSONP%20%E5%8E%9F%E7%90%86/" title="JSONP 原理">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%AA%E7%B1%BB%E7%9B%92%E5%AD%90%E9%98%B4%E5%BD%B1"><span class="toc-text">伪类盒子阴影</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%AA%E5%85%83%E7%B4%A0%E9%9D%A2%E5%8C%85%E5%B1%91"><span class="toc-text">伪元素面包屑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%AA%E5%85%83%E7%B4%A0%E6%82%AC%E5%81%9C%E5%8A%A8%E7%94%BB"><span class="toc-text">伪元素悬停动画</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%AA%E5%85%83%E7%B4%A0%E8%A7%92%E5%BA%A6%E8%BE%B9%E7%95%8C"><span class="toc-text">伪元素角度边界</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E6%89%93%E5%AD%97%E5%8A%A8%E7%94%BB"><span class="toc-text">自动打字动画</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E6%B0%B4%E5%8D%B0"><span class="toc-text">背景水印</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%AA%E5%85%83%E7%B4%A0%E9%A1%B5%E7%A0%81%E6%91%98%E8%A6%81"><span class="toc-text">伪元素页码摘要</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

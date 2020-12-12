@@ -1,0 +1,1412 @@
+<!DOCTYPE html><html><head><title>Css3 双螺旋 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Css3 双螺旋</a></h3></div><div class="post-content"><style>
+.animiateWrap,.helix{
+    -webkit-perspective: 1500px;
+    perspective: 1500px;
+}
+.animiateWrap ul,.helix ul,.animiateWrap ul li,.helix ul li{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+.animiateWrap ul{
+    display:flex;
+    flex-flow:row nowrap;
+
+    height:18rem;
+    margin-bottom:3rem;
+
+    justify-content: center;
+      align-items: center;
+
+    background:#666;
+}
+
+/* 节点 */
+ul.a li{
+    position:relative;
+    width:.8rem;
+    height:10rem;    
+    margin:1rem .5rem;
+
+    flex: 0 0 auto;
+
+    transform-style: preserve-3d;
+    animation: grow 8s linear infinite; /* 动画 */
+}
+
+/*  延时动画 */
+ul.a li:nth-child(1),ul.a li:nth-child(1) i,
+ul.a li:nth-child(1):before,ul.a li:nth-child(1):after,
+ul.a li:nth-child(1) i:before,ul.a li:nth-child(1) i:after{
+    animation-delay: -.4s;
+}
+ul.a li:nth-child(2),
+ul.a li:nth-child(2):before,ul.a li:nth-child(2):after,
+ul.a li:nth-child(2) i:before,ul.a li:nth-child(2) i:after{
+    animation-delay: -.8s;
+}
+ul.a li:nth-child(3),
+ul.a li:nth-child(3):before,ul.a li:nth-child(3):after,
+ul.a li:nth-child(3) i:before,ul.a li:nth-child(3) i:after{
+    animation-delay: -1.2s;
+}
+ul.a li:nth-child(4),
+ul.a li:nth-child(4):before,ul.a li:nth-child(4):after,
+ul.a li:nth-child(4) i:before,ul.a li:nth-child(4) i:after{
+    animation-delay: -1.6s;
+}
+ul.a li:nth-child(5),
+ul.a li:nth-child(5):before,ul.a li:nth-child(5):after,
+ul.a li:nth-child(5) i:before,ul.a li:nth-child(5) i:after{
+    animation-delay: -2.0s;
+}
+ul.a li:nth-child(6),
+ul.a li:nth-child(6):before,ul.a li:nth-child(6):after,
+ul.a li:nth-child(6) i:before,ul.a li:nth-child(6) i:after{
+    animation-delay: -2.4s;
+}
+ul.a li:nth-child(7),
+ul.a li:nth-child(7):before,ul.a li:nth-child(7):after,
+ul.a li:nth-child(7) i:before,ul.a li:nth-child(7) i:after{
+    animation-delay: -2.8s;
+}
+ul.a li:nth-child(8),
+ul.a li:nth-child(8):before,ul.a li:nth-child(8):after,
+ul.a li:nth-child(8) i:before,ul.a li:nth-child(8) i:after{
+    animation-delay: -3.2s;
+}
+ul.a li:nth-child(9),
+ul.a li:nth-child(9):before,ul.a li:nth-child(9):after,
+ul.a li:nth-child(9) i:before,ul.a li:nth-child(9) i:after{
+    animation-delay: -3.6s;
+}
+ul.a li:nth-child(10),
+ul.a li:nth-child(10):before,ul.a li:nth-child(10):after,
+ul.a li:nth-child(10) i:before,ul.a li:nth-child(10) i:after{
+    animation-delay: -4.0s;
+}
+ul.a li:nth-child(11),
+ul.a li:nth-child(11):before,ul.a li:nth-child(11):after,
+ul.a li:nth-child(11) i:before,ul.a li:nth-child(11) i:after{
+    animation-delay: -4.4s;
+}
+ul.a li:nth-child(12),
+ul.a li:nth-child(12):before,ul.a li:nth-child(12):after,
+ul.a li:nth-child(12) i:before,ul.a li:nth-child(12) i:after{
+    animation-delay: -4.8s;
+}
+ul.a li:nth-child(13),
+ul.a li:nth-child(13):before,ul.a li:nth-child(13):after,
+ul.a li:nth-child(13) i:before,ul.a li:nth-child(13) i:after{
+    animation-delay: -5.2s;
+}
+ul.a li:nth-child(14),
+ul.a li:nth-child(14):before,ul.a li:nth-child(14):after,
+ul.a li:nth-child(14) i:before,ul.a li:nth-child(14) i:after{
+    animation-delay: -5.6s;
+}
+ul.a li:nth-child(15),
+ul.a li:nth-child(15):before,ul.a li:nth-child(15):after,
+ul.a li:nth-child(15) i:before,ul.a li:nth-child(15) i:after{
+    animation-delay: -6.0s;
+}
+ul.a li:nth-child(16),
+ul.a li:nth-child(16):before,ul.a li:nth-child(16):after,
+ul.a li:nth-child(16) i:before,ul.a li:nth-child(16) i:after{
+    animation-delay: -6.4s;
+}
+ul.a li:nth-child(17),
+ul.a li:nth-child(17):before,ul.a li:nth-child(17):after,
+ul.a li:nth-child(17) i:before,ul.a li:nth-child(17) i:after{
+    animation-delay: -6.8s;
+}
+ul.a li:nth-child(18),
+ul.a li:nth-child(18):before,ul.a li:nth-child(18):after,
+ul.a li:nth-child(18) i:before,ul.a li:nth-child(18) i:after{
+    animation-delay: -7.2s;
+}
+ul.a li:nth-child(19),
+ul.a li:nth-child(19):before,ul.a li:nth-child(19):after,
+ul.a li:nth-child(19) i:before,ul.a li:nth-child(19) i:after{
+    animation-delay: -7.6s;
+}
+ul.a li:nth-child(20),
+ul.a li:nth-child(20):before,ul.a li:nth-child(20):after,
+ul.a li:nth-child(20) i:before,ul.a li:nth-child(20) i:after{
+    animation-delay: -8.0s;
+}
+
+ul.a li:before,ul.a li:after,
+ul.a li i:before,ul.a li i:after{
+    content:'';
+    position:absolute;
+    display:block;
+}
+
+/* 圆点 */
+ul.a li:before,ul.a li:after{
+    left:0;
+    width:.8rem;
+    height:.8rem;
+    border-radius:50%;
+    background:#fff;
+
+    box-shadow: 0 0 0 2px #fff;
+
+    animation: shrink 8s linear infinite; /* 动画 */
+}
+ul.a li:before{
+    top:-1.5rem;
+}
+ul.a li:after{
+    bottom:-1.5rem;
+}
+
+/* 线条 */
+ul.a li i{
+    display:inline-flex;
+    justify-content: center;
+      align-items: center;
+
+    width:30%;
+    height:90%;
+    background:#fff;
+    z-index:-1;
+
+    transform:translate(100%,5%);
+}
+
+/* 方块 */
+ul.a li i:before,ul.a li i:after{
+    width:.6rem;
+    height:.6rem;
+    left:50%;
+
+    background:#fff;
+}
+ul.a li i:before{
+    top:0;
+    transform:translate(-50%,-50%);
+
+    animation: shrinkb 8s linear infinite; /* 动画 */
+}
+ul.a li i:after{
+    bottom:0;
+    transform:translate(-50%,50%);
+
+    animation: shrinka 8s linear infinite; /* 动画 */
+}
+
+@keyframes animate{
+    100%{
+        transform: rotateX(360deg) rotateY(360deg);    
+    }
+}
+@keyframes grow{
+    100%{
+        transform: rotateX(360deg);
+    }
+}
+@keyframes shrink{
+    100%{
+        transform: rotateX(-360deg);
+    }
+}
+@keyframes shrinkb{
+    100%{
+        transform:translate(-50%,-50%) rotateX(-360deg);
+    }
+}
+@keyframes shrinka{
+    100%{
+        transform:translate(-50%,50%) rotateX(-360deg);
+    }
+}
+
+.helix{
+    background:#666;
+    width:100%;
+    height: 45vmin;
+
+    margin-bottom:3rem;
+}
+
+.helix ul{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  height: 40vmin;
+  width: 40vmin;
+  border-radius: 50%;
+}
+
+@keyframes update-z-index {
+  0% {
+    z-index: 1;
+  }
+  49% {
+    z-index: 1;
+  }
+  50% {
+    z-index: -1;
+  }
+  100% {
+    z-index: -1;
+  }
+}
+@keyframes helix{
+    0% {
+    -webkit-transform: translateY(-50%) translateX(0) scale(1);
+            transform: translateY(-50%) translateX(0) scale(1);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  25% {
+    -webkit-transform: translateY(-50%) translateX(3.75vmin) scale(1.3);
+            transform: translateY(-50%) translateX(3.75vmin) scale(1.3);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  50% {
+    -webkit-transform: translateY(-50%) translateX(7.5vmin) scale(1);
+            transform: translateY(-50%) translateX(7.5vmin) scale(1);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  75% {
+    -webkit-transform: translateY(-50%) translateX(3.75vmin) scale(0.5);
+            transform: translateY(-50%) translateX(3.75vmin) scale(0.5);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  100% {
+    -webkit-transform: translateY(-50%) translateX(0) scale(1);
+            transform: translateY(-50%) translateX(0) scale(1);
+  }
+}
+
+.helix > ul li {
+  position: absolute;
+  left: 0;
+  top: calc(50% - 60vmin / 20);
+  height: 6vmin;
+  width: 50%;
+  -webkit-transform-origin: 100% 50%;
+  transform-origin: 100% 50%;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-animation: update-z-index 2s linear infinite;
+  animation: update-z-index 2s linear infinite;
+
+  text-indent:-9999px;
+}
+
+/* 白圈 */
+.helix > ul li:nth-of-type(1) {
+  -webkit-transform: rotate(10deg);
+          transform: rotate(10deg);
+}
+.helix > ul li:nth-of-type(1)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(1),
+.helix > ul li:nth-of-type(1)::after {
+  -webkit-animation-delay: -0.33333333s;
+          animation-delay: -0.33333333s;
+}
+.helix > ul li:nth-of-type(2) {
+  -webkit-transform: rotate(20deg);
+          transform: rotate(20deg);
+}
+.helix > ul li:nth-of-type(2)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(2),
+.helix > ul li:nth-of-type(2)::after {
+  -webkit-animation-delay: -0.66666667s;
+          animation-delay: -0.66666667s;
+}
+.helix > ul li:nth-of-type(3) {
+  -webkit-transform: rotate(30deg);
+          transform: rotate(30deg);
+}
+.helix > ul li:nth-of-type(3)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(3),
+.helix > ul li:nth-of-type(3)::after {
+  -webkit-animation-delay: -1s;
+          animation-delay: -1s;
+}
+.helix > ul li:nth-of-type(4) {
+  -webkit-transform: rotate(40deg);
+          transform: rotate(40deg);
+}
+.helix > ul li:nth-of-type(4)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(4),
+.helix > ul li:nth-of-type(4)::after {
+  -webkit-animation-delay: -1.33333333s;
+          animation-delay: -1.33333333s;
+}
+.helix > ul li:nth-of-type(5) {
+  -webkit-transform: rotate(50deg);
+          transform: rotate(50deg);
+}
+.helix > ul li:nth-of-type(5)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(5),
+.helix > ul li:nth-of-type(5)::after {
+  -webkit-animation-delay: -1.66666667s;
+          animation-delay: -1.66666667s;
+}
+.helix > ul li:nth-of-type(6) {
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+.helix > ul li:nth-of-type(6)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(6),
+.helix > ul li:nth-of-type(6)::after {
+  -webkit-animation-delay: -2s;
+          animation-delay: -2s;
+}
+.helix > ul li:nth-of-type(7) {
+  -webkit-transform: rotate(70deg);
+          transform: rotate(70deg);
+}
+.helix > ul li:nth-of-type(7)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(7),
+.helix > ul li:nth-of-type(7)::after {
+  -webkit-animation-delay: -2.33333333s;
+          animation-delay: -2.33333333s;
+}
+.helix > ul li:nth-of-type(8) {
+  -webkit-transform: rotate(80deg);
+          transform: rotate(80deg);
+}
+.helix > ul li:nth-of-type(8)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(8),
+.helix > ul li:nth-of-type(8)::after {
+  -webkit-animation-delay: -2.66666667s;
+          animation-delay: -2.66666667s;
+}
+.helix > ul li:nth-of-type(9) {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+.helix > ul li:nth-of-type(9)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(9),
+.helix > ul li:nth-of-type(9)::after {
+  -webkit-animation-delay: -3s;
+          animation-delay: -3s;
+}
+.helix > ul li:nth-of-type(10) {
+  -webkit-transform: rotate(100deg);
+          transform: rotate(100deg);
+}
+.helix > ul li:nth-of-type(10)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(10),
+.helix > ul li:nth-of-type(10)::after {
+  -webkit-animation-delay: -3.33333333s;
+          animation-delay: -3.33333333s;
+}
+.helix > ul li:nth-of-type(11) {
+  -webkit-transform: rotate(110deg);
+          transform: rotate(110deg);
+}
+.helix > ul li:nth-of-type(11)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(11),
+.helix > ul li:nth-of-type(11)::after {
+  -webkit-animation-delay: -3.66666667s;
+          animation-delay: -3.66666667s;
+}
+.helix > ul li:nth-of-type(12) {
+  -webkit-transform: rotate(120deg);
+          transform: rotate(120deg);
+}
+.helix > ul li:nth-of-type(12)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(12),
+.helix > ul li:nth-of-type(12)::after {
+  -webkit-animation-delay: -4s;
+          animation-delay: -4s;
+}
+.helix > ul li:nth-of-type(13) {
+  -webkit-transform: rotate(130deg);
+          transform: rotate(130deg);
+}
+.helix > ul li:nth-of-type(13)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(13),
+.helix > ul li:nth-of-type(13)::after {
+  -webkit-animation-delay: -4.33333333s;
+          animation-delay: -4.33333333s;
+}
+.helix > ul li:nth-of-type(14) {
+  -webkit-transform: rotate(140deg);
+          transform: rotate(140deg);
+}
+.helix > ul li:nth-of-type(14)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(14),
+.helix > ul li:nth-of-type(14)::after {
+  -webkit-animation-delay: -4.66666667s;
+          animation-delay: -4.66666667s;
+}
+.helix > ul li:nth-of-type(15) {
+  -webkit-transform: rotate(150deg);
+          transform: rotate(150deg);
+}
+.helix > ul li:nth-of-type(15)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(15),
+.helix > ul li:nth-of-type(15)::after {
+  -webkit-animation-delay: -5s;
+          animation-delay: -5s;
+}
+.helix > ul li:nth-of-type(16) {
+  -webkit-transform: rotate(160deg);
+          transform: rotate(160deg);
+}
+.helix > ul li:nth-of-type(16)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(16),
+.helix > ul li:nth-of-type(16)::after {
+  -webkit-animation-delay: -5.33333333s;
+          animation-delay: -5.33333333s;
+}
+.helix > ul li:nth-of-type(17) {
+  -webkit-transform: rotate(170deg);
+          transform: rotate(170deg);
+}
+.helix > ul li:nth-of-type(17)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(17),
+.helix > ul li:nth-of-type(17)::after {
+  -webkit-animation-delay: -5.66666667s;
+          animation-delay: -5.66666667s;
+}
+.helix > ul li:nth-of-type(18) {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.helix > ul li:nth-of-type(18)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(18),
+.helix > ul li:nth-of-type(18)::after {
+  -webkit-animation-delay: -6s;
+          animation-delay: -6s;
+}
+.helix > ul li:nth-of-type(19) {
+  -webkit-transform: rotate(190deg);
+          transform: rotate(190deg);
+}
+.helix > ul li:nth-of-type(19)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(19),
+.helix > ul li:nth-of-type(19)::after {
+  -webkit-animation-delay: -6.33333333s;
+          animation-delay: -6.33333333s;
+}
+.helix > ul li:nth-of-type(20) {
+  -webkit-transform: rotate(200deg);
+          transform: rotate(200deg);
+}
+.helix > ul li:nth-of-type(20)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(20),
+.helix > ul li:nth-of-type(20)::after {
+  -webkit-animation-delay: -6.66666667s;
+          animation-delay: -6.66666667s;
+}
+.helix > ul li:nth-of-type(21) {
+  -webkit-transform: rotate(210deg);
+          transform: rotate(210deg);
+}
+.helix > ul li:nth-of-type(21)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(21),
+.helix > ul li:nth-of-type(21)::after {
+  -webkit-animation-delay: -7s;
+          animation-delay: -7s;
+}
+.helix > ul li:nth-of-type(22) {
+  -webkit-transform: rotate(220deg);
+          transform: rotate(220deg);
+}
+.helix > ul li:nth-of-type(22)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(22),
+.helix > ul li:nth-of-type(22)::after {
+  -webkit-animation-delay: -7.33333333s;
+          animation-delay: -7.33333333s;
+}
+.helix > ul li:nth-of-type(23) {
+  -webkit-transform: rotate(230deg);
+          transform: rotate(230deg);
+}
+.helix > ul li:nth-of-type(23)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(23),
+.helix > ul li:nth-of-type(23)::after {
+  -webkit-animation-delay: -7.66666667s;
+          animation-delay: -7.66666667s;
+}
+.helix > ul li:nth-of-type(24) {
+  -webkit-transform: rotate(240deg);
+          transform: rotate(240deg);
+}
+.helix > ul li:nth-of-type(24)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(24),
+.helix > ul li:nth-of-type(24)::after {
+  -webkit-animation-delay: -8s;
+          animation-delay: -8s;
+}
+.helix > ul li:nth-of-type(25) {
+  -webkit-transform: rotate(250deg);
+          transform: rotate(250deg);
+}
+.helix > ul li:nth-of-type(25)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(25),
+.helix > ul li:nth-of-type(25)::after {
+  -webkit-animation-delay: -8.33333333s;
+          animation-delay: -8.33333333s;
+}
+.helix > ul li:nth-of-type(26) {
+  -webkit-transform: rotate(260deg);
+          transform: rotate(260deg);
+}
+.helix > ul li:nth-of-type(26)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(26),
+.helix > ul li:nth-of-type(26)::after {
+  -webkit-animation-delay: -8.66666667s;
+          animation-delay: -8.66666667s;
+}
+.helix > ul li:nth-of-type(27) {
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+.helix > ul li:nth-of-type(27)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(27),
+.helix > ul li:nth-of-type(27)::after {
+  -webkit-animation-delay: -9s;
+          animation-delay: -9s;
+}
+.helix > ul li:nth-of-type(28) {
+  -webkit-transform: rotate(280deg);
+          transform: rotate(280deg);
+}
+.helix > ul li:nth-of-type(28)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(28),
+.helix > ul li:nth-of-type(28)::after {
+  -webkit-animation-delay: -9.33333333s;
+          animation-delay: -9.33333333s;
+}
+.helix > ul li:nth-of-type(29) {
+  -webkit-transform: rotate(290deg);
+          transform: rotate(290deg);
+}
+.helix > ul li:nth-of-type(29)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(29),
+.helix > ul li:nth-of-type(29)::after {
+  -webkit-animation-delay: -9.66666667s;
+          animation-delay: -9.66666667s;
+}
+.helix > ul li:nth-of-type(30) {
+  -webkit-transform: rotate(300deg);
+          transform: rotate(300deg);
+}
+.helix > ul li:nth-of-type(30)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(30),
+.helix > ul li:nth-of-type(30)::after {
+  -webkit-animation-delay: -10s;
+          animation-delay: -10s;
+}
+.helix > ul li:nth-of-type(31) {
+  -webkit-transform: rotate(310deg);
+          transform: rotate(310deg);
+}
+.helix > ul li:nth-of-type(31)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(31),
+.helix > ul li:nth-of-type(31)::after {
+  -webkit-animation-delay: -10.33333333s;
+          animation-delay: -10.33333333s;
+}
+.helix > ul li:nth-of-type(32) {
+  -webkit-transform: rotate(320deg);
+          transform: rotate(320deg);
+}
+.helix > ul li:nth-of-type(32)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(32),
+.helix > ul li:nth-of-type(32)::after {
+  -webkit-animation-delay: -10.66666667s;
+          animation-delay: -10.66666667s;
+}
+.helix > ul li:nth-of-type(33) {
+  -webkit-transform: rotate(330deg);
+          transform: rotate(330deg);
+}
+.helix > ul li:nth-of-type(33)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(33),
+.helix > ul li:nth-of-type(33)::after {
+  -webkit-animation-delay: -11s;
+          animation-delay: -11s;
+}
+.helix > ul li:nth-of-type(34) {
+  -webkit-transform: rotate(340deg);
+          transform: rotate(340deg);
+}
+.helix > ul li:nth-of-type(34)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(34),
+.helix > ul li:nth-of-type(34)::after {
+  -webkit-animation-delay: -11.33333333s;
+          animation-delay: -11.33333333s;
+}
+.helix > ul li:nth-of-type(35) {
+  -webkit-transform: rotate(350deg);
+          transform: rotate(350deg);
+}
+.helix > ul li:nth-of-type(35)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(35),
+.helix > ul li:nth-of-type(35)::after {
+  -webkit-animation-delay: -11.66666667s;
+          animation-delay: -11.66666667s;
+}
+.helix > ul li:nth-of-type(36) {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+.helix > ul li:nth-of-type(36)::after {
+  background: #fff;
+}
+.helix > ul li:nth-of-type(36),
+.helix > ul li:nth-of-type(36)::after {
+  -webkit-animation-delay: -12s;
+          animation-delay: -12s;
+}
+
+/* 蓝圈 */
+.helix > ul li:nth-of-type(37) {
+  -webkit-transform: rotate(410deg);
+          transform: rotate(410deg);
+}
+.helix > ul li:nth-of-type(37)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(37),
+.helix > ul li:nth-of-type(37)::after {
+  -webkit-animation-delay: -12.33333333s;
+          animation-delay: -12.33333333s;
+}
+.helix > ul li:nth-of-type(38) {
+  -webkit-transform: rotate(420deg);
+          transform: rotate(420deg);
+}
+.helix > ul li:nth-of-type(38)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(38),
+.helix > ul li:nth-of-type(38)::after {
+  -webkit-animation-delay: -12.66666667s;
+          animation-delay: -12.66666667s;
+}
+.helix > ul li:nth-of-type(39) {
+  -webkit-transform: rotate(430deg);
+          transform: rotate(430deg);
+}
+.helix > ul li:nth-of-type(39)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(39),
+.helix > ul li:nth-of-type(39)::after {
+  -webkit-animation-delay: -13s;
+          animation-delay: -13s;
+}
+.helix > ul li:nth-of-type(40) {
+  -webkit-transform: rotate(440deg);
+          transform: rotate(440deg);
+}
+.helix > ul li:nth-of-type(40)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(40),
+.helix > ul li:nth-of-type(40)::after {
+  -webkit-animation-delay: -13.33333333s;
+          animation-delay: -13.33333333s;
+}
+.helix > ul li:nth-of-type(41) {
+  -webkit-transform: rotate(450deg);
+          transform: rotate(450deg);
+}
+.helix > ul li:nth-of-type(41)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(41),
+.helix > ul li:nth-of-type(41)::after {
+  -webkit-animation-delay: -13.66666667s;
+          animation-delay: -13.66666667s;
+}
+.helix > ul li:nth-of-type(42) {
+  -webkit-transform: rotate(460deg);
+          transform: rotate(460deg);
+}
+.helix > ul li:nth-of-type(42)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(42),
+.helix > ul li:nth-of-type(42)::after {
+  -webkit-animation-delay: -14s;
+          animation-delay: -14s;
+}
+.helix > ul li:nth-of-type(43) {
+  -webkit-transform: rotate(470deg);
+          transform: rotate(470deg);
+}
+.helix > ul li:nth-of-type(43)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(43),
+.helix > ul li:nth-of-type(43)::after {
+  -webkit-animation-delay: -14.33333333s;
+          animation-delay: -14.33333333s;
+}
+.helix > ul li:nth-of-type(44) {
+  -webkit-transform: rotate(480deg);
+          transform: rotate(480deg);
+}
+.helix > ul li:nth-of-type(44)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(44),
+.helix > ul li:nth-of-type(44)::after {
+  -webkit-animation-delay: -14.66666667s;
+          animation-delay: -14.66666667s;
+}
+.helix > ul li:nth-of-type(45) {
+  -webkit-transform: rotate(490deg);
+          transform: rotate(490deg);
+}
+.helix > ul li:nth-of-type(45)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(45),
+.helix > ul li:nth-of-type(45)::after {
+  -webkit-animation-delay: -15s;
+          animation-delay: -15s;
+}
+.helix > ul li:nth-of-type(46) {
+  -webkit-transform: rotate(500deg);
+          transform: rotate(500deg);
+}
+.helix > ul li:nth-of-type(46)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(46),
+.helix > ul li:nth-of-type(46)::after {
+  -webkit-animation-delay: -15.33333333s;
+          animation-delay: -15.33333333s;
+}
+.helix > ul li:nth-of-type(47) {
+  -webkit-transform: rotate(510deg);
+          transform: rotate(510deg);
+}
+.helix > ul li:nth-of-type(47)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(47),
+.helix > ul li:nth-of-type(47)::after {
+  -webkit-animation-delay: -15.66666667s;
+          animation-delay: -15.66666667s;
+}
+.helix > ul li:nth-of-type(48) {
+  -webkit-transform: rotate(520deg);
+          transform: rotate(520deg);
+}
+.helix > ul li:nth-of-type(48)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(48),
+.helix > ul li:nth-of-type(48)::after {
+  -webkit-animation-delay: -16s;
+          animation-delay: -16s;
+}
+.helix > ul li:nth-of-type(49) {
+  -webkit-transform: rotate(530deg);
+          transform: rotate(530deg);
+}
+.helix > ul li:nth-of-type(49)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(49),
+.helix > ul li:nth-of-type(49)::after {
+  -webkit-animation-delay: -16.33333333s;
+          animation-delay: -16.33333333s;
+}
+.helix > ul li:nth-of-type(50) {
+  -webkit-transform: rotate(540deg);
+          transform: rotate(540deg);
+}
+.helix > ul li:nth-of-type(50)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(50),
+.helix > ul li:nth-of-type(50)::after {
+  -webkit-animation-delay: -16.66666667s;
+          animation-delay: -16.66666667s;
+}
+.helix > ul li:nth-of-type(51) {
+  -webkit-transform: rotate(550deg);
+          transform: rotate(550deg);
+}
+.helix > ul li:nth-of-type(51)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(51),
+.helix > ul li:nth-of-type(51)::after {
+  -webkit-animation-delay: -17s;
+          animation-delay: -17s;
+}
+.helix > ul li:nth-of-type(52) {
+  -webkit-transform: rotate(560deg);
+          transform: rotate(560deg);
+}
+.helix > ul li:nth-of-type(52)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(52),
+.helix > ul li:nth-of-type(52)::after {
+  -webkit-animation-delay: -17.33333333s;
+          animation-delay: -17.33333333s;
+}
+.helix > ul li:nth-of-type(53) {
+  -webkit-transform: rotate(570deg);
+          transform: rotate(570deg);
+}
+.helix > ul li:nth-of-type(53)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(53),
+.helix > ul li:nth-of-type(53)::after {
+  -webkit-animation-delay: -17.66666667s;
+          animation-delay: -17.66666667s;
+}
+.helix > ul li:nth-of-type(54) {
+  -webkit-transform: rotate(580deg);
+          transform: rotate(580deg);
+}
+.helix > ul li:nth-of-type(54)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(54),
+.helix > ul li:nth-of-type(54)::after {
+  -webkit-animation-delay: -18s;
+          animation-delay: -18s;
+}
+.helix > ul li:nth-of-type(55) {
+  -webkit-transform: rotate(590deg);
+          transform: rotate(590deg);
+}
+.helix > ul li:nth-of-type(55)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(55),
+.helix > ul li:nth-of-type(55)::after {
+  -webkit-animation-delay: -18.33333333s;
+          animation-delay: -18.33333333s;
+}
+.helix > ul li:nth-of-type(56) {
+  -webkit-transform: rotate(600deg);
+          transform: rotate(600deg);
+}
+.helix > ul li:nth-of-type(56)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(56),
+.helix > ul li:nth-of-type(56)::after {
+  -webkit-animation-delay: -18.66666667s;
+          animation-delay: -18.66666667s;
+}
+.helix > ul li:nth-of-type(57) {
+  -webkit-transform: rotate(610deg);
+          transform: rotate(610deg);
+}
+.helix > ul li:nth-of-type(57)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(57),
+.helix > ul li:nth-of-type(57)::after {
+  -webkit-animation-delay: -19s;
+          animation-delay: -19s;
+}
+.helix > ul li:nth-of-type(58) {
+  -webkit-transform: rotate(620deg);
+          transform: rotate(620deg);
+}
+.helix > ul li:nth-of-type(58)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(58),
+.helix > ul li:nth-of-type(58)::after {
+  -webkit-animation-delay: -19.33333333s;
+          animation-delay: -19.33333333s;
+}
+.helix > ul li:nth-of-type(59) {
+  -webkit-transform: rotate(630deg);
+          transform: rotate(630deg);
+}
+.helix > ul li:nth-of-type(59)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(59),
+.helix > ul li:nth-of-type(59)::after {
+  -webkit-animation-delay: -19.66666667s;
+          animation-delay: -19.66666667s;
+}
+.helix > ul li:nth-of-type(60) {
+  -webkit-transform: rotate(640deg);
+          transform: rotate(640deg);
+}
+.helix > ul li:nth-of-type(60)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(60),
+.helix > ul li:nth-of-type(60)::after {
+  -webkit-animation-delay: -20s;
+          animation-delay: -20s;
+}
+.helix > ul li:nth-of-type(61) {
+  -webkit-transform: rotate(650deg);
+          transform: rotate(650deg);
+}
+.helix > ul li:nth-of-type(61)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(61),
+.helix > ul li:nth-of-type(61)::after {
+  -webkit-animation-delay: -20.33333333s;
+          animation-delay: -20.33333333s;
+}
+.helix > ul li:nth-of-type(62) {
+  -webkit-transform: rotate(660deg);
+          transform: rotate(660deg);
+}
+.helix > ul li:nth-of-type(62)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(62),
+.helix > ul li:nth-of-type(62)::after {
+  -webkit-animation-delay: -20.66666667s;
+          animation-delay: -20.66666667s;
+}
+.helix > ul li:nth-of-type(63) {
+  -webkit-transform: rotate(670deg);
+          transform: rotate(670deg);
+}
+.helix > ul li:nth-of-type(63)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(63),
+.helix > ul li:nth-of-type(63)::after {
+  -webkit-animation-delay: -21s;
+          animation-delay: -21s;
+}
+.helix > ul li:nth-of-type(64) {
+  -webkit-transform: rotate(680deg);
+          transform: rotate(680deg);
+}
+.helix > ul li:nth-of-type(64)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(64),
+.helix > ul li:nth-of-type(64)::after {
+  -webkit-animation-delay: -21.33333333s;
+          animation-delay: -21.33333333s;
+}
+.helix > ul li:nth-of-type(65) {
+  -webkit-transform: rotate(690deg);
+          transform: rotate(690deg);
+}
+.helix > ul li:nth-of-type(65)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(65),
+.helix > ul li:nth-of-type(65)::after {
+  -webkit-animation-delay: -21.66666667s;
+          animation-delay: -21.66666667s;
+}
+.helix > ul li:nth-of-type(66) {
+  -webkit-transform: rotate(700deg);
+          transform: rotate(700deg);
+}
+.helix > ul li:nth-of-type(66)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(66),
+.helix > ul li:nth-of-type(66)::after {
+  -webkit-animation-delay: -22s;
+          animation-delay: -22s;
+}
+.helix > ul li:nth-of-type(67) {
+  -webkit-transform: rotate(710deg);
+          transform: rotate(710deg);
+}
+.helix > ul li:nth-of-type(67)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(67),
+.helix > ul li:nth-of-type(67)::after {
+  -webkit-animation-delay: -22.33333333s;
+          animation-delay: -22.33333333s;
+}
+.helix > ul li:nth-of-type(68) {
+  -webkit-transform: rotate(720deg);
+          transform: rotate(720deg);
+}
+.helix > ul li:nth-of-type(68)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(68),
+.helix > ul li:nth-of-type(68)::after {
+  -webkit-animation-delay: -22.66666667s;
+          animation-delay: -22.66666667s;
+}
+.helix > ul li:nth-of-type(69) {
+  -webkit-transform: rotate(730deg);
+          transform: rotate(730deg);
+}
+.helix > ul li:nth-of-type(69)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(69),
+.helix > ul li:nth-of-type(69)::after {
+  -webkit-animation-delay: -23s;
+          animation-delay: -23s;
+}
+
+.helix > ul li:nth-of-type(70) {
+  -webkit-transform: rotate(740deg);
+          transform: rotate(740deg);
+}
+.helix > ul li:nth-of-type(70)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(70),
+.helix > ul li:nth-of-type(70)::after {
+  -webkit-animation-delay: -23.33333333s;
+          animation-delay: -23.33333333s;
+}
+.helix > ul li:nth-of-type(71) {
+  -webkit-transform: rotate(750deg);
+          transform: rotate(750deg);
+}
+.helix > ul li:nth-of-type(71)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(71),
+.helix > ul li:nth-of-type(71)::after {
+  -webkit-animation-delay: -23.66666667s;
+          animation-delay: -23.66666667s;
+}
+.helix > ul li:nth-of-type(72) {
+  -webkit-transform: rotate(760deg);
+          transform: rotate(760deg);
+}
+.helix > ul li:nth-of-type(72)::after {
+  background: #66c7f4;
+}
+.helix > ul li:nth-of-type(72),
+.helix > ul li:nth-of-type(72)::after {
+  -webkit-animation-delay: -24s;
+          animation-delay: -24s;
+}
+
+.helix > ul li::after {
+  content: '';
+  display: block;
+  height: 2vmin;
+  width: 2vmin;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-radius: 50%;
+
+  -webkit-animation: helix 2s linear infinite;
+  animation: helix 2s linear infinite;
+}
+</style>
+
+<h4 id="DNA"><a href="#DNA" class="headerlink" title="DNA"></a>DNA</h4><div class="animiateWrap">
+    <ul class="a">
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+        <li><i></i></li>
+    </ul>
+</div>
+
+<h4 id="双螺旋"><a href="#双螺旋" class="headerlink" title="双螺旋"></a>双螺旋</h4><div class="helix">
+    <ul class="b">
+        <li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li>
+        <li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li>
+        <li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li>
+        <li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li>
+        <li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li>
+        <li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li>
+        <li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li>
+        <li>43</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li>
+        <li>49</li><li>50</li><li>51</li><li>52</li><li>53</li><li>54</li>
+        <li>55</li><li>56</li><li>57</li><li>58</li><li>59</li><li>60</li>
+        <li>61</li><li>62</li><li>63</li><li>64</li><li>65</li><li>66</li>
+        <li>67</li><li>68</li><li>69</li><li>70</li><li>71</li><li>72</li>
+    </ul>
+
+</div>
+
+<h4 id="实现分解"><a href="#实现分解" class="headerlink" title="实现分解"></a>实现分解</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;helix&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;b&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>6<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>7<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>8<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>9<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>10<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>11<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>12<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>13<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>14<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>15<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>16<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>17<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>18<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>19<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>20<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>21<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>22<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>23<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>24<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>25<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>26<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>27<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>28<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>29<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>30<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>31<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>32<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>33<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>34<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>35<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>36<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>37<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>38<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>39<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>40<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>41<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>42<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>43<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>44<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>45<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>46<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>47<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>48<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>49<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>50<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>51<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>52<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>53<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>54<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>55<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>56<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>57<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>58<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>59<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>60<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>61<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>62<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>63<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>64<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>65<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>66<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>67<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>68<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>69<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>70<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>71<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>72<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="主要布局样式"><a href="#主要布局样式" class="headerlink" title="主要布局样式"></a>主要布局样式</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 光点主体 */</span></span><br><span class="line"><span class="selector-class">.helix</span> &gt; <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">2vmin</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">2vmin</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>);</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>);</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="attribute">-webkit-animation</span>: helix <span class="number">2s</span> linear infinite;</span><br><span class="line">  <span class="attribute">animation</span>: helix <span class="number">2s</span> linear infinite;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 1-36 旋转间隔 10deg 背景色 #fff 动画延迟 0.3s */</span></span><br><span class="line"><span class="selector-class">.helix</span> &gt; <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-of-type(1)</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">rotate</span>(<span class="number">10deg</span>);</span><br><span class="line">          <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">10deg</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.helix</span> &gt; <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-of-type(1)</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.helix</span> &gt; <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-of-type(1)</span>,</span><br><span class="line"><span class="selector-class">.helix</span> &gt; <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-of-type(1)</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-animation-delay</span>: -<span class="number">0.33333333s</span>;</span><br><span class="line">          <span class="attribute">animation-delay</span>: -<span class="number">0.33333333s</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 37-72 旋转间隔 10deg 背景色 #66c7f4 动画延迟 0.3s */</span></span><br><span class="line"><span class="selector-class">.helix</span> &gt; <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-of-type(37)</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">rotate</span>(<span class="number">410deg</span>);</span><br><span class="line">          <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">410deg</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.helix</span> &gt; <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-of-type(37)</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#66c7f4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.helix</span> &gt; <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-of-type(37)</span>,</span><br><span class="line"><span class="selector-class">.helix</span> &gt; <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-of-type(37)</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-animation-delay</span>: -<span class="number">12.33333333s</span>;</span><br><span class="line">          <span class="attribute">animation-delay</span>: -<span class="number">12.33333333s</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注意事项<blockquote>
+<p>1-36 旋转间隔 10deg, 第36个 li 旋转角度是 360deg, 第37个 li 旋转角度应该是 370deg,<br>为什么现在样式布局，第37个 li 旋转角度是 410deg ？</p>
+<p>答案：错位，偏移量</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="主要动画样式"><a href="#主要动画样式" class="headerlink" title="主要动画样式"></a>主要动画样式</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*白色、蓝色光点交替时的遮罩问题*/</span></span><br><span class="line"><span class="keyword">@keyframes</span> update-z-index &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  49% &#123;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  50% &#123;</span><br><span class="line">    <span class="attribute">z-index</span>: -<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    <span class="attribute">z-index</span>: -<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*螺旋动画*/</span></span><br><span class="line"><span class="keyword">@keyframes</span> helix&#123;</span><br><span class="line">	0% &#123;</span><br><span class="line">	<span class="attribute">-webkit-transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>) <span class="built_in">translateX</span>(<span class="number">0</span>) <span class="built_in">scale</span>(<span class="number">1</span>);</span><br><span class="line">	        <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>) <span class="built_in">translateX</span>(<span class="number">0</span>) <span class="built_in">scale</span>(<span class="number">1</span>);</span><br><span class="line">	<span class="attribute">-webkit-animation-timing-function</span>: ease-in;</span><br><span class="line">	        <span class="attribute">animation-timing-function</span>: ease-in;</span><br><span class="line">  &#125;</span><br><span class="line">  25% &#123;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>) <span class="built_in">translateX</span>(<span class="number">3.75vmin</span>) <span class="built_in">scale</span>(<span class="number">1.3</span>);</span><br><span class="line">            <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>) <span class="built_in">translateX</span>(<span class="number">3.75vmin</span>) <span class="built_in">scale</span>(<span class="number">1.3</span>);</span><br><span class="line">    <span class="attribute">-webkit-animation-timing-function</span>: ease-out;</span><br><span class="line">            <span class="attribute">animation-timing-function</span>: ease-out;</span><br><span class="line">  &#125;</span><br><span class="line">  50% &#123;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>) <span class="built_in">translateX</span>(<span class="number">7.5vmin</span>) <span class="built_in">scale</span>(<span class="number">1</span>);</span><br><span class="line">            <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>) <span class="built_in">translateX</span>(<span class="number">7.5vmin</span>) <span class="built_in">scale</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="attribute">-webkit-animation-timing-function</span>: ease-in;</span><br><span class="line">            <span class="attribute">animation-timing-function</span>: ease-in;</span><br><span class="line">  &#125;</span><br><span class="line">  75% &#123;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>) <span class="built_in">translateX</span>(<span class="number">3.75vmin</span>) <span class="built_in">scale</span>(<span class="number">0.5</span>);</span><br><span class="line">            <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>) <span class="built_in">translateX</span>(<span class="number">3.75vmin</span>) <span class="built_in">scale</span>(<span class="number">0.5</span>);</span><br><span class="line">    <span class="attribute">-webkit-animation-timing-function</span>: ease-out;</span><br><span class="line">            <span class="attribute">animation-timing-function</span>: ease-out;</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>) <span class="built_in">translateX</span>(<span class="number">0</span>) <span class="built_in">scale</span>(<span class="number">1</span>);</span><br><span class="line">            <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>) <span class="built_in">translateX</span>(<span class="number">0</span>) <span class="built_in">scale</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<style>
+    .helix ul.d{
+        transform:translate(-50%, -50%) rotateZ(30deg);
+
+        top:50%;
+        left:50%;
+    }
+    .helix ul.d li:after{
+        background:#66c7f4;
+    }
+}
+</style>
+
+<div class="helix">
+    <ul class="c">
+        <li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li>
+        <li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li>
+        <li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li>
+        <li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li>
+        <li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li>
+        <li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li>
+    </ul>
+    <ul class="d">
+        <li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li>
+        <li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li>
+        <li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li>
+        <li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li>
+        <li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li>
+        <li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li>
+    </ul>
+</div>
+
+<h4 id="对比布局"><a href="#对比布局" class="headerlink" title="对比布局"></a>对比布局</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;helix&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;c&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>6<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>7<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>8<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>9<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>10<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>11<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>12<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>13<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>14<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>15<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>16<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>17<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>18<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>19<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>20<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>21<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>22<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>23<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>24<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>25<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>26<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>27<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>28<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>29<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>30<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>31<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>32<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>33<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>34<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>35<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>36<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;d&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>6<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>7<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>8<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>9<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>10<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>11<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>12<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>13<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>14<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>15<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>16<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>17<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>18<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>19<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>20<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>21<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>22<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>23<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>24<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>25<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>26<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>27<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>28<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>29<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>30<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>31<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>32<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>33<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>34<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>35<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>36<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="优缺点分析"><a href="#优缺点分析" class="headerlink" title="优缺点分析"></a>优缺点分析</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.helix</span> <span class="selector-tag">ul</span><span class="selector-class">.d</span>&#123;</span><br><span class="line">	<span class="attribute">transform</span>:<span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>) <span class="built_in">rotateZ</span>(<span class="number">30deg</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line">	<span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.helix</span> <span class="selector-tag">ul</span><span class="selector-class">.d</span> <span class="selector-tag">li</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">	<span class="attribute">background</span>:<span class="number">#66c7f4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对比布局，上面这一段样式，可以减少第37-72个 li 的旋转，颜色，延迟样式，减少几百行样式代码。</li>
+<li>错位，偏移量通过调整 transform:translate(-50%, -50%) rotateZ(<span style="color:red;">30deg</span>) 即可实现。无需修改第37-72个 li 的旋转角度。</li>
+</ul>
+<blockquote>
+<p>但是也发现了一个问题：光点交替时候的遮罩问题</p>
+</blockquote>
+<h4 id="关于CSS3-动画"><a href="#关于CSS3-动画" class="headerlink" title="关于CSS3 动画"></a>关于CSS3 动画</h4><style>
+    .animationVal table{
+        border-collapse:collapse;
+        margin-bottom:2rem;
+        width:100%;
+    }
+    .animationVal table,.animationVal table th,.animationVal table td{
+        border:1px solid #cdcdcd;
+    }
+    .animationVal table tr:first-child th:first-child{ width:150px;}
+    .animationVal table th,.animationVal table td{ padding:.25rem .8rem;}
+</style>
+<div class="animationVal">
+
+<table>
+<thead>
+<tr>
+<th align="right">值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">animation:</td>
+<td>name duration timing-function delay iteration-count direction;</td>
+</tr>
+<tr>
+<td align="right">name</td>
+<td>选择器的 keyframe 名称</td>
+</tr>
+<tr>
+<td align="right">duration</td>
+<td>完成动画所花费的时间，以秒或毫秒计</td>
+</tr>
+<tr>
+<td align="right">timing-function</td>
+<td>动画的速度曲线</td>
+</tr>
+<tr>
+<td align="right">delay</td>
+<td>动画开始之前的延迟</td>
+</tr>
+<tr>
+<td align="right">iteration-count</td>
+<td>动画应该播放的次数</td>
+</tr>
+<tr>
+<td align="right">direction</td>
+<td>是否应该轮流反向播放动画</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="right">值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">transform:</td>
+<td>none transform-functions</td>
+</tr>
+<tr>
+<td align="right">matrix(n,n,n,n,n,n)</td>
+<td>定义 2D 转换，使用六个值的矩阵</td>
+</tr>
+<tr>
+<td align="right">translate(x,y)</td>
+<td>2D 位移</td>
+</tr>
+<tr>
+<td align="right">translate(x,y,z)</td>
+<td>3D 位移</td>
+</tr>
+<tr>
+<td align="right">scale(x,y)</td>
+<td>2D 缩放</td>
+</tr>
+<tr>
+<td align="right">scale(x,y,z)</td>
+<td>3D 缩放</td>
+</tr>
+<tr>
+<td align="right">rotate(x,y)</td>
+<td>2D 旋转</td>
+</tr>
+<tr>
+<td align="right">rotate(x,y,z)</td>
+<td>3D 旋转</td>
+</tr>
+<tr>
+<td align="right">transform-origin</td>
+<td>改变被转换元素的位置</td>
+</tr>
+<tr>
+<td align="right">transform-style</td>
+<td>被嵌套元素如何在 3D 空间中显示</td>
+</tr>
+<tr>
+<td align="right">perspective</td>
+<td>为 3D 转换元素定义透视视图</td>
+</tr>
+<tr>
+<td align="right">perspective-origin</td>
+<td>规定 3D 元素的底部位置</td>
+</tr>
+<tr>
+<td align="right">backface-visibility</td>
+<td>元素在不面对屏幕时是否可见</td>
+</tr>
+</tbody></table>
+</div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-12</span><i class="fa fa-tag"></i><a class="tag" href="/categories/CSS3/" title="CSS3">CSS3 </a><a class="tag" href="/tags/Css3/" title="Css3">Css3 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2019/07/12/Css/Css3 双螺旋/,日升于东,Css3 双螺旋,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/07/12/Vue/Vue%20%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/" title="Vue 入门基础">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/07/10/Css/Css3%20%E5%8A%A8%E7%94%BB/" title="Css3 动画">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#DNA"><span class="toc-text">DNA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8C%E8%9E%BA%E6%97%8B"><span class="toc-text">双螺旋</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%88%86%E8%A7%A3"><span class="toc-text">实现分解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%B8%83%E5%B1%80%E6%A0%B7%E5%BC%8F"><span class="toc-text">主要布局样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%A8%E7%94%BB%E6%A0%B7%E5%BC%8F"><span class="toc-text">主要动画样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94%E5%B8%83%E5%B1%80"><span class="toc-text">对比布局</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9%E5%88%86%E6%9E%90"><span class="toc-text">优缺点分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ECSS3-%E5%8A%A8%E7%94%BB"><span class="toc-text">关于CSS3 动画</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

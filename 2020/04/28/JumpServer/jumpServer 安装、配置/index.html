@@ -1,0 +1,79 @@
+<!DOCTYPE html><html><head><title>jumpServer 安装、配置 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>jumpServer 安装、配置</a></h3></div><div class="post-content"><h4 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h4><ol>
+<li>Python = 3.6.x  （python -V）</li>
+<li>Mysql Server ≥ 5.6  （mysql -V）</li>
+<li>Mariadb Server ≥ 5.5.56</li>
+<li>Redis</li>
+</ol>
+<blockquote>
+<p>安装 python 3.7</p>
+</blockquote>
+<p>安装依赖：yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel libffi-devel gcc make<br>下载包：wget <a target="_blank" rel="noopener" href="https://www.python.org/ftp/python/3.7.7/Python-3.7.7.tar.xz">https://www.python.org/ftp/python/3.7.7/Python-3.7.7.tar.xz</a><br>解压缩：tar -xvJf Python-3.7.7.tar.xz<br>编译：./configure<br>make&amp;&amp;make install</p>
+<p><code>. python 备份，python3 软连接到 python</code><br>python 软连接：ln -s /usr/local/bin/python3 /usr/bin/python<br>pip3 软连接：ln -s /usr/local/bin/pip3 /usr/bin/pip3</p>
+<pre><code>报错：yum 不可用，第一行改成 python2
+vi /usr/libexec/urlgrabber-ext-down 
+vi /usr/bin/yum</code></pre>
+<blockquote>
+<p>安装Redis</p>
+</blockquote>
+<p>下载包：wget <a target="_blank" rel="noopener" href="http://download.redis.io/releases/redis-4.0.6.tar.gz">http://download.redis.io/releases/redis-4.0.6.tar.gz</a><br>解压缩：tar -zxvf redis-4.0.6.tar.gz<br>gcc依赖：yum install gcc （gcc -v）<br>cd redis-4.0.6<br>编译解压：make MALLOC=libc　<br>启动：redis-server</p>
+<blockquote>
+<p>设置redis开机自启动</p>
+</blockquote>
+<p>/etc目录下新建redis目录：mkdir redis<br>cp /usr/local/redis-4.0.6/redis.conf /etc/redis/6379.conf<br>cp /usr/local/redis-4.0.6/utils/redis_init_script /etc/init.d/redisd</p>
+<pre><code>报错：chkconfig redisd on -- service redisd does not support chkconfig
+redisd文件，在第一行加入如下两行注释
+# chkconfig:   2345 90 10
+# description:  Redis is a persistent key-value database　</code></pre>
+<p>service redisd start</p>
+<pre><code>nohup src/redis-server &gt; /dev/null 2&gt;&amp;1 &amp;
+ps aux|grep redis</code></pre>
+<blockquote>
+<p>查看 python 虚拟环境</p>
+</blockquote>
+<p>env python -V</p>
+<blockquote>
+<p>获取 JumpServer </p>
+</blockquote>
+<p>cd /opt<br>git clone –depth=1 <a target="_blank" rel="noopener" href="https://github.com/jumpserver/jumpserver.git">https://github.com/jumpserver/jumpserver.git</a><br>cd /opt/jumpserver/requirements<br>yum -y install $(cat rpm_requirements.txt)<br>pip3 install -r requirements.txt -i <a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/pypi/simple/">https://mirrors.aliyun.com/pypi/simple/</a></p>
+<blockquote>
+<p>创建数据库 Jumpserver 并授权</p>
+</blockquote>
+<p>create database jumpserver default charset ‘utf8’;<br>flush privileges;<br>grant all on jumpserver.* to ‘jumpserver’@’127.0.0.1’ identified by ‘jumps1@db’;</p>
+<blockquote>
+<p>修改 Jumpserver 配置文件</p>
+</blockquote>
+<p>cd /opt/jumpserver<br>cp config_example.py config.py<br>vi config.py</p>
+<pre><code># 生成随机SECRET_KEY
+SECRET_KEY=`cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 50` 
+# 生成随机BOOTSTRAP_TOKEN
+BOOTSTRAP_TOKEN=`cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 16`  
+
+#配置密钥
+sed -i &quot;s/SECRET_KEY:/SECRET_KEY: $SECRET_KEY/g&quot; /opt/jumpserver/config.yml
+#配置token信息
+sed -i &quot;s/BOOTSTRAP_TOKEN:/BOOTSTRAP_TOKEN: $BOOTSTRAP_TOKEN/g&quot; /opt/jumpserver/config.yml
+#关闭debug
+sed -i &quot;s/# DEBUG: true/DEBUG: false/g&quot; /opt/jumpserver/config.yml
+#修改日志界别为error
+sed -i &quot;s/# LOG_LEVEL: DEBUG/LOG_LEVEL: ERROR/g&quot; /opt/jumpserver/config.yml
+#设定session在关闭浏览器的时候清空
+sed -i &quot;s/# SESSION_EXPIRE_AT_BROWSER_CLOSE: false/SESSION_EXPIRE_AT_BROWSER_CLOSE: true/g&quot; /opt/jumpserver/config.yml
+#替换数据库的密码配置
+sed -i &quot;s/DB_PASSWORD: /DB_PASSWORD: $DB_PASSWORD/g&quot; /opt/jumpserver/config.yml</code></pre>
+<blockquote>
+<p>启动 jumpserver</p>
+</blockquote>
+<p>./jms start all -d </p>
+<pre><code>报错：pip install psutil -i https://mirrors.aliyun.com/pypi/simple/</code></pre>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-04-28</span><i class="fa fa-tag"></i><a class="tag" href="/categories/JumpServer/" title="JumpServer">JumpServer </a><a class="tag" href="/tags/JumpServer/" title="JumpServer">JumpServer </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/04/28/JumpServer/jumpServer 安装、配置/,日升于东,jumpServer 安装、配置,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/05/11/Java/Spring/" title="Spring">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/04/23/Hbase/HBase%20%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="HBase 安装配置">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="toc-text">环境要求</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

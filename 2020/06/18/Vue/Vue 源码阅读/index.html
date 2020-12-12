@@ -1,0 +1,299 @@
+<!DOCTYPE html><html><head><title>Vue 源码阅读 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Vue 源码阅读</a></h3></div><div class="post-content"><p><a target="_blank" rel="noopener" href="https://vue-js.com/learn-vue/reactive/array.html">源码中文社区</a></p>
+<h4 id="源码内容"><a href="#源码内容" class="headerlink" title="源码内容"></a>源码内容</h4><p>config</p>
+<pre><code>optionMergeStrategies
+silent: false
+productionTip: true
+devtools: true
+performance: false
+errorHandler: null
+warnHandler: null
+ignoredElements: []
+keyCodes: &#123;&#125;
+isReservedTag: ƒ (a, b, c)
+isReservedAttr: ƒ (a, b, c)
+isUnknownElement: ƒ (a, b, c)
+getTagNamespace: ƒ noop(a, b, c)
+parsePlatformTagName: ƒ (_)
+mustUseProp: ƒ (a, b, c)
+_lifecycleHooks: (10) [&quot;beforeCreate&quot;, &quot;created&quot;, &quot;beforeMount&quot;, &quot;mounted&quot;, &quot;beforeUpdate&quot;, &quot;updated&quot;, &quot;beforeDestroy&quot;, &quot;destroyed&quot;, &quot;activated&quot;, &quot;deactivated&quot;]</code></pre>
+<p>warn、tip、formatComponentName、repeat、generateComponentTrace</p>
+<p>判断浏览器环境</p>
+<pre><code>var inBrowser = typeof window !== &#39;undefined&#39;;
+var UA = inBrowser &amp;&amp; window.navigator.userAgent.toLowerCase();
+var isIE = UA &amp;&amp; /msie|trident/.test(UA);
+var isIE9 = UA &amp;&amp; UA.indexOf(&#39;msie 9.0&#39;) &gt; 0;
+var isEdge = UA &amp;&amp; UA.indexOf(&#39;edge/&#39;) &gt; 0;
+var isAndroid = UA &amp;&amp; UA.indexOf(&#39;android&#39;) &gt; 0;
+var isIOS = UA &amp;&amp; /iphone|ipad|ipod|ios/.test(UA);
+var isChrome = UA &amp;&amp; /chrome\/\d+/.test(UA) &amp;&amp; !isEdge;</code></pre>
+<p>new _Set()</p>
+<pre><code>has: ƒ has()
+add: ƒ add()
+delete: ƒ delete()
+clear: ƒ clear()
+entries: ƒ entries()
+forEach: ƒ forEach()
+values: ƒ values()
+keys: ƒ values()</code></pre>
+<p>new Dep()</p>
+<pre><code>id: 2
+subs: []
+__proto__:
+    addSub: ƒ addSub(sub)
+    removeSub: ƒ removeSub(sub)
+    depend: ƒ depend()
+    notify: ƒ notify()</code></pre>
+<p>strats = config.optionMergeStrategies</p>
+<pre><code>propsData: ƒ (parent, child, vm, key)
+el: ƒ (parent, child, vm, key)
+data: ƒ ( parentVal, childVal, vm )
+beforeCreate: ƒ mergeHook( parentVal, childVal )
+created: ƒ mergeHook( parentVal, childVal )
+beforeMount: ƒ mergeHook( parentVal, childVal )
+mounted: ƒ mergeHook( parentVal, childVal )
+beforeUpdate: ƒ mergeHook( parentVal, childVal )
+updated: ƒ mergeHook( parentVal, childVal )
+beforeDestroy: ƒ mergeHook( parentVal, childVal )
+destroyed: ƒ mergeHook( parentVal, childVal )
+activated: ƒ mergeHook( parentVal, childVal )
+deactivated: ƒ mergeHook( parentVal, childVal )
+components: ƒ mergeAssets(parentVal, childVal)
+directives: ƒ mergeAssets(parentVal, childVal)
+filters: ƒ mergeAssets(parentVal, childVal)
+watch: ƒ (parentVal, childVal)
+computed: ƒ (parentVal, childVal)
+inject: ƒ (parentVal, childVal)
+methods: ƒ (parentVal, childVal)
+props: ƒ (parentVal, childVal)
+provide: ƒ mergeDataOrFn( parentVal, childVal, vm )</code></pre>
+<p>perf = inBrowser &amp;&amp; window.performance;</p>
+<p>VNode</p>
+<pre><code>tag: undefined
+data: undefined
+children: undefined
+text: undefined
+elm: undefined
+ns: undefined
+context: undefined
+functionalContext: undefined
+key: undefined
+componentOptions: undefined
+componentInstance: undefined
+parent: undefined
+raw: false
+isStatic: false
+isRootInsert: true
+isComment: false
+isCloned: false
+isOnce: false
+asyncFactory: undefined
+asyncMeta: undefined
+isAsyncPlaceholder: false</code></pre>
+<p>Watcher</p>
+<p>componentVNodeHooks</p>
+<pre><code>init
+prepatch
+insert
+destroy</code></pre>
+<p>initMixin</p>
+<pre><code>_init
+    initLifecycle(vm);
+    initEvents(vm);
+    initRender(vm);
+    callHook(vm, &#39;beforeCreate&#39;);
+    initInjections(vm);
+    initState(vm);
+    initProvide(vm);
+    callHook(vm, &#39;created&#39;);
+    ...
+    vm.$mount(vm.$options.el);</code></pre>
+<p>stateMixin</p>
+<pre><code>$data、$props、$set、$delete 、$watch</code></pre>
+<p>eventsMixin</p>
+<pre><code>$on、$once、$off、$emit</code></pre>
+<p>lifecycleMixin</p>
+<pre><code>_update、$forceUpdate、$destroy</code></pre>
+<p>renderMixin</p>
+<pre><code>$nextTick、_render
+Vue.prototype._o = markOnce;
+Vue.prototype._n = toNumber;
+Vue.prototype._s = toString;
+Vue.prototype._l = renderList;
+Vue.prototype._t = renderSlot;
+Vue.prototype._q = looseEqual;
+Vue.prototype._i = looseIndexOf;
+Vue.prototype._m = renderStatic;
+Vue.prototype._f = resolveFilter;
+Vue.prototype._k = checkKeyCodes;
+Vue.prototype._b = bindObjectProps;
+Vue.prototype._v = createTextVNode;
+Vue.prototype._e = createEmptyVNode;
+Vue.prototype._u = resolveScopedSlots;
+Vue.prototype._g = bindObjectListeners;</code></pre>
+<p>KeepAlive</p>
+<pre><code>name: &quot;keep-alive&quot;
+abstract: true
+props: &#123;include: Array(3), exclude: Array(3)&#125;
+created: ƒ created()
+destroyed: ƒ destroyed()
+watch: &#123;include: ƒ, exclude: ƒ&#125;
+render: ƒ render()</code></pre>
+<p>builtInComponents = {<br>    KeepAlive: KeepAlive<br>}</p>
+<p>initGlobalAPI</p>
+<pre><code>initUse(Vue);
+initMixin$1(Vue);
+initExtend(Vue);
+initAssetRegisters(Vue);</code></pre>
+<p>nodeOps</p>
+<pre><code>createElement: ƒ createElement$1(tagName, vnode)
+createElementNS: ƒ createElementNS(namespace, tagName)
+createTextNode: ƒ createTextNode(text)
+createComment: ƒ createComment(text)
+insertBefore: ƒ insertBefore(parentNode, newNode, referenceNode)
+removeChild: ƒ removeChild(node, child)
+appendChild: ƒ appendChild(node, child)
+parentNode: ƒ parentNode(node)
+nextSibling: ƒ nextSibling(node)
+tagName: ƒ tagName(node)
+setTextContent: ƒ setTextContent(node, text)
+setAttribute: ƒ setAttribute(node, key, val)</code></pre>
+<p>ref</p>
+<pre><code>create: ƒ create(_, vnode)
+update: ƒ update(oldVnode, vnode)
+destroy: ƒ destroy(vnode)</code></pre>
+<p>directives</p>
+<pre><code>create: ƒ updateDirectives(oldVnode, vnode)
+update: ƒ updateDirectives(oldVnode, vnode)
+destroy: ƒ unbindDirectives(vnode)</code></pre>
+<p>baseModules = [ref, directives]</p>
+<p>attrs = {</p>
+<pre><code>create: updateAttrs,
+update: updateAttrs</code></pre>
+<p>}</p>
+<p>klass = {</p>
+<pre><code>create: updateClass,
+update: updateClass</code></pre>
+<p>}</p>
+<p>events = {</p>
+<pre><code>create: updateDOMListeners,
+update: updateDOMListeners</code></pre>
+<p>}</p>
+<p>domProps = {</p>
+<pre><code>create: updateDOMProps,
+update: updateDOMProps</code></pre>
+<p>}</p>
+<p>style = {</p>
+<pre><code>create: updateStyle,
+update: updateStyle</code></pre>
+<p>}</p>
+<p>platformModules = [attrs, klass, events, domProps, style, transition]</p>
+<p>modules = platformModules.concat(baseModules)</p>
+<p>patch = createPatchFunction({</p>
+<pre><code>nodeOps: nodeOps,
+modules: modules</code></pre>
+<p>})</p>
+<p>transitionProps = {</p>
+<pre><code>name: String,
+appear: Boolean,
+css: Boolean,
+mode: String,
+type: String,
+enterClass: String,
+leaveClass: String,
+enterToClass: String,
+leaveToClass: String,
+enterActiveClass: String,
+leaveActiveClass: String,
+appearClass: String,
+appearActiveClass: String,
+appearToClass: String,
+duration: [Number, String, Object]</code></pre>
+<p>}</p>
+<p><strong>patch</strong></p>
+<p>$mount</p>
+<blockquote>
+<p>compile 编译</p>
+</blockquote>
+<pre><code>compileToFunctions
+
+|-- parse 解析
+|-- optimize 优化
+|-- generate 生成</code></pre>
+<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>UI = render(state)</p>
+<p>state 和 UI 都是用户定的，不变的是这个 render() ==&gt; vue</p>
+<p>变化侦测：追踪状态</p>
+<pre><code>Angular 中是通过`脏值检查流程`来实现变化侦测
+在 React 是通过`对比虚拟DOM`来实现变化侦测</code></pre>
+<blockquote>
+<p>Object.defineProperty</p>
+</blockquote>
+<pre><code>实现数据的读写观察</code></pre>
+<blockquote>
+<p>Observer </p>
+</blockquote>
+<pre><code>Observer类会通过递归的方式把一个对象的所有属性都转化成可观测对象</code></pre>
+<blockquote>
+<p>在 getter 中收集依赖，在 setter 中通知依赖更新</p>
+</blockquote>
+<pre><code>依赖管理器 Dep </code></pre>
+<blockquote>
+<p>Watcher</p>
+</blockquote>
+<blockquote>
+<p>Array  拦截器</p>
+</blockquote>
+<blockquote>
+<p>虚拟 DOM</p>
+</blockquote>
+<pre><code>用一个JS对象来描述一个DOM节点
+
+VNode 类：
+注释节点
+文本节点
+元素节点
+组件节点
+函数式组件节点
+克隆节点</code></pre>
+<blockquote>
+<p>DOM-Diff ===&gt; patch</p>
+</blockquote>
+<p>创建节点，删除节点和更新节点</p>
+<blockquote>
+<p>render</p>
+</blockquote>
+<ul>
+<li>抽象语法数（AbstractSyntaxTree，AST）</li>
+</ul>
+<ol>
+<li>模板解析阶段：将一堆模板字符串用正则等方式解析成抽象语法树AST；</li>
+<li>优化阶段：遍历AST，找出其中的静态节点，并打上标记；</li>
+<li>代码生成阶段：将AST转换成渲染函数；</li>
+</ol>
+<ul>
+<li>优化</li>
+</ul>
+<p>在AST中找出所有静态节点并打上标记；<br>在AST中找出所有静态根节点并打上标记；</p>
+<h4 id="生命周期流程"><a href="#生命周期流程" class="headerlink" title="生命周期流程"></a>生命周期流程</h4><ol>
+<li>new Vue()</li>
+<li>vm_init<br> -&gt; 初始化 lifecycle<br> -&gt; 初始化 Events<br> -&gt; 初始化 Render<br> -&gt; 调用钩子 beforeCreate<br> -&gt; 初始化 State<pre><code> -&gt; 依赖收集 （props\data\computed\watch\methods）</code></pre>
+ -&gt; 调用钩子 created<br> 挂载组件 vm.$mount</li>
+<li>vm.$mount<br> -&gt; compile()<br> -&gt; 调用钩子 beforeMount<br> -&gt; new Watcher<pre><code> -&gt; vm_render createElement -&gt; VNode Tree
+ -&gt; vm_update 渲染真实DOM</code></pre>
+ -&gt; 调用钩子 mount</li>
+<li>compile()<br> -&gt; parse -&gt; AST<br> -&gt; optimize 优化<br> -&gt; generate 生成</li>
+<li>render function<br> – touch –&gt; getter\setter –&gt; watcher – &gt; update<br> – VDOM Tree</li>
+<li>patch()<br> -&gt; patchVnode<br> -&gt; updateChikldren</li>
+<li>Real Dom</li>
+</ol>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-06-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/06/18/Vue/Vue 源码阅读/,日升于东,Vue 源码阅读,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/06/28/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84/Spark/" title="Spark 基础">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/06/13/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%9E%B6%E6%9E%84/" title="数据中台架构">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E5%86%85%E5%AE%B9"><span class="toc-text">源码内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%B5%81%E7%A8%8B"><span class="toc-text">生命周期流程</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

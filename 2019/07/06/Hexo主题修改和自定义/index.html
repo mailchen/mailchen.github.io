@@ -1,0 +1,165 @@
+<!DOCTYPE html><html><head><title>Hexo主题修改和自定义 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Hexo主题修改和自定义</a></h3></div><div class="post-content"><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><blockquote><p>MARKSZのBloG - <a target="_blank" rel="noopener" href="https://molunerfinn.com/make-a-hexo-theme">https://molunerfinn.com/make-a-hexo-theme</a><br>Hexo 辅助函数 - <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/helpers">https://hexo.io/zh-cn/docs/helpers</a><br>Pug 语法 - <a target="_blank" rel="noopener" href="https://pugjs.org/language/attributes.html">https://pugjs.org/language/attributes.html</a><br>Stylus 语法- <a target="_blank" rel="noopener" href="http://stylus-lang.com/">http://stylus-lang.com</a></p>
+</blockquote>
+
+
+<h4 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h4><ul>
+<li>Hexo 主题, layout 目录需要包括如下几个页面：</li>
+</ul>
+<blockquote>
+<p>首页 Home<br>归档页 Archive<br>标签页 Tag<br>分类页 Category<br>文章页 Post<br>页面详情页 Page</p>
+</blockquote>
+<ul>
+<li>source 目录, 通常存放资源文件</li>
+</ul>
+<blockquote>
+<p>CSS，JS，IMG</p>
+</blockquote>
+<h4 id="搭建书写主题的舒适环境"><a href="#搭建书写主题的舒适环境" class="headerlink" title="搭建书写主题的舒适环境"></a>搭建书写主题的舒适环境</h4><p><strong>能看到这篇文章，你应该已经搭建好了 Hexo 的博客环境，默认主题 landspace。通常我们不会在 landspace 上修改，而是下载个新主题，二次开发，或者撰写自己的主题。</strong></p>
+<ul>
+<li>为了更好的编写主题，我们需要安装：</li>
+</ul>
+<blockquote>
+<p>hexo-browsersync</p>
+<p>pug</p>
+<p>stylus</p>
+</blockquote>
+<pre><code>npm install hexo-server hexo-browsersync hexo-renderer-jade hexo-renderer-stylus --save-dev
+根据情况选择安装，无需硬搬，可能会安装失败，报错</code></pre>
+<ul>
+<li>Bug以及解决</li>
+</ul>
+<blockquote>
+<p>安装了 hexo-browsersync 之后也不能实现修改 pug 文件之后刷新出修改后的结果。只能实现自动刷新，但是刷新了之后还是修改前的页面。</p>
+</blockquote>
+<pre><code>你的 node_modules 文件夹里找到 hexo-renderer-jade 的文件夹，然后将里面 lib/pug.js（jade同理）的其中一行代码注释掉：
+// pugRender.compile = pugCompile</code></pre>
+<blockquote>
+<p>以上是亲踩坑，如遇到其他BUG，参照 <a target="_blank" rel="noopener" href="https://molunerfinn.com/make-a-hexo-theme">MARKSZのBloG</a></p>
+</blockquote>
+<h4 id="用-Yeoman-来生成主题结构"><a href="#用-Yeoman-来生成主题结构" class="headerlink" title="用 Yeoman 来生成主题结构"></a>用 Yeoman 来生成主题结构</h4><blockquote>
+<p>npm install yo -g</p>
+<p>npm install generator-hexo-theme -g</p>
+</blockquote>
+<p><strong>可能安装不成功，清理后，多试几次</strong></p>
+<blockquote>
+<p>进入 Hexo -&gt; themes</p>
+<p>yo hexo-theme</p>
+<p>选择 pug 和 stylus, 给主题命名 temp</p>
+</blockquote>
+<pre><code>生成的项目结构
+├── _config.yml # 主题配置文件
+├── layout # 布局文件夹
+│   ├── archive.pug # 归档页
+│   ├── category.pug # 分类页
+│   ├── includes # 复用的公共页
+│   │   ├── layout.pug # 页面布局
+│   │   ├── pagination.pug # 翻页模板
+│   │   └── recent-posts.pug # 文章列表模板
+│   ├── index.pug # 主页
+│   ├── page.pug # 页面详情页
+│   ├── post.pug # 文章详情页
+│   └── tag.pug # 标签页
+└── source # 资源文件夹
+    ├── css # CSS
+    │   └── temp.styl
+    ├── favicon.ico # 站点图标
+    └── js # JS
+        └── temp.js</code></pre>
+<blockquote>
+<p>站点 _config.yml -&gt; theme: landsacpe 改成： theme: temp(你的主题名)<br>hexo s 查看效果</p>
+</blockquote>
+<h4 id="主题配置，修改"><a href="#主题配置，修改" class="headerlink" title="主题配置，修改"></a>主题配置，修改</h4><pre><code>常用变量
+config、theme、site、page 
+
+常用辅助函数
+url_for(link)
+is_home、is_post、is_tag、is_category、is_current等几个判断当前文章类型的函数
+date、time等时间字符串处理函数
+list_categories、list_tags、tagcloud等生成分类列表、标签列表、标签云等函数
+toc 生成文章目录
+paginator 生成页面页码
+
+常用主题配置，修改
+temp.yml
+menu:
+  Home: /
+  Archives: /archives
+  Tags: /tags
+  Categories: /categories
+  **自定义添加
+  About: /about
+  Links: /links
+  Search: /search
+
+数据查看与填充
+- console.log(site.pages) **亲测未成功，有成功的，麻烦告知下
+
+编码示例
+# 注意首页也是一个page，它包含的 posts 只包括了首页会显示出来的文章。
+each article in page.posts.data 
+  .recent-post-item
+    - var link = article.link || article.path
+      a.article-title(href=url_for(link))= article.title || &#39;no_title&#39;
+    .content!= article.excerpt 
+    # excerpt是 post 的一个变量，只会显示文章的摘要部分
+    a.more(href=url_for(link) + &#39;#more&#39;) 阅读更多
+
+# 获取标签列表
+if (site.tags.length)
+  .widget-wrap
+    .widget!= list_tags(&#123;show_count:true&#125;)
+
+# 获取标签云
+if (site.tags.length)
+  .widget-wrap
+    .widget.tagcloud!= tagcloud()
+
+** = != 输出变量的两种方式，前者直接“字符串”输出，后者页面“代码”输出
+
+# 侧边栏目录
+# 如果是文章页面
+if(is_post())
+  # 给 toc 传入当前页面的内容用于生成目录结构
+  .sidebar-toc!= toc(page.content)
+
+# pug 写 script
+script.
+  var GLOBAL = &#123; 
+    algolia: !&#123;algolia&#125;,
+  &#125;</code></pre>
+<h4 id="常用功能添加"><a href="#常用功能添加" class="headerlink" title="常用功能添加"></a>常用功能添加</h4><ul>
+<li>不蒜子</li>
+</ul>
+<pre><code>.busuanzi-count
+    script(src= url_for(&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;))&amp;attributes(async)
+    span.site-uv
+        i.fa.fa-user
+        span.busuanzi-value#busuanzi_value_site_uv
+    span.site-uv
+        i.fa.fa-eye
+        span.busuanzi-value#busuanzi_value_site_pv</code></pre>
+<ul>
+<li> 评论功能 (推荐)</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1608153490321015332&wfr=spider&for=pc">Valine</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/61abc6c43220">Livere</a></p>
+</blockquote>
+<ul>
+<li>添加搜索功能</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/685bf59cde5e">本地搜索引擎</a></p>
+</blockquote>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-06</span><i class="fa fa-tag"></i><a class="tag" href="/tags/Hexo/" title="Hexo">Hexo </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2019/07/06/Hexo主题修改和自定义/,日升于东,Hexo主题修改和自定义,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/07/08/Grunt%20%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" title="Grunt 自动化部署">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/07/01/Markdown/" title="MarkDown 基本语法">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84"><span class="toc-text">文档结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E4%B9%A6%E5%86%99%E4%B8%BB%E9%A2%98%E7%9A%84%E8%88%92%E9%80%82%E7%8E%AF%E5%A2%83"><span class="toc-text">搭建书写主题的舒适环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8-Yeoman-%E6%9D%A5%E7%94%9F%E6%88%90%E4%B8%BB%E9%A2%98%E7%BB%93%E6%9E%84"><span class="toc-text">用 Yeoman 来生成主题结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%EF%BC%8C%E4%BF%AE%E6%94%B9"><span class="toc-text">主题配置，修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E6%B7%BB%E5%8A%A0"><span class="toc-text">常用功能添加</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html><html><head><title>React+TypeScript 经验 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>React+TypeScript 经验</a></h3></div><div class="post-content"><h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><ol>
+<li>文件顶部注释</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* <span class="doctag">@description <span class="variable">xxx</span></span></span></span><br><span class="line"><span class="comment">* <span class="doctag">@author <span class="variable">oeloowu</span></span></span></span><br><span class="line"><span class="comment">* <span class="doctag">@since </span>20/07/31</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>模块注释</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 拷贝数据</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>data                     源数据</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param <span class="type">&#123;boolean&#125;</span> <span class="type">&#123;&#123;isDeep = false&#125;</span>  </span>是否深拷贝，默认浅拷贝</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return <span class="type">&#123;*&#125;</span>                         </span>返回拷贝后的数据</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>业务代码注释</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 业务代码注释 */</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>变量注释</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">interface IState &#123;</span><br><span class="line">  <span class="comment">// 名字</span></span><br><span class="line">  name: string;</span><br><span class="line">  <span class="comment">// 电话</span></span><br><span class="line">  phone: number;</span><br><span class="line">  <span class="comment">// 地址</span></span><br><span class="line">  address: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="组件引用顺序"><a href="#组件引用顺序" class="headerlink" title="组件引用顺序"></a>组件引用顺序</h4><p>先引用<code>外部组件库</code>，再引用<code>当前组件块级组件</code>，然后<code>common公共函数</code>，最后<code>css样式</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123;Dropdown, Menu, Icon&#125; <span class="keyword">from</span> <span class="string">&#x27;antd&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">&#x27;./Header&#x27;</span></span><br><span class="line"><span class="keyword">import</span> toast <span class="keyword">from</span> <span class="string">&#x27;common/toast&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./index.less&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="引号使用"><a href="#引号使用" class="headerlink" title="引号使用"></a>引号使用</h4><p>单引号，ES6 反引号 `</p>
+<h4 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h4><ol>
+<li><p>缩进使用两个空格</p>
+</li>
+<li><p>二元和三元运算符两侧必须有一个空格，一元运算符与操作对象之间不允许有空格</p>
+<p> <code>++x</code><br> <code>y--</code><br> <code>z = x ? 1: 2</code></p>
+</li>
+<li><p>代码块起始左花括号<code>｛</code>前必须有一个空格</p>
+</li>
+<li><p>对象创建，属性<code>：</code>后面必须有空格，前面不予许有空格</p>
+</li>
+</ol>
+<h4 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h4><p>以下关键字后必须有大括号，即使代码只有一行：if、else、for、while、do、switch、try、catch、finally、with</p>
+<h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><ul>
+<li>类名：大驼峰风格</li>
+<li>函数名：小驼峰风格</li>
+<li>变量名：同函数名</li>
+<li>常量：全大写风格，单词之间下划线分隔</li>
+<li>使用 onXxx 形式作为 props 中用于回调的属性名称</li>
+<li>组件内事件函数使用 handle 开头，<code>handleCheckBtn</code></li>
+<li>使用 withXxx 作为高阶组件的名称</li>
+<li>接口命名前面带上I，<code>interfase IProps()</code></li>
+</ul>
+<h4 id="interface-声明顺序"><a href="#interface-声明顺序" class="headerlink" title="interface 声明顺序"></a>interface 声明顺序</h4><p>只读参数 -&gt; 必选参数 -&gt; 可选参数 -&gt; 不确定参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">interface IPeople &#123;</span><br><span class="line">  readonly x: number;</span><br><span class="line">  readonly y: number;</span><br><span class="line">  name: string;</span><br><span class="line">  age: number;</span><br><span class="line">  height?: number;</span><br><span class="line">  [propName: string]: any;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="TS-相关工具泛型、tips"><a href="#TS-相关工具泛型、tips" class="headerlink" title="TS 相关工具泛型、tips"></a>TS 相关工具泛型、tips</h4><ul>
+<li>Record&lt;string, any&gt; 声明对象结构的类型</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> people:Record&lt;string, any&gt; = &#123;</span><br><span class="line">  name: <span class="string">&#x27;oeloowu&#x27;</span>,</span><br><span class="line">  age: <span class="number">10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Partial 将传入的属性变为可选项</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> people:Partial&lt;IPeople&gt; = &#123;</span><br><span class="line">  name: <span class="string">&#x27;oeloowu&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 定义的结构可以是接口的任意 key</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Readonly 将传入的属性变为只读</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> people:Readonly&lt;IPeople&gt; = &#123;</span><br><span class="line">  name: <span class="string">&#x27;oeloowu&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Required 将传入的属性变为必选项</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> people:Require&lt;IPeople&gt; = &#123;</span><br><span class="line">  name: <span class="string">&#x27;oeloowu&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Error: property &#x27;height&#x27; missing</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/Microsoft/TypeScript-Handbook/diffs/0?base_sha=22b37a2d8c9a1dd378795444baf954c2e7ecccf5&commentable=true&head_user=csantos42&pull_number=801&sha1=22b37a2d8c9a1dd378795444baf954c2e7ecccf5&sha2=9d4c56f5d414dbe23780719885baa3df40222412&short_path=0b2da51&unchanged=expanded&utf8=%E2%9C%93#requiredt">查看更多</a></p>
+<ul>
+<li>keyof</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">type T = keyof IPeople</span><br><span class="line"><span class="comment">// 输出 IPeople keys</span></span><br><span class="line"></span><br><span class="line">type Keys = <span class="string">&quot;a&quot;</span> | <span class="string">&quot;b&quot;</span></span><br><span class="line">type Obj =  &#123;</span><br><span class="line">  [p <span class="keyword">in</span> Keys]: any</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// -&gt; &#123; a: any, b: any &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="稳健性判断"><a href="#稳健性判断" class="headerlink" title="稳健性判断"></a>稳健性判断</h4><p>增加必要的判断，提高代码的稳健性，如：非空，数组.xx，对象.xx.xx 等</p>
+<h4 id="判断真假"><a href="#判断真假" class="headerlink" title="判断真假"></a>判断真假</h4><p>js 中，false、null、undefined、0、’’、NaN 为 false，其他均为真</p>
+<h4 id="常用属性缓存"><a href="#常用属性缓存" class="headerlink" title="常用属性缓存"></a>常用属性缓存</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; app, time&#125; = <span class="built_in">this</span>.props</span><br></pre></td></tr></table></figure>
+
+<h4 id="阻止默认行为"><a href="#阻止默认行为" class="headerlink" title="阻止默认行为"></a>阻止默认行为</h4><p>React 中不能通过返回 false 阻止默认行为，必须明确调用 preventDefault</p>
+<h4 id="hasOwnProperty-判断"><a href="#hasOwnProperty-判断" class="headerlink" title="hasOwnProperty 判断"></a>hasOwnProperty 判断</h4><p>for … in 中一定要有 hasOwnProperty 判断，即禁止直接读取原型对象的属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  name: <span class="string">&#x27;oeloowu&#x27;</span>,</span><br><span class="line">  age: <span class="number">18</span>,</span><br><span class="line">  sexy: <span class="string">&#x27;男&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = []</span><br><span class="line"><span class="keyword">for</span> (key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">    arr.push(obj[key]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Event-事件对象类型"><a href="#Event-事件对象类型" class="headerlink" title="Event 事件对象类型"></a>Event 事件对象类型</h4><p>ClipboardEvent&lt;T = Element&gt;     剪贴板事件对象<br>DragEvent&lt;T = Element&gt;          拖拽事件对象<br>ChangeEvent&lt;T = Element&gt;        Change 事件对象<br>KeyboardEvent&lt;T = Element&gt;      键盘事件对象<br>MouseEvent&lt;T = Element&gt;         鼠标事件对象<br>TouchEvent&lt;T = Element&gt;         触摸事件对象<br>WheelEvent&lt;T = Element&gt;         滚轮事件对象<br>AnimationEvent&lt;T = Element&gt;     动画事件对象<br>TransitionEvent&lt;T = Element&gt;    过渡事件对象</p>
+<h4 id="代码颗粒度"><a href="#代码颗粒度" class="headerlink" title="代码颗粒度"></a>代码颗粒度</h4><p>工具函数 和 业务逻辑 抽离<br>表单校验 和 业务逻辑 抽离<br>事件函数 和 业务逻辑 抽离<br>ajax 和 业务逻辑 抽离</p>
+<h4 id="其他规范"><a href="#其他规范" class="headerlink" title="其他规范"></a>其他规范</h4><p>不要使用 var 声明变量<br>不会被修改的变量使用 const 声明<br>去除声明但未使用的代码<br>禁止代码中使用 debug<br>不允许空代码块<br>input 输入框 trim()<br>location 跳转前需要先转义，<code>window.location.href = redirectUrl + encodeURIComponent(&#39;?a=10&amp;b=20&#39;);</code><br>调用第三方库，try catch 包裹，防止第三方库出错</p>
+<blockquote>
+<p>a 标签安全问题</p>
+</blockquote>
+<p>window.opener（.location） 访问原始页面的 location 对象</p>
+<pre><code>target=&quot;_blank&quot; 标签加上 rel = &quot;noopener&quot;</code></pre>
+<p>window.open 打开的页面，将 opener 对象置空</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> windowObj = <span class="built_in">window</span>.open();</span><br><span class="line">windowObj.opener = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-07-01</span><i class="fa fa-tag"></i><a class="tag" href="/categories/前端/" title="前端">前端 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/07/01/前端/React+TypeScript 经验/,日升于东,React+TypeScript 经验,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/07/03/Java/MyBatis/" title="MyBatis 原理">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/07/01/%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84/" title="前端架构">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-text">注释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E5%BC%95%E7%94%A8%E9%A1%BA%E5%BA%8F"><span class="toc-text">组件引用顺序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E5%8F%B7%E4%BD%BF%E7%94%A8"><span class="toc-text">引号使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E6%A0%BC"><span class="toc-text">空格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%AC%E5%8F%B7"><span class="toc-text">括号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E5%90%8D"><span class="toc-text">命名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#interface-%E5%A3%B0%E6%98%8E%E9%A1%BA%E5%BA%8F"><span class="toc-text">interface 声明顺序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TS-%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7%E6%B3%9B%E5%9E%8B%E3%80%81tips"><span class="toc-text">TS 相关工具泛型、tips</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%B3%E5%81%A5%E6%80%A7%E5%88%A4%E6%96%AD"><span class="toc-text">稳健性判断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E7%9C%9F%E5%81%87"><span class="toc-text">判断真假</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7%E7%BC%93%E5%AD%98"><span class="toc-text">常用属性缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%BB%E6%AD%A2%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA"><span class="toc-text">阻止默认行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hasOwnProperty-%E5%88%A4%E6%96%AD"><span class="toc-text">hasOwnProperty 判断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Event-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B"><span class="toc-text">Event 事件对象类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%A2%97%E7%B2%92%E5%BA%A6"><span class="toc-text">代码颗粒度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%A7%84%E8%8C%83"><span class="toc-text">其他规范</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

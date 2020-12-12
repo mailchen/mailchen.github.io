@@ -1,0 +1,110 @@
+<!DOCTYPE html><html><head><title>Oracle 数据库体系 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Oracle 数据库体系</a></h3></div><div class="post-content"><h4 id="服务启动、关闭"><a href="#服务启动、关闭" class="headerlink" title="服务启动、关闭"></a>服务启动、关闭</h4><ul>
+<li>startup open</li>
+<li>shutdown immediate</li>
+</ul>
+<h4 id="默认密码"><a href="#默认密码" class="headerlink" title="默认密码"></a>默认密码</h4><ul>
+<li>sys change_on_install</li>
+<li>system manager</li>
+</ul>
+<h4 id="服务启动问题"><a href="#服务启动问题" class="headerlink" title="服务启动问题"></a>服务启动问题</h4><ul>
+<li>安装目录 -&gt; Network -&gt; ADMIN -&gt; listener.ora \ tnsnames.ora</li>
+</ul>
+<h4 id="7-天口令过期"><a href="#7-天口令过期" class="headerlink" title="7 天口令过期"></a>7 天口令过期</h4><ul>
+<li>select username,PROFILE from dab_users;</li>
+<li>select * from dba_profile s where s.profile =’DEFAULT’ and resource_name =’PASSWORD_LIFE_TIME’;</li>
+<li>alter PROFILE DEFAULT limit PASSWORD_LIFE_TIME UNLIMITED</li>
+</ul>
+<h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><ul>
+<li>sqlplus / as sysdba</li>
+<li>alter user wapgw identified by &lt;密码&gt;</li>
+</ul>
+<h4 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h4><ul>
+<li><p>存储结构</p>
+<blockquote>
+<p>物理存储结构<br>逻辑存储结构<br>控制文件 .ctl，数据文件 .dbf，日志文件n .log</p>
+</blockquote>
+</li>
+<li><p>内存结构 </p>
+<blockquote>
+<p>系统全局区 SGA<br>数据高速缓存、日志高速缓存、共享池、大型池<br>程序全局区 PGA<br>服务进程、排序区、堆栈区、会话区</p>
+</blockquote>
+</li>
+<li><p>进程结构</p>
+<blockquote>
+<p>前台进程<br>后台进程<br>DBWR \ PMON \ SNPn \ RECO \ LGWR \ SMON \ CKPT \ ARCH </p>
+</blockquote>
+</li>
+</ul>
+<h4 id="物理存储结构"><a href="#物理存储结构" class="headerlink" title="物理存储结构"></a>物理存储结构</h4><blockquote>
+<p>数据文件</p>
+</blockquote>
+<pre><code>//使用 dba_data_files 查看表空间 SYSTEM 对应的数据文件部分信息
+Win + R -&gt; cmd -&gt; sqlplus /nolog -&gt; conn /as sysdba
+SQL&gt; COLUMN file_name FORMAT A60
+SQL&gt; COLUMN tablespace_name FORMAT A20
+SQL&gt; select file_name,tablespace_name from dba_data_files
+2  where tablespace_name = &#39;SYSTEM&#39;;
+
+// 使用 v$datafile 查看数据库文件动态信息
+SQL&gt; COLUMN name FORMAT A60
+SQL&gt; SELECT file#,name,checkpoint_change#
+2  from v$datafile;    </code></pre>
+<blockquote>
+<p>查看控制文件</p>
+</blockquote>
+<pre><code>//使用 v$controlfile 查看控制文件的名称和存储路径
+SQL&gt; COLUMN name FORMAT A60
+SQL&gt; SELECT name
+2  FROM v$controlfile;</code></pre>
+<blockquote>
+<p>日志文件 （v$logfile \ v$log）</p>
+</blockquote>
+<blockquote>
+<p>其它文件</p>
+</blockquote>
+<pre><code>参数文件 
+PFILE -&gt; init&lt;SID&gt;.ora 
+SPFILE -&gt; spfile&lt;SID&gt;.ora
+口令文件、跟踪文件、报警文件</code></pre>
+<h4 id="逻辑存储结构"><a href="#逻辑存储结构" class="headerlink" title="逻辑存储结构"></a>逻辑存储结构</h4><ul>
+<li>表空间 -&gt; n 段 -&gt; n 区 -&gt; n 块</li>
+</ul>
+<blockquote>
+<p>查看系统所有表空间</p>
+</blockquote>
+<pre><code>//使用 dba_tablespaces 查看系统所有表空间
+ select tablespace_name from dba_tablespaces;
+TABLESPACE_NAME
+--------------------
+SYSTEM
+SYSAUX
+UNDOTBS1
+TEMP
+USERS
+*Oracle 自动创建的表空间*</code></pre>
+<ul>
+<li><p>段：数据段、索引段、临时段、回滚段</p>
+</li>
+<li><p>区：初始区、增量区</p>
+</li>
+</ul>
+<h4 id="进程结构"><a href="#进程结构" class="headerlink" title="进程结构"></a>进程结构</h4><ul>
+<li><p>必备后台进程</p>
+<p>  DBWRn \ PMON \ CKRT \ LGWR \ SMON</p>
+</li>
+<li><p>可选进程</p>
+<p>  ARCn \ REDO</p>
+</li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2013-07-01</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/Oracle/" title="Oracle">Oracle </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2013/07/01/数据库/Oracle 数据库体系/,日升于东,Oracle 数据库体系,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2013/07/01/SVN%20%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" title="SVN 版本控制">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2013/07/01/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E4%B8%B2/" title="常用数据库连接串">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E3%80%81%E5%85%B3%E9%97%AD"><span class="toc-text">服务启动、关闭</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%AF%86%E7%A0%81"><span class="toc-text">默认密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E9%97%AE%E9%A2%98"><span class="toc-text">服务启动问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E5%A4%A9%E5%8F%A3%E4%BB%A4%E8%BF%87%E6%9C%9F"><span class="toc-text">7 天口令过期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-text">修改密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-text">体系结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-text">物理存储结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-text">逻辑存储结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%BB%93%E6%9E%84"><span class="toc-text">进程结构</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

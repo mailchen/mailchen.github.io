@@ -1,0 +1,127 @@
+<!DOCTYPE html><html><head><title>vuex pathify 使用指南 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>vuex pathify 使用指南</a></h3></div><div class="post-content"><p><a target="_blank" rel="noopener" href="https://davestewart.github.io/vuex-pathify/#/">vuex pathify</a></p>
+<p>状态的存储访问统一使用 <code>get()</code>、<code>set()</code>、<code>sync()</code>、<code>call()</code> 方法</p>
+<p><a target="_blank" rel="noopener" href="https://codesandbox.io/s/github/davestewart/vuex-pathify-demos/tree/master/main?file=/src/main.js">demo</a></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>npm i vuex-pathify</p>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><style>
+.tableWrap table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.tableWrap table *{
+    padding: .25rem;
+    border:1px solid #cdcdcd;
+}
+</style>
+
+<div class="tableWrap">
+
+<table>
+<thead>
+<tr>
+<th align="left">scheme</th>
+<th align="left">path</th>
+<th align="left">state</th>
+<th align="left">getter</th>
+<th align="left">mutation</th>
+<th align="left">action</th>
+<th align="left">notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">standard</td>
+<td align="left">/foo</td>
+<td align="left">foo</td>
+<td align="left">foo</td>
+<td align="left">SET_FOO</td>
+<td align="left">setFoo</td>
+<td align="left">默认</td>
+</tr>
+<tr>
+<td align="left">simple</td>
+<td align="left">/foo</td>
+<td align="left">foo</td>
+<td align="left">foo</td>
+<td align="left">foo</td>
+<td align="left">setFoo</td>
+<td align="left">简洁</td>
+</tr>
+</tbody></table>
+</div>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认配置</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  mapping: <span class="string">&#x27;standard&#x27;</span>,  <span class="comment">// map states to store members using the &quot;standard&quot; scheme</span></span><br><span class="line">  strict: <span class="literal">true</span>,         <span class="comment">// throw an error if the store member cannot be found</span></span><br><span class="line">  cache: <span class="literal">true</span>,          <span class="comment">// cache generated functions for faster re-use</span></span><br><span class="line">  deep: <span class="literal">true</span>,           <span class="comment">// allow sub-property access to Vuex stores</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>由于ES6导入的工作方式，配置必须保存在独立文件中，并且必须在导入任何存储文件之前导入</code></pre>
+<ol>
+<li>新建 store/pathify.js</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pathify <span class="keyword">from</span> <span class="string">&#x27;vuex-pathify&#x27;</span></span><br><span class="line"></span><br><span class="line">pathify.options.mapping = <span class="string">&#x27;standard&#x27;</span></span><br><span class="line">pathify.options.deep = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> pathify</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>项目集成</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pathify <span class="keyword">from</span> <span class="string">&#x27;vuex-pathify&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查设置，输出当前options值和映射函数输出的明细</span></span><br><span class="line">pathify.debug()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = &#123;</span><br><span class="line">  <span class="comment">// state, members, modules, etc</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  plugins: [ pathify.plugin ],</span><br><span class="line">  ...store</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参数说明</p>
+</blockquote>
+<p>deep:</p>
+<p>0：禁止访问子属性<br>1：启用对现有子属性的访问<br>2：允许创建新的子属性</p>
+<h4 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pathify.options.mapping = <span class="function"><span class="keyword">function</span> (<span class="params">type, name, formatters</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">switch</span>(type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;mutations&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> formatters.const(<span class="string">&#x27;set&#x27;</span>, name)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;actions&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> formatters.camel(<span class="string">&#x27;set&#x27;</span>, name)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;getters&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> formatters.snake(<span class="string">&#x27;get&#x27;</span>, name)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> name <span class="comment">// foo</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>formatters:</p>
+<p>camel - camelCase<br>snake - snake_case<br>const - CONST_CASE</p>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; make &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-pathify&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> state = &#123;</span><br><span class="line">  items: [],</span><br><span class="line">  status: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  filters: &#123;</span><br><span class="line">    search: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    sort : &#123; ... &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>const mutations = make.mutations(state)</p>
+</blockquote>
+<p>代码生成如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mutations = &#123;</span><br><span class="line">    SET_ITEMS: <span class="function">(<span class="params">state, value</span>) =&gt;</span> state.items = value <span class="keyword">instanceof</span> Payload</span><br><span class="line">        ? value.update(state[key])</span><br><span class="line">        : value,</span><br><span class="line">    SET_STATUS: <span class="function">(<span class="params">state, value</span>) =&gt;</span> state.status = value <span class="keyword">instanceof</span> Payload</span><br><span class="line">        ? value.update(state[key])</span><br><span class="line">        : value,</span><br><span class="line">    SET_FILTERS: <span class="function">(<span class="params">state, value</span>) =&gt;</span> state.filters = value <span class="keyword">instanceof</span> Payload</span><br><span class="line">        ? value.update(state[key])</span><br><span class="line">        : value,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>const actions = make.actions(state)</p>
+</blockquote>
+<p>代码生成如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> actions = &#123;</span><br><span class="line">    setItems: <span class="function">(<span class="params">&#123;commit&#125;, value</span>) =&gt;</span> commit(<span class="string">&#x27;SET_ITEMS&#x27;</span>, value),</span><br><span class="line">    setStatus: <span class="function">(<span class="params">&#123;commit&#125;, value</span>) =&gt;</span> commit(<span class="string">&#x27;SET_STATUS&#x27;</span>, value),</span><br><span class="line">    setFilters: <span class="function">(<span class="params">&#123;commit&#125;, value</span>) =&gt;</span> commit(<span class="string">&#x27;SET_FILTERS&#x27;</span>, value),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>const getters = make.getters(state)</p>
+</blockquote>
+<p>代码生成如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getters = &#123;</span><br><span class="line">  items: <span class="function"><span class="params">state</span> =&gt;</span> state.items,</span><br><span class="line">  status: <span class="function"><span class="params">state</span> =&gt;</span> state.status,</span><br><span class="line">  filters: <span class="function"><span class="params">state</span> =&gt;</span> state.filters,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>get 访问</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">store.get(<span class="string">&#x27;filters@sort.order&#x27;</span>)</span><br><span class="line"><span class="built_in">this</span>.$store.getters[<span class="string">&#x27;filters@sort.order&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>set 设置</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">store.set(<span class="string">&#x27;items&#x27;</span>, data).then(<span class="built_in">console</span>.log)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>sync 设置双向绑定数据</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sync(<span class="string">&#x27;products/status&#x27;</span>)</span><br><span class="line"><span class="comment">// 生成代码如下：</span></span><br><span class="line">status: &#123;</span><br><span class="line">    get () &#123; </span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">this</span>.$store.state.products.status</span><br><span class="line">    &#125;,</span><br><span class="line">    set (value) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">this</span>.$store.commit(<span class="string">&#x27;products/SET_STATUS&#x27;</span>, value)</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>call 创建函数 dispatch actions</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  load: call(<span class="string">&#x27;products/load&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">  load (payload) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.$store.dispatch(<span class="string">&#x27;products/load&#x27;</span>, payload)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Get, Sync, Call &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-pathify&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// component</span></span><br><span class="line">@Components</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">Vue</span> </span>&#123;</span><br><span class="line">  @Get(<span class="string">&#x27;products/items&#x27;</span>) items</span><br><span class="line">  @Sync(<span class="string">&#x27;products/tax&#x27;</span>) tax</span><br><span class="line">  @Call(<span class="string">&#x27;products/setDiscount&#x27;</span>) setDiscount</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等价于</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; get, sync, call &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-pathify&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">    items: get(<span class="string">&#x27;products/items&#x27;</span>),</span><br><span class="line">    tax: sync(<span class="string">&#x27;products/tax&#x27;</span>),</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">    setDiscount: call(<span class="string">&#x27;products/setDiscount&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-11-02</span><i class="fa fa-tag"></i><a class="tag" href="/categories/前端/" title="前端">前端 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2020/11/02/前端/vuex pathify 使用指南/,日升于东,vuex pathify 使用指南,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/11/03/%E5%89%8D%E7%AB%AF/vuex-router-sync/" title="vuex-router-sync">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/10/27/%E5%89%8D%E7%AB%AF/apexcharts%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="apexcharts 使用指南">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE"><span class="toc-text">自定义配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#API"><span class="toc-text">API</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="toc-text">装饰器</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

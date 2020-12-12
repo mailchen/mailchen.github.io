@@ -1,0 +1,86 @@
+<!DOCTYPE html><html><head><title>Vue 进阶 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Vue 进阶</a></h3></div><div class="post-content"><h4 id="指定被挂载元素"><a href="#指定被挂载元素" class="headerlink" title="指定被挂载元素"></a>指定被挂载元素</h4><blockquote>
+<p>el 选项指定 Vue 实例的挂载目标，属性值仅限于 CSS 选择器或者 DOM 节点对象<br>$mount 挂载实例</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">	<span class="comment">// 选择器</span></span><br><span class="line">	el:<span class="string">&#x27;#app&#x27;</span>, </span><br><span class="line"></span><br><span class="line">	<span class="comment">// HTMLElement</span></span><br><span class="line">	el: <span class="built_in">document</span>.getElementById(<span class="string">&#x27;app&#x27;</span>), </span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="title">data</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> &#123;</span><br><span class="line">			something...</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//$mount 挂载实例</span></span><br><span class="line"><span class="keyword">let</span> handleMount = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	vm.$mount(<span class="string">&#x27;#app&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="字符串模板"><a href="#字符串模板" class="headerlink" title="字符串模板"></a>字符串模板</h4><blockquote>
+<p>template 选项</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">	el:<span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">	template: <span class="string">&#x27;&lt;div&gt;some template&lt;/div&gt;&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="渲染函数"><a href="#渲染函数" class="headerlink" title="渲染函数"></a>渲染函数</h4><blockquote>
+<p>渲染函数（render）用于渲染视图，提供回调方法 createElement</p>
+</blockquote>
+<h4 id="选项的优先级"><a href="#选项的优先级" class="headerlink" title="选项的优先级"></a>选项的优先级</h4><blockquote>
+<p>render &gt; template &gt; el</p>
+</blockquote>
+<h4 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h4><blockquote>
+<p>双括号插值绑定中，“|”分割表达式：  msg | filter1 | filter2 </p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">msg: <span class="string">&#x27;Test#%%for%#%Filter.&#x27;</span></span><br><span class="line"></span><br><span class="line">filters:&#123;</span><br><span class="line">	filter1 (val)&#123;</span><br><span class="line">		<span class="keyword">return</span> val.replace(<span class="regexp">/#/g</span>, <span class="string">&#x27; &#x27;</span>)</span><br><span class="line">	&#125;,</span><br><span class="line">	filter2 (val)&#123;</span><br><span class="line">		<span class="keyword">return</span> val.replace(<span class="regexp">/%/g</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h4><p><strong>自定义指令被申明在 directives 选项中</strong></p>
+<blockquote>
+<p>钩子函数</p>
+</blockquote>
+<ul>
+<li>bind</li>
+<li>inserted</li>
+<li>update</li>
+<li>componentUpdated</li>
+<li>unbind</li>
+</ul>
+<blockquote>
+<p>钩子函数接受参数</p>
+</blockquote>
+<ul>
+<li>el</li>
+<li>binding</li>
+</ul>
+<blockquote>
+<p>binding 包含属性</p>
+</blockquote>
+<ul>
+<li>name</li>
+<li>value</li>
+<li>oldValue 仅在 update 时使用</li>
+<li>expression</li>
+<li>arg</li>
+<li>modifiers</li>
+<li>vnode</li>
+<li>oldNode 仅在 update 时使用</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-some.upper</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-some.lower</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-style</span>=<span class="string">&quot;style&quot;</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">directives:&#123;</span><br><span class="line">	style:&#123;</span><br><span class="line">		bind (el, binding, vnode)&#123;</span><br><span class="line">			<span class="comment">//doSomeThing...</span></span><br><span class="line">		&#125;,</span><br><span class="line">		update (el, binding, vnode, oldVnode)&#123;</span><br><span class="line">			<span class="comment">//doSomeThing...</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	some (el, binding)&#123;</span><br><span class="line">		<span class="keyword">let</span> text = el.innerText;</span><br><span class="line">		<span class="keyword">let</span> modifiers = binding.modifiers;</span><br><span class="line">		<span class="keyword">if</span>(modifiers.upper)&#123;</span><br><span class="line">			el.innerText = text.toUpperCase();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(modifiers.lower)&#123;</span><br><span class="line">			el.innerText = text.toLowerCase();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="组件的注册"><a href="#组件的注册" class="headerlink" title="组件的注册"></a>组件的注册</h4><blockquote>
+<p>components 选项用于为组件注册从外部引入的组件，子组件并非全局定义，因此不可以直接在父组件作用域内使用，常用场景引入第三方库组件和自定义组件等。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> eTitle = &#123;</span><br><span class="line">	name: <span class="string">&#x27;eTitle&#x27;</span>,</span><br><span class="line">	template:<span class="string">&#x27;&lt;p&gt;title&lt;/p&gt;&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> eMotto = &#123;</span><br><span class="line">	name: <span class="string">&#x27;eMotto&#x27;</span>,</span><br><span class="line">	template:<span class="string">&#x27;&lt;p&gt;motto&lt;/p&gt;&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">	el:<span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">	components:&#123;eTitle, eMotto&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="混入"><a href="#混入" class="headerlink" title="混入"></a>混入</h4><blockquote>
+<p>mixins </p>
+</blockquote>
+<p>混入Vue实例的方法（局部混入、全局混入）</p>
+<blockquote>
+<p>冲突默认策略：</p>
+</blockquote>
+<ul>
+<li> data： 合并，优先采用组件的数据</li>
+<li> mounted 等钩子函数： 混合为数组，全部调用，优先调用 mixins</li>
+<li> methods/components/directives等： 混为同一对象，优先采用组件键值对</li>
+<li> watch： 混为数组，全部调用，优先调用 mixins</li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2019/07/16/Vue/Vue 进阶/,日升于东,Vue 进阶,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/07/16/Vue/Vue%20%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6/" title="Vue 内置组件">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/07/16/Vue/Vue%20%E9%80%89%E9%A1%B9/" title="Vue 选项">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E8%A2%AB%E6%8C%82%E8%BD%BD%E5%85%83%E7%B4%A0"><span class="toc-text">指定被挂载元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E6%9D%BF"><span class="toc-text">字符串模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0"><span class="toc-text">渲染函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E9%A1%B9%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">选项的优先级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-text">过滤器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4"><span class="toc-text">自定义指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B3%A8%E5%86%8C"><span class="toc-text">组件的注册</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B7%E5%85%A5"><span class="toc-text">混入</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>
