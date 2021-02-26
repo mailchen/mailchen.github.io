@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><title>BFF 服务前端的后端 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>BFF 服务前端的后端</a></h3></div><div class="post-content"><h4 id="BFF"><a href="#BFF" class="headerlink" title="BFF"></a>BFF</h4><p>Back-end for Front-end</p>
+<blockquote>
+<p>Web 1.0</p>
+</blockquote>
+<p>服务端返回 html</p>
+<blockquote>
+<p>Web 2.0</p>
+</blockquote>
+<p>服务端返回<code>json</code>,实现前后端分离</p>
+<blockquote>
+<p>微服务</p>
+</blockquote>
+<ol>
+<li>API Gateway 网关分发请求</li>
+</ol>
+<p>后端有时需要准备力度很细的数据返回，这个就要求前后端频繁沟通。有一些场景，后端又需要构造各种级联表单，以致微服务之间调度频繁；<br>而微服务的本质是<code>清晰的界限上下文</code>，因此在某些场景下这种设计会导致领域建模变得较为复杂</p>
+<ol start="2">
+<li>CORS 前端跨域请求</li>
+</ol>
+<p>前端分层和建模是最近比较流行的设计趋势</p>
+<blockquote>
+<p>BFF</p>
+</blockquote>
+<p>将组装、聚合、裁剪这部分业务单独拎出来，组成一个叫Back-end for Front-end的中间层<br>服务器设计 API 时会考虑客户端的使用情况，并在此层直接进行业务逻辑的处理和转发，又称为用户体验适配器</p>
+<p>本质：nodejs，能做请求转发和数据转化<br>实现：Graphql的服务，对前Restful、对后RPC的实现，还可以在BFF上加cache、鉴权等等操作</p>
+<p><img src="https://image-static.segmentfault.com/339/916/3399167535-5926cf52bd7f7_articlex" alt="BFF设计"></p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>前后端彻底分离，即便后期微服务迁移，无需改动前端代码</li>
+<li>业务更向前靠拢，琐碎的api由前端开发决定，更适配前端框架</li>
+<li>BFF可以自开 mock,插件可以自动生成 api 文档</li>
+<li>后端更清晰的服务边界，只需要提供粗粒度的接口</li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>增加了系统的复杂度</li>
+<li>中间层转发增加请求延迟</li>
+<li>需要保证端对端的测试</li>
+<li>必须随时准备好后端异常请求</li>
+<li>增加开发成本</li>
+</ul>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><p>SSR -&gt; 同构<br>服务接口的聚合、裁剪、透传（GraphQL）</p>
+<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p><strong>康威定律</strong></p>
+<p>设计系统的组织其产生的设计等价于组织间的沟通结构<br>如果系统架构不支持，你无法建立一个高效的组织</p>
+<ol>
+<li><p>组织沟通方式会通过系统设计表达出来</p>
+</li>
+<li><p>时间再多一件事情也不可能做的完美，但总有时间做完一件事情</p>
+</li>
+<li><p>线型系统和线型组织架构间有潜在的异质同态特性</p>
+</li>
+<li><p>大的系统组织总是比小系统更倾向于分解</p>
+<p> 自管理</p>
+</li>
+</ol>
+<p><strong>奥卡姆剃刀原则</strong>：——若无必要，勿增实体</p>
+<ol>
+<li>需要假设最少的解释往往是越接近真相的解释。</li>
+<li>如果有某个条件是不能被我们感知和检测到的，那么和没有这个条件根本就是等价的。</li>
+</ol>
+<p><strong>Airbnb规范</strong></p>
+<p><strong>WebAssembly</strong></p>
+<p>c/c++ 编译成 js</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-01-14</span><i class="fa fa-tag"></i><a class="tag" href="/categories/前端/" title="前端">前端 </a><a class="tag" href="/tags/BFF/" title="BFF">BFF </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2021/01/14/前端/BFF 服务前端的后端/,日升于东,BFF 服务前端的后端,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/01/14/PWA/%E9%AA%A8%E6%9E%B6%E5%B1%8F/" title="骨架屏">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/01/14/%E5%89%8D%E7%AB%AF/PWA%20%E5%BA%94%E7%94%A8/" title="PWA 应用">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#BFF"><span class="toc-text">BFF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95"><span class="toc-text">扩展</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

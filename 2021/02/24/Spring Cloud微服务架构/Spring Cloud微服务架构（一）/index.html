@@ -1,0 +1,77 @@
+<!DOCTYPE html><html><head><title>Spring Cloud微服务架构（一） [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Spring Cloud微服务架构（一）</a></h3></div><div class="post-content"><h4 id="框架演进历史"><a href="#框架演进历史" class="headerlink" title="框架演进历史"></a>框架演进历史</h4><ol>
+<li>单体应用</li>
+</ol>
+<p>Spring + MyBatis/Hibernate/JDBC + Struts/SpringMVC + jsp</p>
+<p>打包成 war包，部署到 Tomcat</p>
+<ol start="2">
+<li>前后端分离</li>
+</ol>
+<p>SpringBoot + Jquery + ajax</p>
+<p>nginx+jar</p>
+<ol start="3">
+<li><p>负载均衡</p>
+</li>
+<li><p>微服务</p>
+</li>
+</ol>
+<p>单一职责，一个服务只解决一个业务领域的问题<br>服务：对外提供我们能处理的业务服务</p>
+<p>优点：<br>    服务职责小，服务间互不影响<br>    代码量小，易于维护，减少代码冲突<br>    便于迭代升级<br>    耦合度低</p>
+<p>缺点：<br>    运维成本高<br>    架构复杂<br>    隐形问题变多，如不同服务间调用</p>
+<h4 id="常用组件"><a href="#常用组件" class="headerlink" title="常用组件"></a>常用组件</h4><ul>
+<li>服务注册发现 Euraka</li>
+<li>服务网关 Gateway</li>
+<li>客户端负载均衡 Ribbon</li>
+<li>熔断器 Hystrix  （更换成：Sentinel）</li>
+<li>分布式配置 Spring Cloud Config （更换成：Nacos）</li>
+<li>服务调用 Feign</li>
+</ul>
+<h4 id="服务注册中心-Eureka"><a href="#服务注册中心-Eureka" class="headerlink" title="服务注册中心 Eureka"></a>服务注册中心 Eureka</h4><p>Netflix 开发的，基于 REST 服务的，服务注册和发现组件</p>
+<ul>
+<li><p>创建 多 module maven工程，module 间无依赖，均为单体应用</p>
+<p>  各组件版本：</p>
+<pre><code>spring boot：2.2.5
+spring cloud：Hoxton.SR3
+Jdk：1.8</code></pre>
+<ol>
+<li>新建项目</li>
+<li>配置 maven 镜像，本地仓库，IDE 构建项目依赖 maven，安装依赖</li>
+<li>新增 module 引入eureka 依赖</li>
+<li>pom.xml 配置</li>
+<li>application.properties 配置服务信息</li>
+</ol>
+</li>
+</ul>
+<h4 id="服务间调用-Feign"><a href="#服务间调用-Feign" class="headerlink" title="服务间调用 Feign"></a>服务间调用 Feign</h4><p>一个 http 请求调用的轻量级框架，可以以 java 接口注释的方式调用 Http 请求，而不需要像 java 中封装 HTTP 请求报文的方式直接调用</p>
+<pre><code>app-order：调用方
+app-storage：被调用方
+mybatis-plus：数据处理框架
+lombok：简化代码，常用@Data注解，实体类省略 set、get、toString 方法
+
+注意：集成 mybatis-plus 要把mybatis、mybatis-spring去掉，避免冲突；</code></pre>
+<h4 id="服务网关-GateWay"><a href="#服务网关-GateWay" class="headerlink" title="服务网关 GateWay"></a>服务网关 GateWay</h4><p>目的：提供简单有效的 API路由，基于 Spring Framework5、Spring Boot 2.0 构建，WebFlux 实现，取代 Zuul</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yizhishi/archive/2019/09/26/11588860.html">Zuul和Spring Cloud Gateway的对比</a></p>
+<ul>
+<li>配置文件</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 配置路由唯一 id</span><br><span class="line">spring.cloud.gateway.routes[<span class="number">0</span>].id=app-storage</span><br><span class="line"># app-storage 所在服务，lb:// 表示采用负载均衡</span><br><span class="line">spring.cloud.gateway.routes[<span class="number">0</span>].uri=lb:<span class="comment">//APP-STORAGE</span></span><br><span class="line"># 配置请求 app-storage 下所有接口的请求前缀</span><br><span class="line">spring.cloud.gateway.routes[<span class="number">0</span>].predicates[<span class="number">0</span>]=Path=/storage/v1<span class="comment">/**</span></span><br><span class="line"><span class="comment"># 配置转发请求路径需要过滤掉几层前缀</span></span><br><span class="line"><span class="comment">spring.cloud.gateway.routes[0].filters[0]=StripPrefix=2</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-02-24</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Spring-Cloud/" title="Spring Cloud">Spring Cloud </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2021/02/24/Spring Cloud微服务架构/Spring Cloud微服务架构（一）/,日升于东,Spring Cloud微服务架构（一）,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/02/16/Electron/Electron%20%E6%A1%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/" title="Electron 桌面开发入门">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E6%BC%94%E8%BF%9B%E5%8E%86%E5%8F%B2"><span class="toc-text">框架演进历史</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6"><span class="toc-text">常用组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83-Eureka"><span class="toc-text">服务注册中心 Eureka</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E9%97%B4%E8%B0%83%E7%94%A8-Feign"><span class="toc-text">服务间调用 Feign</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3-GateWay"><span class="toc-text">服务网关 GateWay</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

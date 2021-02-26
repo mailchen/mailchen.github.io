@@ -1,67 +1,89 @@
-<!DOCTYPE html><html><head><title>黎明前的黑暗 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="踩坑经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、踩坑经验、资源分享、HTML5、CSS3、Javascript、C#、.NET"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a class="current" href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/18/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84C4%E6%A8%A1%E5%9E%8B/">软件架构C4模型</a></h3></div><div class="post-content"><p>C4模型描述上下文（context）容器（container）  ┐组件（component）  │=&gt; 描述软件系统的静态结构代码（code）       ┘
+<!DOCTYPE html><html><head><title>黎明前的黑暗 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a class="current" href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/10/25/Other/%E5%BE%AE%E8%A7%82%E9%87%91%E8%9E%8D/%E4%BC%81%E4%B8%9A%E5%B8%B8%E8%A7%81%E8%9E%8D%E8%B5%84%E6%96%B9%E6%B3%95/">企业常见融资方法</a></h3></div><div class="post-content"><p>第01类：银行担保/抵押/质押等贷款     
+第02类：银行法人借贷   
+第03类：应收帐款保理     
+第04类：信用担保抵押      
+第05类：个人信用卡集合透支 
+第06类：法人帐户临时透支
+第07类：银行贷款贴息
+第08类：中小企业无担保/抵押/质押贷款
+第09类：无形资产贷款    
+第08类...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-10-25</span><i class="fa fa-tag"></i><a class="tag" href="/categories/杂说/" title="杂说">杂说 </a><a class="tag" href="/tags/经济/" title="经济">经济 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/10/25/Other/%E5%BE%AE%E8%A7%82%E9%87%91%E8%9E%8D/%E9%87%91%E8%9E%8D%E6%99%AE%E5%8D%8E/">金融普华</a></h3></div><div class="post-content"><p>
+中西方金融体系、思维方式的差异
 
-系统上下文
+历史第一本金融学巨著：【管子】2600年前，西方 1500年前
+历史第一所大学：稷下学宫·齐国 2500年前，西方 1000年前
 
-显示了你正在构建的软件系统，以及系统和用户及其他软件系统间的关系
+主板、中小板、创业板
 
-容器
+企业：
+三高六新（高科技、高成长、高增值、新经济、新技术、新材料、新能源、新农村、新服务）
+创业板特点：门槛低、融资更多、...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-10-25</span><i class="fa fa-tag"></i><a class="tag" href="/categories/杂说/" title="杂说">杂说 </a><a class="tag" href="/tags/经济/" title="经济">经济 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/10/19/Other/%E6%9D%82%E8%B0%88/">杂谈</a></h3></div><div class="post-content"><p>
+口中有德，目中有人，心中有爱，行中有善。
 
-应用程序、数据存储、微服务等，技术决策
+度远近，调余缺，辨贵贱。
 
-组件
+水则资车，旱则资舟。【货殖列传】
 
-组件...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/大数据/" title="大数据">大数据 </a><a class="tag" href="/tags/软件架构/" title="软件架构">软件架构 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/14/%E6%95%B0%E6%8D%AE%E5%BA%93/ES%20%E4%BD%BF%E7%94%A8/">ES 使用</a></h3></div><div class="post-content"><p>创建索引库索引库：逻辑概念，包括分词列表及文档列表，同一个索引库存储了相同类型的文档，相当于MySQL中的表，Mongodb中的集合
+务完物，无息币。【货殖列传】
 
-postman、curl工具创建
+天下熙熙，皆为利来；天下攘攘，皆为利往。【货殖列传】
 
-12345678&#123;  &quot;srtting&quot;:&#123;    &quot;index&quot;:&#123; ...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-14</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/ElasticSearch/" title="ElasticSearch">ElasticSearch </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/14/%E6%95%B0%E6%8D%AE%E5%BA%93/ES%20%E5%9F%BA%E7%A1%80/">ES 基础</a></h3></div><div class="post-content"><p>介绍
-基于Lucene 的高扩展的分布式搜索服务器，支持开箱即用
-隐藏了 Lucene 的复杂性，对外提供 RestFul 接口操作索引、搜索
+人弃我取，人取我与。 【货殖列传】
 
-
-优点:
-扩展性好，可部署上百台服务器集群，处理PB级数据
-近实时的去索引数据，搜索数据
-支持全文检索
-
-原理逻辑结构 ==&gt; 倒排索引表：
-将要搜索的文档内容分...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-14</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/ElasticSearch/" title="ElasticSearch">ElasticSearch </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/20/flask/SQLALCHEMY/">SQLALCHEMY</a></h3></div><div class="post-content"><p>SQLALCHEMYpip install flask_SQLAlchemypip install sqlalchemy_migrate
-配置1234# Flask-SQLAlchemy 扩展SQLALCHEMY_DATABASE_URI = &#x27;sqlite:///&#x27; + os.path.jo...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-20</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Python/" title="Python">Python </a><a class="tag" href="/tags/flask/" title="flask">flask </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/18/flask/flask%20%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">flask 项目实战</a></h3></div><div class="post-content"><p>项目结构123456789项目名├─ 包名  【源码】│  ├─ static  【静态资源、文件】│  ├─ templates  【模板】│  ├─ __init__.py  【初始化】├─ instance├─ tests  【测试】├─ MANIFEST.in├─ setup.py
-
-应用设置123456...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Python/" title="Python">Python </a><a class="tag" href="/tags/flask/" title="flask">flask </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/16/flask/flask%20%E5%AE%89%E8%A3%85/">flask 安装</a></h3></div><div class="post-content"><p>虚拟环境
-安装 virtualenv
-
-pip install virtualenv
-
-安装使用 virtualenvwrapper
-
-pip install virtualenvwrapper-win
-
-新建虚拟环境
-
-mkvirtualenv env2
-或者
-python -m venv 虚拟环境名称
-
-激活...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Python/" title="Python">Python </a><a class="tag" href="/tags/flask/" title="flask">flask </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/16/flask/flask%20%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">flask 快速上手</a></h3></div><div class="post-content"><p>路由使用 route() 装饰器来把函数绑定到 URL
-123@app.route(&#x27;/&#x27;)def index():	return &#x27;Index Page&#x27;
+贵上极则反贱，贱下极则反贵。贵处如粪土，贱出如珠玉。【货殖列传】
 
 
-带参数的路由
+</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-10-19</span><i class="fa fa-tag"></i><a class="tag" href="/categories/杂谈/" title="杂谈">杂谈 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/29/Javascript/JS%E6%A8%A1%E5%9D%97%E5%8C%96/">JS模块化</a></h3></div><div class="post-content"><p>弊端模块化最大的弊端：HTTP请求数增加，上线时必须合并文件
+什么是模块化模块化是指在解决某一个复杂问题或者一系列的杂糅问题时，依照一种分类的思维把问题进行系统性的分解以之处理。模块化是一种处理复杂系统分解为代码结构更合理，可维护性更高的可管理的模块的方式。
+可以想象一个巨大的系统代码，被整合优化分割成逻辑性很强...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-29</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/29/%E5%89%8D%E7%AB%AF/DESIGNER'S%20GUIDE%20TO%20DPI/">DESIGNER'S GUIDE TO DPI</a></h3></div><div class="post-content"><p>DPI、PPIDPI(Dots Per Inch)是测量空间点密度的单位，最初应用于打印技术中，它表示每英寸能打印上的墨滴数量。
+计算机屏幕一般采用PPI（Pixels Per Inch）来表示一英寸屏幕上显示的像素点的数量
+安装Windows操作系统的电脑屏幕PPI的初始值是96，Mac的初始值是72。一般来说...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-29</span><i class="fa fa-tag"></i><a class="tag" href="/categories/前端/" title="前端">前端 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/29/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BA%94%E7%94%A8/">图数据库应用</a></h3></div><div class="post-content"><p>Native图数据库指一开始就是为了解决图类数据结构而设计的数据库
 
-1234567@app.route(&#x27;/user/&lt;username&gt;&#...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Python/" title="Python">Python </a><a class="tag" href="/tags/flask/" title="flask">flask </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/06/Javascript/this%20%E8%AE%B2%E8%A7%A3/">this 讲解</a></h3></div><div class="post-content"><p>
+图数据库的存储
+图数据库的查询和处理
 
-12345678910111213141516171819202122232425262728293031323334var count = 0function WhoAmI()&#123;  count ++  var res = document.getElementsByClassName(&#x27;...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-06</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/06/Javascript/javascript%20%E9%9D%A2%E8%AF%95%E5%9F%BA%E7%A1%80/">javascript 面试基础</a></h3></div><div class="post-content"><p>变量和类型
-javascript 规定了几种语言类型?
+Neo4j 数据库文件分类：
 
-Undefined、Null、Boolean、String、Number、Symbol、Object、Function
-简单类型都不是对象
+标签
+节点
+属性
+关系
 
-undefined
- 表示未定义，任何变量赋值前都是 undefined 类型，值为 undefined （而不是...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-06</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/05/Javascript/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB/">箭头函数和函数的区别</a></h3></div><div class="post-content"><p>
-构造函数可以使用 new 生成实例
+1234567MATCH (node1:沪深股市 &#123;name: &quot;sha_600610&quot;&#125;)-[relat...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-29</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/图数据库/" title="图数据库">图数据库 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/29/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0/%E5%85%83%E6%95%B0%E6%8D%AE%E5%BB%BA%E8%AE%BE%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/">元数据建设的那些坑</a></h3></div><div class="post-content"><p>功能介绍竞品：亚信、普元信息、网达、星环
+元数据标准化程度
 
-箭头函数没有自己的 this，它的 this 是继承函数所处上下文的 this，call、apply等无法改变 this 指向
+基本功能
 
 
-1234567891011let obj = &#123;  name:&#x27;ov&#x27;&#125;;function fn1()...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-05</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/page/3/">Prev</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/5/">Next</a></li></ul></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>
+数据地图
+  数据资产统计：通过数据地图了解数据的使用情况、分布等  元数据中心：整个元数据的输出就是数据地图，用户可以通过元数据中心查看表的元数据信息（技术元数据、业务元数据）、任务信息、血缘关系、使用信息等
+
+元模型
+
+管理中心
+
+数...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-29</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据中台/" title="数据中台">数据中台 </a><a class="tag" href="/tags/元数据/" title="元数据">元数据 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/28/Other/%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E4%B8%80%E4%B8%AA%E5%93%81%E7%89%8C/">如何打造一个品牌</a></h3></div><div class="post-content"><p>品牌的打造需要经历三个阶段：知名度、认知度和忠诚度
+知名度知名度：用户听说过
+客户性格购买决策路径
+认知度认知度：用户对产品的了解
+品牌的诞生，绝不是一次性曝光，而是持续不断的刷屏，进入用户心智，才有机会作出品牌
+ROI：投资回报率
+忠诚度用户的忠诚度，取决于怎么提供更好的产品和服务满足用户需求
+忠诚度是相互的
+...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-28</span><i class="fa fa-tag"></i><a class="tag" href="/categories/杂说/" title="杂说">杂说 </a><a class="tag" href="/tags/产品经理/" title="产品经理">产品经理 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/24/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0/datax/">datax</a></h3></div><div class="post-content"><p>简介
+异构数据源离线同步工具
+支持数据库（Mysql、Oracle、HDFS、Hive、ODPS、HBase、FTP等）
+
+
+框架设计思路
+
+Framework + Plugin，将数据源读取和写入抽象为 Reader\Writer 插件，纳入到整个同步框架
+
+
+
+Reader: 数据采集模块，将采集的数据源的数...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-24</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据中台/" title="数据中台">数据中台 </a><a class="tag" href="/tags/datax/" title="datax">datax </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/20/Vue/webpack%20%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/">webpack 配置优化</a></h3></div><div class="post-content"><p>关键配置项
+entry
+
+查找依赖的入口文件配置，入口文件可以多个
+单页面应用入口配置
+1234567module.exports = &#123;  entry: &#123;    vendor: &#x27;./src/vendor.js&#x27;,          // 第三方依赖库    polyf...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-20</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/webpack/" title="webpack">webpack </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/page/3/">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/5/">下一页</a></li></ul></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>
