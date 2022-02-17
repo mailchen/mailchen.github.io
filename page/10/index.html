@@ -1,68 +1,56 @@
-<!DOCTYPE html><html><head><title>黎明前的黑暗 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a class="current" href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/04/16/Hbase/HBase%20Shell/">HBase Shell</a></h3></div><div class="post-content"><p>
-create
+<!DOCTYPE html><html><head><title>黎明前的黑暗 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a class="current" href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/01/Javascript/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95/">异常处理方法</a></h3></div><div class="post-content"><p>try—catch只能捕获同步的运行时错误，对语法、异步错误无能为力，用来可预见情况下的特定错误监控
+window.onerrorJS 运行错误发生时，window 会触发一个 ErrorEvent 接口的 error 事件，并执行 window.onerror()。
+123window.onerror = fu...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-01</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/01/Javascript/%E6%9F%AF%E9%87%8C%E5%8C%96%E5%92%8C%E5%8F%8D%E6%9F%AF%E9%87%8C%E5%8C%96/">柯里化和反柯里化</a></h3></div><div class="post-content"><p>Currying把接受多个参数的函数变换成接受一个单一参数(最初函数的第一个参数)的函数，并且返回接受余下的参数且返回结果的新函数
 
-hbase &gt; create &#39;表名&#39;，&#39;列族名&#39;
+示例
 
-list 查表
-
-list
-
-put 插入
-
-put &#39;表名&#39;，&#39;row key&#39;，&#39;列族名：列名&#39;，&#39;数据&#39;
-
-scan 查询最新版本数据...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-04-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/HBase/" title="HBase">HBase </a><a class="tag" href="/tags/HBase/" title="HBase">HBase </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/04/16/Hbase/HBase%20%E5%BA%94%E7%94%A8/">HBase 应用</a></h3></div><div class="post-content"><p>本质：分布式、面向列的开源数据库，Apache的Hadoop子项目。适用于：非结构化数据存储的数据库
-技术特点
-大表
-面向列：面向列族的存储和权限控制，列族独立检索
-稀疏：对于为空（null）的列，并不占用存储空间
-不基于MR、Yarn，而是基于自身的文件索引
-无Join功能，做不了分析类处理，通常增删改查
-RS...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-04-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/HBase/" title="HBase">HBase </a><a class="tag" href="/tags/HBase/" title="HBase">HBase </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/04/16/Hbase/Hive/">Hive</a></h3></div><div class="post-content"><p>OLAP：联机分析处理 （Hive适用）OLTP：联机事务处理
-</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-04-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/HBase/" title="HBase">HBase </a><a class="tag" href="/tags/Hive/" title="Hive">Hive </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/04/16/jenkins%E9%83%A8%E7%BD%B2/%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/">环境准备</a></h3></div><div class="post-content"><p>安装 JDK
-检查是否安装 JDKjava -versionecho $JAVA_HOMEecho $CLASSPATHecho $PATH
+1234567891011121314151617181920function check(reg, txt) &#123;  return reg.test(txt)&#...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-01</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/01/Javascript/%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0%E5%92%8C%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/">节流函数和防抖函数</a></h3></div><div class="post-content"><p>节流函数原理：周期性定时器
+1234567891011var run = true;window.onresize = () =&gt; &#123;  if(!run)&#123;    return  &#125;  run = false  setTimeout(() =&gt; &#123;    con...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-01</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/01/Javascript/%E9%97%AD%E5%8C%85/">闭包</a></h3></div><div class="post-content"><p>闭包就是一个函数，一个外部函数通过调用函数并return返回出内部函数，这里的内部函数就是一个闭包；此时在内部函数中是可以访问到外部函数的变量的；
+123456789101112function a()&#123;  const x = 1;  const y = 12;  return () =&gt; &#1...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-01</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/07/31/Css/%E7%BA%AF%20CSS%20%E6%BB%9A%E5%8A%A8%E8%BF%9B%E5%BA%A6%E6%9D%A1%E6%95%88%E6%9E%9C/">纯 CSS 滚动进度条效果</a></h3></div><div class="post-content"><p>
 
 
-找到合适的版本
- yum search java | grep jdk
 
-安装合适版本
- yum install java-1.8.0-openjdk.x86_64 j...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-04-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/jenkins/" title="jenkins">jenkins </a><a class="tag" href="/tags/jenkins/" title="jenkins">jenkins </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/04/15/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1%EF%BC%88%E4%B8%80%EF%BC%89/">领域驱动设计（一）</a></h3></div><div class="post-content"><p>解决问题
-微服务如何拆分和设计，微服务如何定义？
-如何将通用的可复用的业务能力沉淀到中台业务模型，实现服务复用？
+分析需求
+
+如何得知用户当前滚动页面的距离并且通知顶部进度条？
+如此思考则陷入了传统思维，进度条就是进度条，接收页面滚动距离，改变宽度。如果页面滚动和进度条是一个整体呢。
+
+实现需求
+
+线性渐变
+1234567891011121314151617181920212223242526272829303132...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-07-31</span><i class="fa fa-tag"></i><a class="tag" href="/categories/CSS/" title="CSS">CSS </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/07/29/Vue/Vuex%20axios%20%E5%B0%81%E8%A3%85/">Vuex axios 封装</a></h3></div><div class="post-content"><p>request 拦截1234567891011121314151617import axios from &#x27;axios&#x27;const service = axios.create(&#123;  baseUrl: process.env.ENV_CONFIG&#125;)service.inte...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-07-29</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/07/29/Vue/Vuex%20%E8%AF%A6%E8%A7%A3/">Vuex 详解</a></h3></div><div class="post-content"><p>包含对象state、mutations、getters、actions
+
+state
+
+Vuex 中的数据源，可以通过 this.$store.state.变量名 访问仓库的数据源
+
+mutations
+
+通过 this.$store.commit(‘方法名’) 修改仓库中的数据源信息，同步操作
+
+getters...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-07-29</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/07/29/Vue/vue-router%20%E8%AF%A6%E8%A7%A3/">vue-router 详解</a></h3></div><div class="post-content"><p>概念route：路由，url 地址routes：route 的数组集合router：路由器，管理 routes 集合中的 route
+
+设置路由默认值
+
+12345678const routes=[  &#123;path:&#x27;/url&#x27;,component:com&#125;,  &#123;...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-07-29</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/07/03/Java/MyBatis/">MyBatis 原理</a></h3></div><div class="post-content"><p>手写 MyBatis
+纯 MyBatis 开发步骤
 
 
-领域驱动核心思想：搞清楚领域驱动、微服务和中台之间的关系中台：业务模型微服务：业务模型的系统领域驱动：设计思想
+读取 mybatis-config.xml 配置文件
+构建 SqlSessionFactory
+打开 SqlSession
+获取 Mapper 接口对象
+调用 Mapper 接口对象的方法操作数据库
 
-现有领域模型而后形成微服务架构
-**战略设计**和**战术设计**
-基础知识体系领...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-04-15</span><i class="fa fa-tag"></i><a class="tag" href="/categories/领域驱动设计/" title="领域驱动设计">领域驱动设计 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/03/26/Knockout/Knockout%20%E5%85%A5%E9%97%A8/">Konckout 入门</a></h3></div><div class="post-content"><p>重要概念
-声明式绑定 Declarrative Bindings:数据绑定关联DOM
 
-UI界面自动刷新 Automatic UI Refresh:数据变化时，DOM自动刷新渲染
+源码流程
 
-依赖跟踪 Dependency Tracking:转变和联合数据
+寻找入口 –&gt; 断点跟踪 –&gt;...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-07-03</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Java/" title="Java">Java </a><a class="tag" href="/tags/MyBatis/" title="MyBatis">MyBatis </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/07/01/%E5%89%8D%E7%AB%AF/React+TypeScript%20%E7%BB%8F%E9%AA%8C/">React+TypeScript 经验</a></h3></div><div class="post-content"><p>注释
+文件顶部注释
 
-模板 Templating:可嵌套复制 UI
- 兼容性：（IE6...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-03-26</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Knockout/" title="Knockout">Knockout </a><a class="tag" href="/tags/MVVM/" title="MVVM">MVVM </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/03/10/Java/Spring%20%E5%85%A8%E5%AE%B6%E6%A1%B6/">Spring 全家桶</a></h3></div><div class="post-content"><p>springBean
-循环依赖 –&gt; 属性注入（自动注入）
+12345/*** @description xxx* @author oeloowu* @since 20/07/31*/
 
-spring 默认单例支持循环依赖
-初始化 spring 容器（AnnotationConfigApplicationContext）的时候完成依赖注入
 
-bean 的生命周期
+模块注释
 
-初始化 bean 的过程
-
-bean VS Java Object...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-03-10</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Java/" title="Java">Java </a><a class="tag" href="/tags/Spring/" title="Spring">Spring </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/03/04/Flutter%20%E6%89%8B%E5%86%8C/">Flutter 手册</a></h3></div><div class="post-content"><p>环境搭建1、环境变量配置
-PUB_HOSTED_URL = https://pub.flutter-io.cn
-FLUTTER_STORAGE_BASE_URL = https://storage.flutter-io.cn
-2、下载 Flutter
-git clone -b beta https://githu...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-03-04</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Flutter/" title="Flutter">Flutter </a><a class="tag" href="/tags/Flutter/" title="Flutter">Flutter </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/03/03/Other/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/">领域驱动设计：软件核心复杂性应对之道</a></h3></div><div class="post-content"><p>领域模型、公共语言、结构化设计
-重视业务逻辑提供灵活性和扩展性
-决定软件复杂性的是设计方法
-两个实践1、迭代开发 — ‘敏捷开发’的基础2、开发人员与领域专家具有密切的关系
-领域驱动设计的本质：消化吸收大量知识，最后产生一个反应深层次领域知识并聚焦于关键概念的模型
-敏捷过程强调应对变更和不确定性的能力极限编程承认...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-03-03</span><i class="fa fa-tag"></i><a class="tag" href="/categories/架构/" title="架构">架构 </a><a class="tag" href="/tags/架构/" title="架构">架构 </a><a class="tag" href="/tags/设计/" title="设计">设计 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/01/13/%E6%A2%85%E7%89%B9%E5%8B%92%E6%89%98%E5%88%A9%E5%A4%9A/">梅特勒托利多</a></h3></div><div class="post-content"><p>大多数商用台秤都采用以下两种技术中的一种：应变片技术或电磁力补偿技术 (MonoBloc)。
-串口通讯RS-232 适配上位机和PC端进行连接，只限于PC串口和设备间点对点通讯，通讯方式异步，传输数据类型为byte，重要参数：波特率、数据位、停止位、奇偶校验。
-波特率：串口通讯中两个串口之间的通讯单元叫做码元，每...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-01-13</span><i class="fa fa-tag"></i><a class="tag" href="/categories/杂说/" title="杂说">杂说 </a><a class="tag" href="/tags/台秤/" title="台秤">台秤 </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/page/9/">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/11/">下一页</a></li></ul></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>
+123456/*** 拷贝数据* @param &#123;*&#125; data                     源数据* @param ...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-07-01</span><i class="fa fa-tag"></i><a class="tag" href="/categories/前端/" title="前端">前端 </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/page/9/">Prev</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/11/">Next</a></li></ul></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

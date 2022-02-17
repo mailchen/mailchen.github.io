@@ -1,0 +1,63 @@
+<!DOCTYPE html><html><head><title>Svg 进阶 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Svg 进阶</a></h3></div><div class="post-content"><h4 id="Pattern"><a href="#Pattern" class="headerlink" title="Pattern"></a>Pattern</h4><p>图案填充：用于SVG图形对象的填充 <code>fill</code>或描边<code>stroke</code>，在x轴、y轴以固定的间距平铺</p>
+<ul>
+<li>用法</li>
+</ul>
+<p>pattern 中定义好图案，通过id引用对某个图形进行填充<br>pattern 宽高属性默认根据填充图形的百分比来确认</p>
+ <svg width="600" height="400" style="margin-bottom:1.2rem; background: #efefef;">
+     <defs>
+         <pattern id="grid" X="20" Y="20"  width="34" height="34" patternUnits="userSpaceOnUse">
+            <rect width="34" height="34" fill="url(#smallGrid)"></rect>
+            <path d="M 34 0 L 0 0 0 34" fill="none" stroke="#323232" stroke-width="1"></path>
+         </pattern>
+         <pattern id="smallGrid" width="6.8" height="6.8" patternUnits="userSpaceOnUse">            <path d="M 6.8 0 L 0 0 0 6.8" fill="none" stroke="#666" stroke-width="0.5"></path>
+         </pattern>
+     </defs>
+     <rect x="50" y="50" width="400" height="300" fill="url(#grid)" stroke="#C60"></rect>
+</svg> 
+
+<blockquote>
+<p>patternUnits</p>
+</blockquote>
+<ul>
+<li><p>objextBoundingBox<br>  x、y、width和height的值都是占外框的百分比</p>
+</li>
+<li><p>userSpaceOnUse:<br>  x、y、width和height表示的值都是当前用户坐标的值，是绝对值</p>
+</li>
+</ul>
+<h4 id="foreignObject"><a href="#foreignObject" class="headerlink" title="foreignObject"></a>foreignObject</h4><p>foreignObject 标签内可以嵌入 XHTML 元素</p>
+<svg width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="120" height="50">
+        <body xmlns="http://www.w3.org/1999/xhtml">
+            <p style="color: #C60">文字</p>
+        </body>
+    </foreignObject>
+    <path d="M12,136 L 76.95821184000638, 163.2 94.06003669334115, 176.79999999999998 111.1618615466759, 142.8 119.71277397334327, 142.8 453.198358613371, 156.39999999999998 658.420256853388, 95.2 932.049454506744, 115.6 1137.271352746761, 156.39999999999998 " stroke-width="1.3" stroke="#ec6d6d" fill="none"></path>
+</svg>
+
+<p>作用：</p>
+<ol>
+<li>文字自动换行</li>
+<li>将页面DOM元素变成图片</li>
+</ol>
+<p>原理：</p>
+<img id="svgImg" width="300" height="150" style=" border: 1px solid #cdcdcd" src='data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><foreignObject width="120" height="50"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:12px; margin:0;">foreignObject svg 文字图片显示</p></body></foreignObject></svg>'>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">&#x27;canvas&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> context = canvas.getContext(<span class="string">&#x27;2d&#x27;</span>);</span><br><span class="line">canvas.drawImage(img, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">img.src = canvas.toDataURL(<span class="string">&#x27;image/png&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-03-09</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Svg/" title="Svg">Svg </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2021/03/09/Svg/Svg 进阶/,日升于东,Svg 进阶,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/03/09/Svg/Svg%20%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="Svg 基础知识">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/03/02/uni-app/uni-app%20%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" title="uni-app 项目配置说明">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Pattern"><span class="toc-text">Pattern</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#foreignObject"><span class="toc-text">foreignObject</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

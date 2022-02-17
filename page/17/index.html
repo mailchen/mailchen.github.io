@@ -1,67 +1,57 @@
-<!DOCTYPE html><html><head><title>黎明前的黑暗 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a class="current" href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/08/25/C%E8%AF%AD%E8%A8%80/C%20%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6%20-%20%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/">C 语言进阶 -程序结构</a></h3></div><div class="post-content"><p>全局变量全局的生命周期，作用域与任何函数无关，任何函数都可以使用全局变量
-未初始化的全局变量，默认值0，指针指向NULL只能编译时刻已知的值来初始化全局变量初始化发生在main函数之前
-1234//错误示例int all = 12;int g = all;int fun = f(x);
+<!DOCTYPE html><html><head><title>黎明前的黑暗 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a class="current" href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/11/18/Java/Java%20%E9%80%8D%E9%81%A5%E6%B8%B8%E8%AE%B0/">Java 逍遥游记</a></h3></div><div class="post-content"><p>
+程序的运行过程
+高级编程语言编写源程序，把它编译为可执行程序，然后在操作系统中运行可执行程序。
 
-编译预处理
-#开头的是编...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-08-25</span><i class="fa fa-tag"></i><a class="tag" href="/categories/C-语言/" title="C 语言">C 语言 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/08/23/C%E8%AF%AD%E8%A8%80/C%20%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6%20-%20%E7%BB%93%E6%9E%84%E7%B1%BB%E5%9E%8B/">C 语言进阶 - 结构类型</a></h3></div><div class="post-content"><p>枚举枚举只能是 int枚举量可以指定量
-123456enmu color&#123;  red,  yellow,  blue,  green,&#125;;
+Java 语言的跨平台特性
+同一个Java程序可以在多个操作系统中运行。Java语言的跨平台特性主要归功于Java虚拟机。
 
-结构1234567891011121314151617struct date&#123;  int year;  int month;  int day...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-08-23</span><i class="fa fa-tag"></i><a class="tag" href="/categories/C-语言/" title="C 语言">C 语言 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/08/23/C%E8%AF%AD%E8%A8%80/C%20%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6%20-%20%E9%93%BE%E8%A1%A8/">C 语言进阶 - 链表</a></h3></div><div class="post-content"><p>链表</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-08-23</span><i class="fa fa-tag"></i><a class="tag" href="/categories/C-语言/" title="C 语言">C 语言 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/08/23/C%E8%AF%AD%E8%A8%80/C%20%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6%20-%20%E6%8C%87%E9%92%88%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2/">C 语言进阶 - 指针和字符串</a></h3></div><div class="post-content"><p>指针的使用
-交换变量
+Java 虚拟机的主要功能
+运行Java程序。Java虚拟机本身也是可执行程序，不同的系...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-11-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Java/" title="Java">Java </a><a class="tag" href="/tags/笔记/" title="笔记">笔记 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/11/13/Csharp/C%20sharp%20%E5%8F%8D%E5%B0%84/">C# 反射</a></h3></div><div class="post-content"><p>可以通过类名、成员的名字来进行对象的实例化、操作类成员
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-11-13</span><i class="fa fa-tag"></i><a class="tag" href="/categories/C/" title="C#">C# </a><a class="tag" href="/tags/反射/" title="反射">反射 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/11/11/Java/Java%20%E7%BA%BF%E7%A8%8B/">Java 线程</a></h3></div><div class="post-content"><p>官方文档API
+概念程序 -&gt; 一组静态的代码进程 -&gt; 正在进行的程序，静态代码运行起来线程 -&gt; 正在执行的程序中的小单元
+1、主线程 （系统线程）2、用户线程 -&gt; main3、守护线程（精灵） -&gt; GC
+状态
+创建new Thread
 
-12345viod swap(int *p, int *q)&#123;  int t = *p;  *p = *q;  *q = t;&#125;
+就绪start()
 
+执行CPU分配...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-11-11</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Java/" title="Java">Java </a><a class="tag" href="/tags/Java/" title="Java">Java </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/11/11/Java/Java%20IO/">Java IO操作</a></h3></div><div class="post-content"><p>官方文档API
+File 类1、java.io 包2、file对象和真实文件的映射关系   file对象（内存） …… 真实文件（硬盘）3、常用方法   canRead、canWrite、isHidden、length、isFile、isDirectory   getAbsolutePath、getName   ...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-11-11</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Java/" title="Java">Java </a><a class="tag" href="/tags/Java/" title="Java">Java </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/11/07/Java/Java%20%E5%BC%82%E5%B8%B8/">Java 异常</a></h3></div><div class="post-content"><p>官方文档API
+异常Throwable 类 实现了 序列化接口
+Error(错误：物理性的，JVM 虚拟机本身的问题，程序指令处理不了)
+StackOverflowErrorOutOfMemoryError
+Exception（异常：人为规定的不正常的现象）
 
-函数返回多个返回值
+运行时异常
+Error、RuntimeExcepti...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-11-07</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Java/" title="Java">Java </a><a class="tag" href="/tags/Java/" title="Java">Java </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/11/05/Java/Java%20%E5%B7%A5%E5%85%B7%E7%B1%BB/">Java 工具类</a></h3></div><div class="post-content"><p>官方文档API
+包装类byte(Byte)、short(Short)、int(Integer)、long(Long)float(Float)、double(Double)、char(Character)、boolean(Boolean)
 
-123456789101112131415161718viod minmax(int a[], int len, ...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-08-23</span><i class="fa fa-tag"></i><a class="tag" href="/categories/C-语言/" title="C 语言">C 语言 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/08/23/C%E8%AF%AD%E8%A8%80/C%20%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6%20-%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">C 语言进阶 - 数据类型</a></h3></div><div class="post-content"><p>类型语言
-变量提前定义
+java.lang包，不需要import
+6个和数字相关的包装类，默认继承...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-11-05</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Java/" title="Java">Java </a><a class="tag" href="/tags/Java/" title="Java">Java </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/10/18/Csharp/StringBuilder%20%E8%AF%B4%E6%98%8E/">StringBuilder 说明</a></h3></div><div class="post-content"><p>“+” 连接字符串创建成功的字符串对象，长度是固定的，虽然“+”可以达到附加新字符串的目的，但“+”会产生一个新的 String 实例，会在内存中创建新的字符串对象。重复修改字符串，会极大的增加系统开销。
+可变字符串序列应该使用 StringBuilder 类
+StringBuilderStringBuffer是...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-10-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/StringBuilder/" title="StringBuilder">StringBuilder </a><a class="tag" href="/tags/C/" title="C#">C# </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/10/18/Apache%20Dubbo/">Apache Dubbo</a></h3></div><div class="post-content"><p>应用程序通信应用程序A  ————————————— 应用程序B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http、socket、NIO、RPC、文件共享、缓存、webservice
+RPC 协议：远程过程调用协议
+RPC ...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-10-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Dubbo/" title="Dubbo">Dubbo </a><a class="tag" href="/tags/Dubbo/" title="Dubbo">Dubbo </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/10/18/Csharp/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20Storm/">深入浅出 Storm</a></h3></div><div class="post-content"><p>概念分布式实时容错流处理系统，用于大规模数据的实时处理
+工作原理：类似一个数据处理工厂，其中有多条流水线，流水线上有多个处理单元，从外部对接数据源，然后发送到流水线，经过各处理单元加工后交给客户
+特点：简单的编程模型、伸缩性高、保证无数据丢失、异常健壮、容错性好、语言无关性
+Strom 对于实时计算的意义，类似于...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-10-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Java/" title="Java">Java </a><a class="tag" href="/tags/Java/" title="Java">Java </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/10/18/Other/%E4%B8%AD%E5%9B%BD%E5%8F%B2/">中国史</a></h3></div><div class="post-content"><p>东周
 
-必须确定类型
-语言两个发展方向：强类型（c++，java），弱类型（javascript，php，python）
+春秋
 
+东：齐、鲁、吴南：楚西：秦北：晋、燕中：周、郑、宋
 
-数据类型
-整数char -&gt; 1Byte，short -&gt; 2Byte，int，long，long long -&gt; 8Byteint 表示寄存器的大小
-...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-08-23</span><i class="fa fa-tag"></i><a class="tag" href="/categories/C-语言/" title="C 语言">C 语言 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/08/22/C%E8%AF%AD%E8%A8%80/C%20%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/">C 语言基础</a></h3></div><div class="post-content"><p>编程软件DEV C++
-Mac 安装 XCode 或者 gcc 
-程序框架12345#include &quot;stdio.h&quot;int main()&#123;    //...语句    return 0;&#125;
+战国
 
-编译执行cmd 命令cd pathls -lgcc fileName.cls ...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-08-22</span><i class="fa fa-tag"></i><a class="tag" href="/categories/C-语言/" title="C 语言">C 语言 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/08/22/Csharp/C%20sharp%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BF%E9%97%AE/">C# 数据库访问</a></h3></div><div class="post-content"><p>数据库数据库 Database数据库管理系统 DBMS
+东：（吴、越） -&gt; 齐南：楚西：秦北：晋 -&gt; （韩，魏、赵）、燕
 
-Oracle，MySql，SQL Server，Access
+秦（15年）
 
-优点：共享性，独立性，完整性，冗余数据少功能：数据定义，操作，完整，安全，并发
-RDBMS关系型数据库：二维表形式组织数据
-DataTable -&gt; DataRow -&gt; Data...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-08-22</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/C/" title="C#">C# </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/08/20/Csharp/C%20sharp%20%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%BC%82%E6%AD%A5/">C# 多线程与异步</a></h3></div><div class="post-content"><p>进程 Process包含多个线程 Thread
-指令：方法（委托）数据：相关对象
-Thread 属性
-CurrentPrincipal 当前线程安全性
-CurrentThread
-IsAlive
-IsBackground
-Name
-Priority 线程优先级
-ThreadState 当前状态
+三公九卿、郡县制统一度量衡、货币、文字南征百越、北征匈奴焚书坑儒
 
-12345678...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-08-20</span><i class="fa fa-tag"></i><a class="tag" href="/categories/多线程/" title="多线程">多线程 </a><a class="tag" href="/tags/C/" title="C#">C# </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/08/19/Csharp/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></h3></div><div class="post-content"><p>主要要素
-字符
+西汉（200年）
 
-[a-zA-Z] 即 \w[0-9] 即 \d[^0-9] 即 \D\s 即 空白\S 即 非空白. 通配符
+文景之治、暄昭中兴
 
-次数
+新朝（15年）
 
-* 即 {0,}+ 即 {1,}? 即 {0,1}
-*? +? ?? 懒惰匹配，尽量匹配少
-
-| 或() 组合
-
-
-位置限定
-
-^ 首$ 尾\b 单词边界\B 非单词边界
-
-(...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-08-19</span><i class="fa fa-tag"></i><a class="tag" href="/categories/正则表达式/" title="正则表达式">正则表达式 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/08/18/Csharp/C%20sharp%20GDI+/">C# GDI+</a></h3></div><div class="post-content"><p>.NET GDISystem.DrawingSystem.Drawing.2DSystem.Drawing.ImagingSystem.Drawing.Text
-DrawingColor.FromArgbColor.FromName
-Size(w,h)Point(x,y)Rectangle()
-123456789...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-08-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/程序设计/" title="程序设计">程序设计 </a><a class="tag" href="/tags/C/" title="C#">C# </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/page/16/">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/18/">下一页</a></li></ul></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>
+王莽（货...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-10-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/杂说/" title="杂说">杂说 </a><a class="tag" href="/tags/历史/" title="历史">历史 </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/page/16/">Prev</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/18/">Next</a></li></ul></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

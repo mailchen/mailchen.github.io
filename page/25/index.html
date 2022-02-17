@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head><title>黎明前的黑暗 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a class="current" href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/07/16/Vue/Vue%20%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6/">Vue 内置组件</a></h3></div><div class="post-content"><p>动态组件
+component 接收名为 is 的属性，is 的值为父组件中注册过的组件名称。
+
+1&lt;component :is=&quot;someView&quot;&gt;&lt;/component&gt;
+
+插槽分发内容
+slot 多个插槽，通过 name 属性区分，如未指定 name 属性，则所有...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/07/16/Vue/Vue%20%E8%BF%9B%E9%98%B6/">Vue 进阶</a></h3></div><div class="post-content"><p>指定被挂载元素
+el 选项指定 Vue 实例的挂载目标，属性值仅限于 CSS 选择器或者 DOM 节点对象$mount 挂载实例
+
+123456789101112131415161718let vm = new Vue(&#123;	// 选择器	el:&#x27;#app&#x27;, 	// HTMLElem...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/07/16/Vue/Vue%20%E9%80%89%E9%A1%B9/">Vue 选项</a></h3></div><div class="post-content"><p>数据选项
+数据（Data）选项可接受类型：对象和函数，组件只能使用函数类型
+
+123456789101112131415161718//对象类型let vm = new Vue()&#123;	el:&#x27;#app&#x27;,	data:&#123;		title:&#x27;Vue Projects&#...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/07/16/Vue/Vue%20%E9%A1%B9%E7%9B%AE%E5%8C%96/">Vue 项目化</a></h3></div><div class="post-content"><p>完成的前端开发环境
+预编译模板
+注入依赖
+合并压缩资源
+分离开发
+生产环境
+模拟的服务端环境等
+
+Vue项目快速构建工具
+Vue CLI
+
+关于怎么用Vue CLI创建项目，Vue 入门基础 已经提及。
+
+项目初始目录
+
+
+
+
+
+
+名称
+描述
+
+
+
+build
+开发和生产版本的构建脚本
+
+
+config
+开发和生...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/07/16/Vue/vue-router%20%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/">vue-router钩子函数实现路由守卫</a></h3></div><div class="post-content"><p>钩子函数
+全局钩子函数
+ beforeEach、afterEach
+
+路由独享的钩子函数
+ beforeEnter
+
+组件内钩子函数
+ beforeRouterEnter、beforeRouterUpdate、beforeRouterLeave
+
+
+全局钩子函数
+beforeEach
+
+参数：
+to：即将进入的路...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/07/12/Css/Css3%20%E5%8D%95%E4%BD%8D%E5%8C%BA%E5%88%AB/">CSS3 单位区别</a></h3></div><div class="post-content"><p>常用单位1、px：绝对单位，页面按精确像素展示
+2、em：相对单位，基准点为父节点字体的大小，如果自身定义了font-size按自身来计算，整个页面内1em不是一个固定的值。
+3、rem：相对单位，可理解为”root em”, 相对根节点html的字体大小来计算。
+4、vw、vh、vmin、vmax （窗单位，也...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-12</span><i class="fa fa-tag"></i><a class="tag" href="/categories/CSS3/" title="CSS3">CSS3 </a><a class="tag" href="/tags/Css3/" title="Css3">Css3 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/07/12/Vue/Vue%20%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/">Vue 入门基础</a></h3></div><div class="post-content"><p>vue-devtools安装
+git clone https://github.com/vuejs/vue-devtools.git
+
+npm install
+
+npm run build
+
+游览器输入地址“chrome://extensions/”进入扩展程序页面，点击“加载已解压的扩展程序…”按钮，选择vue...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-12</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/07/12/Css/Css3%20%E5%8F%8C%E8%9E%BA%E6%97%8B/">Css3 双螺旋</a></h3></div><div class="post-content"><p>
+.animiateWrap,.helix{
+    -webkit-perspective: 1500px;
+    perspective: 1500px;
+}
+.animiateWrap ul,.helix ul,.animiateWrap ul li,.helix ul li{
+    list-styl...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-12</span><i class="fa fa-tag"></i><a class="tag" href="/categories/CSS3/" title="CSS3">CSS3 </a><a class="tag" href="/tags/Css3/" title="Css3">Css3 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/07/10/Css/Css3%20%E5%8A%A8%E7%94%BB/">Css3 动画</a></h3></div><div class="post-content"><p>相册
+.animateWrap{
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    height:30rem;
+    font-family: 'Anton', sans-serif;
+
+    p...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-10</span><i class="fa fa-tag"></i><a class="tag" href="/categories/CSS3/" title="CSS3">CSS3 </a><a class="tag" href="/tags/Css3/" title="Css3">Css3 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/07/09/Css/Flex%20%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80/">Flex 弹性布局</a></h3></div><div class="post-content"><p>布局格式12345&lt;div class=&quot;box&quot;&gt;	&lt;div class=&quot;item&quot;&gt;1&lt;/div&gt;	&lt;div class=&quot;item&quot;&gt;2&lt;/div&gt;	&lt;div class=&quo...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-07-09</span><i class="fa fa-tag"></i><a class="tag" href="/categories/HTML5/" title="HTML5">HTML5 </a><a class="tag" href="/tags/Flex/" title="Flex">Flex </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/page/24/">Prev</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/26/">Next</a></li></ul></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

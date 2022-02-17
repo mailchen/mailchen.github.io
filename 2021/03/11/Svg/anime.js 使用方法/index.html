@@ -1,0 +1,176 @@
+<!DOCTYPE html><html><head><title>anime 使用方法 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>anime 使用方法</a></h3></div><div class="post-content"><h4 id="安装使用"><a href="#安装使用" class="headerlink" title="安装使用"></a>安装使用</h4><pre><code>npm install animejs
+import anime from &quot;animejs&quot;;</code></pre>
+<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h4><div class="tableWrap">
+<style>
+.tableWrap table
+{
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+}
+.tableWrap table th,
+.tableWrap table td{
+    padding: .5rem .8rem;
+    border: 1px solid #cdcdcd;
+}
+</style>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th>默认值</th>
+<th>取值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">delay</td>
+<td>0</td>
+<td>number,function(el, index, total)</td>
+<td>动画延迟 ms</td>
+</tr>
+<tr>
+<td align="left">duration</td>
+<td>1000</td>
+<td>number,function(el, index, total)</td>
+<td>持续时间 ms  anime.stagger(200)</td>
+</tr>
+<tr>
+<td align="left">autoplay</td>
+<td>true</td>
+<td>boolean</td>
+<td>自动播放</td>
+</tr>
+<tr>
+<td align="left">loop</td>
+<td>false</td>
+<td>number, boolean</td>
+<td>定义动画往复循环</td>
+</tr>
+<tr>
+<td align="left">direction</td>
+<td>normal</td>
+<td>‘normal’, ‘reverse’, ‘alternate’</td>
+<td>动画方向</td>
+</tr>
+<tr>
+<td align="left">easing</td>
+<td>easeOutElastic</td>
+<td>–</td>
+<td>时间曲线</td>
+</tr>
+<tr>
+<td align="left">elasticity</td>
+<td>400</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">round</td>
+<td>false</td>
+<td>number, boolean</td>
+<td>向上舍入为x小数</td>
+</tr>
+<tr>
+<td align="left">begin</td>
+<td>undefined</td>
+<td>function(anime)</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">update</td>
+<td>undefined</td>
+<td>function(anime)</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">complete</td>
+<td>undefined</td>
+<td>function(anime)</td>
+<td></td>
+</tr>
+</tbody></table>
+</div>
+
+<h4 id="动画目标对象"><a href="#动画目标对象" class="headerlink" title="动画目标对象"></a>动画目标对象</h4><ol>
+<li>CSS 选择器，不可使用伪元素</li>
+<li>DOM 节点或节点集合</li>
+<li>JAVASCRIPT 对象，必须包含一个数字属性</li>
+<li>数组 </li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">anime(&#123;</span><br><span class="line">  targets: [<span class="string">&#x27;.el&#x27;</span>, <span class="string">&#x27;.el-02&#x27;</span>, <span class="string">&#x27;.el-03&#x27;</span>],</span><br><span class="line">  translateX: <span class="number">250</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="可动画的属性"><a href="#可动画的属性" class="headerlink" title="可动画的属性"></a>可动画的属性</h4><ol>
+<li>CSS 属性，大多数属性会导致布局更改或重绘，优先考虑 opacity、transforms</li>
+<li>包含数值的 JAVASCRIPT 对象属性</li>
+<li>包含数值的 DOM 属性</li>
+<li>SVG 属性</li>
+</ol>
+<h4 id="动画赋值方式"><a href="#动画赋值方式" class="headerlink" title="动画赋值方式"></a>动画赋值方式</h4><ol>
+<li>无单位数值：原始值具有单位会自动补全</li>
+<li>相对数值：<code>’+=、-=、*=‘ number</code></li>
+<li>颜色：#ffffff、RGBA、HSLA</li>
+<li>强制动画以指定值开始 <code>[50%, 100%]</code></li>
+<li>函数返回值</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">anime(&#123;</span><br><span class="line">  targets: <span class="string">&#x27;.el&#x27;</span>,</span><br><span class="line">  translateX: <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> el.getAttribute(<span class="string">&#x27;data-x&#x27;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  translateY: <span class="function"><span class="keyword">function</span>(<span class="params">el, i</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">50</span> + (-<span class="number">50</span> * i);</span><br><span class="line">  &#125;,</span><br><span class="line">  scale: <span class="function"><span class="keyword">function</span>(<span class="params">el, i, l</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (l - i) + <span class="number">.25</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  rotate: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> anime.random(-<span class="number">360</span>, <span class="number">360</span>); &#125;,</span><br><span class="line">  borderRadius: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> [<span class="string">&#x27;50%&#x27;</span>, anime.random(<span class="number">10</span>, <span class="number">35</span>) + <span class="string">&#x27;%&#x27;</span>]; &#125;,</span><br><span class="line">  duration: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> anime.random(<span class="number">1200</span>, <span class="number">1800</span>); &#125;,</span><br><span class="line">  delay: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> anime.random(<span class="number">0</span>, <span class="number">400</span>); &#125;,</span><br><span class="line">  direction: <span class="string">&#x27;alternate&#x27;</span>,</span><br><span class="line">  loop: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="关键帧"><a href="#关键帧" class="headerlink" title="关键帧"></a>关键帧</h4><p>动画关键帧使用 keyframes 属性中的数组定义</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">keyframes: [</span><br><span class="line">    &#123;<span class="attr">translateY</span>: -<span class="number">40</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">translateX</span>: <span class="number">250</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">translateY</span>: <span class="number">40</span>&#125;</span><br><span class="line">  ],</span><br></pre></td></tr></table></figure>
+
+<h4 id="交错动画"><a href="#交错动画" class="headerlink" title="交错动画"></a>交错动画</h4><p>anime.stagger(value, options)</p>
+<ol>
+<li><p>基础交错<br><code>delay: anime.stagger(100)</code> 每个元素的延迟增加100ms</p>
+</li>
+<li><p>从特定值开始交错<br><code>delay: anime.stagger(100, &#123;start: 500&#125;)</code> 延迟从500ms开始，每个元素只能加 100ms</p>
+</li>
+<li><p>数值范围内均匀分配值<br><code>rotate: anime.stagger([-360, 360])</code> 旋转将在-360deg到360deg之间均匀分布在所有元素之间</p>
+</li>
+<li><p>交错开始位置<br><code>delay: anime.stagger(100, &#123;from: &#39;center&#39;&#125;)</code><br>from：参数值（first、last、center、index）</p>
+</li>
+<li><p>交错顺序<br><code>delay: anime.stagger(100, &#123;direction: &#39;reverse&#39;&#125;)</code></p>
+</li>
+<li><p>交错时间线<br><code>delay: anime.stagger(100, &#123;easing: &#39;easeOutQuad&#39;&#125;)</code></p>
+</li>
+<li><p>网格交错</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scale: [</span><br><span class="line">    &#123;<span class="attr">value</span>: <span class="number">.1</span>, <span class="attr">easing</span>: <span class="string">&#x27;easeOutSine&#x27;</span>, <span class="attr">duration</span>: <span class="number">500</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">value</span>: <span class="number">1</span>, <span class="attr">easing</span>: <span class="string">&#x27;easeInOutQuad&#x27;</span>, <span class="attr">duration</span>: <span class="number">1200</span>&#125;</span><br><span class="line">  ],</span><br><span class="line">delay: anime.stagger(<span class="number">200</span>, &#123;<span class="attr">grid</span>: [<span class="number">14</span>, <span class="number">5</span>], <span class="attr">from</span>: <span class="string">&#x27;center&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>网格交错方向<br><code>anime.stagger(value, &#123;grid: [rows, columns], axis: &#39;x&#39;&#125;)</code></p>
+</li>
+</ol>
+<h4 id="时间轴"><a href="#时间轴" class="headerlink" title="时间轴"></a>时间轴</h4><p>让多个动画同步，默认时间轴中的每个动画都会在上一个动画结束时开始</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myTimeline = anime.timeline(parameters);</span><br><span class="line">myTimeline.add(parameters, offset);</span><br></pre></td></tr></table></figure>
+<p>offset：时间偏移量</p>
+<h4 id="参数继承"><a href="#参数继承" class="headerlink" title="参数继承"></a>参数继承</h4><p>父时间轴实例中的参数由所有子项继承</p>
+<p>支持的参数：targets、duration、delay、endDelay、round</p>
+<h4 id="动画控制"><a href="#动画控制" class="headerlink" title="动画控制"></a>动画控制</h4><p>play、pause、restart、reverse</p>
+<ul>
+<li>跳转<br><code>animation.seek(animation.duration * (seekProgressEl.value / 100));</code></li>
+</ul>
+<h4 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h4><p>update：动画开始后，每一帧都会触发<br>begin、complete<br>loopBegin、loopComplete<br>change、changeBegin、changeComplete</p>
+<p>finished.then() 动画完成后返回 promise IE11 以下不支持</p>
+<h4 id="SVG-路径动画"><a href="#SVG-路径动画" class="headerlink" title="SVG 路径动画"></a>SVG 路径动画</h4><ul>
+<li>画线动画</li>
+</ul>
+<p>anime.setDashoffset() 方法获取到SVG路径的长度并将此长度设置为SVG的<code>stroke-dasharray</code>值，并返回该长度再使用<code>strokeDashoffset</code>将SVG的<code>stroke-dashoffset</code>属性值在from to格式中产生动画从而创建路径绘制效果</p>
+<p><code>strokeDashoffset: [anime.setDashoffset, 0]</code></p>
+<blockquote>
+<p>SVG 画线原理</p>
+</blockquote>
+<ol>
+<li>SVG形状</li>
+<li>形状必须有笔触 stroke、stroke-width</li>
+<li>笔画可以虚线</li>
+</ol>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-03-11</span><i class="fa fa-tag"></i><a class="tag" href="/categories/anime-js/" title="anime.js">anime.js </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2021/03/11/Svg/anime.js 使用方法/,日升于东,anime 使用方法,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/03/12/Svg/gsap.js%20%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="gsap 使用方法">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/03/09/Svg/Svg%20%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="Svg 基础知识">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8"><span class="toc-text">安装使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">参数说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E7%9B%AE%E6%A0%87%E5%AF%B9%E8%B1%A1"><span class="toc-text">动画目标对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E5%8A%A8%E7%94%BB%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-text">可动画的属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E8%B5%8B%E5%80%BC%E6%96%B9%E5%BC%8F"><span class="toc-text">动画赋值方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%B8%A7"><span class="toc-text">关键帧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A4%E9%94%99%E5%8A%A8%E7%94%BB"><span class="toc-text">交错动画</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E8%BD%B4"><span class="toc-text">时间轴</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E7%BB%A7%E6%89%BF"><span class="toc-text">参数继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E6%8E%A7%E5%88%B6"><span class="toc-text">动画控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="toc-text">回调函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SVG-%E8%B7%AF%E5%BE%84%E5%8A%A8%E7%94%BB"><span class="toc-text">SVG 路径动画</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

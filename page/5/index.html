@@ -1,59 +1,73 @@
-<!DOCTYPE html><html><head><title>黎明前的黑暗 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a class="current" href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/18/Vue/Axios%20%E8%AF%A6%E7%BB%86%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/">Axios 详细参数说明</a></h3></div><div class="post-content"><p>使用方法123456789// 发送 postaxios(&#123;  method: &#x27;post&#x27;,  url: &#x27;url&#x27;,  data: &#123; key:value &#125;&#125;)// 发送 get 默认方法axios(&#x27;url&#x27...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Axios/" title="Axios">Axios </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/18/Vue/%E9%85%8D%E7%BD%AE%E8%AF%B7%E6%B1%82%E5%A4%B4content-type/">配置请求头content-type</a></h3></div><div class="post-content"><p>常见数据格式
-Content-Type:application/json请求体中的数据以json字符串形式发送后端
+<!DOCTYPE html><html><head><title>黎明前的黑暗 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a class="current" href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/12/03/Javascript/canvas%20%E5%9B%BE%E7%89%87%E5%8A%A0%E5%AF%86/">canvas 图片加密</a></h3></div><div class="post-content"><p>
 
-Content-Type:application/x-www-form-urlencoded数据以普通表单形式（键值对）发送后端
-
-CONTENT-Type:multipart/form-data...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/content-type/" title="content-type">content-type </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/18/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84C4%E6%A8%A1%E5%9E%8B/">软件架构C4模型</a></h3></div><div class="post-content"><p>C4模型描述上下文（context）容器（container）  ┐组件（component）  │=&gt; 描述软件系统的静态结构代码（code）       ┘
-
-系统上下文
-
-显示了你正在构建的软件系统，以及系统和用户及其他软件系统间的关系
-
-容器
-
-应用程序、数据存储、微服务等，技术决策
-
-组件
-
-组件...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/大数据/" title="大数据">大数据 </a><a class="tag" href="/tags/软件架构/" title="软件架构">软件架构 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/14/%E6%95%B0%E6%8D%AE%E5%BA%93/ES%20%E4%BD%BF%E7%94%A8/">ES 使用</a></h3></div><div class="post-content"><p>创建索引库索引库：逻辑概念，包括分词列表及文档列表，同一个索引库存储了相同类型的文档，相当于MySQL中的表，Mongodb中的集合
-
-postman、curl工具创建
-
-12345678&#123;  &quot;srtting&quot;:&#123;    &quot;index&quot;:&#123; ...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-14</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/ElasticSearch/" title="ElasticSearch">ElasticSearch </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/09/14/%E6%95%B0%E6%8D%AE%E5%BA%93/ES%20%E5%9F%BA%E7%A1%80/">ES 基础</a></h3></div><div class="post-content"><p>介绍
-基于Lucene 的高扩展的分布式搜索服务器，支持开箱即用
-隐藏了 Lucene 的复杂性，对外提供 RestFul 接口操作索引、搜索
+var ctx = document.getElementById('canvas').getContext('2d')
 
 
-优点:
-扩展性好，可部署上百台服务器集群，处理PB级数据
-近实时的去索引数据，搜索数据
-支持全文检索
+加密信息
 
-原理逻辑结构 ==&gt; 倒排索引表：
-将要搜索的文档内容分...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-09-14</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/ElasticSearch/" title="ElasticSearch">ElasticSearch </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/20/flask/SQLALCHEMY/">SQLALCHEMY</a></h3></div><div class="post-content"><p>SQLALCHEMYpip install flask_SQLAlchemypip install sqlalchemy_migrate
-配置1234# Flask-SQLAlchemy 扩展SQLALCHEMY_DATABASE_URI = &#x27;sqlite:///&#x27; + os.path.jo...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-20</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Python/" title="Python">Python </a><a class="tag" href="/tags/flask/" title="flask">flask </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/18/flask/flask%20%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">flask 项目实战</a></h3></div><div class="post-content"><p>项目结构123456789项目名├─ 包名  【源码】│  ├─ static  【静态资源、文件】│  ├─ templates  【模板】│  ├─ __init__.py  【初始化】├─ instance├─ tests  【测试】├─ MANIFEST.in├─ setup.py
+var textData
+ctx.font='30px Microsoft Yahei'
+ctx.fillText('日升于东', 60, 130)
+textData = ...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-12-03</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/canvas/" title="canvas">canvas </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/11/26/%E5%89%8D%E7%AB%AF/HTTP%20%E5%8D%8F%E8%AE%AE/">HTTP 协议</a></h3></div><div class="post-content"><p>应用层协议，由请求和响应构成。标准的客户端服务器模型，为无状态协议
 
-应用设置123456...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Python/" title="Python">Python </a><a class="tag" href="/tags/flask/" title="flask">flask </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/16/flask/flask%20%E5%AE%89%E8%A3%85/">flask 安装</a></h3></div><div class="post-content"><p>虚拟环境
-安装 virtualenv
+在 TCP/IP 协议栈中的位置
 
-pip install virtualenv
+HTTP(TLS/SSL)TCPIP数据链路层
+HTTP 端口号 80，HTTPS 端口号 443
 
-安装使用 virtualenvwrapper
+请求响应模型
 
-pip install virtualenvwrapper-win
+永远是客户端发起请求，服务器回送响应
+缓存机制根据是否需要重新向服务器发起请求分类：强制缓...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-11-26</span><i class="fa fa-tag"></i><a class="tag" href="/categories/协议/" title="协议">协议 </a><a class="tag" href="/tags/HTTP/" title="HTTP">HTTP </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/11/26/%E5%89%8D%E7%AB%AF/%E5%AD%97%E6%AF%8D%E3%80%81%E6%B1%89%E5%AD%97%E4%B8%8D%E5%90%8C%E5%AD%97%E7%AC%A6%E9%9B%86%E7%BC%96%E7%A0%81%E7%9A%84%E5%AD%97%E8%8A%82%E6%95%B0/">字母、汉字不同字符集编码的字节数</a></h3></div><div class="post-content"><p>字节数
+.tableWrap table{
+    width: 30%;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+}
+.tableWrap table th,
+.tableWrap table td{
+    padding: .5rem;...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-11-26</span><i class="fa fa-tag"></i><a class="tag" href="/categories/字符集/" title="字符集">字符集 </a><a class="tag" href="/tags/字符集/" title="字符集">字符集 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/11/26/Other/%E6%95%B0%E5%AD%A6/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/">傅里叶变换</a></h3></div><div class="post-content"><p>时域 –&gt;&gt; 频域
+正交积
+频域：频率，振幅，相位
+滤波
+应用声音
 
-新建虚拟环境
+低频：男
+高频：女
 
-mkvirtualenv env2
-或者
-python -m venv 虚拟环境名称
+图像
 
-激活...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Python/" title="Python">Python </a><a class="tag" href="/tags/flask/" title="flask">flask </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/16/flask/flask%20%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">flask 快速上手</a></h3></div><div class="post-content"><p>路由使用 route() 装饰器来把函数绑定到 URL
-123@app.route(&#x27;/&#x27;)def index():	return &#x27;Index Page&#x27;
+低频：轮廓
+高频：图像细节
+
+</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-11-26</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数学/" title="数学">数学 </a><a class="tag" href="/tags/数学/" title="数学">数学 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/11/26/%E5%89%8D%E7%AB%AF/HTTP%20%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7%20wrk/">HTTP 压测工具 wrk</a></h3></div><div class="post-content"><p>安装12345sudo yum groupinstall &#x27;Development Tools&#x27;sudo yum install -y openssl-devel git git clone https://github.com/wg/wrk.git wrk cd wrkmake
+
+环境要求：...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-11-26</span><i class="fa fa-tag"></i><a class="tag" href="/categories/工具/" title="工具">工具 </a><a class="tag" href="/tags/前端压测/" title="前端压测">前端压测 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/11/26/%E5%8D%8F%E8%AE%AE/HTTP%20%E5%8D%8F%E8%AE%AE/">HTTP 协议</a></h3></div><div class="post-content"><p>应用层协议，由请求和响应构成。标准的客户端服务器模型，为无状态协议
+
+在 TCP/IP 协议栈中的位置
+
+HTTP(TLS/SSL)TCPIP数据链路层
+HTTP 端口号 80，HTTPS 端口号 443
+
+请求响应模型
+
+永远是客户端发起请求，服务器回送响应
+缓存机制根据是否需要重新向服务器发起请求分类：强制缓...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-11-26</span><i class="fa fa-tag"></i><a class="tag" href="/categories/协议/" title="协议">协议 </a><a class="tag" href="/tags/HTTP/" title="HTTP">HTTP </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/11/25/Javascript/Vue3%20%E7%94%9F%E6%80%81/">Vue3 生态</a></h3></div><div class="post-content"><p>体验Vue3
+vue-cli
+
+12345npm install -g @vue&#x2F;clivue create cue3-clicd cue3-clivue add vue-nextnpm run serve
 
 
-带参数的路由
+webpack
 
-1234567@app.route(&#x27;/user/&lt;username&gt;&#...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-16</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Python/" title="Python">Python </a><a class="tag" href="/tags/flask/" title="flask">flask </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/08/06/Javascript/this%20%E8%AE%B2%E8%A7%A3/">this 讲解</a></h3></div><div class="post-content"><p>
+git clone https://github.com/vuejs/vu...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-11-25</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/11/20/Javascript/ES6%20Class/">ES6 Class 应用</a></h3></div><div class="post-content"><p>Class123456789101112131415161718192021class Point &#123;  constructor(x, y) &#123;    this.x = x;    this.y = y;  &#125;  toString() &#123;    return &#x27;(...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-11-20</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/11/09/Vue/Vue%20%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0/">Vue 深入学习</a></h3></div><div class="post-content"><p>运行时 + 编译器1234567891011// 需要编译器new Vue(&#123;  template: &#x27;&lt;div&gt;&#123;&#123; hi &#125;&#125;&lt;/div&gt;&#x27;&#125;)// 不需要编译器new Vue(&#123;  render...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-11-09</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/11/09/Javascript/ES6%20%E8%AF%AD%E6%B3%95/">ES6 语法</a></h3></div><div class="post-content"><p>let|const块级作用域：let，应用场景：for 循环，获取索引值
+声明常量：const，应用场景：不可更改的值、引用第三方库时声明的变量，避免重名导致bug
 
-12345678910111213141516171819202122232425262728293031323334var count = 0function WhoAmI()&#123;  count ++  var res = document.getElementsByClassName(&#x27;...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-08-06</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/page/4/">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/6/">下一页</a></li></ul></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>
+变量不提升
+暂时性死区（TDZ）
+
+
+顶层对象的属性
+
+window对象即顶层对象
+var命令和function命令声明的全局变量，依旧是顶层对象...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-11-09</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/page/4/">Prev</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/6/">Next</a></li></ul></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

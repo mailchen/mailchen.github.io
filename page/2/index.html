@@ -1,82 +1,51 @@
-<!DOCTYPE html><html><head><title>黎明前的黑暗 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a class="current" href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/12/26/Vue/webpack-bundle-analyzer%E6%8F%92%E4%BB%B6/">webpack-bundle-analyzer插件</a></h3></div><div class="post-content"><p>
-安装webpack-bundle-analyzer
+<!DOCTYPE html><html><head><title>黎明前的黑暗 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a class="current" href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2021/04/09/%E6%95%B0%E6%8D%AE%E5%BA%93/master..spt_values/">master..spt_values</a></h3></div><div class="post-content"><p>master..spt_values123456select t.number,dl_office=substring(c.RQFLMC,t.number,charindex(&#x27;;&#x27;,c.RQFLMC+&#x27;;&#x27;,t.number)-t.number),c.RQFLMC fro...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-04-09</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数据库/" title="数据库">数据库 </a><a class="tag" href="/tags/数据库/" title="数据库">数据库 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2021/04/08/wechat/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%85%A5%E9%97%A8/">微信小程序入门</a></h3></div><div class="post-content"><p>小程序是什么？可以视为只能用微信打开和浏览的网站，使用 javascript、css、wxml 开发，只能使用微信提供的 API
+优势：    微信提供的 API 功能丰富
+开发准备
+AppID、AppSecret
+小程序开发工具
+导入项目
 
-npm install --save-dev webpack-bundle-analyzer
+基础目录结构
+app.js 新建小程序实例，参数为配置对象
 
-解决 ‘NODE_ENV’ 不是内部或外部命令，也不是可运行的程序或批处理文件 的报错
+1234...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-04-08</span><i class="fa fa-tag"></i><a class="tag" href="/categories/微信小程序/" title="微信小程序">微信小程序 </a><a class="tag" href="/tags/微信小程序/" title="微信小程序">微信小程序 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2021/04/08/Javascript/SharedArrayBuffer%E5%AF%B9%E8%B1%A1%E3%80%81Atomics%E5%AF%B9%E8%B1%A1/">SharedArrayBuffer对象、Atomics对象</a></h3></div><div class="post-content"><p>SharedArrayBuffer对象表示一个通用、固定长度的原始二进制数据缓冲区可以在共享内存上创建视图，不能被分离
 
-npm install cross-env –save -dev
+语法  new ShardArrayBuffer(length)  length：数据缓冲区的大小，以字节（byte）为单位
 
-配置...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-12-26</span><i class="fa fa-tag"></i><a class="tag" href="/categories/工具/" title="工具">工具 </a><a class="tag" href="/tags/WebPack/" title="WebPack">WebPack </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/12/26/%E5%89%8D%E7%AB%AF/Make%20%E6%9E%84%E5%BB%BA%20Node.js%20%E9%A1%B9%E7%9B%AE/">Make 构建 Node.js 项目</a></h3></div><div class="post-content"><p>网站项目构建方案
-方案一：基于Node.js的专用构建工具（Grunt、Gulp、Brunch、Broccoli、Mimosa）
-方案二：npm run命令
-方案三：make命令
+Atomics对象提供一组静态方法对 ShardArrayBuf...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-04-08</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2021/03/23/Vue/reactivity%20%E5%93%8D%E5%BA%94%E5%BC%8F/">reactivity 响应式</a></h3></div><div class="post-content"><p>使用方法npm i @vue/reactivity
+1234567891011121314const &#123;effect, reactive&#125; = require(&#x27;@vue/reactivity&#x27;)// 声明响应式变量let a = reactive(&#123;	value...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-03-23</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2021/03/23/Vue/setup%E5%92%8Crender/">setup、render</a></h3></div><div class="post-content"><p>1234567891011121314const app = &#123;	render(context)&#123;		effectWatch(()=&gt;&#123;			// ...		&#125;)	&#125;,	setup()&#123;		const state = reactive(&#123;...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-03-23</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Vue/" title="Vue">Vue </a><a class="tag" href="/tags/Vue/" title="Vue">Vue </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2021/03/20/%E5%A4%A7%E6%95%B0%E6%8D%AE/Flink%20%E5%86%85%E6%A0%B8/">Flink 内核原理</a></h3></div><div class="post-content"><p>核心特点
+批流一体
+有界数据（批）、无界数据（流）
 
+可靠的容错率
 
-Make 优点
+高吞吐、低延迟
+分布式快照、检查点
 
-（1） 插件问题（2） 兼容性问题（3） 语法问题（4） 功能问题
-常见构建任务
-检查语法
-编译模板
-转码
-合并...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-12-26</span><i class="fa fa-tag"></i><a class="tag" href="/categories/工具/" title="工具">工具 </a><a class="tag" href="/tags/Make/" title="Make">Make </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/12/25/React/React%20%E8%AF%AD%E6%B3%95/">React 语法</a></h3></div><div class="post-content"><p>JSX 嵌入表达式12345678910111213141516171819function formatName(user) &#123;  return user.firstName + &#x27; &#x27; + user.lastName;&#125;const user = &#123;  firs...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-12-25</span><i class="fa fa-tag"></i><a class="tag" href="/categories/React/" title="React">React </a><a class="tag" href="/tags/React/" title="React">React </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/12/12/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">Hello World</a></h3></div><div class="post-content"><p>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in trouble...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-12-12</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/12/11/%E5%89%8D%E7%AB%AF/parse/"></a></h3></div><div class="post-content"><p>const recast = require('recast');
-const code = `
-function add(a,b){
-	return a + 
-		b
-}
-`;
-const ast = recast.parse(code);
+大规模复杂计算
 
-const add = ast.program.body[0];
-c...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-12-11</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/12/03/Css/pointer-events/">pointer-events:none</a></h3></div><div class="post-content"><p>pointer-events:none 让元素实体虚化，即海市蜃楼
-注意：键盘事件无法过滤
-a 标签应用 disabled 可以禁用键盘事件（避开tab键的索引）【绝大多数浏览器】
-禁用a标签链接或按钮的完美组合是：pointer-events:none &amp; without href
-
-兼容性
-
-Fire...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-12-03</span><i class="fa fa-tag"></i><a class="tag" href="/categories/css3/" title="css3">css3 </a><a class="tag" href="/tags/css3/" title="css3">css3 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/12/03/Javascript/canvas%20%E5%9B%BE%E7%89%87%E5%8A%A0%E5%AF%86/">canvas 图片加密</a></h3></div><div class="post-content"><p>
-
-var ctx = document.getElementById('canvas').getContext('2d')
+多平台部署
 
 
-加密信息
+架构”数据输入（source）“  ——&gt; “数据计算、处理、转化” ——&gt; “数据输出（sink）”，此过程为数据处理流水线 Pipeline
+source、...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-03-20</span><i class="fa fa-tag"></i><a class="tag" href="/categories/大数据/" title="大数据">大数据 </a><a class="tag" href="/tags/Flink/" title="Flink">Flink </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2021/03/13/Javascript/%E9%87%8D%E6%B8%A9%20this/">重温 this</a></h3></div><div class="post-content"><p>获取全局对象
+web：window、self、frames、globalThis、this
+node：global
+worker：self
+通用：globalThis
 
-var textData
-ctx.font='30px Microsoft Yahei'
-ctx.fillText('日升于东', 60, 130)
-textData = ...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-12-03</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/canvas/" title="canvas">canvas </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/11/26/%E5%89%8D%E7%AB%AF/HTTP%20%E5%8D%8F%E8%AE%AE/">HTTP 协议</a></h3></div><div class="post-content"><p>应用层协议，由请求和响应构成。标准的客户端服务器模型，为无状态协议
+1234567var a = &#x27;全局属性 a&#x27;console.log(`window: $&#123;window.a&#1...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-03-13</span><i class="fa fa-tag"></i><a class="tag" href="/categories/javascript/" title="javascript">javascript </a><a class="tag" href="/tags/javascript/" title="javascript">javascript </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2021/03/12/Svg/gsap.js%20%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">gsap 使用方法</a></h3></div><div class="post-content"><p></p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-03-12</span><i class="fa fa-tag"></i><a class="tag" href="/categories/gsap/" title="gsap">gsap </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2021/03/11/Svg/anime.js%20%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">anime 使用方法</a></h3></div><div class="post-content"><p>安装使用npm install animejs
+import anime from &quot;animejs&quot;;
+参数说明
 
-在 TCP/IP 协议栈中的位置
-
-HTTP(TLS/SSL)TCPIP数据链路层
-HTTP 端口号 80，HTTPS 端口号 443
-
-请求响应模型
-
-永远是客户端发起请求，服务器回送响应
-缓存机制根据是否需要重新向服务器发起请求分类：强制缓...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-11-26</span><i class="fa fa-tag"></i><a class="tag" href="/categories/协议/" title="协议">协议 </a><a class="tag" href="/tags/HTTP/" title="HTTP">HTTP </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/11/26/%E5%89%8D%E7%AB%AF/%E5%AD%97%E6%AF%8D%E3%80%81%E6%B1%89%E5%AD%97%E4%B8%8D%E5%90%8C%E5%AD%97%E7%AC%A6%E9%9B%86%E7%BC%96%E7%A0%81%E7%9A%84%E5%AD%97%E8%8A%82%E6%95%B0/">字母、汉字不同字符集编码的字节数</a></h3></div><div class="post-content"><p>字节数
-.tableWrap table{
-    width: 30%;
+.tableWrap table
+{
     margin-bottom: 1rem;
     border-collapse: collapse;
 }
-.tableWrap table th,
-.tableWrap table td{
-    padding: .5rem;...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-11-26</span><i class="fa fa-tag"></i><a class="tag" href="/categories/字符集/" title="字符集">字符集 </a><a class="tag" href="/tags/字符集/" title="字符集">字符集 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2020/11/26/Other/%E6%95%B0%E5%AD%A6/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/">傅里叶变换</a></h3></div><div class="post-content"><p>时域 –&gt;&gt; 频域
-正交积
-频域：频率，振幅，相位
-滤波
-应用声音
+.tableWrap ...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-03-11</span><i class="fa fa-tag"></i><a class="tag" href="/categories/anime-js/" title="anime.js">anime.js </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2021/03/09/Svg/Svg%20%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">Svg 基础知识</a></h3></div><div class="post-content"><p>viewBox
+viewBox=”x, y, width, height”  【x:左上角横坐标，y:左上角纵坐标，width:宽度，height:高度】
+理解：svg 容器范围内，从 x,y 坐标点 截取 width, height 大小的图像，铺满整个 svg 容器
 
-低频：男
-高频：女
-
-图像
-
-低频：轮廓
-高频：图像细节
-
-</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-11-26</span><i class="fa fa-tag"></i><a class="tag" href="/categories/数学/" title="数学">数学 </a><a class="tag" href="/tags/数学/" title="数学">数学 </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/3/">下一页</a></li></ul></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>
+preserveAspectRatio
+...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-03-09</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Svg/" title="Svg">Svg </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/">Prev</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/3/">Next</a></li></ul></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>

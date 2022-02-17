@@ -1,0 +1,187 @@
+<!DOCTYPE html><html><head><title>微信小程序官方文档解读 [ 日升于东 ]</title><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><meta name="description" content="经验记录，资源分享，学习资料整理"><meta name="keywords" content="前端、开发、常见问题解决、资源分享、HTML5、CSS3、Javascript、C#、.NET、java、python、程序员"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><!--favicon.ico--><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><!--加载样式表--><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/search.css"><link rel="stylesheet" href="/css/oeloowu.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">日升于东</a></h3><div class="description"><p>纵有疾风起，人生不言弃</p></div></div></div><ul class="social-links"><li><a href="http://github.com/" target="_blankmailchen"><i class="fa fa-github"></i></a></li><li><a href="mailto:mailchen@126.com" target="_blank"><i class="fa fa-envelope"></i></a></li></ul><div class="footer"><!-- 新增访客统计代码 --><div class="busuanzi-count"><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span><span class="site-uv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div><!-- 新增访客统计代码 END--><span>Proudly published with Hexo&#65281;</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="navMobile"><i class="fa fa-bars"></i></div><div class="nav"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/recommend">收藏</a></li><li><a href="/about">关于我</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>微信小程序官方文档解读</a></h3></div><div class="post-content"><h4 id="小程序与普通网页开发的区别"><a href="#小程序与普通网页开发的区别" class="headerlink" title="小程序与普通网页开发的区别"></a>小程序与普通网页开发的区别</h4><ol>
+<li>网页开发渲染线程和脚本线程是互斥的</li>
+<li>小程序的逻辑层和渲染层是分开的，逻辑层运行在 JSCore 中，缺少 DOM、BOM API，NPM包也是无法在小程序中运行</li>
+</ol>
+<h4 id="浏览器环境"><a href="#浏览器环境" class="headerlink" title="浏览器环境"></a>浏览器环境</h4><p>PC：IE、Chrome、Safari、QQ等<br>Mobile：Safari、Chrome及IOS、Android 系统中的 WebView<br>小程序：iOS 和 Android 的微信客户端及开发者工具</p>
+<blockquote>
+<p>小程序运行环境</p>
+</blockquote>
+<style>
+    .tableWrap table{border-collapse:collapse;}
+    .tableWrap table th,.tableWrap table td{ border:1px solid #cdcdcd; padding: .5rem 1rem;}
+</style>
+
+<div class="tableWrap">
+
+<table>
+<thead>
+<tr>
+<th>运行环境</th>
+<th>逻辑层</th>
+<th>渲染层</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IOS</td>
+<td>JSCore</td>
+<td>WKWebView</td>
+</tr>
+<tr>
+<td>安卓</td>
+<td>V8</td>
+<td>chromium内核</td>
+</tr>
+<tr>
+<td>开发者工具</td>
+<td>NWJS</td>
+<td>Chrome WebView</td>
+</tr>
+</tbody></table>
+</div>
+
+<h4 id="代码构成"><a href="#代码构成" class="headerlink" title="代码构成"></a>代码构成</h4><ul>
+<li>WXSS</li>
+</ul>
+<ol>
+<li>新增了尺寸单位 rpx，响应式计算微信底层实现</li>
+</ol>
+<h4 id="宿主环境"><a href="#宿主环境" class="headerlink" title="宿主环境"></a>宿主环境</h4><p>小程序运行环境：渲染层、逻辑层<br>WXML、WXSS 工作在渲染层，使用 WebView 进行渲染<br>JS 脚本工作在逻辑层，采用 JsCore 线程运行</p>
+<blockquote>
+<p>通信模型</p>
+</blockquote>
+<p><img src="https://res.wx.qq.com/wxdoc/dist/assets/img/4-1.ad156d1c.png" alt="通信模型"></p>
+<h4 id="sitemap-配置"><a href="#sitemap-配置" class="headerlink" title="sitemap 配置"></a>sitemap 配置</h4><p>用来配置小程序及页面是否允许被微信索引</p>
+<p>注：sitemap 索引提示默认开启，关闭提示方法（project.config.json -&gt; setting -&gt; checkSiteMap:false）</p>
+<p>sitemap 文件内容最大为 5120 UTF8 字符</p>
+<h4 id="小程序框架"><a href="#小程序框架" class="headerlink" title="小程序框架"></a>小程序框架</h4><blockquote>
+<p>场景值</p>
+</blockquote>
+<p>对于小程序，可以在 App 的 onLaunch 和 onShow，wx.getLaunchOptionsSync 中获取上述场景值。<br>对于小游戏，可以在 wx.getLaunchOptionsSync 和 wx.onShow 中获取上述场景值</p>
+<p>1020、1035、1036、1037、1038、1043</p>
+<blockquote>
+<p>逻辑层</p>
+</blockquote>
+<ul>
+<li>注册小程序，绑定生命周期</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">App(&#123;</span><br><span class="line">	<span class="function"><span class="title">onLaunch</span>(<span class="params">option</span>)</span>&#123;&#125;,</span><br><span class="line">	<span class="function"><span class="title">onShow</span>(<span class="params">options</span>)</span>&#123;&#125;,</span><br><span class="line">	<span class="function"><span class="title">onHide</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">	<span class="function"><span class="title">onError</span>(<span class="params">msg</span>)</span>&#123;&#125;</span><br><span class="line">	globalData:&#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注册页面</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">	data: &#123;&#125;,</span><br><span class="line">	<span class="function"><span class="title">onLoad</span>(<span class="params">options</span>)</span>&#123;&#125;,</span><br><span class="line">	<span class="function"><span class="title">onShow</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">	<span class="function"><span class="title">onReady</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">	<span class="function"><span class="title">onHide</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">	<span class="function"><span class="title">onUnload</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">	<span class="function"><span class="title">onPullDownRefresh</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">	<span class="function"><span class="title">onReachBottom</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">	<span class="function"><span class="title">onShareAppMessage</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">	<span class="function"><span class="title">onPageScroll</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">	<span class="function"><span class="title">onResize</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">	<span class="function"><span class="title">onTabItemTap</span>(<span class="params">item</span>)</span>&#123; <span class="comment">// index、pagePath、text&#125;,</span></span><br><span class="line">	<span class="function"><span class="title">viewTap</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">	customData: &#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>behaviors</li>
+</ul>
+<p>混入，支持多页面拥有相同数据字段、方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = Behavior(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        sharedText: <span class="string">&#x27;This is a piece of data shared between pages.&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        sharedMethod: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.data.sharedText === <span class="string">&#x27;This is a piece of data shared between pages.&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myBehavior = <span class="built_in">require</span>(<span class="string">&#x27;./my-behavior.js&#x27;</span>)</span><br><span class="line">Page(&#123;</span><br><span class="line">    behaviors: [myBehavior],</span><br><span class="line">    onLoad: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.data.sharedText === <span class="string">&#x27;This is a piece of data shared between pages.&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Component 自定义组件</li>
+</ul>
+<p>方法必须放在 methods: { … }</p>
+<ul>
+<li>生命周期</li>
+</ul>
+<p><img src="https://res.wx.qq.com/wxdoc/dist/assets/img/page-lifecycle.2e646c86.png" alt="生命周期"></p>
+<ul>
+<li>页面路由</li>
+</ul>
+<ol>
+<li>navigateTo，redirectTo 只能打开非 tabBar 页面</li>
+<li>switchTab 只能打开 tabBar 页面</li>
+<li>reLaunch 可以打开任意页面</li>
+<li>页面底部 tabBar 由页面决定</li>
+<li>调用页面路由的参数可以在目标页面的 onLoad 中获取</li>
+</ol>
+<ul>
+<li>API</li>
+</ul>
+<ol>
+<li><p>事件监听 API，<code>[on]fun</code></p>
+</li>
+<li><p>同步 API，<code>fun[Sync]</code></p>
+</li>
+<li><p>异步 API<br> 支持 callback &amp; promise 两种调用方式<br> 当接口参数未指定 success、fail、complete 回调时，默认返回 promise<br> wx.onUnhandledRejection 可以监听未处理的 Promise 拒绝事件</p>
+</li>
+<li><p>云开发 API</p>
+</li>
+</ol>
+<h4 id="WXML"><a href="#WXML" class="headerlink" title="WXML"></a>WXML</h4><ol>
+<li>数据绑定</li>
+<li>列表渲染</li>
+<li>条件渲染</li>
+<li>模板</li>
+<li>引用</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span> &#123;&#123;message&#125;&#125; <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">&quot;&#123;&#123;array&#125;&#125;&quot;</span>&gt;</span> &#123;&#123;item&#125;&#125; <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:if</span>=<span class="string">&quot;&#123;&#123;view == &#x27;WEBVIEW&#x27;&#125;&#125;&quot;</span>&gt;</span> WEBVIEW <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:elif</span>=<span class="string">&quot;&#123;&#123;view == &#x27;APP&#x27;&#125;&#125;&quot;</span>&gt;</span> APP <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:else</span>=<span class="string">&quot;&#123;&#123;view == &#x27;MINA&#x27;&#125;&#125;&quot;</span>&gt;</span> MINA <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">name</span>=<span class="string">&quot;staffName&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line">    FirstName: &#123;&#123;firstName&#125;&#125;, LastName: &#123;&#123;lastName&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">is</span>=<span class="string">&quot;staffName&quot;</span> <span class="attr">data</span>=<span class="string">&quot;&#123;&#123;...staffA&#125;&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">is</span>=<span class="string">&quot;staffName&quot;</span> <span class="attr">data</span>=<span class="string">&quot;&#123;&#123;...staffB&#125;&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">is</span>=<span class="string">&quot;staffName&quot;</span> <span class="attr">data</span>=<span class="string">&quot;&#123;&#123;...staffC&#125;&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        message: <span class="string">&#x27;Hello MINA!&#x27;</span></span><br><span class="line">        array: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">    	view: <span class="string">&#x27;MINA&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    	staffA: &#123;<span class="attr">firstName</span>: <span class="string">&#x27;Hulk&#x27;</span>, <span class="attr">lastName</span>: <span class="string">&#x27;Hu&#x27;</span>&#125;,</span><br><span class="line">        staffB: &#123;<span class="attr">firstName</span>: <span class="string">&#x27;Shang&#x27;</span>, <span class="attr">lastName</span>: <span class="string">&#x27;You&#x27;</span>&#125;,</span><br><span class="line">    	staffC: &#123;<span class="attr">firstName</span>: <span class="string">&#x27;Gideon&#x27;</span>, <span class="attr">lastName</span>: <span class="string">&#x27;Lin&#x27;</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="WXSS"><a href="#WXSS" class="headerlink" title="WXSS"></a>WXSS</h4><ul>
+<li>尺寸单位</li>
+</ul>
+<p>iphone6：1rpx = 0.5px</p>
+<ul>
+<li>选择器支持</li>
+</ul>
+<p>.class、#id、element,element、::after、::before</p>
+<h4 id="双向绑定"><a href="#双向绑定" class="headerlink" title="双向绑定"></a>双向绑定</h4><p><code>model:value=&quot;&#123;&#123;value&#125;&#125;&quot;</code></p>
+<ol>
+<li>只能单一字段绑定</li>
+<li>不支持 data 路径，如：<code>obj.a.b.value</code></li>
+</ol>
+<h4 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h4><ol>
+<li><p>监听事件<br> bindtransitionend、bindanimationstart、bindanimationiteration、bindanimationend</p>
+</li>
+<li><p>关键帧动画<br> this.animate(selector, keyframes, duration, callback)<br> 清除所有动画样式：this.clearAnimation(selector, options, callback)</p>
+</li>
+</ol>
+<h4 id="初始化渲染缓存"><a href="#初始化渲染缓存" class="headerlink" title="初始化渲染缓存"></a>初始化渲染缓存</h4><ol>
+<li><p>静态初始化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;window&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;initialRenderingCache&quot;</span>: <span class="string">&quot;static&quot;</span> <span class="comment">// dynamic</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>动态初始化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">onReady: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.setInitialRenderingCache(&#123;</span><br><span class="line">        loadingHint: <span class="string">&#x27;正在加载&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><code>注意：</code><br>    尽量避免频繁调用 this.setInitialRenderingCache ，如果在一个页面内多次调用，仅最后一次调用生效。<br>    this.setInitialRenderingCache 调用时机不能早于 Page 的 onReady 或 Component 的 ready 生命周期，否则可能对性能有负面影响。<br>    如果想禁用初始渲染缓存，调用 this.setInitialRenderingCache(null) 。</p>
+<h4 id="自定义组件"><a href="#自定义组件" class="headerlink" title="自定义组件"></a>自定义组件</h4><ol>
+<li>slot 插槽</li>
+</ol>
+<p>默认情况下，一个组件的 wxml 中只能有一个 slot 。需要使用多 slot 时，可以在组件 js 中声明启用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">  options: &#123;</span><br><span class="line">    multipleSlots: <span class="literal">true</span> <span class="comment">// 在组件定义时的选项中启用多slot支持</span></span><br><span class="line">  &#125;,</span><br><span class="line">  properties: &#123; <span class="comment">/* ... */</span> &#125;,</span><br><span class="line">  methods: &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>组件样式</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#a</span> &#123; &#125; <span class="comment">/* 在组件中不能使用 */</span></span><br><span class="line"><span class="selector-attr">[a]</span> &#123; &#125; <span class="comment">/* 在组件中不能使用 */</span></span><br><span class="line"><span class="selector-tag">button</span> &#123; &#125; <span class="comment">/* 在组件中不能使用 */</span></span><br><span class="line"><span class="selector-class">.a</span> &gt; <span class="selector-class">.b</span> &#123; &#125; <span class="comment">/* 除非 .a 是 view 组件节点，否则不一定会生效 */</span></span><br></pre></td></tr></table></figure>
+
+<p>app.wxss 中的样式、组件所在页面的的样式对自定义组件无效</p>
+<ol start="3">
+<li>默认样式</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:host</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>组件样式隔离</p>
+<p> 标签名选择器样式会被组件集成<br> 指定样式隔离 styleIsolation：[<code>isolated</code>、<code>apply-shared</code>、<code>shared</code>、<code>page-isolated</code>、<code>page-apply-shared</code>、<code>page-shared</code>]</p>
+</li>
+<li><p>引用页面、父组件样式</p>
+<p> <code>~</code>页面样式class、<code>^</code>父组件样式class</p>
+</li>
+</ol>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-04-09</span><i class="fa fa-tag"></i><a class="tag" href="/categories/微信小程序/" title="微信小程序">微信小程序 </a><a class="tag" href="/tags/微信小程序/" title="微信小程序">微信小程序 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://yoursite.com/2021/04/09/wechat/微信小程序官方文档解读/,日升于东,微信小程序官方文档解读,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/05/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BB%AA%E8%AE%BA/" title="绪论">上一页</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/04/09/%E6%95%B0%E6%8D%AE%E5%BA%93/Sql%20sys%20%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88/" title="Sql sys 对象集合">下一页</a></li></ul></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTEzNC8yMTY1MQ=="></div><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+
+})(document, 'script');</script><noscript></noscript><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8E%E6%99%AE%E9%80%9A%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">小程序与普通网页开发的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%8E%AF%E5%A2%83"><span class="toc-text">浏览器环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%9E%84%E6%88%90"><span class="toc-text">代码构成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%BF%E4%B8%BB%E7%8E%AF%E5%A2%83"><span class="toc-text">宿主环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sitemap-%E9%85%8D%E7%BD%AE"><span class="toc-text">sitemap 配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6"><span class="toc-text">小程序框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WXML"><span class="toc-text">WXML</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WXSS"><span class="toc-text">WXSS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A"><span class="toc-text">双向绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB"><span class="toc-text">动画</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B8%B2%E6%9F%93%E7%BC%93%E5%AD%98"><span class="toc-text">初始化渲染缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6"><span class="toc-text">自定义组件</span></a></li></ol></div></div></div></div><div class="searchWrap" data-path="/search.xml"><form class="site-search-form"><i class="fa fa-search"></i><input class="st-search-input" type="text" id="local-search-input" AUTOCOMPLETE="off"></form><div class="local-search-result-cls none" id="local-search-result"></div></div></body><script src="/js/jquery.js"></script><script src="/js/search.js"></script><script src="/js/oeloowu.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></html>
